@@ -6,12 +6,22 @@ import java.util.Objects;
 @Entity
 @Table(name = "Salary_Staff", schema = "dbo", catalog = "ProjectOne")
 public class SalaryStaffEntity {
+    private String staffId;
     private String staffDefaultSalary;
     private String staffSalaryPerHour;
     private String staffOt;
     private String staffReward;
-    private InfStaffEntity infStaffSalaryId;
     private String id;
+
+    @Basic
+    @Column(name = "Staff_Id")
+    public String getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(String staffId) {
+        this.staffId = staffId;
+    }
 
     @Basic
     @Column(name = "Staff_Default_Salary")
@@ -58,7 +68,8 @@ public class SalaryStaffEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SalaryStaffEntity that = (SalaryStaffEntity) o;
-        return Objects.equals(staffDefaultSalary, that.staffDefaultSalary) &&
+        return Objects.equals(staffId, that.staffId) &&
+                Objects.equals(staffDefaultSalary, that.staffDefaultSalary) &&
                 Objects.equals(staffSalaryPerHour, that.staffSalaryPerHour) &&
                 Objects.equals(staffOt, that.staffOt) &&
                 Objects.equals(staffReward, that.staffReward);
@@ -66,17 +77,7 @@ public class SalaryStaffEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(staffDefaultSalary, staffSalaryPerHour, staffOt, staffReward);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "Staff_Id", referencedColumnName = "Staff_Id", nullable = false)
-    public InfStaffEntity getInfStaffSalaryId() {
-        return infStaffSalaryId;
-    }
-
-    public void setInfStaffSalaryId(InfStaffEntity infStaffSalaryId) {
-        this.infStaffSalaryId = infStaffSalaryId;
+        return Objects.hash(staffId, staffDefaultSalary, staffSalaryPerHour, staffOt, staffReward);
     }
 
     public void setId(String id) {

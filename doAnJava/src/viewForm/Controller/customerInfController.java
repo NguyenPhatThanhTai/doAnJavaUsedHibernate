@@ -5,6 +5,7 @@ import Model.InfCustomersEntity;
 import Model.customerModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -130,7 +131,7 @@ public class customerInfController implements Initializable {
                 InfCustomersEntity cus = (InfCustomersEntity) tableListCustomer.getItems().get(tableListCustomer.getSelectionModel().getSelectedIndex());
                 txtMaKhachHang.setText(cus.getCustomerId());
                 txtTenKhachHang.setText(cus.getCustomerName());
-                if (cus.getCustomerSex().equals("1")){
+                if (cus.getCustomerSex().equals("Nam")){
                     txtGioiTinh.setSelected(true);
                 }
                 else {

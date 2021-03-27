@@ -9,10 +9,8 @@ public class AccountStaffEntity {
     private String staffAccount;
     private String staffPassword;
     private String staffRole;
-    private InfStaffEntity infStaffAccountId;
-    private String id;
 
-    @Basic
+    @Id
     @Column(name = "Staff_Account")
     public String getStaffAccount() {
         return staffAccount;
@@ -55,24 +53,5 @@ public class AccountStaffEntity {
     @Override
     public int hashCode() {
         return Objects.hash(staffAccount, staffPassword, staffRole);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "Staff_Id", referencedColumnName = "Staff_Id", nullable = false)
-    public InfStaffEntity getInfStaffAccountId() {
-        return infStaffAccountId;
-    }
-
-    public void setInfStaffAccountId(InfStaffEntity infStaffAccountId) {
-        this.infStaffAccountId = infStaffAccountId;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Id
-    public String getId() {
-        return id;
     }
 }

@@ -1,6 +1,7 @@
 package viewForm.Controller;
 
 import DAO.doDao;
+import Model.InfStaffEntity;
 import Model.accountStaffModel;
 import Model.customerModel;
 import Model.infStaffModel;
@@ -71,15 +72,15 @@ public class mainController implements Initializable {
     @FXML
     private JFXButton btnHome;
 
-    public void showInfomation(infStaffModel infStaffModel){
+    public void showInfomation(InfStaffEntity infStaffEntity){
         String name;
 
-        SimpleDateFormat formatter= new SimpleDateFormat("'ngày' dd-MM-yyyy ");
+        SimpleDateFormat formatter= new SimpleDateFormat("'Hôm nay là ngày' dd-MM-yyyy ");
         SimpleDateFormat time= new SimpleDateFormat("HH:mm");
         Date date = new Date(System.currentTimeMillis());
         System.out.println(formatter.format(date));
-        if ( infStaffModel != null){
-            name = infStaffModel.getStaff_Name();
+        if ( infStaffEntity != null){
+            name = infStaffEntity.getStaffName();
         }
         else {
             name = "Không định dạng được";

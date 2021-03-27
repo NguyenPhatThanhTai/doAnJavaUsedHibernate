@@ -13,7 +13,6 @@ public class DetailInfRepairEntity {
     private String repairStatus;
     private Date repairAppointment;
     private String repairMoney;
-    private InfRepairEntity infRepairId;
 
     @Id
     @Column(name = "Detail_Id")
@@ -91,15 +90,5 @@ public class DetailInfRepairEntity {
     @Override
     public int hashCode() {
         return Objects.hash(detailId, repairReason, repairNote, repairStatus, repairAppointment, repairMoney);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "Repair_Id", referencedColumnName = "Repair_Id", nullable = false)
-    public InfRepairEntity getInfRepairId() {
-        return infRepairId;
-    }
-
-    public void setInfRepairId(InfRepairEntity infRepairId) {
-        this.infRepairId = infRepairId;
     }
 }

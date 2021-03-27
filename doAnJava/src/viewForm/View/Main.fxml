@@ -28,7 +28,7 @@
       <VBox alignment="CENTER" layoutX="14.0" layoutY="20.0" prefHeight="627.0" prefWidth="54.0" style="-fx-background-color: transparent;">
          <children>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="btnHome" contentDisplay="TOP" onAction="#showWelcomePage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="------" textFill="WHITE">
+            <JFXButton fx:id="btnHome" contentDisplay="TOP" onAction="#showWelcomePage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,7 +41,7 @@
                </font>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="btnThongTinKhachHang" contentDisplay="TOP" onAction="#showCustomerPage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="------" textFill="WHITE">
+            <JFXButton fx:id="btnThongTinKhachHang" contentDisplay="TOP" onAction="#showCustomerPage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
                <graphic>
                   <ImageView fx:id="imgCustomer" fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -51,7 +51,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="------" textFill="WHITE">
+            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +61,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="------" textFill="WHITE">
+            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -71,7 +71,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="------" textFill="WHITE">
+            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -81,7 +81,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="------" textFill="WHITE">
+            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -91,7 +91,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="------" textFill="WHITE">
+            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -103,14 +103,14 @@
          </children>
       </VBox>
       <JFXButton fx:id="btnMinimized" buttonType="RAISED" layoutX="1164.0" layoutY="13.0" minHeight="21.0" minWidth="44.0" onAction="#Minimized" prefHeight="32.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="_" textFill="WHITE" />
-      <Label fx:id="lbDate" layoutX="121.0" layoutY="214.0" prefHeight="18.0" prefWidth="851.0" text="Thứ 6 ngày 26-3-2021, chào mừng quay trở lại 1" textAlignment="CENTER" textFill="WHITE" />
-      <Label fx:id="lbTb1" layoutX="119.0" layoutY="314.0" prefHeight="17.0" prefWidth="374.0" text="- Mẫu" textFill="WHITE" />
-      <Label fx:id="lbTb2" layoutX="119.0" layoutY="358.0" prefHeight="17.0" prefWidth="374.0" text="- Mẫu" textFill="WHITE" />
-      <Label fx:id="lbTb3" layoutX="119.0" layoutY="400.0" prefHeight="17.0" prefWidth="374.0" text="- Mẫu" textFill="WHITE" />
-      <Label fx:id="lbTb4" layoutX="119.0" layoutY="444.0" prefHeight="17.0" prefWidth="374.0" text="- Mẫu" textFill="WHITE" />
-      <Label fx:id="labelThongBao" layoutX="121.0" layoutY="259.0" prefHeight="33.0" prefWidth="140.0" text="Thông báo" textFill="WHITE">
+      <Label fx:id="lbDate" layoutX="119.0" layoutY="214.0" prefHeight="18.0" prefWidth="920.0" text="Thứ 6 ngày 26-3-2021, chào mừng quay trở lại 1" textAlignment="CENTER" textFill="WHITE" />
+      <Label fx:id="lbTb1" layoutX="119.0" layoutY="314.0" prefHeight="17.0" prefWidth="374.0" text="- Hiện tại chưa có thông báo mới" textFill="WHITE" />
+      <Label fx:id="lbTb2" layoutX="119.0" layoutY="358.0" prefHeight="17.0" prefWidth="374.0" text="- Hiện tại chưa có thông báo mới" textFill="WHITE" />
+      <Label fx:id="lbTb3" layoutX="119.0" layoutY="400.0" prefHeight="17.0" prefWidth="374.0" text="- Hiện tại chưa có thông báo mới" textFill="WHITE" />
+      <Label fx:id="lbTb4" layoutX="119.0" layoutY="444.0" prefHeight="17.0" prefWidth="374.0" text="- Hiện tại chưa có thông báo mới" textFill="WHITE" />
+      <Label fx:id="labelThongBao" layoutX="121.0" layoutY="259.0" prefHeight="40.0" prefWidth="278.0" text="Thông báo" textFill="#cd6969">
          <font>
-            <Font size="22.0" />
+            <Font name="System Bold" size="23.0" />
          </font>
       </Label>
    </children>

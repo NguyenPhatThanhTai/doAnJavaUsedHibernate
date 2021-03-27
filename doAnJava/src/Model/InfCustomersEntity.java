@@ -38,7 +38,10 @@ public class InfCustomersEntity {
     @Basic
     @Column(name = "Customer_Sex")
     public String getCustomerSex() {
-        return customerSex;
+        if (customerSex.equals("1")){
+            return "Nam";
+        }
+        return "Nữ";
     }
 
     public void setCustomerSex(String customerSex) {

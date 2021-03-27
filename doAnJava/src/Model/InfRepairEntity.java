@@ -10,7 +10,7 @@ public class InfRepairEntity {
     private String laptopName;
     private String laptopStatus;
     private String staffId;
-    private InfCustomersEntity infCustomersId;
+    private InfCustomersEntity infCustomersByCustomerId;
 
     @Id
     @Column(name = "Repair_Id")
@@ -70,11 +70,11 @@ public class InfRepairEntity {
 
     @ManyToOne
     @JoinColumn(name = "Customer_Id", referencedColumnName = "Customer_Id", nullable = false)
-    public InfCustomersEntity getInfCustomersId() {
-        return infCustomersId;
+    public InfCustomersEntity getInfCustomersByCustomerId() {
+        return infCustomersByCustomerId;
     }
 
-    public void setInfCustomersId(InfCustomersEntity infCustomersId) {
-        this.infCustomersId = infCustomersId;
+    public void setInfCustomersByCustomerId(InfCustomersEntity infCustomersByCustomerId) {
+        this.infCustomersByCustomerId = infCustomersByCustomerId;
     }
 }

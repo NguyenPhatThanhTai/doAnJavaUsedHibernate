@@ -27,6 +27,11 @@ public class infCustomerDao implements daoInterface<InfCustomersEntity> {
     }
 
     @Override
+    public InfCustomersEntity getDataById(String Id) {
+        return null;
+    }
+
+    @Override
     public ObservableList<InfCustomersEntity> getALl() {
         Session s = hibernateUntil.getSession();
         CriteriaBuilder builder = s.getCriteriaBuilder();
