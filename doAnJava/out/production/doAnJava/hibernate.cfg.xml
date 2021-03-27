@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:sqlserver://localhost:1433;database=ProjectOne</property>
+    <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="connection.username">sa</property>
+    <property name="connection.password"> </property>
+    <mapping class="Model.AccountStaffEntity"/>
+    <mapping class="Model.DetailInfRepairEntity"/>
+    <mapping class="Model.InfCustomersEntity"/>
+    <mapping class="Model.InfLkEntity"/>
+    <mapping class="Model.InfLichSuEntity"/>
+    <mapping class="Model.InfRepairEntity"/>
+    <mapping class="Model.InfStaffEntity"/>
+    <mapping class="Model.InfWareHouseEntity"/>
+    <mapping class="Model.SalaryStaffEntity"/>
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

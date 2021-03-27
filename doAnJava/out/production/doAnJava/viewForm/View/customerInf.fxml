@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="551.0" prefWidth="1185.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.customerInfController">
+   <children>
+      <TableView fx:id="tableListCustomer" layoutX="52.0" layoutY="258.0" onMouseClicked="#getItemFromTableView" prefHeight="271.0" prefWidth="1058.0">
+         <columns>
+            <TableColumn fx:id="colCustomerId" prefWidth="46.0" text="Id" />
+            <TableColumn fx:id="colCustomerName" prefWidth="165.0" text="Tên khách hàng" />
+            <TableColumn fx:id="colCustomerSex" prefWidth="165.0" text="Giới tính" />
+            <TableColumn fx:id="colCustomerBirth" prefWidth="165.0" text="Ngày sinh" />
+            <TableColumn fx:id="colCustomerEmail" prefWidth="165.0" text="Email" />
+            <TableColumn fx:id="colCustomerPhone" prefWidth="165.0" text="Số điện thoại" />
+            <TableColumn fx:id="colCustomerTimeAdd" prefWidth="165.0" text="Thời gian thêm" />
+         </columns>
+      </TableView>
+      <TextField fx:id="txtMaKhachHang" disable="true" layoutX="66.0" layoutY="39.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã khách hàng" />
+      <TextField fx:id="txtTenKhachHang" layoutX="462.0" layoutY="39.0" prefHeight="26.0" prefWidth="316.0" promptText="Tên khách hàng" />
+      <TextField fx:id="txtEmail" layoutX="462.0" layoutY="88.0" prefHeight="26.0" prefWidth="316.0" promptText="Email" />
+      <TextField fx:id="txtSoDienThoai" layoutX="462.0" layoutY="138.0" prefHeight="26.0" prefWidth="316.0" promptText="Số điện thoại" />
+      <TextField fx:id="txtNgayThem" disable="true" layoutX="66.0" layoutY="88.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày thêm" />
+      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Picture/Pic/pin_code_30px.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="427.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Picture/Pic/name_50px.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="838.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Picture/Pic/gender_50px.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="838.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Picture/Pic/flying_stork_with_bundle_26px.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="427.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Picture/Pic/email_30px.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="427.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Picture/Pic/phone_30px.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Picture/Pic/calendar_26px.png" />
+         </image>
+      </ImageView>
+      <JFXToggleButton fx:id="txtGioiTinh" layoutX="940.0" layoutY="62.0" prefHeight="32.0" prefWidth="77.0" />
+      <Label layoutX="883.0" layoutY="82.0" text="Nữ" textFill="WHITE" />
+      <Label layoutX="1048.0" layoutY="85.0" text="Nam" textFill="WHITE" />
+      <JFXButton fx:id="btnTest" alignment="BASELINE_CENTER" layoutX="51.0" layoutY="187.0" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: white;" text="Thêm khách hàng">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/Pic/add_30px.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnTest1" layoutX="574.0" layoutY="187.0" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: white;" text="Sửa thông tin">
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/Pic/eraser_50px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnTest2" layoutX="311.0" layoutY="187.0" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: white;" text="Xóa khách hàng">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/Pic/delete_30px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnTest3" layoutX="889.0" layoutY="187.0" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: white;" text="Làm mới ô nhập">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/Pic/refresh_26px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <DatePicker fx:id="txtNgaySinh" layoutX="889.0" layoutY="125.0" prefHeight="26.0" prefWidth="220.0" promptText="Ngày sinh" />
+   </children>
+</AnchorPane>
