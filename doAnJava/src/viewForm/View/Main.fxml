@@ -2,33 +2,24 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="657.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.mainController">
+<AnchorPane prefHeight="851.0" prefWidth="1572.0" style="-fx-background-radius: 30;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.mainController">
    <children>
-      <ImageView fitHeight="853.0" fitWidth="1268.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="862.0" fitWidth="1733.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Picture/Pic/milkyway%20(1%20of%201).jpg" />
          </image>
       </ImageView>
-      <BorderPane fx:id="paneLoad" layoutX="92.0" layoutY="51.0" prefHeight="596.0" prefWidth="1158.0" style="-fx-background-color: transparent;">
-         <top>
-            <Label fx:id="lbTime" prefHeight="141.0" prefWidth="252.0" text="17:35" textFill="WHITE" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="96.0" />
-               </font>
-            </Label>
-         </top></BorderPane>
-      <JFXButton fx:id="btnQuit" buttonType="RAISED" layoutX="1210.0" layoutY="13.0" minWidth="44.0" onAction="#Quit" prefHeight="32.0" prefWidth="44.0" style="-fx-background-color: transparent;" text="X" textFill="WHITE" />
-      <VBox alignment="CENTER" layoutX="14.0" layoutY="20.0" prefHeight="627.0" prefWidth="54.0" style="-fx-background-color: transparent;">
+      <VBox alignment="CENTER" layoutX="14.0" layoutY="10.0" prefHeight="835.0" prefWidth="38.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="btnHome" contentDisplay="TOP" onAction="#showWelcomePage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
+            <JFXButton fx:id="btnHome" contentDisplay="TOP" onAction="#showWelcomePage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,7 +32,7 @@
                </font>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="btnThongTinKhachHang" contentDisplay="TOP" onAction="#showCustomerPage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
+            <JFXButton fx:id="btnThongTinKhachHang" contentDisplay="TOP" onAction="#showCustomerPage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fx:id="imgCustomer" fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -51,7 +42,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
+            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +52,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
+            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -71,7 +62,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
+            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -81,7 +72,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
+            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -91,27 +82,24 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE">
+            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Picture/Pic/settings_24px.png" />
+                        <Image url="@../Picture/Pic/settings_50px.png" />
                      </image>
                   </ImageView>
                </graphic>
             </JFXButton>
          </children>
       </VBox>
-      <JFXButton fx:id="btnMinimized" buttonType="RAISED" layoutX="1164.0" layoutY="13.0" minHeight="21.0" minWidth="44.0" onAction="#Minimized" prefHeight="32.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="_" textFill="WHITE" />
-      <Label fx:id="lbDate" layoutX="119.0" layoutY="214.0" prefHeight="18.0" prefWidth="920.0" text="Thứ 6 ngày 26-3-2021, chào mừng quay trở lại 1" textAlignment="CENTER" textFill="WHITE" />
-      <Label fx:id="lbTb1" layoutX="119.0" layoutY="314.0" prefHeight="17.0" prefWidth="374.0" text="- Hiện tại chưa có thông báo mới" textFill="WHITE" />
-      <Label fx:id="lbTb2" layoutX="119.0" layoutY="358.0" prefHeight="17.0" prefWidth="374.0" text="- Hiện tại chưa có thông báo mới" textFill="WHITE" />
-      <Label fx:id="lbTb3" layoutX="119.0" layoutY="400.0" prefHeight="17.0" prefWidth="374.0" text="- Hiện tại chưa có thông báo mới" textFill="WHITE" />
-      <Label fx:id="lbTb4" layoutX="119.0" layoutY="444.0" prefHeight="17.0" prefWidth="374.0" text="- Hiện tại chưa có thông báo mới" textFill="WHITE" />
-      <Label fx:id="labelThongBao" layoutX="121.0" layoutY="259.0" prefHeight="40.0" prefWidth="278.0" text="Thông báo" textFill="#cd6969">
-         <font>
-            <Font name="System Bold" size="23.0" />
-         </font>
-      </Label>
+      <AnchorPane fx:id="paneLoad" layoutX="81.0" layoutY="58.0" prefHeight="783.0" prefWidth="1571.0" style="-fx-background-radius: 20; -fx-background-color: white;" />
+      <ToolBar layoutX="80.0" layoutY="14.0" prefHeight="33.0" prefWidth="1450.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <items>
+            <Label fx:id="lbName" prefHeight="23.0" prefWidth="745.0" text="Chào buổi tối " />
+         </items>
+      </ToolBar>
+      <JFXButton fx:id="btnMinimized" layoutX="1538.0" layoutY="14.0" minWidth="47.0" onAction="#Minimized" prefHeight="33.0" prefWidth="47.0" style="-fx-background-radius: 20; -fx-background-color: #5889CE;" text="___" />
+      <JFXButton fx:id="btnQuit" layoutX="1598.0" layoutY="14.0" onAction="#Quit" prefHeight="33.0" prefWidth="54.0" style="-fx-background-radius: 20; -fx-background-color: #DE6A6A;" text="X" />
    </children>
 </AnchorPane>

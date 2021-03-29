@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -40,31 +41,10 @@ public class mainController implements Initializable {
 
 
     @FXML
-    private BorderPane paneLoad;
+    private AnchorPane paneLoad;
 
     @FXML
     private JFXButton btnMinimized;
-
-    @FXML
-    private Label lbTime;
-
-    @FXML
-    private Label lbDate;
-
-    @FXML
-    private Label lbTb1;
-
-    @FXML
-    private Label lbTb2;
-
-    @FXML
-    private Label lbTb3;
-
-    @FXML
-    private Label lbTb4;
-
-    @FXML
-    private Label labelThongBao;
 
     @FXML
     private JFXButton btnThongTinKhachHang;
@@ -72,36 +52,28 @@ public class mainController implements Initializable {
     @FXML
     private JFXButton btnHome;
 
+    @FXML
+    private Label lbName;
+
     public void showInfomation(InfStaffEntity infStaffEntity){
         String name;
-
-        SimpleDateFormat formatter= new SimpleDateFormat("'Hôm nay là ngày' dd-MM-yyyy ");
-        SimpleDateFormat time= new SimpleDateFormat("HH:mm");
-        Date date = new Date(System.currentTimeMillis());
-        System.out.println(formatter.format(date));
         if ( infStaffEntity != null){
             name = infStaffEntity.getStaffName();
         }
         else {
             name = "Không định dạng được";
         }
-        lbTime.setText(time.format(date));
-        lbDate.setText(formatter.format(date)+"Xin chào: " + name + "");
+        lbName.setText(name);
     }
 
     public void showCustomerPage(){
-//        pageLoad object = new pageLoad();
-//        Pane view = object.getPage("customerInf.fxml");
-//        paneLoad.setCenter(view);
-
-
-        setEffectClick(false, "#4777A7", "ThongTinKhachHang");
+        setEffectClick("#4777A7", "ThongTinKhachHang");
 
         new Thread(()->{
                 Platform.runLater(()->{
                     pageLoad object = new pageLoad();
                     Pane view = object.getPage("customerInf.fxml");
-                    paneLoad.setTop(view);
+                    paneLoad.getChildren().add(view);
                 });
             try {
                 Thread.sleep(60);
@@ -112,9 +84,12 @@ public class mainController implements Initializable {
     }
 
     public void showWelcomePage(){
+        setEffectClick("#4777A7", "Home");
         new Thread(()->{
             Platform.runLater(()->{
-                paneLoad.setTop(lbTime);
+                pageLoad object = new pageLoad();
+                Pane view = object.getPage("welcome.fxml");
+                paneLoad.getChildren().add(view);
             });
             try {
                 Thread.sleep(60);
@@ -122,17 +97,9 @@ public class mainController implements Initializable {
                 e.printStackTrace();
             }
         }).start();
-        setEffectClick(true, "#4777A7", "Home");
     }
 
-    public void setEffectClick(boolean set, String color, String button){
-        lbDate.setVisible(set);
-        lbTb1.setVisible(set);
-        lbTb2.setVisible(set);
-        lbTb3.setVisible(set);
-        lbTb4.setVisible(set);
-        lbTime.setVisible(set);
-        labelThongBao.setVisible(set);
+    public void setEffectClick(String color, String button){
 
         switch (button){
             case "ThongTinKhachHang":
@@ -169,5 +136,6 @@ public class mainController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

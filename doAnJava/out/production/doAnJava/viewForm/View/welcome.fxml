@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="829.0" prefWidth="1552.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.welcomeController">
+   <children>
+      <Label fx:id="lbTime" layoutX="541.0" layoutY="45.0" prefHeight="176.0" prefWidth="301.0" text="21:15" textFill="WHITE">
+         <font>
+            <Font size="120.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbDate" layoutX="466.0" layoutY="208.0" prefHeight="27.0" prefWidth="452.0" text="Ngày 29 - 3 - 2021" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelThongBao" layoutX="186.0" layoutY="269.0" prefHeight="61.0" prefWidth="325.0" text="Thông báo" textFill="#da7676">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTb1" layoutX="175.0" layoutY="354.0" prefHeight="18.0" prefWidth="560.0" text="- Thông báo mẫu 1" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTb2" layoutX="175.0" layoutY="389.0" prefHeight="18.0" prefWidth="560.0" text="- Thông báo mẫu 1" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTb3" layoutX="175.0" layoutY="423.0" prefHeight="18.0" prefWidth="560.0" text="- Thông báo mẫu 1" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTb4" layoutX="175.0" layoutY="457.0" prefHeight="18.0" prefWidth="560.0" text="- Thông báo mẫu 1" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
