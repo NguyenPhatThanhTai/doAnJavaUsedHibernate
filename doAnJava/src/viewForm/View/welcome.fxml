@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="829.0" prefWidth="1552.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.welcomeController">
+<AnchorPane prefHeight="729.0" prefWidth="1513.0" style="-fx-background-color: white; -fx-background-radius: 100;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.welcomeController">
    <children>
-      <Label fx:id="lbTime" layoutX="541.0" layoutY="45.0" prefHeight="176.0" prefWidth="301.0" text="21:15" textFill="WHITE">
+      <ImageView fitHeight="475.0" fitWidth="438.0" layoutX="978.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 100;">
+         <image>
+            <Image url="@../Picture/Pic/source.gif" />
+         </image>
+      </ImageView>
+      <Label fx:id="lbTime" layoutX="580.0" layoutY="45.0" prefHeight="176.0" prefWidth="301.0" text="21:15">
          <font>
             <Font size="120.0" />
          </font>
       </Label>
-      <Label fx:id="lbDate" layoutX="466.0" layoutY="208.0" prefHeight="27.0" prefWidth="452.0" text="Ngày 29 - 3 - 2021" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="lbDate" layoutX="642.0" layoutY="194.0" prefHeight="27.0" prefWidth="158.0" text="Ngày 29 - 3 - 2021" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="labelThongBao" layoutX="186.0" layoutY="269.0" prefHeight="61.0" prefWidth="325.0" text="Thông báo" textFill="#da7676">
+      <Label fx:id="labelThongBao" layoutX="301.0" layoutY="251.0" prefHeight="61.0" prefWidth="325.0" text="Thông báo" textFill="#da7676">
          <font>
             <Font size="32.0" />
          </font>
       </Label>
-      <Label fx:id="lbTb1" layoutX="175.0" layoutY="354.0" prefHeight="18.0" prefWidth="560.0" text="- Thông báo mẫu 1" textFill="WHITE">
+      <Label fx:id="lbTb1" layoutX="290.0" layoutY="336.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 1">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lbTb2" layoutX="175.0" layoutY="389.0" prefHeight="18.0" prefWidth="560.0" text="- Thông báo mẫu 1" textFill="WHITE">
+      <Label fx:id="lbTb2" layoutX="290.0" layoutY="371.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 2">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lbTb3" layoutX="175.0" layoutY="423.0" prefHeight="18.0" prefWidth="560.0" text="- Thông báo mẫu 1" textFill="WHITE">
+      <Label fx:id="lbTb3" layoutX="290.0" layoutY="405.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 3">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lbTb4" layoutX="175.0" layoutY="457.0" prefHeight="18.0" prefWidth="560.0" text="- Thông báo mẫu 1" textFill="WHITE">
+      <Label fx:id="lbTb4" layoutX="290.0" layoutY="439.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 4">
          <font>
             <Font size="18.0" />
          </font>

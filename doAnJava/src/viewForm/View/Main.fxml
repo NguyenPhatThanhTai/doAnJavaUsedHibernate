@@ -76,7 +76,7 @@
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Picture/Pic/warehouse_24px.png" />
+                        <Image url="@../Picture/Pic/warehouse_40px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -99,7 +99,7 @@
             <Label fx:id="lbName" prefHeight="23.0" prefWidth="745.0" text="Chào buổi tối " />
          </items>
       </ToolBar>
-      <JFXButton fx:id="btnMinimized" layoutX="1538.0" layoutY="14.0" minWidth="47.0" onAction="#Minimized" prefHeight="33.0" prefWidth="47.0" style="-fx-background-radius: 20; -fx-background-color: #5889CE;" text="___" />
-      <JFXButton fx:id="btnQuit" layoutX="1598.0" layoutY="14.0" onAction="#Quit" prefHeight="33.0" prefWidth="54.0" style="-fx-background-radius: 20; -fx-background-color: #DE6A6A;" text="X" />
+      <JFXButton fx:id="btnMinimized" layoutX="1538.0" layoutY="14.0" minWidth="47.0" onAction="#Minimized" prefHeight="34.0" prefWidth="54.0" style="-fx-background-radius: 20; -fx-background-color: #5889CE;" text="_" />
+      <JFXButton fx:id="btnQuit" layoutX="1598.0" layoutY="14.0" minWidth="46.0" onAction="#Quit" prefHeight="34.0" prefWidth="54.0" style="-fx-background-radius: 20; -fx-background-color: #DE6A6A;" text="X" />
    </children>
 </AnchorPane>

@@ -56,39 +56,39 @@ public class mainController implements Initializable {
     private Label lbName;
 
     public void showInfomation(InfStaffEntity infStaffEntity){
-        String name;
+        String name = "";
+        String chucVu = "";
         if ( infStaffEntity != null){
             name = infStaffEntity.getStaffName();
+            if (infStaffEntity.getStaffDeparment().equals("1")){
+                chucVu = "Quản lý";
+            }
+            else {
+                chucVu = "Nhân viên";
+            }
         }
         else {
             name = "Không định dạng được";
         }
-        lbName.setText(name);
+        lbName.setText("Xin chào: " + name + " - Chức vụ: " + chucVu);
     }
 
     public void showCustomerPage(){
         setEffectClick("#4777A7", "ThongTinKhachHang");
-
-        new Thread(()->{
-                Platform.runLater(()->{
-                    pageLoad object = new pageLoad();
-                    Pane view = object.getPage("customerInf.fxml");
-                    paneLoad.getChildren().add(view);
-                });
-            try {
-                Thread.sleep(60);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start(); 
+        setPage("customerInf.fxml");
     }
 
     public void showWelcomePage(){
         setEffectClick("#4777A7", "Home");
+        setPage("welcome.fxml");
+    }
+
+    public void setPage(String page){
         new Thread(()->{
             Platform.runLater(()->{
                 pageLoad object = new pageLoad();
-                Pane view = object.getPage("welcome.fxml");
+                Pane view = object.getPage(page);
+                paneLoad.getChildren().clear();
                 paneLoad.getChildren().add(view);
             });
             try {
@@ -100,7 +100,6 @@ public class mainController implements Initializable {
     }
 
     public void setEffectClick(String color, String button){
-
         switch (button){
             case "ThongTinKhachHang":
                 btnThongTinKhachHang.setStyle("-fx-background-color: "+color);
@@ -136,6 +135,6 @@ public class mainController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        showWelcomePage();
     }
 }

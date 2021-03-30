@@ -10,10 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -89,6 +86,9 @@ public class customerInfController implements Initializable {
     @FXML
     private DatePicker txtNgaySinh;
 
+    @FXML
+    private Label lbXinchao;
+
 
     @FXML
     private TableView tableListCustomer;
@@ -99,7 +99,6 @@ public class customerInfController implements Initializable {
         infCustomerDao dao = new infCustomerDao();
         clist = dao.getALl();
         tableListCustomer.setItems(clist);
-        String gender = "";
 
         colCustomerId.setCellValueFactory(new PropertyValueFactory("customerId"));
         colCustomerName.setCellValueFactory(new PropertyValueFactory("customerName"));
@@ -141,6 +140,7 @@ public class customerInfController implements Initializable {
                 txtEmail.setText(cus.getCustomerEmail());
                 txtSoDienThoai.setText(cus.getCustomerPhone());
                 txtNgayThem.setText(String.valueOf(cus.getCustomerTimeAdd()));
+                lbXinchao.setText(cus.getCustomerName());
             }
         });
     }
