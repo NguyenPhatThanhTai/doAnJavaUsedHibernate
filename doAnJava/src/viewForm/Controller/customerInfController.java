@@ -1,7 +1,9 @@
 package viewForm.Controller;
 
 import DAO.infCustomerDao;
+import DAO.infRepairDao;
 import Model.InfCustomersEntity;
+import Model.InfRepairEntity;
 import Model.customerModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
@@ -89,11 +91,44 @@ public class customerInfController implements Initializable {
     @FXML
     private Label lbXinchao;
 
-
     @FXML
     private TableView tableListCustomer;
 
+    @FXML
+    private TableView tableListRepair;
+
+    @FXML
+    private TableColumn<?, ?> colRepairId;
+
+    @FXML
+    private TableColumn<?, ?> colRepairCustomerName;
+
+    @FXML
+    private TableColumn<?, ?> colRepairNameOfLaptop;
+
+    @FXML
+    private TableColumn<?, ?> colRepairStatusLaptop;
+
+    @FXML
+    private TableColumn<?, ?> colRepairStaffId;
+
+    @FXML
+    private TableColumn<?, ?> colRepairNeedFix;
+
+    @FXML
+    private TableColumn<?, ?> colRepairNote;
+
+    @FXML
+    private TableColumn<?, ?> colRepairStatus;
+
+    @FXML
+    private TableColumn<?, ?> colRepairAppointment;
+
+    @FXML
+    private TableColumn<?, ?> colRepairMoney;
+
     ObservableList<InfCustomersEntity> clist;
+    ObservableList<InfRepairEntity> rlist;
 
     public void loadData(){
         infCustomerDao dao = new infCustomerDao();
@@ -145,8 +180,26 @@ public class customerInfController implements Initializable {
         });
     }
 
+    public void loadDataRepair(){
+        infRepairDao dao = new infRepairDao();
+        rlist = dao.getALl();
+        tableListRepair.setItems(rlist);
+
+        colRepairId.setCellValueFactory(new PropertyValueFactory("repairId"));
+        colRepairCustomerName.setCellValueFactory(new PropertyValueFactory("infCustomersByCustomerId"));
+        colRepairNameOfLaptop.setCellValueFactory(new PropertyValueFactory("laptopName"));
+        colRepairStatusLaptop.setCellValueFactory(new PropertyValueFactory("laptopStatus"));
+        colRepairStaffId.setCellValueFactory(new PropertyValueFactory("staffId"));
+        colRepairNeedFix.setCellValueFactory(new PropertyValueFactory("repairReason"));
+        colRepairNote.setCellValueFactory(new PropertyValueFactory("repairNote"));
+        colRepairStatus.setCellValueFactory(new PropertyValueFactory("repairStatus"));
+        colRepairAppointment.setCellValueFactory(new PropertyValueFactory("repairAppointment"));
+        colRepairMoney.setCellValueFactory(new PropertyValueFactory("repairMoney"));
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadData();
+        loadDataRepair();
     }
 }
