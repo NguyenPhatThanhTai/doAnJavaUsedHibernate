@@ -13,6 +13,20 @@ public class DetailInfRepairEntity {
     private String repairStatus;
     private Date repairAppointment;
     private String repairMoney;
+    private InfRepairEntity infRepairByRepairId;
+
+    public DetailInfRepairEntity(String detailId, String repairReason, String repairNote, String repairStatus, Date repairAppointment, String repairMoney, InfRepairEntity infRepairByRepairId) {
+        this.detailId = detailId;
+        this.repairReason = repairReason;
+        this.repairNote = repairNote;
+        this.repairStatus = repairStatus;
+        this.repairAppointment = repairAppointment;
+        this.repairMoney = repairMoney;
+        this.infRepairByRepairId = infRepairByRepairId;
+    }
+
+    public DetailInfRepairEntity() {
+    }
 
     @Id
     @Column(name = "Detail_Id")
@@ -90,5 +104,15 @@ public class DetailInfRepairEntity {
     @Override
     public int hashCode() {
         return Objects.hash(detailId, repairReason, repairNote, repairStatus, repairAppointment, repairMoney);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Repair_Id", referencedColumnName = "Repair_Id", nullable = false)
+    public InfRepairEntity getInfRepairByRepairId() {
+        return infRepairByRepairId;
+    }
+
+    public void setInfRepairByRepairId(InfRepairEntity infRepairByRepairId) {
+        this.infRepairByRepairId = infRepairByRepairId;
     }
 }

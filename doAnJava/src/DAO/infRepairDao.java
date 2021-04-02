@@ -1,5 +1,7 @@
 package DAO;
 
+import Model.DetailInfRepairEntity;
+import Model.InfCustomersEntity;
 import Model.InfRepairEntity;
 import Until.hibernateUntil;
 import javafx.collections.FXCollections;
@@ -7,6 +9,10 @@ import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class infRepairDao implements daoInterface {
@@ -31,12 +37,15 @@ public class infRepairDao implements daoInterface {
     }
 
     @Override
-    public ObservableList<InfRepairEntity> getALl() {
-        List<InfRepairEntity> groupList;
-        Session session = hibernateUntil.getSession();
-        Query query = session.createQuery("select c from InfRepairEntity c join fetch c.infCustomersByCustomerId");
-        //query.setParameter("id", id);
-        groupList = query.list();
-        return FXCollections.observableArrayList(groupList);
-    }
+    public ObservableList<DetailInfRepairEntity> getALl() {
+        Session s = hibernateUntil.getSession();
+        CriteriaBuilder builder = s.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(DetailInfRepairEntity.class);
+        query.from(DetailInfRepairEntity.class);
+
+        List<DetailInfRepairEntity> clist = s.createQuery(query).getResultList();
+        s.close();
+
+        return FXCollections.observableArrayList(clist);
+}
 }

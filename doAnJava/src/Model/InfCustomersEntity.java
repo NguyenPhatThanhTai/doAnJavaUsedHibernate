@@ -15,6 +15,11 @@ public class InfCustomersEntity {
     private String customerPhone;
     private Date customerTimeAdd;
 
+    @Override
+    public String toString() {
+        return customerId;
+    }
+
     @Id
     @Column(name = "Customer_Id")
     public String getCustomerId() {

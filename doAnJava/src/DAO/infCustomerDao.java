@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.InfCustomersEntity;
+import Model.InfRepairEntity;
 import Until.hibernateUntil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class infCustomerDao implements daoInterface<InfCustomersEntity> {

@@ -9,6 +9,7 @@ public class AccountStaffEntity {
     private String staffAccount;
     private String staffPassword;
     private String staffRole;
+    private InfStaffEntity infStaffByStaffId;
 
     @Id
     @Column(name = "Staff_Account")
@@ -53,5 +54,15 @@ public class AccountStaffEntity {
     @Override
     public int hashCode() {
         return Objects.hash(staffAccount, staffPassword, staffRole);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Staff_Id", referencedColumnName = "Staff_Id", nullable = false)
+    public InfStaffEntity getInfStaffByStaffId() {
+        return infStaffByStaffId;
+    }
+
+    public void setInfStaffByStaffId(InfStaffEntity infStaffByStaffId) {
+        this.infStaffByStaffId = infStaffByStaffId;
     }
 }

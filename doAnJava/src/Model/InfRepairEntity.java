@@ -5,12 +5,25 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Inf_Repair", schema = "dbo", catalog = "ProjectOne")
+@SecondaryTables(@SecondaryTable(name = "Detail_Inf_Repair", pkJoinColumns = @PrimaryKeyJoinColumn(name = "Repair_Id", referencedColumnName = "Repair_Id")))
 public class InfRepairEntity {
     private String repairId;
     private String laptopName;
     private String laptopStatus;
     private String staffId;
     private InfCustomersEntity infCustomersByCustomerId;
+
+    public InfRepairEntity(String repairId, String laptopName, String laptopStatus, String staffId, InfCustomersEntity infCustomersByCustomerId) {
+        this.repairId = repairId;
+        this.laptopName = laptopName;
+        this.laptopStatus = laptopStatus;
+        this.staffId = staffId;
+        this.infCustomersByCustomerId = infCustomersByCustomerId;
+    }
+
+    public InfRepairEntity() {
+
+    }
 
     @Id
     @Column(name = "Repair_Id")
@@ -68,7 +81,7 @@ public class InfRepairEntity {
         return Objects.hash(repairId, laptopName, laptopStatus, staffId);
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "Customer_Id", referencedColumnName = "Customer_Id", nullable = false)
     public InfCustomersEntity getInfCustomersByCustomerId() {
         return infCustomersByCustomerId;

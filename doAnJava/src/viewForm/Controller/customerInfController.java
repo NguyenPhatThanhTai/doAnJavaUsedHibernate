@@ -2,12 +2,18 @@ package viewForm.Controller;
 
 import DAO.infCustomerDao;
 import DAO.infRepairDao;
+import Model.DetailInfRepairEntity;
 import Model.InfCustomersEntity;
 import Model.InfRepairEntity;
-import Model.customerModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,19 +23,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class customerInfController implements Initializable {
-    ObservableList<customerModel> listCustomer;
-    int index = -1;
-    Connection conn = null;
-    ResultSet rs = null;
-    PreparedStatement pst = null;
 
 //    @FXML
 //    private JFXComboBox txtGioiTinh;
@@ -95,42 +94,70 @@ public class customerInfController implements Initializable {
     private TableView tableListCustomer;
 
     @FXML
-    private TableView tableListRepair;
+    private TextField txtTenkhachHangSuaChua;
 
     @FXML
-    private TableColumn<?, ?> colRepairId;
+    private TextField txtMaSuaChua;
 
     @FXML
-    private TableColumn<?, ?> colRepairCustomerName;
+    private TextField txtNhanVienTiepNhan;
 
     @FXML
-    private TableColumn<?, ?> colRepairNameOfLaptop;
+    private TextField txtTinhTrang;
 
     @FXML
-    private TableColumn<?, ?> colRepairStatusLaptop;
+    private TextField txtLaptopName;
 
     @FXML
-    private TableColumn<?, ?> colRepairStaffId;
+    private JFXToggleButton txtSua;
 
     @FXML
-    private TableColumn<?, ?> colRepairNeedFix;
+    private DatePicker txtNgayHen;
 
     @FXML
-    private TableColumn<?, ?> colRepairNote;
+    private TextField txtTien;
 
     @FXML
-    private TableColumn<?, ?> colRepairStatus;
+    private ComboBox<String> cbThietBi;
+
 
     @FXML
-    private TableColumn<?, ?> colRepairAppointment;
+    private TableView<DetailInfRepairEntity> tableListRepair;
 
     @FXML
-    private TableColumn<?, ?> colRepairMoney;
+    private TableColumn<DetailInfRepairEntity, String> colRepairId;
+
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colRepairCustomerName;
+
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colRepairNameOfLaptop;
+
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colRepairStatusLaptop;
+
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colRepairStaffId;
+
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colRepairNeedFix;
+
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colRepairNote;
+
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colRepairStatus;
+
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colRepairAppointment;
+
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colRepairMoney;
 
     ObservableList<InfCustomersEntity> clist;
-    ObservableList<InfRepairEntity> rlist;
+    ObservableList<DetailInfRepairEntity> rlist;
 
-    public void loadData(){
+    public void loadData() {
         infCustomerDao dao = new infCustomerDao();
         clist = dao.getALl();
         tableListCustomer.setItems(clist);
@@ -142,20 +169,6 @@ public class customerInfController implements Initializable {
         colCustomerEmail.setCellValueFactory(new PropertyValueFactory("customerEmail"));
         colCustomerPhone.setCellValueFactory(new PropertyValueFactory("customerPhone"));
         colCustomerTimeAdd.setCellValueFactory(new PropertyValueFactory("customerTimeAdd"));
-
-
-//        doDao dao = new doDao();
-//        // khi load form sẽ hiển thị luôn
-//        colCustomerId.setCellValueFactory(new PropertyValueFactory<customerModel, String>("Customer_Id"));
-//        colCustomerName.setCellValueFactory(new PropertyValueFactory<customerModel, String>("Customer_Name"));
-//        colCustomerSex.setCellValueFactory(new PropertyValueFactory<customerModel, String>("Customer_Sex"));
-//        colCustomerBirth.setCellValueFactory(new PropertyValueFactory<customerModel, String>("Customer_Birth"));
-//        colCustomerEmail.setCellValueFactory(new PropertyValueFactory<customerModel, String>("Customer_Email"));
-//        colCustomerPhone.setCellValueFactory(new PropertyValueFactory<customerModel, String>("Customer_Phone"));
-//        colCustomerTimeAdd.setCellValueFactory(new PropertyValueFactory<customerModel, Date>("Customer_TimeAdd"));
-//
-//        listCustomer = dao.getAllCustomer();
-//        tableListCustomer.setItems(listCustomer);
     }
 
     public void getItemFromTableView(){
@@ -175,31 +188,54 @@ public class customerInfController implements Initializable {
                 txtEmail.setText(cus.getCustomerEmail());
                 txtSoDienThoai.setText(cus.getCustomerPhone());
                 txtNgayThem.setText(String.valueOf(cus.getCustomerTimeAdd()));
-                lbXinchao.setText(cus.getCustomerName());
             }
         });
     }
 
     public void loadDataRepair(){
-        infRepairDao dao = new infRepairDao();
-        rlist = dao.getALl();
+        infRepairDao dao2 = new infRepairDao();
+        rlist = dao2.getALl();
         tableListRepair.setItems(rlist);
+        colRepairId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getRepairId()));
+        colRepairCustomerName.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()));
+        colRepairNameOfLaptop.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopName()));
+        colRepairStatusLaptop.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopStatus()));
+        colRepairStaffId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getStaffId()));
+        colRepairNeedFix.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairReason()));
+        colRepairNote.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairNote()));
+        colRepairStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairStatus()));
+        colRepairAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getRepairAppointment())));
+        colRepairMoney.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairMoney()));
+    }
 
-        colRepairId.setCellValueFactory(new PropertyValueFactory("repairId"));
-        colRepairCustomerName.setCellValueFactory(new PropertyValueFactory("infCustomersByCustomerId"));
-        colRepairNameOfLaptop.setCellValueFactory(new PropertyValueFactory("laptopName"));
-        colRepairStatusLaptop.setCellValueFactory(new PropertyValueFactory("laptopStatus"));
-        colRepairStaffId.setCellValueFactory(new PropertyValueFactory("staffId"));
-        colRepairNeedFix.setCellValueFactory(new PropertyValueFactory("repairReason"));
-        colRepairNote.setCellValueFactory(new PropertyValueFactory("repairNote"));
-        colRepairStatus.setCellValueFactory(new PropertyValueFactory("repairStatus"));
-        colRepairAppointment.setCellValueFactory(new PropertyValueFactory("repairAppointment"));
-        colRepairMoney.setCellValueFactory(new PropertyValueFactory("repairMoney"));
+    public void getItemFromTableViewRepair(){
+        tableListRepair.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                DetailInfRepairEntity de = (DetailInfRepairEntity) tableListRepair.getItems().get(tableListRepair.getSelectionModel().getSelectedIndex());
+                txtMaSuaChua.setText(de.getInfRepairByRepairId().getRepairId());
+                txtTenkhachHangSuaChua.setText(de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
+                if (de.getRepairNote().equals("Sửa lấy ngay")){
+                    txtSua.setSelected(false);
+                }
+                else {
+                    txtSua.setSelected(true);
+                }
+                txtNgayHen.setValue(LocalDate.parse(String.valueOf(de.getRepairAppointment())));
+                txtNhanVienTiepNhan.setText(de.getInfRepairByRepairId().getStaffId());
+                txtTinhTrang.setText(de.getRepairReason());
+                txtLaptopName.setText(String.valueOf(de.getInfRepairByRepairId().getLaptopName()));
+                txtTien.setText(de.getRepairMoney());
+            }
+        });
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadData();
         loadDataRepair();
+        cbThietBi.getItems().add("hello");
+        cbThietBi.getItems().add("hi");
+        cbThietBi.getItems().add("alo");
     }
 }
