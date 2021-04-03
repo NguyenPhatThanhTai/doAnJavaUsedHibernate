@@ -16,7 +16,7 @@
             <Image url="@../Picture/Pic/milkyway%20(1%20of%201).jpg" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" layoutX="14.0" layoutY="10.0" prefHeight="835.0" prefWidth="38.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <VBox alignment="CENTER" layoutX="14.0" layoutY="13.0" prefHeight="832.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
             <JFXButton fx:id="btnHome" contentDisplay="TOP" onAction="#showWelcomePage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
@@ -93,13 +93,12 @@
             </JFXButton>
          </children>
       </VBox>
-      <AnchorPane fx:id="paneLoad" layoutX="81.0" layoutY="58.0" prefHeight="783.0" prefWidth="1571.0" style="-fx-background-radius: 20; -fx-background-color: white;" />
-      <ToolBar layoutX="80.0" layoutY="14.0" prefHeight="33.0" prefWidth="1450.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <ToolBar layoutX="79.0" layoutY="14.0" prefHeight="33.0" prefWidth="1451.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <items>
-            <Label fx:id="lbName" prefHeight="23.0" prefWidth="745.0" text="Chào buổi tối " />
-         </items>
-      </ToolBar>
+            <Label fx:id="lbName" prefHeight="23.0" prefWidth="379.0" text="Họ và tên: Nguyễn Phát Thành Tài" />
+         </items></ToolBar>
       <JFXButton fx:id="btnMinimized" layoutX="1538.0" layoutY="14.0" minWidth="47.0" onAction="#Minimized" prefHeight="34.0" prefWidth="54.0" style="-fx-background-radius: 20; -fx-background-color: #5889CE;" text="_" />
       <JFXButton fx:id="btnQuit" layoutX="1598.0" layoutY="14.0" minWidth="46.0" onAction="#Quit" prefHeight="34.0" prefWidth="54.0" style="-fx-background-radius: 20; -fx-background-color: #DE6A6A;" text="X" />
+      <AnchorPane fx:id="paneLoad" layoutX="81.0" layoutY="58.0" prefHeight="783.0" prefWidth="1571.0" style="-fx-background-radius: 20; -fx-background-color: white;" />
    </children>
 </AnchorPane>

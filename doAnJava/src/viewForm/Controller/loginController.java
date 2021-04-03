@@ -12,13 +12,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -33,12 +31,16 @@ public class loginController implements Initializable {
     private JFXButton btnMinimized;
     @FXML
     private JFXProgressBar psLogin;
+    @FXML
+    private Label lbSaiMatKhau;
 
     public void DangNhap(ActionEvent e) throws IOException{
-        if (txtTaiKhoan.getText().equals("") && txtMatKhau.getText().equals("")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Không được để trống!");
-            alert.showAndWait();
+        if (txtTaiKhoan.getText().equals("") || txtMatKhau.getText().equals("")){
+            lbSaiMatKhau.setStyle("-fx-background-color: #D6D263; -fx-background-radius: 20");
+            lbSaiMatKhau.setText("Không được để trống");
+            lbSaiMatKhau.setVisible(true);
+            loadProcess(false);
+            new animatefx.animation.BounceIn(lbSaiMatKhau).play();
         }else {
             loadProcess(true);
             serviceImplement serviceImplement = new serviceImplement();
@@ -46,9 +48,6 @@ public class loginController implements Initializable {
             accountStaffEntity.setStaffAccount(txtTaiKhoan.getText());
             accountStaffEntity.setStaffPassword(txtMatKhau.getText());
             if(serviceImplement.checkLogin(txtTaiKhoan.getText(), txtMatKhau.getText())){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Đăng nhập thành công!");
-                alert.showAndWait();
 
                 //Chuyển form
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Main.fxml"));
@@ -66,10 +65,11 @@ public class loginController implements Initializable {
                 //
             }
             else {
+                lbSaiMatKhau.setStyle("-fx-background-color: #E16363; -fx-background-radius: 20");
+                lbSaiMatKhau.setText("Sai mật khẩu hoặc tài khoản!");
+                lbSaiMatKhau.setVisible(true);
                 loadProcess(false);
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("Sai mật khẩu hoặc tài khoản!");
-                alert.showAndWait();
+                new animatefx.animation.BounceIn(lbSaiMatKhau).play();
             }
         }
     }
@@ -81,6 +81,11 @@ public class loginController implements Initializable {
             }
         });
         t.start();
+    }
+
+    public void closeAlert(){
+        new animatefx.animation.BounceOut(lbSaiMatKhau).play();
+        lbSaiMatKhau.setVisible(false);
     }
 
     public void Quit(){

@@ -67,7 +67,7 @@ public class mainController implements Initializable {
         else {
             name = "Không định dạng được";
         }
-        lbName.setText("Xin chào: " + name + " - Chức vụ: " + chucVu);
+        lbName.setText("Họ và tên: " + name + " - Chức vụ: " + chucVu);
     }
 
     public void showCustomerPage(){

@@ -6,6 +6,7 @@
 <?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,12 +31,24 @@
       </JFXPasswordField>
       <JFXButton fx:id="btnDangNhap" buttonType="RAISED" layoutX="623.0" layoutY="392.0" onAction="#DangNhap" prefHeight="32.0" prefWidth="196.0" ripplerFill="#3375c6" style="-fx-background-color: #0f6ba4; -fx-background-radius: 100;" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE" />
       <JFXCheckBox checkedColor="#3375c6" layoutX="405.0" layoutY="399.0" prefHeight="18.0" prefWidth="123.0" text="Giữ đăng nhập" textFill="WHITE" unCheckedColor="WHITE" />
-      <Hyperlink layoutX="559.0" layoutY="645.0" text="Quên mật khẩu" textFill="WHITE" />
+      <Hyperlink layoutX="671.0" layoutY="435.0" text="Quên mật khẩu" textFill="WHITE" />
       <JFXButton fx:id="btnThoat" buttonType="RAISED" layoutX="1124.0" layoutY="16.0" minWidth="44.0" onAction="#Quit" prefHeight="32.0" prefWidth="64.0" style="-fx-background-color: transparent;" text="X" textFill="WHITE" />
       <JFXButton fx:id="btnMinimized" buttonType="RAISED" layoutX="1087.0" layoutY="16.0" minHeight="18.0" minWidth="37.0" onAction="#Minimized" prefHeight="32.0" prefWidth="37.0" style="-fx-background-color: transparent;" text="_" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font></JFXButton>
       <JFXProgressBar fx:id="psLogin" layoutX="628.0" layoutY="435.0" prefHeight="3.0" prefWidth="186.0" visible="false" />
+      <Label fx:id="lbSaiMatKhau" layoutX="887.0" layoutY="587.0" onMouseClicked="#closeAlert" prefHeight="91.0" prefWidth="313.0" style="-fx-background-color: #E16363; -fx-background-radius: 20; -fx-alignment: center;" text="Sai mật khẩu hoặc tài khoản" textAlignment="CENTER" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fx:id="imgCanhBao" fitHeight="73.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Picture/Pic/close_window_100px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
    </children>
 </AnchorPane>

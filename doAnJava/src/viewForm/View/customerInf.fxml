@@ -137,7 +137,7 @@
                               <Image url="@../Picture/Pic/computer_support_64px.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="txtNhanVienTiepNhan" layoutX="67.0" layoutY="123.0" prefHeight="26.0" prefWidth="298.0" promptText="Nhân viên tiếp nhận" />
+                        <TextField fx:id="txtNhanVienTiepNhan" disable="true" layoutX="67.0" layoutY="123.0" prefHeight="26.0" prefWidth="298.0" promptText="Nhân viên tiếp nhận" />
                         <TextField fx:id="txtTinhTrang" layoutX="67.0" layoutY="281.0" prefHeight="26.0" prefWidth="298.0" promptText="Tình trạng thiết bị" />
                         <TextField fx:id="txtLaptopName" layoutX="67.0" layoutY="227.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên thiết bị" />
                         <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="38.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
