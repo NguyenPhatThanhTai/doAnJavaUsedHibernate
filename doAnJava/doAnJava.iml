@@ -19,9 +19,9 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jfoenix-8.0.7" level="project" />
     <orderEntry type="library" name="Hibernate 5.4.11-5.4.11" level="project" />
-    <orderEntry type="library" name="mssql-jdbc-9.2.1.jre8" level="project" />
     <orderEntry type="library" name="AnimateFX-1.2.1" level="project" />
+    <orderEntry type="library" name="jfoenix-8.0.7" level="project" />
+    <orderEntry type="library" name="mssql-jdbc-9.2.1.jre8" level="project" />
   </component>
 </module>
