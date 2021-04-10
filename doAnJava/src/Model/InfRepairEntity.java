@@ -5,7 +5,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Inf_Repair", schema = "dbo", catalog = "ProjectOne")
-@SecondaryTables(@SecondaryTable(name = "Detail_Inf_Repair", pkJoinColumns = @PrimaryKeyJoinColumn(name = "Repair_Id", referencedColumnName = "Repair_Id")))
 public class InfRepairEntity {
     private String repairId;
     private String laptopName;
@@ -81,7 +80,7 @@ public class InfRepairEntity {
         return Objects.hash(repairId, laptopName, laptopStatus, staffId);
     }
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "Customer_Id", referencedColumnName = "Customer_Id", nullable = false)
     public InfCustomersEntity getInfCustomersByCustomerId() {
         return infCustomersByCustomerId;

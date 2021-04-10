@@ -27,7 +27,7 @@
       <ObjectId>12</ObjectId>
       <Current>1</Current>
       <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
-      <Fingerprint>12.44218/2995F4D4-1B05-41FB-B57F-5D5036527719@DESKTOP-G2HJKI8\SQLEXPRESS</Fingerprint>
+      <Fingerprint>12.44291/2995F4D4-1B05-41FB-B57F-5D5036527719@DESKTOP-G2HJKI8\SQLEXPRESS</Fingerprint>
     </database>
     <database id="7" parent="1" name="QuanLySuaChuaLaptop">
       <ObjectId>11</ObjectId>
@@ -83,49 +83,39 @@ varchar</ExtendedProperties>
     </schema>
     <schema id="18" parent="6" name="db_accessadmin">
       <ObjectId>16385</ObjectId>
-      <IntrospectionTimestamp>2021-03-27.17:52:21.793</IntrospectionTimestamp>
     </schema>
     <schema id="19" parent="6" name="db_backupoperator">
       <ObjectId>16389</ObjectId>
-      <IntrospectionTimestamp>2021-03-27.17:52:21.803</IntrospectionTimestamp>
     </schema>
     <schema id="20" parent="6" name="db_datareader">
       <ObjectId>16390</ObjectId>
-      <IntrospectionTimestamp>2021-03-27.17:52:21.813</IntrospectionTimestamp>
     </schema>
     <schema id="21" parent="6" name="db_datawriter">
       <ObjectId>16391</ObjectId>
-      <IntrospectionTimestamp>2021-03-27.17:52:21.830</IntrospectionTimestamp>
     </schema>
     <schema id="22" parent="6" name="db_ddladmin">
       <ObjectId>16387</ObjectId>
-      <IntrospectionTimestamp>2021-03-27.17:52:21.837</IntrospectionTimestamp>
     </schema>
     <schema id="23" parent="6" name="db_denydatareader">
       <ObjectId>16392</ObjectId>
-      <IntrospectionTimestamp>2021-03-27.17:52:21.847</IntrospectionTimestamp>
     </schema>
     <schema id="24" parent="6" name="db_denydatawriter">
       <ObjectId>16393</ObjectId>
-      <IntrospectionTimestamp>2021-03-27.17:52:21.867</IntrospectionTimestamp>
     </schema>
     <schema id="25" parent="6" name="db_owner">
       <ObjectId>16384</ObjectId>
-      <IntrospectionTimestamp>2021-03-27.17:52:21.877</IntrospectionTimestamp>
     </schema>
     <schema id="26" parent="6" name="db_securityadmin">
       <ObjectId>16386</ObjectId>
-      <IntrospectionTimestamp>2021-03-27.17:52:21.880</IntrospectionTimestamp>
     </schema>
     <schema id="27" parent="6" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2021-03-30.20:32:57.537</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-04-11.01:28:26.153</IntrospectionTimestamp>
       <Current>1</Current>
       <DescriptionsCheckSum>6328208632</DescriptionsCheckSum>
     </schema>
     <schema id="28" parent="6" name="guest">
       <ObjectId>2</ObjectId>
-      <IntrospectionTimestamp>2021-03-27.17:52:21.900</IntrospectionTimestamp>
     </schema>
     <schema id="29" parent="6" name="sys">
       <ObjectId>4</ObjectId>
@@ -177,12 +167,18 @@ varchar</ExtendedProperties>
     </table>
     <table id="39" parent="27" name="sysdiagrams">
       <ObjectId>341576255</ObjectId>
+      <ExtendedProperties>microsoft_database_tools_support
+1
+int</ExtendedProperties>
       <CreatedTimestamp>2020-10-07.19:48:29.410</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.410</ModifiedTimestamp>
     </table>
     <routine id="40" parent="27" name="fn_diagramobjects">
       <ObjectId>485576768</ObjectId>
       <SourceTextLength>1647</SourceTextLength>
+      <ExtendedProperties>microsoft_database_tools_support
+1
+int</ExtendedProperties>
       <CreatedTimestamp>2020-10-07.19:48:29.430</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.430</ModifiedTimestamp>
       <RoutineType>scalar-fun</RoutineType>
@@ -190,6 +186,9 @@ varchar</ExtendedProperties>
     <routine id="41" parent="27" name="sp_alterdiagram">
       <ObjectId>453576654</ObjectId>
       <SourceTextLength>1501</SourceTextLength>
+      <ExtendedProperties>microsoft_database_tools_support
+1
+int</ExtendedProperties>
       <CreatedTimestamp>2020-10-07.19:48:29.430</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.430</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
@@ -197,6 +196,9 @@ varchar</ExtendedProperties>
     <routine id="42" parent="27" name="sp_creatediagram">
       <ObjectId>421576540</ObjectId>
       <SourceTextLength>1223</SourceTextLength>
+      <ExtendedProperties>microsoft_database_tools_support
+1
+int</ExtendedProperties>
       <CreatedTimestamp>2020-10-07.19:48:29.423</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.423</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
@@ -204,6 +206,9 @@ varchar</ExtendedProperties>
     <routine id="43" parent="27" name="sp_dropdiagram">
       <ObjectId>469576711</ObjectId>
       <SourceTextLength>896</SourceTextLength>
+      <ExtendedProperties>microsoft_database_tools_support
+1
+int</ExtendedProperties>
       <CreatedTimestamp>2020-10-07.19:48:29.430</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.430</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
@@ -211,6 +216,9 @@ varchar</ExtendedProperties>
     <routine id="44" parent="27" name="sp_helpdiagramdefinition">
       <ObjectId>405576483</ObjectId>
       <SourceTextLength>921</SourceTextLength>
+      <ExtendedProperties>microsoft_database_tools_support
+1
+int</ExtendedProperties>
       <CreatedTimestamp>2020-10-07.19:48:29.420</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.420</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
@@ -218,6 +226,9 @@ varchar</ExtendedProperties>
     <routine id="45" parent="27" name="sp_helpdiagrams">
       <ObjectId>389576426</ObjectId>
       <SourceTextLength>658</SourceTextLength>
+      <ExtendedProperties>microsoft_database_tools_support
+1
+int</ExtendedProperties>
       <CreatedTimestamp>2020-10-07.19:48:29.417</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.417</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
@@ -225,6 +236,9 @@ varchar</ExtendedProperties>
     <routine id="46" parent="27" name="sp_renamediagram">
       <ObjectId>437576597</ObjectId>
       <SourceTextLength>1721</SourceTextLength>
+      <ExtendedProperties>microsoft_database_tools_support
+1
+int</ExtendedProperties>
       <CreatedTimestamp>2020-10-07.19:48:29.427</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.427</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
@@ -232,6 +246,9 @@ varchar</ExtendedProperties>
     <routine id="47" parent="27" name="sp_upgraddiagrams">
       <ObjectId>325576198</ObjectId>
       <SourceTextLength>1463</SourceTextLength>
+      <ExtendedProperties>microsoft_database_tools_support
+1
+int</ExtendedProperties>
       <CreatedTimestamp>2020-10-07.19:48:29.410</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.410</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>

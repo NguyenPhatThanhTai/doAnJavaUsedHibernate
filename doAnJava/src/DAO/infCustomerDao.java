@@ -36,12 +36,40 @@ public class infCustomerDao implements daoInterface<InfCustomersEntity> {
 
     @Override
     public boolean dellData(InfCustomersEntity data) {
-        return false;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            InfCustomersEntity infCustomersEntity = s.load(InfCustomersEntity.class, data.getCustomerId());
+
+            s.delete(infCustomersEntity);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở Customer");
+            return false;
+        }
     }
 
     @Override
     public boolean updateData(InfCustomersEntity data) {
-        return false;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.saveOrUpdate(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở Customer");
+            return false;
+        }
     }
 
     @Override

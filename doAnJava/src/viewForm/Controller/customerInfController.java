@@ -271,6 +271,62 @@ public class customerInfController implements Initializable {
 
         if (addCustomer.addData(infCustomersEntity) && addRepair.addData(infRepairEntity) && addDetail.addData(detailInfRepairEntity)){
             refreshView();
+            openTextField(false);
+            btnXacNhanThem.setVisible(false);
+            btnHuyThem.setVisible(false);
+            btnSua.setDisable(false);
+            btnXoa.setDisable(false);
+            btnThem.setVisible(true);
+            tableListCustomer.setDisable(false);
+        }
+    }
+
+    public void updateCustomer(){
+        String sex = "2";
+
+        if (txtGioiTinh.isSelected()){
+            sex = "1";
+        }
+        InfCustomersEntity infCustomersEntity = new InfCustomersEntity(txtMaKhachHang.getText(), txtTenKhachHang.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtEmail.getText(), txtSoDienThoai.getText(), Date.valueOf(txtNgayThem.getText()));
+        infCustomerDao updateCustomer = new infCustomerDao();
+        if(updateCustomer.updateData(infCustomersEntity)){
+            refreshView();
+            openTextField(false);
+            btnXacNhanSua.setVisible(false);
+            btnHuySua.setVisible(false);
+            btnThem.setDisable(false);
+            btnXoa.setDisable(false);
+            btnSua.setVisible(true);
+            tableListCustomer.setDisable(false);
+        }
+    }
+
+    public void deleteCustomer(){
+        String idSplit = txtMaKhachHang.getText();
+
+        String[] parts = idSplit.split("KH");
+
+        detailInfRepairDao delDetail = new detailInfRepairDao();
+        DetailInfRepairEntity detail = new DetailInfRepairEntity();
+        detail.setDetailId("DT" + parts[1]);
+
+        infRepairDao delRepair = new infRepairDao();
+        InfRepairEntity repair = new InfRepairEntity();
+        repair.setRepairId("RP" + parts[1]);
+
+        infCustomerDao delCustomer = new infCustomerDao();
+        InfCustomersEntity customer = new InfCustomersEntity();
+        customer.setCustomerId(txtMaKhachHang.getText());
+
+        if(delDetail.dellData(detail) && delRepair.dellData(repair) && delCustomer.dellData(customer)){
+            refreshView();
+            openTextField(false);
+            btnXacNhanXoa.setVisible(false);
+            btnHuyXoa.setVisible(false);
+            btnSua.setDisable(false);
+            btnThem.setDisable(false);
+            btnXoa.setVisible(true);
+            tableListCustomer.setDisable(false);
         }
     }
 
@@ -285,12 +341,19 @@ public class customerInfController implements Initializable {
     }
 
     public void ThemKhachHangButton(){
+        txtMaKhachHang.setText("Hệ thống định sẵn");
         openButton(false, "Add");
     }
 
-    public void HuyThemKhachHangButton(){
-        openButton(true, "HuyAdd");
-    }
+    public void HuyThemKhachHangButton(){ openButton(true, "HuyAdd");}
+
+    public void SuaKhachHangButton(){openButton(false, "Sua");}
+
+    public void HuySuaKhachHangButton(){openButton(true, "HuySua");}
+
+    public void XoaKhachHangButton(){openButton(false, "Xoa");}
+
+    public void HuyXoaKhachHangButton(){openButton(true, "HuyXoa");}
 
     public void openButton(boolean flag, String nut){
         switch (nut){
@@ -303,12 +366,7 @@ public class customerInfController implements Initializable {
 
                 tableListCustomer.setDisable(!flag);
 
-                txtMaKhachHang.setDisable(flag);
-                txtTenKhachHang.setDisable(flag);
-                txtGioiTinh.setDisable(flag);
-                txtEmail.setDisable(flag);
-                txtNgaySinh.setDisable(flag);
-                txtSoDienThoai.setDisable(flag);
+                openTextField(flag);
                 break;
             case "HuyAdd":
                 btnThem.setVisible(flag);
@@ -319,14 +377,61 @@ public class customerInfController implements Initializable {
 
                 tableListCustomer.setDisable(!flag);
 
-                txtMaKhachHang.setDisable(flag);
-                txtTenKhachHang.setDisable(flag);
-                txtGioiTinh.setDisable(flag);
-                txtEmail.setDisable(flag);
-                txtNgaySinh.setDisable(flag);
-                txtSoDienThoai.setDisable(flag);
+                openTextField(flag);
+                break;
+            case "Sua":
+                btnSua.setVisible(flag);
+                btnThem.setDisable(true);
+                btnXoa.setDisable(true);
+                btnXacNhanSua.setVisible(true);
+                btnHuySua.setVisible(true);
+
+                tableListCustomer.setDisable(!flag);
+
+                openTextField(flag);
+                break;
+            case "HuySua":
+                btnSua.setVisible(flag);
+                btnThem.setDisable(!flag);
+                btnXoa.setDisable(!flag);
+                btnXacNhanSua.setVisible(!flag);
+                btnHuySua.setVisible(!flag);
+
+                tableListCustomer.setDisable(!flag);
+
+                openTextField(flag);
+                break;
+            case "Xoa":
+                btnXoa.setVisible(flag);
+                btnThem.setDisable(true);
+                btnThem.setDisable(true);
+                btnXacNhanXoa.setVisible(true);
+                btnHuyXoa.setVisible(true);
+
+                tableListCustomer.setDisable(!flag);
+
+                openTextField(flag);
+                break;
+            case "HuyXoa":
+                btnXoa.setVisible(flag);
+                btnThem.setDisable(!flag);
+                btnThem.setDisable(!flag);
+                btnXacNhanXoa.setVisible(!flag);
+                btnHuyXoa.setVisible(!flag);
+
+                tableListCustomer.setDisable(!flag);
+
+                openTextField(flag);
                 break;
         }
+    }
+
+    public void openTextField(boolean flag){
+        txtTenKhachHang.setDisable(flag);
+        txtGioiTinh.setDisable(flag);
+        txtEmail.setDisable(flag);
+        txtNgaySinh.setDisable(flag);
+        txtSoDienThoai.setDisable(flag);
     }
 
     @Override

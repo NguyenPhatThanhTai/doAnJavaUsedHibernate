@@ -22,7 +22,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="693.0" prefWidth="1518.0">
                      <children>
-                        <JFXButton fx:id="btnHuySua" layoutX="206.0" layoutY="509.0" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuySua" layoutX="206.0" layoutY="509.0" onMouseClicked="#HuySuaKhachHangButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -31,7 +31,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanSua" layoutX="44.0" layoutY="508.0" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanSua" layoutX="44.0" layoutY="508.0" onMouseClicked="#updateCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -40,7 +40,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnHuyXoa" layoutX="206.0" layoutY="569.0" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuyXoa" layoutX="206.0" layoutY="569.0" onMouseClicked="#HuyXoaKhachHangButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -49,7 +49,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanXoa" layoutX="44.0" layoutY="568.0" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanXoa" layoutX="44.0" layoutY="568.0" onMouseClicked="#deleteCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -99,7 +99,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXoa" layoutX="39.0" layoutY="569.0" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa khách hàng">
+                        <JFXButton fx:id="btnXoa" layoutX="39.0" layoutY="569.0" onMouseClicked="#XoaKhachHangButton" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa khách hàng">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -108,7 +108,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnSua" layoutX="39.0" layoutY="509.0" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
+                        <JFXButton fx:id="btnSua" layoutX="39.0" layoutY="509.0" onMouseClicked="#SuaKhachHangButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

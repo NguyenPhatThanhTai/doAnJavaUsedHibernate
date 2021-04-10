@@ -106,7 +106,7 @@ public class DetailInfRepairEntity {
         return Objects.hash(detailId, repairReason, repairNote, repairStatus, repairAppointment, repairMoney);
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "Repair_Id", referencedColumnName = "Repair_Id", nullable = false)
     public InfRepairEntity getInfRepairByRepairId() {
         return infRepairByRepairId;

@@ -1,5 +1,6 @@
 package DAO;
 
+import Model.DetailInfRepairEntity;
 import Model.InfRepairEntity;
 import Until.hibernateUntil;
 import org.hibernate.Session;
@@ -28,7 +29,22 @@ public class infRepairDao implements daoInterface<InfRepairEntity> {
 
     @Override
     public boolean dellData(InfRepairEntity data) {
-        return false;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            InfRepairEntity infRepairEntity = s.load(InfRepairEntity.class, data.getRepairId());
+
+            s.delete(infRepairEntity);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở Repair");
+            return false;
+        }
     }
 
     @Override
