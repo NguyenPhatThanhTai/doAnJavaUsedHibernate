@@ -14,18 +14,18 @@ import java.util.List;
 
 public class infStaffDao implements daoInterface<InfStaffEntity>{
     @Override
-    public int addData(InfStaffEntity data) {
-        return 0;
+    public boolean addData(InfStaffEntity data) {
+        return true;
     }
 
     @Override
-    public int dellData(InfStaffEntity data) {
-        return 0;
+    public boolean dellData(InfStaffEntity data) {
+        return true;
     }
 
     @Override
-    public int updateData(InfStaffEntity data) {
-        return 0;
+    public boolean updateData(InfStaffEntity data) {
+        return true;
     }
 
     @Override

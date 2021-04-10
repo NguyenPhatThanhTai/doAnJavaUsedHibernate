@@ -12,18 +12,18 @@ import java.util.List;
 
 public class accountStaffDao implements daoInterface<AccountStaffEntity> {
     @Override
-    public int addData(AccountStaffEntity data) {
-        return 0;
+    public boolean addData(AccountStaffEntity data) {
+        return true;
     }
 
     @Override
-    public int dellData(AccountStaffEntity data) {
-        return 0;
+    public boolean dellData(AccountStaffEntity data) {
+        return true;
     }
 
     @Override
-    public int updateData(AccountStaffEntity data) {
-        return 0;
+    public boolean updateData(AccountStaffEntity data) {
+        return true;
     }
 
     @Override

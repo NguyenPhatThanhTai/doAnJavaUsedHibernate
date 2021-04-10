@@ -1,8 +1,6 @@
 package DAO;
 
 import Model.DetailInfRepairEntity;
-import Model.InfCustomersEntity;
-import Model.InfRepairEntity;
 import Until.hibernateUntil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,13 +9,12 @@ import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class infCustomerDao implements daoInterface<InfCustomersEntity> {
+public class detailInfRepairDao implements daoInterface<DetailInfRepairEntity> {
 
     @Override
-    public boolean addData(InfCustomersEntity data) {
+    public boolean addData(DetailInfRepairEntity data) {
         try {
             Session s = hibernateUntil.getSession();
             Transaction t = s.beginTransaction();
@@ -29,28 +26,36 @@ public class infCustomerDao implements daoInterface<InfCustomersEntity> {
             return true;
         }catch (Exception e){
             e.printStackTrace();
-            System.out.println("Lỗi ở Customer");
+            System.out.println("Lỗi ở Detail");
             return false;
         }
     }
 
     @Override
-    public boolean dellData(InfCustomersEntity data) {
+    public boolean dellData(DetailInfRepairEntity data) {
         return false;
     }
 
     @Override
-    public boolean updateData(InfCustomersEntity data) {
+    public boolean updateData(DetailInfRepairEntity data) {
         return false;
     }
 
     @Override
-    public InfCustomersEntity getDataById(String Id) {
+    public DetailInfRepairEntity getDataById(String Id) {
         return null;
     }
 
     @Override
-    public List<InfCustomersEntity> getALl() {
-        return null;
+    public ObservableList<DetailInfRepairEntity> getALl() {
+        Session s = hibernateUntil.getSession();
+        CriteriaBuilder builder = s.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(DetailInfRepairEntity.class);
+        query.from(DetailInfRepairEntity.class);
+
+        List<DetailInfRepairEntity> clist = s.createQuery(query).getResultList();
+        s.close();
+
+        return FXCollections.observableArrayList(clist);
     }
 }

@@ -1,51 +1,48 @@
 package DAO;
 
-import Model.DetailInfRepairEntity;
-import Model.InfCustomersEntity;
 import Model.InfRepairEntity;
 import Until.hibernateUntil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
+import org.hibernate.Transaction;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class infRepairDao implements daoInterface {
+public class infRepairDao implements daoInterface<InfRepairEntity> {
     @Override
-    public int addData(Object data) {
-        return 0;
+    public boolean addData(InfRepairEntity data) {
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.save(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở infRepair");
+            return false;
+        }
     }
 
     @Override
-    public int dellData(Object data) {
-        return 0;
+    public boolean dellData(InfRepairEntity data) {
+        return false;
     }
 
     @Override
-    public int updateData(Object data) {
-        return 0;
+    public boolean updateData(InfRepairEntity data) {
+        return false;
     }
 
     @Override
-    public Object getDataById(String Id) {
+    public InfRepairEntity getDataById(String Id) {
         return null;
     }
 
     @Override
-    public ObservableList<DetailInfRepairEntity> getALl() {
-        Session s = hibernateUntil.getSession();
-        CriteriaBuilder builder = s.getCriteriaBuilder();
-        CriteriaQuery query = builder.createQuery(DetailInfRepairEntity.class);
-        query.from(DetailInfRepairEntity.class);
-
-        List<DetailInfRepairEntity> clist = s.createQuery(query).getResultList();
-        s.close();
-
-        return FXCollections.observableArrayList(clist);
-}
+    public List<InfRepairEntity> getALl() {
+        return null;
+    }
 }

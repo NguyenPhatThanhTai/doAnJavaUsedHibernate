@@ -15,6 +15,20 @@ public class InfCustomersEntity {
     private String customerPhone;
     private Date customerTimeAdd;
 
+    public InfCustomersEntity() {
+
+    }
+
+    public InfCustomersEntity(String customerId, String customerName, String customerSex, Date customerBirth, String customerEmail, String customerPhone, Date customerTimeAdd) {
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.customerSex = customerSex;
+        this.customerBirth = customerBirth;
+        this.customerEmail = customerEmail;
+        this.customerPhone = customerPhone;
+        this.customerTimeAdd = customerTimeAdd;
+    }
+
     @Override
     public String toString() {
         return customerId;
@@ -43,10 +57,7 @@ public class InfCustomersEntity {
     @Basic
     @Column(name = "Customer_Sex")
     public String getCustomerSex() {
-        if (customerSex.equals("1")){
-            return "Nam";
-        }
-        return "Nữ";
+        return customerSex;
     }
 
     public void setCustomerSex(String customerSex) {

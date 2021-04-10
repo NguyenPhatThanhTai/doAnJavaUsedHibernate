@@ -1,5 +1,6 @@
 package viewForm.Controller;
 
+import DAO.detailInfRepairDao;
 import DAO.infCustomerDao;
 import DAO.infRepairDao;
 import Model.DetailInfRepairEntity;
@@ -8,54 +9,44 @@ import Model.InfRepairEntity;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class customerInfController implements Initializable {
 
-//    @FXML
-//    private JFXComboBox txtGioiTinh;
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colCustomerId;
 
     @FXML
-    private TableColumn<InfCustomersEntity, String> colCustomerId;
+    private TableColumn<DetailInfRepairEntity, String> colCustomerName;
 
     @FXML
-    private TableColumn<InfCustomersEntity, String> colCustomerName;
+    private TableColumn<DetailInfRepairEntity, String> colCustomerSex;
 
     @FXML
-    private TableColumn<InfCustomersEntity, String> colCustomerSex;
+    private TableColumn<DetailInfRepairEntity, String> colCustomerBirth;
 
     @FXML
-    private TableColumn<InfCustomersEntity, String> colCustomerBirth;
+    private TableColumn<DetailInfRepairEntity, String> colCustomerEmail;
 
     @FXML
-    private TableColumn<InfCustomersEntity, String> colCustomerEmail;
+    private TableColumn<DetailInfRepairEntity, String> colCustomerPhone;
 
     @FXML
-    private TableColumn<InfCustomersEntity, String> colCustomerPhone;
+    private TableColumn<DetailInfRepairEntity, String> colCustomerTimeAdd;
 
     @FXML
-    private TableColumn<InfCustomersEntity, Date> colCustomerTimeAdd;
-
-    @FXML
-    private JFXButton btnTest;
+    private JFXButton btnThemKhachHang;
 
     @FXML
     private TextField txtMaKhachHang;
@@ -88,9 +79,6 @@ public class customerInfController implements Initializable {
     private DatePicker txtNgaySinh;
 
     @FXML
-    private Label lbXinchao;
-
-    @FXML
     private TableView tableListCustomer;
 
     @FXML
@@ -120,6 +108,35 @@ public class customerInfController implements Initializable {
     @FXML
     private ComboBox<String> cbThietBi;
 
+    @FXML
+    private JFXButton btnHuySua;
+
+    @FXML
+    private JFXButton btnXacNhanSua;
+
+    @FXML
+    private JFXButton btnHuyXoa;
+
+    @FXML
+    private JFXButton btnXacNhanXoa;
+
+    @FXML
+    private JFXButton btnHuyThem;
+
+    @FXML
+    private JFXButton btnXacNhanThem;
+
+    @FXML
+    private JFXButton btnThem;
+
+    @FXML
+    private JFXButton btnXoa;
+
+    @FXML
+    private JFXButton btnSua;
+
+    @FXML
+    private JFXButton btnllamMoi;
 
     @FXML
     private TableView<DetailInfRepairEntity> tableListRepair;
@@ -154,47 +171,43 @@ public class customerInfController implements Initializable {
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairMoney;
 
-    ObservableList<InfCustomersEntity> clist;
     ObservableList<DetailInfRepairEntity> rlist;
+    detailInfRepairDao dao = new detailInfRepairDao();
 
     public void loadData() {
-        infCustomerDao dao = new infCustomerDao();
-        clist = dao.getALl();
-        tableListCustomer.setItems(clist);
-
-        colCustomerId.setCellValueFactory(new PropertyValueFactory("customerId"));
-        colCustomerName.setCellValueFactory(new PropertyValueFactory("customerName"));
-        colCustomerSex.setCellValueFactory(new PropertyValueFactory("customerSex"));
-        colCustomerBirth.setCellValueFactory(new PropertyValueFactory("customerBirth"));
-        colCustomerEmail.setCellValueFactory(new PropertyValueFactory("customerEmail"));
-        colCustomerPhone.setCellValueFactory(new PropertyValueFactory("customerPhone"));
-        colCustomerTimeAdd.setCellValueFactory(new PropertyValueFactory("customerTimeAdd"));
+        rlist = dao.getALl();
+        tableListCustomer.setItems(rlist);
+        colCustomerId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerId()));
+        colCustomerName.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()));
+        colCustomerSex.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerSex()));
+        colCustomerBirth.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerBirth())));
+        colCustomerEmail.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerEmail()));
+        colCustomerPhone.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerPhone()));
+        colCustomerTimeAdd.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerTimeAdd())));
     }
 
     public void getItemFromTableView(){
         tableListCustomer.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                InfCustomersEntity cus = (InfCustomersEntity) tableListCustomer.getItems().get(tableListCustomer.getSelectionModel().getSelectedIndex());
-                txtMaKhachHang.setText(cus.getCustomerId());
-                txtTenKhachHang.setText(cus.getCustomerName());
-                if (cus.getCustomerSex().equals("Nam")){
+                DetailInfRepairEntity cus = (DetailInfRepairEntity) tableListCustomer.getItems().get(tableListCustomer.getSelectionModel().getSelectedIndex());
+                txtMaKhachHang.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerId());
+                txtTenKhachHang.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
+                if (cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerSex().equals("Nam")){
                     txtGioiTinh.setSelected(true);
                 }
                 else {
                     txtGioiTinh.setSelected(false);
                 }
-                txtNgaySinh.setValue(LocalDate.parse(String.valueOf(cus.getCustomerBirth())));
-                txtEmail.setText(cus.getCustomerEmail());
-                txtSoDienThoai.setText(cus.getCustomerPhone());
-                txtNgayThem.setText(String.valueOf(cus.getCustomerTimeAdd()));
+                txtNgaySinh.setValue(LocalDate.parse(String.valueOf(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerBirth())));
+                txtEmail.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerEmail());
+                txtSoDienThoai.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerPhone());
+                txtNgayThem.setText(String.valueOf(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerTimeAdd()));
             }
         });
     }
 
     public void loadDataRepair(){
-        infRepairDao dao2 = new infRepairDao();
-        rlist = dao2.getALl();
         tableListRepair.setItems(rlist);
         colRepairId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getRepairId()));
         colRepairCustomerName.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()));
@@ -230,6 +243,92 @@ public class customerInfController implements Initializable {
         });
     }
 
+    public void addNewCustomer(){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+        DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
+        DateTimeFormatter sec = DateTimeFormatter.ofPattern("ss");
+
+        String customerId = "KH" + day.format(now) + min.format(now) + sec.format(now);
+        txtMaKhachHang.setText(customerId);
+        String repairId = "RP" + day.format(now) + min.format(now) + sec.format(now);
+        String detailId = "DT" + day.format(now) + min.format(now) + sec.format(now);
+
+        String sex = "2";
+
+        if (txtGioiTinh.isSelected()){
+            sex = "1";
+        }
+
+        infCustomerDao addCustomer = new infCustomerDao();
+        infRepairDao addRepair = new infRepairDao();
+        detailInfRepairDao addDetail = new detailInfRepairDao();
+
+        InfCustomersEntity infCustomersEntity = new InfCustomersEntity(customerId, txtTenKhachHang.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtEmail.getText(), txtSoDienThoai.getText(), Date.valueOf(txtNgayThem.getText()));
+        InfRepairEntity infRepairEntity = new InfRepairEntity(repairId, "Chưa biết", "Chưa biết", "Chưa biết", infCustomersEntity);
+        DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity(detailId, "Chưa biết", "Sửa lấy ngay", "2", Date.valueOf(txtNgayThem.getText()), "0", infRepairEntity);
+
+
+        if (addCustomer.addData(infCustomersEntity) && addRepair.addData(infRepairEntity) && addDetail.addData(detailInfRepairEntity)){
+            refreshView();
+        }
+    }
+
+    public void refreshView(){
+        detailInfRepairDao dao = new detailInfRepairDao();
+        rlist = dao.getALl();
+        tableListCustomer.setItems(rlist);
+        tableListRepair.setItems(rlist);
+
+        tableListCustomer.refresh();
+        tableListRepair.refresh();
+    }
+
+    public void ThemKhachHangButton(){
+        openButton(false, "Add");
+    }
+
+    public void HuyThemKhachHangButton(){
+        openButton(true, "HuyAdd");
+    }
+
+    public void openButton(boolean flag, String nut){
+        switch (nut){
+            case "Add":
+                btnThem.setVisible(flag);
+                btnSua.setDisable(true);
+                btnXoa.setDisable(true);
+                btnXacNhanThem.setVisible(true);
+                btnHuyThem.setVisible(true);
+
+                tableListCustomer.setDisable(!flag);
+
+                txtMaKhachHang.setDisable(flag);
+                txtTenKhachHang.setDisable(flag);
+                txtGioiTinh.setDisable(flag);
+                txtEmail.setDisable(flag);
+                txtNgaySinh.setDisable(flag);
+                txtSoDienThoai.setDisable(flag);
+                break;
+            case "HuyAdd":
+                btnThem.setVisible(flag);
+                btnSua.setDisable(!flag);
+                btnXoa.setDisable(!flag);
+                btnXacNhanThem.setVisible(!flag);
+                btnHuyThem.setVisible(!flag);
+
+                tableListCustomer.setDisable(!flag);
+
+                txtMaKhachHang.setDisable(flag);
+                txtTenKhachHang.setDisable(flag);
+                txtGioiTinh.setDisable(flag);
+                txtEmail.setDisable(flag);
+                txtNgaySinh.setDisable(flag);
+                txtSoDienThoai.setDisable(flag);
+                break;
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadData();
@@ -237,5 +336,9 @@ public class customerInfController implements Initializable {
         cbThietBi.getItems().add("hello");
         cbThietBi.getItems().add("hi");
         cbThietBi.getItems().add("alo");
+
+        DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        txtNgayThem.setText(dayAdd.format(now));
     }
 }
