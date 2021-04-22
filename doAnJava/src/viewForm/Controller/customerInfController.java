@@ -2,11 +2,15 @@ package viewForm.Controller;
 
 import DAO.detailInfRepairDao;
 import DAO.infCustomerDao;
+import DAO.infLKDao;
 import DAO.infRepairDao;
 import Model.DetailInfRepairEntity;
 import Model.InfCustomersEntity;
+import Model.InfLkEntity;
 import Model.InfRepairEntity;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
@@ -16,10 +20,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
+import java.sql.Array;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class customerInfController implements Initializable {
@@ -106,7 +113,7 @@ public class customerInfController implements Initializable {
     private TextField txtTien;
 
     @FXML
-    private ComboBox<String> cbThietBi;
+    private JFXComboBox cbLocLK;
 
     @FXML
     private JFXButton btnHuySua;
@@ -171,8 +178,32 @@ public class customerInfController implements Initializable {
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairMoney;
 
+    @FXML
+    private TableView<InfLkEntity> tableListLinhKien;
+
+    @FXML
+    private TableColumn<InfLkEntity, String> colMLK;
+
+    @FXML
+    private TableColumn<InfLkEntity, String> colTLK;
+
+    @FXML
+    private TableColumn<InfLkEntity, String> colSL;
+
+    @FXML
+    private TableColumn<InfLkEntity, String> colNSX;
+
+    @FXML
+    private TableColumn<InfLkEntity, String> colGT;
+
+    @FXML
+    private JFXTextArea txtLkDaChon;
+
     ObservableList<DetailInfRepairEntity> rlist;
+    ObservableList<InfLkEntity> lkList;
     detailInfRepairDao dao = new detailInfRepairDao();
+    infLKDao lkDao = new infLKDao();
+    List<String> listLK = new ArrayList<>();
 
     public void loadData() {
         rlist = dao.getALl();
@@ -193,7 +224,7 @@ public class customerInfController implements Initializable {
                 DetailInfRepairEntity cus = (DetailInfRepairEntity) tableListCustomer.getItems().get(tableListCustomer.getSelectionModel().getSelectedIndex());
                 txtMaKhachHang.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerId());
                 txtTenKhachHang.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
-                if (cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerSex().equals("Nam")){
+                if (cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerSex().equals("1")){
                     txtGioiTinh.setSelected(true);
                 }
                 else {
@@ -241,6 +272,44 @@ public class customerInfController implements Initializable {
                 txtTien.setText(de.getRepairMoney());
             }
         });
+    }
+
+    public void loadInfLk(String lkName){
+        lkList = lkDao.getFilterNameLk(lkName);
+        tableListLinhKien.setItems(lkList);
+        colMLK.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkId()));
+        colTLK.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkName()));
+        colSL.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkNumber()));
+        colNSX.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkProducer()));
+        colGT.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkPrice()));
+    }
+
+    public void filterLK(){
+        lkList = lkDao.getFilterNameLk(cbLocLK.getValue().toString());
+        tableListLinhKien.setItems(lkList);
+        tableListLinhKien.refresh();
+    }
+
+    public void setItemSelected(){
+        String lkTien = txtTien.getText();
+        tableListLinhKien.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                InfLkEntity de = (InfLkEntity) tableListLinhKien.getItems().get(tableListLinhKien.getSelectionModel().getSelectedIndex());
+                listLK.add(de.getLkName());
+                txtLkDaChon.setText(listLK.toString());
+
+                long money1 = Long.parseLong(txtTien.getText());
+                long money2 = Long.parseLong(de.getLkPrice());
+                long tienLK = Long.parseLong(txtTien.getText() + de.getLkPrice());
+                long tien = money1+money2;
+                txtTien.setText(String.valueOf(tien));
+            }
+        });
+    }
+
+    public void resetDanhSach(){
+        listLK.clear();
     }
 
     public void addNewCustomer(){
@@ -438,9 +507,12 @@ public class customerInfController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         loadData();
         loadDataRepair();
-        cbThietBi.getItems().add("hello");
-        cbThietBi.getItems().add("hi");
-        cbThietBi.getItems().add("alo");
+        loadInfLk("Acer");
+        cbLocLK.getItems().add("Acer");
+        cbLocLK.getItems().add("Msi");
+        cbLocLK.getItems().add("Lenovo");
+        cbLocLK.getItems().add("Asus");
+        cbLocLK.getItems().add("Apple");
 
         DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();

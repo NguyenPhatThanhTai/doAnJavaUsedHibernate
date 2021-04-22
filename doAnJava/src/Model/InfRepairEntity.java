@@ -12,16 +12,15 @@ public class InfRepairEntity {
     private String staffId;
     private InfCustomersEntity infCustomersByCustomerId;
 
+    public InfRepairEntity() {
+    }
+
     public InfRepairEntity(String repairId, String laptopName, String laptopStatus, String staffId, InfCustomersEntity infCustomersByCustomerId) {
         this.repairId = repairId;
         this.laptopName = laptopName;
         this.laptopStatus = laptopStatus;
         this.staffId = staffId;
         this.infCustomersByCustomerId = infCustomersByCustomerId;
-    }
-
-    public InfRepairEntity() {
-
     }
 
     @Id
@@ -80,7 +79,7 @@ public class InfRepairEntity {
         return Objects.hash(repairId, laptopName, laptopStatus, staffId);
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "Customer_Id", referencedColumnName = "Customer_Id", nullable = false)
     public InfCustomersEntity getInfCustomersByCustomerId() {
         return infCustomersByCustomerId;

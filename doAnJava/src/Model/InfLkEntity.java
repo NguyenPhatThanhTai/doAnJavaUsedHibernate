@@ -13,7 +13,6 @@ public class InfLkEntity {
     private String lkProducer;
     private String lkPrice;
     private Date lkTimeAdd;
-    private InfWareHouseEntity infWareHouseByWareHouseId;
 
     @Id
     @Column(name = "LK_Id")
@@ -91,15 +90,5 @@ public class InfLkEntity {
     @Override
     public int hashCode() {
         return Objects.hash(lkId, lkName, lkNumber, lkProducer, lkPrice, lkTimeAdd);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "WareHouse_Id", referencedColumnName = "WareHouse_Id", nullable = false)
-    public InfWareHouseEntity getInfWareHouseByWareHouseId() {
-        return infWareHouseByWareHouseId;
-    }
-
-    public void setInfWareHouseByWareHouseId(InfWareHouseEntity infWareHouseByWareHouseId) {
-        this.infWareHouseByWareHouseId = infWareHouseByWareHouseId;
     }
 }

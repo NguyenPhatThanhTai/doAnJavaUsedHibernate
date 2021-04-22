@@ -15,6 +15,9 @@ public class DetailInfRepairEntity {
     private String repairMoney;
     private InfRepairEntity infRepairByRepairId;
 
+    public DetailInfRepairEntity() {
+    }
+
     public DetailInfRepairEntity(String detailId, String repairReason, String repairNote, String repairStatus, Date repairAppointment, String repairMoney, InfRepairEntity infRepairByRepairId) {
         this.detailId = detailId;
         this.repairReason = repairReason;
@@ -23,9 +26,6 @@ public class DetailInfRepairEntity {
         this.repairAppointment = repairAppointment;
         this.repairMoney = repairMoney;
         this.infRepairByRepairId = infRepairByRepairId;
-    }
-
-    public DetailInfRepairEntity() {
     }
 
     @Id
@@ -106,7 +106,7 @@ public class DetailInfRepairEntity {
         return Objects.hash(detailId, repairReason, repairNote, repairStatus, repairAppointment, repairMoney);
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "Repair_Id", referencedColumnName = "Repair_Id", nullable = false)
     public InfRepairEntity getInfRepairByRepairId() {
         return infRepairByRepairId;

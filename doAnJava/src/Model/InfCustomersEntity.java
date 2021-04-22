@@ -16,7 +16,6 @@ public class InfCustomersEntity {
     private Date customerTimeAdd;
 
     public InfCustomersEntity() {
-
     }
 
     public InfCustomersEntity(String customerId, String customerName, String customerSex, Date customerBirth, String customerEmail, String customerPhone, Date customerTimeAdd) {
@@ -27,11 +26,6 @@ public class InfCustomersEntity {
         this.customerEmail = customerEmail;
         this.customerPhone = customerPhone;
         this.customerTimeAdd = customerTimeAdd;
-    }
-
-    @Override
-    public String toString() {
-        return customerId;
     }
 
     @Id
