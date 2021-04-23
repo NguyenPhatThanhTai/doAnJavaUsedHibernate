@@ -15,7 +15,6 @@ public class pageLoad {
             if (fileUrl == null){
                 throw new java.io.FileNotFoundException("Page not found!!!");
             }
-
             paneLoad = new FXMLLoader().load(fileUrl);
         } catch (Exception e) {
             e.printStackTrace();

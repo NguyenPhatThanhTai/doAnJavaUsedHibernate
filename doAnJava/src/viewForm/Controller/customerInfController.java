@@ -14,8 +14,11 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.sql.Array;
 import java.sql.Date;
@@ -210,6 +213,7 @@ public class customerInfController implements Initializable {
         if ( infStaffEntity != null){
             name = infStaffEntity.getStaffName();
             maNv = infStaffEntity.getStaffId();
+            txtNhanVienTiepNhan.setText(maNv);
             if (infStaffEntity.getStaffDeparment().equals("1")){
                 chucVu = "Quản lý";
             }
@@ -351,7 +355,7 @@ public class customerInfController implements Initializable {
         detailInfRepairDao addDetail = new detailInfRepairDao();
 
         InfCustomersEntity infCustomersEntity = new InfCustomersEntity(customerId, txtTenKhachHang.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtEmail.getText(), txtSoDienThoai.getText(), Date.valueOf(txtNgayThem.getText()));
-        InfStaffEntity infStaffEntity = new InfStaffEntity("NV173507");
+        InfStaffEntity infStaffEntity = new InfStaffEntity(maNv);
         InfRepairEntity infRepairEntity = new InfRepairEntity(repairId, "Chưa biết", "Chưa biết", infCustomersEntity, infStaffEntity);
         DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity(detailId, "Chưa biết", "Sửa lấy ngay", "2", Date.valueOf(txtNgayThem.getText()), "0", infRepairEntity);
 

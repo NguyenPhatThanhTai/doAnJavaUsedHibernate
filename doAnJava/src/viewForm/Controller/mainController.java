@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -56,7 +57,7 @@ public class mainController implements Initializable {
     @FXML
     private JFXButton btnQuanTriSever;
 
-    InfStaffEntity infStaffEntity = new InfStaffEntity();
+    InfStaffEntity infStaffEntity;
 
     public void showInfomation(InfStaffEntity infStaffEntity){
         this.infStaffEntity = infStaffEntity;
@@ -78,8 +79,18 @@ public class mainController implements Initializable {
     }
 
     public void showCustomerPage() throws IOException {
-        setEffectClick("#4777A7", "ThongTinKhachHang");
-        setPage("customerInf.fxml");
+//        setEffectClick("#4777A7", "ThongTinKhachHang");
+//        setPage("customerInf.fxml");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/customerInf.fxml"));
+        Parent root = loader.load();
+
+        customerInfController mainController = loader.getController();
+        mainController.showInfomation(infStaffEntity);
+
+        Pane p = (Pane) root;
+        paneLoad.getChildren().clear();
+        paneLoad.getChildren().add(p);
     }
 
     public void showWelcomePage(){
