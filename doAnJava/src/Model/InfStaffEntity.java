@@ -16,6 +16,13 @@ public class InfStaffEntity {
     private String staffDeparment;
     private Date staffTimeAdd;
 
+    public InfStaffEntity() {
+    }
+
+    public InfStaffEntity(String staffId) {
+        this.staffId = staffId;
+    }
+
     @Id
     @Column(name = "Staff_Id")
     public String getStaffId() {

@@ -4,10 +4,7 @@ import DAO.detailInfRepairDao;
 import DAO.infCustomerDao;
 import DAO.infLKDao;
 import DAO.infRepairDao;
-import Model.DetailInfRepairEntity;
-import Model.InfCustomersEntity;
-import Model.InfLkEntity;
-import Model.InfRepairEntity;
+import Model.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
@@ -205,6 +202,26 @@ public class customerInfController implements Initializable {
     infLKDao lkDao = new infLKDao();
     List<String> listLK = new ArrayList<>();
 
+    String maNv = "";
+    String name = "";
+    String chucVu = "";
+
+    public void showInfomation(InfStaffEntity infStaffEntity){
+        if ( infStaffEntity != null){
+            name = infStaffEntity.getStaffName();
+            maNv = infStaffEntity.getStaffId();
+            if (infStaffEntity.getStaffDeparment().equals("1")){
+                chucVu = "Quản lý";
+            }
+            else {
+                chucVu = "Nhân viên";
+            }
+        }
+        else {
+            name = "Không định dạng được";
+        }
+    }
+
     public void loadData() {
         rlist = dao.getALl();
         tableListCustomer.setItems(rlist);
@@ -244,7 +261,7 @@ public class customerInfController implements Initializable {
         colRepairCustomerName.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()));
         colRepairNameOfLaptop.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopName()));
         colRepairStatusLaptop.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopStatus()));
-        colRepairStaffId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getStaffId()));
+        colRepairStaffId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfStaffByStaffId().getStaffId()));
         colRepairNeedFix.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairReason()));
         colRepairNote.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairNote()));
         colRepairStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairStatus()));
@@ -266,7 +283,7 @@ public class customerInfController implements Initializable {
                     txtSua.setSelected(true);
                 }
                 txtNgayHen.setValue(LocalDate.parse(String.valueOf(de.getRepairAppointment())));
-                txtNhanVienTiepNhan.setText(de.getInfRepairByRepairId().getStaffId());
+                txtNhanVienTiepNhan.setText(de.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId());
                 txtTinhTrang.setText(de.getRepairReason());
                 txtLaptopName.setText(String.valueOf(de.getInfRepairByRepairId().getLaptopName()));
                 txtTien.setText(de.getRepairMoney());
@@ -334,7 +351,8 @@ public class customerInfController implements Initializable {
         detailInfRepairDao addDetail = new detailInfRepairDao();
 
         InfCustomersEntity infCustomersEntity = new InfCustomersEntity(customerId, txtTenKhachHang.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtEmail.getText(), txtSoDienThoai.getText(), Date.valueOf(txtNgayThem.getText()));
-        InfRepairEntity infRepairEntity = new InfRepairEntity(repairId, "Chưa biết", "Chưa biết", "Chưa biết", infCustomersEntity);
+        InfStaffEntity infStaffEntity = new InfStaffEntity("NV173507");
+        InfRepairEntity infRepairEntity = new InfRepairEntity(repairId, "Chưa biết", "Chưa biết", infCustomersEntity, infStaffEntity);
         DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity(detailId, "Chưa biết", "Sửa lấy ngay", "2", Date.valueOf(txtNgayThem.getText()), "0", infRepairEntity);
 
 

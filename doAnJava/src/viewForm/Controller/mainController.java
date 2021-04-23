@@ -2,6 +2,7 @@ package viewForm.Controller;
 
 
 import Model.InfStaffEntity;
+import Service.serviceImplement;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -23,6 +24,7 @@ import viewForm.Main;
 import javax.swing.text.Element;
 import javax.swing.text.html.ImageView;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,7 +37,6 @@ import java.util.ResourceBundle;
 import static javafx.scene.input.KeyCode.R;
 
 public class mainController implements Initializable {
-
 
     @FXML
     private AnchorPane paneLoad;
@@ -52,7 +53,13 @@ public class mainController implements Initializable {
     @FXML
     private Label lbName;
 
+    @FXML
+    private JFXButton btnQuanTriSever;
+
+    InfStaffEntity infStaffEntity = new InfStaffEntity();
+
     public void showInfomation(InfStaffEntity infStaffEntity){
+        this.infStaffEntity = infStaffEntity;
         String name = "";
         String chucVu = "";
         if ( infStaffEntity != null){
@@ -70,7 +77,7 @@ public class mainController implements Initializable {
         lbName.setText("Họ và tên: " + name + " - Chức vụ: " + chucVu);
     }
 
-    public void showCustomerPage(){
+    public void showCustomerPage() throws IOException {
         setEffectClick("#4777A7", "ThongTinKhachHang");
         setPage("customerInf.fxml");
     }
@@ -80,11 +87,17 @@ public class mainController implements Initializable {
         setPage("welcome.fxml");
     }
 
+    public void showSystemManager(){
+        setEffectClick("#4777A7", "QuanTriHeThong");
+        setPage("managerSystem.fxml");
+    }
+
     public void setPage(String page){
         new Thread(()->{
             Platform.runLater(()->{
                 pageLoad object = new pageLoad();
                 Pane view = object.getPage(page);
+
                 paneLoad.getChildren().clear();
                 paneLoad.getChildren().add(view);
             });
@@ -101,10 +114,17 @@ public class mainController implements Initializable {
             case "ThongTinKhachHang":
                 btnThongTinKhachHang.setStyle("-fx-background-color: "+color);
                 btnHome.setStyle("-fx-background-color: transparent");
+                btnQuanTriSever.setStyle("-fx-background-color: transparent");
                 break;
             case "Home":
                 btnHome.setStyle("-fx-background-color: "+color);
+                btnQuanTriSever.setStyle("-fx-background-color: transparent");
                 btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
+                break;
+            case "QuanTriHeThong":
+                btnQuanTriSever.setStyle("-fx-background-color: "+color);
+                btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
+                btnHome.setStyle("-fx-background-color: transparent");
                 break;
         }
     }

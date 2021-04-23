@@ -9,18 +9,18 @@ public class InfRepairEntity {
     private String repairId;
     private String laptopName;
     private String laptopStatus;
-    private String staffId;
     private InfCustomersEntity infCustomersByCustomerId;
+    private InfStaffEntity infStaffByStaffId;
 
     public InfRepairEntity() {
     }
 
-    public InfRepairEntity(String repairId, String laptopName, String laptopStatus, String staffId, InfCustomersEntity infCustomersByCustomerId) {
+    public InfRepairEntity(String repairId, String laptopName, String laptopStatus, InfCustomersEntity infCustomersByCustomerId, InfStaffEntity infStaffByStaffId) {
         this.repairId = repairId;
         this.laptopName = laptopName;
         this.laptopStatus = laptopStatus;
-        this.staffId = staffId;
         this.infCustomersByCustomerId = infCustomersByCustomerId;
+        this.infStaffByStaffId = infStaffByStaffId;
     }
 
     @Id
@@ -53,16 +53,6 @@ public class InfRepairEntity {
         this.laptopStatus = laptopStatus;
     }
 
-    @Basic
-    @Column(name = "Staff_Id")
-    public String getStaffId() {
-        return staffId;
-    }
-
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,13 +60,12 @@ public class InfRepairEntity {
         InfRepairEntity that = (InfRepairEntity) o;
         return Objects.equals(repairId, that.repairId) &&
                 Objects.equals(laptopName, that.laptopName) &&
-                Objects.equals(laptopStatus, that.laptopStatus) &&
-                Objects.equals(staffId, that.staffId);
+                Objects.equals(laptopStatus, that.laptopStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(repairId, laptopName, laptopStatus, staffId);
+        return Objects.hash(repairId, laptopName, laptopStatus);
     }
 
     @ManyToOne
@@ -87,5 +76,15 @@ public class InfRepairEntity {
 
     public void setInfCustomersByCustomerId(InfCustomersEntity infCustomersByCustomerId) {
         this.infCustomersByCustomerId = infCustomersByCustomerId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Staff_Id", referencedColumnName = "Staff_Id")
+    public InfStaffEntity getInfStaffByStaffId() {
+        return infStaffByStaffId;
+    }
+
+    public void setInfStaffByStaffId(InfStaffEntity infStaffByStaffId) {
+        this.infStaffByStaffId = infStaffByStaffId;
     }
 }
