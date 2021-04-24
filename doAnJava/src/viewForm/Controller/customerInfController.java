@@ -209,6 +209,8 @@ public class customerInfController implements Initializable {
     String name = "";
     String chucVu = "";
 
+    //hello
+
     public void showInfomation(InfStaffEntity infStaffEntity){
         if ( infStaffEntity != null){
             name = infStaffEntity.getStaffName();

@@ -79,7 +79,7 @@ public class mainController implements Initializable {
     }
 
     public void showCustomerPage() throws IOException {
-//        setEffectClick("#4777A7", "ThongTinKhachHang");
+        setEffectClick("#4777A7", "ThongTinKhachHang");
 //        setPage("customerInf.fxml");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/customerInf.fxml"));
@@ -97,7 +97,6 @@ public class mainController implements Initializable {
         setEffectClick("#4777A7", "Home");
         setPage("welcome.fxml");
     }
-
     public void showSystemManager(){
         setEffectClick("#4777A7", "QuanTriHeThong");
         setPage("managerSystem.fxml");
