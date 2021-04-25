@@ -71,7 +71,7 @@
                         </JFXButton>
                         <TableView fx:id="tableListCustomer" layoutX="409.0" layoutY="22.0" onMouseClicked="#getItemFromTableView" prefHeight="652.0" prefWidth="1094.0">
                            <columns>
-                              <TableColumn fx:id="colCustomerId" prefWidth="96.0" text="Id" />
+                              <TableColumn fx:id="colCustomerId" prefWidth="96.0" text="Mã Khách Hàng" />
                               <TableColumn fx:id="colCustomerName" prefWidth="165.0" text="Tên khách hàng" />
                               <TableColumn fx:id="colCustomerSex" prefWidth="115.0" text="Giới tính" />
                               <TableColumn fx:id="colCustomerBirth" prefWidth="165.0" text="Ngày sinh" />

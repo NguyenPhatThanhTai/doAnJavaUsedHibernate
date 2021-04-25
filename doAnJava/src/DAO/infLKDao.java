@@ -1,13 +1,11 @@
 package DAO;
 
-import Model.DetailInfRepairEntity;
-import Model.InfLkEntity;
-import Model.InfRepairEntity;
-import Model.InfStaffEntity;
+import Model.*;
 import Until.hibernateUntil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -18,17 +16,59 @@ import java.util.List;
 public class infLKDao implements daoInterface<InfLkEntity> {
     @Override
     public boolean addData(InfLkEntity data) {
-        return false;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.save(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở LK");
+            return false;
+        }
     }
 
     @Override
     public boolean dellData(InfLkEntity data) {
-        return false;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            InfLkEntity infCustomersEntity = s.load(InfLkEntity.class, data.getLkId());
+
+            s.delete(infCustomersEntity);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở Customer");
+            return false;
+        }
     }
+
 
     @Override
     public boolean updateData(InfLkEntity data) {
-        return false;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.saveOrUpdate(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở LK");
+            return false;
+        }
     }
 
     @Override

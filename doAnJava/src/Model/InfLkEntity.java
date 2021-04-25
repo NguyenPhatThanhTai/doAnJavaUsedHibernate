@@ -14,6 +14,18 @@ public class InfLkEntity {
     private String lkPrice;
     private Date lkTimeAdd;
 
+    public InfLkEntity() {
+    }
+
+    public InfLkEntity(String lkId, String lkName, String lkNumber, String lkProducer, String lkPrice, Date lkTimeAdd) {
+        this.lkId = lkId;
+        this.lkName = lkName;
+        this.lkNumber = lkNumber;
+        this.lkProducer = lkProducer;
+        this.lkPrice = lkPrice;
+        this.lkTimeAdd = lkTimeAdd;
+    }
+
     @Id
     @Column(name = "LK_Id")
     public String getLkId() {
