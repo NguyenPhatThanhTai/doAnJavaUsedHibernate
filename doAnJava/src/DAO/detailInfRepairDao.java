@@ -56,7 +56,20 @@ public class detailInfRepairDao implements daoInterface<DetailInfRepairEntity> {
 
     @Override
     public boolean updateData(DetailInfRepairEntity data) {
-        return false;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.update(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở detail");
+            return false;
+        }
     }
 
     @Override

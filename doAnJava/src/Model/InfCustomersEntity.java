@@ -18,6 +18,10 @@ public class InfCustomersEntity {
     public InfCustomersEntity() {
     }
 
+    public InfCustomersEntity(String customerId) {
+        this.customerId = customerId;
+    }
+
     public InfCustomersEntity(String customerId, String customerName, String customerSex, Date customerBirth, String customerEmail, String customerPhone, Date customerTimeAdd) {
         this.customerId = customerId;
         this.customerName = customerName;

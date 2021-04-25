@@ -163,7 +163,7 @@ public class linhKienInfController implements Initializable {
             }
         });
     }
-//
+
     public void deleteLK(){
         infLKDao infLKDao = new infLKDao();
         InfLkEntity infLkEntity = new InfLkEntity();

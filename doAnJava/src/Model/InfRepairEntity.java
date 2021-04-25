@@ -15,6 +15,12 @@ public class InfRepairEntity {
     public InfRepairEntity() {
     }
 
+    public InfRepairEntity(String repairId, String laptopName, String laptopStatus) {
+        this.repairId = repairId;
+        this.laptopName = laptopName;
+        this.laptopStatus = laptopStatus;
+    }
+
     public InfRepairEntity(String repairId, String laptopName, String laptopStatus, InfCustomersEntity infCustomersByCustomerId, InfStaffEntity infStaffByStaffId) {
         this.repairId = repairId;
         this.laptopName = laptopName;
@@ -69,6 +75,7 @@ public class InfRepairEntity {
     }
 
     @ManyToOne
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JoinColumn(name = "Customer_Id", referencedColumnName = "Customer_Id", nullable = false)
     public InfCustomersEntity getInfCustomersByCustomerId() {
         return infCustomersByCustomerId;
@@ -79,7 +86,8 @@ public class InfRepairEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "Staff_Id", referencedColumnName = "Staff_Id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JoinColumn(name = "Staff_Id", referencedColumnName = "Staff_Id", nullable = false)
     public InfStaffEntity getInfStaffByStaffId() {
         return infStaffByStaffId;
     }

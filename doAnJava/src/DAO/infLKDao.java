@@ -47,7 +47,7 @@ public class infLKDao implements daoInterface<InfLkEntity> {
             return true;
         }catch (Exception e){
             e.printStackTrace();
-            System.out.println("Lỗi ở Customer");
+            System.out.println("Lỗi ở LK");
             return false;
         }
     }
