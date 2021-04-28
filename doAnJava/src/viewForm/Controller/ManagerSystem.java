@@ -24,8 +24,16 @@ public class ManagerSystem implements Initializable {
     @FXML
     private Label txtDone;
 
+    Thread thread;
+
     ObservableList<DetailInfRepairEntity> rlist;
     detailInfRepairDao dao = new detailInfRepairDao();
+
+    public void Nhan(){
+        thread=new Thread(this::uploaData);
+        thread.start();
+    }
+
     public void uploaData(){
         String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/upload.php";
         rlist = dao.getALl();
@@ -63,6 +71,7 @@ public class ManagerSystem implements Initializable {
             }
         }
         txtDone.setVisible(true);
+        thread.interrupt();
     }
 
 
