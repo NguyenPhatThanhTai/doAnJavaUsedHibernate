@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="862.0" fitWidth="1733.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Picture/Pic/milkyway%20(1%20of%201).jpg" />
+            <Image url="@../Picture/Pic/milkyway (1 of 1).jpg" />
          </image>
       </ImageView>
       <VBox alignment="CENTER" layoutX="14.0" layoutY="13.0" prefHeight="832.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;">
@@ -42,7 +42,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
+            <JFXButton fx:id="btnLK" contentDisplay="TOP" onAction="#showLkPage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>

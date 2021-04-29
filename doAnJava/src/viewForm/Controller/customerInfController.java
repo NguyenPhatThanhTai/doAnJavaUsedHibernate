@@ -206,6 +206,9 @@ public class customerInfController implements Initializable {
     private TableColumn<InfLkEntity, String> colGT;
 
     @FXML
+    private JFXButton btnResetDanhSach;
+
+    @FXML
     private JFXTextArea txtLkDaChon;
 
     ObservableList<DetailInfRepairEntity> rlist;
@@ -253,24 +256,27 @@ public class customerInfController implements Initializable {
     }
 
     public void getItemFromTableView(){
-        tableListCustomer.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                DetailInfRepairEntity cus = (DetailInfRepairEntity) tableListCustomer.getItems().get(tableListCustomer.getSelectionModel().getSelectedIndex());
-                txtMaKhachHang.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerId());
-                txtTenKhachHang.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
-                if (cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerSex().equals("1")){
-                    txtGioiTinh.setSelected(true);
-                }
-                else {
-                    txtGioiTinh.setSelected(false);
-                }
-                txtNgaySinh.setValue(LocalDate.parse(String.valueOf(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerBirth())));
-                txtEmail.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerEmail());
-                txtSoDienThoai.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerPhone());
-                txtNgayThem.setText(String.valueOf(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerTimeAdd()));
+        try {
+            btnThem.setDisable(true);
+            btnSua.setDisable(false);
+            btnXoa.setDisable(false);
+
+            DetailInfRepairEntity cus = (DetailInfRepairEntity) tableListCustomer.getItems().get(tableListCustomer.getSelectionModel().getSelectedIndex());
+            txtMaKhachHang.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerId());
+            txtTenKhachHang.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
+            if (cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerSex().equals("1")){
+                txtGioiTinh.setSelected(true);
             }
-        });
+            else {
+                txtGioiTinh.setSelected(false);
+            }
+            txtNgaySinh.setValue(LocalDate.parse(String.valueOf(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerBirth())));
+            txtEmail.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerEmail());
+            txtSoDienThoai.setText(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerPhone());
+            txtNgayThem.setText(String.valueOf(cus.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerTimeAdd()));
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public void loadDataRepair(){
@@ -288,26 +294,27 @@ public class customerInfController implements Initializable {
     }
 
     public void getItemFromTableViewRepair(){
-        tableListRepair.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                DetailInfRepairEntity de = (DetailInfRepairEntity) tableListRepair.getItems().get(tableListRepair.getSelectionModel().getSelectedIndex());
-                txtMaSuaChua.setText(de.getInfRepairByRepairId().getRepairId());
-                txtTenkhachHangSuaChua.setText(de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
-                if (de.getRepairNote().equals("Sửa lấy ngay")){
-                    txtSuaRepair.setSelected(false);
-                }
-                else {
-                    txtSuaRepair.setSelected(true);
-                }
-                txtNgayHen.setValue(LocalDate.parse(String.valueOf(de.getRepairAppointment())));
-                txtNhanVienTiepNhan.setText(de.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId());
-                txtTinhTrang.setText(de.getInfRepairByRepairId().getLaptopStatus());
-                txtLkDaChon.setText(de.getRepairReason());
-                txtLaptopName.setText(String.valueOf(de.getInfRepairByRepairId().getLaptopName()));
-                txtTien.setText(de.getRepairMoney());
+        try {
+            btnSuaRepair.setDisable(false);
+
+            DetailInfRepairEntity de = (DetailInfRepairEntity) tableListRepair.getItems().get(tableListRepair.getSelectionModel().getSelectedIndex());
+            txtMaSuaChua.setText(de.getInfRepairByRepairId().getRepairId());
+            txtTenkhachHangSuaChua.setText(de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
+            if (de.getRepairNote().equals("Sửa lấy ngay")){
+                txtSuaRepair.setSelected(false);
             }
-        });
+            else {
+                txtSuaRepair.setSelected(true);
+            }
+            txtNgayHen.setValue(LocalDate.parse(String.valueOf(de.getRepairAppointment())));
+            txtNhanVienTiepNhan.setText(de.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId());
+            txtTinhTrang.setText(de.getInfRepairByRepairId().getLaptopStatus());
+            txtLkDaChon.setText(de.getRepairReason());
+            txtLaptopName.setText(String.valueOf(de.getInfRepairByRepairId().getLaptopName()));
+            txtTien.setText(de.getRepairMoney());
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public void loadInfLk(String lkName){
@@ -429,7 +436,7 @@ public class customerInfController implements Initializable {
 
         if(delDetail.dellData(detail) && delRepair.dellData(repair) && delCustomer.dellData(customer)){
             refreshView();
-            openTextField(false);
+            openTextField(true);
             btnXacNhanXoa.setVisible(false);
             btnHuyXoa.setVisible(false);
             btnSua.setDisable(false);
@@ -471,24 +478,44 @@ public class customerInfController implements Initializable {
         }
     }
 
-    public void ThemKhachHangButton(){ txtMaKhachHang.setText("Hệ thống định sẵn"); openButton(false, "Add"); }
+    public void ThemKhachHangButton(){
+        txtMaKhachHang.setText("Hệ thống định sẵn"); openButton(false, "Add");
+    }
 
-    public void HuyThemKhachHangButton(){ openButton(true, "HuyAdd");}
+    public void HuyThemKhachHangButton(){
+        openButton(true, "HuyAdd");
+        clearAllKhachHang();
+    }
 
-    public void SuaKhachHangButton(){openButton(false, "Sua");}
+    public void SuaKhachHangButton(){
+        openButton(false, "Sua");
+    }
 
-    public void HuySuaKhachHangButton(){openButton(true, "HuySua");}
+    public void HuySuaKhachHangButton(){
+        openButton(true, "HuySua");
+        clearAllKhachHang();
+    }
 
-    public void XoaKhachHangButton(){openButton(false, "Xoa");}
+    public void XoaKhachHangButton(){
+        openButton(false, "Xoa");
+    }
 
-    public void HuyXoaKhachHangButton(){openButton(true, "HuyXoa");}
+    public void HuyXoaKhachHangButton(){
+        openButton(true, "HuyXoa");
+        clearAllKhachHang();
+    }
 
     public void SuaRepairButton(){
         openButton(false, "SuaRepair");
+        tableListLinhKien.setDisable(false);
+        btnResetDanhSach.setDisable(false);
+        cbLocLK.setDisable(false);
+        txtLkDaChon.setDisable(false);
     }
 
     public void HuySuaRepairButton(){
         openButton(true, "SuaRepair");
+        clearAllSuaChua();
     }
 
     public void openButton(boolean flag, String nut){
@@ -593,6 +620,8 @@ public class customerInfController implements Initializable {
         txtEmail.setText("");
         txtSoDienThoai.setText("");
         txtMaKhachHang.setText("");
+        btnSua.setDisable(true);
+        btnXoa.setDisable(true);
     }
 
     public void clearAllSuaChua(){
@@ -602,6 +631,14 @@ public class customerInfController implements Initializable {
         txtTinhTrang.setText("");
         txtSuaRepair.setSelected(false);
         txtTien.setText("");
+        txtTenkhachHangSuaChua.setText("");
+        txtNhanVienTiepNhan.setText("");
+
+        btnSuaRepair.setDisable(true);
+        tableListLinhKien.setDisable(true);
+        btnResetDanhSach.setDisable(true);
+        cbLocLK.setDisable(true);
+        txtLkDaChon.setDisable(true);
     }
 
     @Override

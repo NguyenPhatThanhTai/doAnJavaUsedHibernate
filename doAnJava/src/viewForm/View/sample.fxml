@@ -29,10 +29,10 @@
             <Font size="20.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton fx:id="btnDangNhap" buttonType="RAISED" layoutX="623.0" layoutY="392.0" onAction="#DangNhap" prefHeight="32.0" prefWidth="196.0" ripplerFill="#3375c6" style="-fx-background-color: #0f6ba4; -fx-background-radius: 100;" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE" />
+      <JFXButton fx:id="btnDangNhap" buttonType="RAISED" defaultButton="true" layoutX="623.0" layoutY="392.0" onAction="#DangNhap" prefHeight="32.0" prefWidth="196.0" ripplerFill="#3375c6" style="-fx-background-color: #0f6ba4; -fx-background-radius: 100;" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE" />
       <JFXCheckBox checkedColor="#3375c6" layoutX="405.0" layoutY="399.0" prefHeight="18.0" prefWidth="123.0" text="Giữ đăng nhập" textFill="WHITE" unCheckedColor="WHITE" />
       <Hyperlink layoutX="671.0" layoutY="435.0" text="Quên mật khẩu" textFill="WHITE" />
-      <JFXButton fx:id="btnThoat" buttonType="RAISED" layoutX="1124.0" layoutY="16.0" minWidth="44.0" onAction="#Quit" prefHeight="32.0" prefWidth="64.0" style="-fx-background-color: transparent;" text="X" textFill="WHITE" />
+      <JFXButton fx:id="btnThoat" buttonType="RAISED" cancelButton="true" layoutX="1124.0" layoutY="16.0" minWidth="44.0" onAction="#Quit" prefHeight="32.0" prefWidth="64.0" style="-fx-background-color: transparent;" text="X" textFill="WHITE" />
       <JFXButton fx:id="btnMinimized" buttonType="RAISED" layoutX="1087.0" layoutY="16.0" minHeight="18.0" minWidth="37.0" onAction="#Minimized" prefHeight="32.0" prefWidth="37.0" style="-fx-background-color: transparent;" text="_" textFill="WHITE">
          <font>
             <Font size="26.0" />

@@ -101,7 +101,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXoa" layoutX="39.0" layoutY="569.0" onMouseClicked="#XoaKhachHangButton" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa khách hàng">
+                        <JFXButton fx:id="btnXoa" disable="true" layoutX="39.0" layoutY="569.0" onMouseClicked="#XoaKhachHangButton" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa khách hàng">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -110,7 +110,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnSua" layoutX="39.0" layoutY="509.0" onMouseClicked="#SuaKhachHangButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
+                        <JFXButton fx:id="btnSua" disable="true" layoutX="39.0" layoutY="509.0" onMouseClicked="#SuaKhachHangButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -232,7 +232,7 @@
                               <Image url="@../Picture/Pic/money_64px.png" />
                            </image>
                         </ImageView>
-                        <JFXButton fx:id="btnSuaRepair" layoutX="50.0" layoutY="554.0" onMouseClicked="#SuaRepairButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
+                        <JFXButton fx:id="btnSuaRepair" disable="true" layoutX="50.0" layoutY="554.0" onMouseClicked="#SuaRepairButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -241,7 +241,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnTest31" layoutX="45.0" layoutY="623.0" prefHeight="50.0" prefWidth="325.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
+                        <JFXButton fx:id="btnTest31" layoutX="45.0" layoutY="628.0" prefHeight="45.0" prefWidth="326.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -267,7 +267,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TableView fx:id="tableListLinhKien" layoutX="423.0" layoutY="217.0" onMouseClicked="#setItemSelected" prefHeight="460.0" prefWidth="366.0">
+                        <TableView fx:id="tableListLinhKien" disable="true" layoutX="423.0" layoutY="217.0" onMouseClicked="#setItemSelected" prefHeight="460.0" prefWidth="366.0">
                            <columns>
                               <TableColumn fx:id="colMLK" prefWidth="75.0" text="Mã linh kiện" />
                               <TableColumn fx:id="colTLK" prefWidth="75.0" text="Tên linh kiện" />
@@ -276,14 +276,14 @@
                               <TableColumn fx:id="colGT" prefWidth="75.0" text="Giá tiền" />
                            </columns>
                         </TableView>
-                        <JFXTextArea fx:id="txtLkDaChon" layoutX="419.0" layoutY="60.0" prefHeight="87.0" prefWidth="375.0" promptText="Các linh kiện đã chọn" />
-                        <JFXComboBox fx:id="cbLocLK" layoutX="423.0" layoutY="167.0" onAction="#filterLK" prefHeight="29.0" prefWidth="169.0" promptText="Acer" />
+                        <JFXTextArea fx:id="txtLkDaChon" disable="true" layoutX="419.0" layoutY="60.0" prefHeight="87.0" prefWidth="375.0" promptText="Các linh kiện đã chọn" />
+                        <JFXComboBox fx:id="cbLocLK" disable="true" layoutX="423.0" layoutY="167.0" onAction="#filterLK" prefHeight="29.0" prefWidth="169.0" promptText="Acer" />
                         <Label layoutX="511.0" layoutY="21.0" prefHeight="34.0" prefWidth="190.0" text="Chọn linh kiện cần" textAlignment="CENTER">
                            <font>
                               <Font size="23.0" />
                            </font>
                         </Label>
-                        <JFXButton layoutX="619.0" layoutY="171.0" onAction="#resetDanhSach" prefHeight="32.0" prefWidth="172.0" style="-fx-background-color: #66A3E5;" text="Reset danh sách" />
+                        <JFXButton fx:id="btnResetDanhSach" disable="true" layoutX="619.0" layoutY="171.0" onAction="#resetDanhSach" prefHeight="32.0" prefWidth="172.0" style="-fx-background-color: #66A3E5;" text="Reset danh sách" />
                         <JFXButton fx:id="btnHuySuaRepair" layoutX="209.0" layoutY="552.0" onMouseClicked="#HuySuaRepairButton" prefHeight="53.0" prefWidth="159.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">

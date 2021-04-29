@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="520.0" prefWidth="1575.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.ManagerSystem">
    <children>
-      <JFXButton layoutX="63.0" layoutY="46.0" onAction="#uploaData" prefHeight="46.0" prefWidth="296.0" style="-fx-background-color: #40A86D;" text="Upload dữ liêu lên server" />
+      <JFXButton layoutX="63.0" layoutY="46.0" onAction="#Nhan" prefHeight="46.0" prefWidth="296.0" style="-fx-background-color: #40A86D;" text="Upload dữ liêu lên server" />
       <Label fx:id="txtDone" layoutX="63.0" layoutY="107.0" prefHeight="18.0" prefWidth="296.0" text="Đã upload xong" visible="false" />
    </children>
 </AnchorPane>

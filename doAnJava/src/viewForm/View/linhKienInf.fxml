@@ -101,7 +101,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXoa" layoutX="58.0" layoutY="533.0" onMouseClicked="#XoaLKButton" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa khách hàng">
+                        <JFXButton fx:id="btnXoa" layoutX="58.0" layoutY="533.0" onMouseClicked="#XoaLKButton" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa linh kiện">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -110,7 +110,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnSua" layoutX="58.0" layoutY="471.0" onMouseClicked="#SuaLKButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
+                        <JFXButton fx:id="btnSua" layoutX="58.0" layoutY="471.0" onMouseClicked="#SuaLKButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa linh kiện">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

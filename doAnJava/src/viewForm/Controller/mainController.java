@@ -57,6 +57,9 @@ public class mainController implements Initializable {
     @FXML
     private JFXButton btnQuanTriSever;
 
+    @FXML
+    private JFXButton btnLK;
+
     InfStaffEntity infStaffEntity;
 
     public void showInfomation(InfStaffEntity infStaffEntity){
@@ -93,6 +96,11 @@ public class mainController implements Initializable {
         paneLoad.getChildren().add(p);
     }
 
+    public void showLkPage(){
+        setEffectClick("#4777A7", "LK");
+        setPage("linhKienInf.fxml");
+    }
+
     public void showWelcomePage(){
         setEffectClick("#4777A7", "Home");
         setPage("welcome.fxml");
@@ -125,15 +133,24 @@ public class mainController implements Initializable {
                 btnThongTinKhachHang.setStyle("-fx-background-color: "+color);
                 btnHome.setStyle("-fx-background-color: transparent");
                 btnQuanTriSever.setStyle("-fx-background-color: transparent");
+                btnLK.setStyle("-fx-background-color: transparent");
                 break;
             case "Home":
                 btnHome.setStyle("-fx-background-color: "+color);
                 btnQuanTriSever.setStyle("-fx-background-color: transparent");
+                btnLK.setStyle("-fx-background-color: transparent");
                 btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
                 break;
             case "QuanTriHeThong":
                 btnQuanTriSever.setStyle("-fx-background-color: "+color);
                 btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
+                btnHome.setStyle("-fx-background-color: transparent");
+                btnLK.setStyle("-fx-background-color: transparent");
+                break;
+            case "LK":
+                btnLK.setStyle("-fx-background-color: "+color);
+                btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
+                btnQuanTriSever.setStyle("-fx-background-color: transparent");
                 btnHome.setStyle("-fx-background-color: transparent");
                 break;
         }
