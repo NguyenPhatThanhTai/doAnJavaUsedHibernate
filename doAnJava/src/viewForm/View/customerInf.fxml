@@ -345,7 +345,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanSuaStatus" layoutX="22.0" layoutY="65.0" onAction="#updateTinhTrang" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanSuaStatus" layoutX="22.0" layoutY="65.0" onAction="#startTheardUpdateTinhTrang" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -358,7 +358,7 @@
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Picture/Pic/checkmark_48px.png" />
+                                    <Image url="@../Picture/Pic/ok_48px.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -383,6 +383,23 @@
                         </JFXButton>
                         <JFXTextField fx:id="txtMaSuaChuaRepair" disable="true" layoutX="22.0" layoutY="24.0" prefHeight="26.0" prefWidth="151.0" />
                         <JFXTextField fx:id="txtTinhTrangSuaStatus" disable="true" layoutX="196.0" layoutY="24.0" prefHeight="26.0" prefWidth="142.0" />
+                        <ImageView fx:id="loading" fitHeight="210.0" fitWidth="213.0" layoutX="1200.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../Picture/Pic/Ajux_loader.gif" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbHoanThanh" layoutX="1156.0" layoutY="52.0" prefHeight="74.0" prefWidth="253.0" style="-fx-background-color: #79C283; -fx-background-radius: 20; -fx-alignment: center;" text="Cập nhật thành công" textAlignment="CENTER" textFill="WHITE" visible="false">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fx:id="imgCanhBao" fitHeight="61.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Picture/Pic/checkmark_48px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
                      </children></AnchorPane>
               </content>
             </Tab>

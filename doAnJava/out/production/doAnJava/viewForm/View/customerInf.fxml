@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -309,7 +310,97 @@
             </Tab>
             <Tab text="Tình trạng sửa">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableListStatus" layoutX="22.0" layoutY="144.0" onMouseClicked="#getItemFormTableListStatus" prefHeight="524.0" prefWidth="1456.0">
+                          <columns>
+                            <TableColumn fx:id="colRepairIdStatus" prefWidth="102.39990043640137" text="Mã sữa chữa" />
+                            <TableColumn fx:id="colCustomerIdStatus" prefWidth="48.00025177001953" text="Mã khách hàng" />
+                              <TableColumn fx:id="colCustomerNameStatus" prefWidth="75.0" text="Tên khách hàng" />
+                              <TableColumn fx:id="colLaptopNameStatus" prefWidth="75.0" text="Tên thiết bị" />
+                              <TableColumn fx:id="colStatusStatus" prefWidth="75.0" text="Tình trạng sửa" />
+                              <TableColumn fx:id="colMoneyStatus" prefWidth="75.0" text="Số tiền" />
+                              <TableColumn fx:id="colStaffIdStatus" prefWidth="75.0" text="Nhân viên tiếp nhận" />
+                              <TableColumn fx:id="colNgayThemStatus" prefWidth="75.0" text="Ngày thêm" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <JFXButton fx:id="btnSuaStatus" disable="true" layoutX="22.0" layoutY="66.0" onAction="#CapNhatTinhTrangButton" onMouseClicked="#SuaRepairButton" prefHeight="54.0" prefWidth="322.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Cập nhật tình trạng">
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Picture/Pic/erase_50px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="btnHuySuaStatus" layoutX="191.0" layoutY="63.0" onAction="#HuyCapNhatTinhTrang" onMouseClicked="#HuySuaRepairButton" prefHeight="53.0" prefWidth="159.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Picture/Pic/delete_30px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="btnXacNhanSuaStatus" layoutX="22.0" layoutY="65.0" onAction="#startTheardUpdateTinhTrang" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Picture/Pic/erase_50px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="btnHoanThanhDon" disable="true" layoutX="394.0" layoutY="66.0" onAction="#HoanThanhDonButtom" onMouseClicked="#SuaRepairButton" prefHeight="54.0" prefWidth="322.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Hoàn thành đơn">
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Picture/Pic/ok_48px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="btnHuyHoanThanhDon" layoutX="563.0" layoutY="66.0" onAction="#HuyHoanThanhDonButton" onMouseClicked="#HuySuaRepairButton" prefHeight="53.0" prefWidth="159.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Picture/Pic/delete_30px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="btnXacNhanHoanThanhDon" layoutX="394.0" layoutY="68.0" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Picture/Pic/checkmark_48px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXTextField fx:id="txtMaSuaChuaRepair" disable="true" layoutX="22.0" layoutY="24.0" prefHeight="26.0" prefWidth="151.0" />
+                        <JFXTextField fx:id="txtTinhTrangSuaStatus" disable="true" layoutX="196.0" layoutY="24.0" prefHeight="26.0" prefWidth="142.0" />
+                        <ImageView fx:id="loading" fitHeight="210.0" fitWidth="213.0" layoutX="1200.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../Picture/Pic/Ajux_loader.gif" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbHoanThanh" layoutX="1156.0" layoutY="52.0" prefHeight="74.0" prefWidth="253.0" style="-fx-background-color: #79C283; -fx-background-radius: 20; -fx-alignment: center;" text="Cập nhật thành công" textAlignment="CENTER" textFill="WHITE" visible="false">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fx:id="imgCanhBao" fitHeight="61.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Picture/Pic/checkmark_48px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab text="Lịch sử sữa chữa">

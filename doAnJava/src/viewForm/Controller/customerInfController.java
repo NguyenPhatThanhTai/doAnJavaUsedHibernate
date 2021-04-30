@@ -11,24 +11,21 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
-import java.io.DataOutputStream;
-import java.io.OutputStream;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.sql.Array;
 import java.sql.Date;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class customerInfController implements Initializable {
 
@@ -191,14 +188,18 @@ public class customerInfController implements Initializable {
     private JFXTextField txtMaSuaChuaRepair;
     @FXML
     private JFXTextField txtTinhTrangSuaStatus;
-
-
+    @FXML
+    private ImageView loading;
+    @FXML
+    private Label lbHoanThanh;
     ObservableList<DetailInfRepairEntity> rlist;
     ObservableList<InfLkEntity> lkList;
     detailInfRepairDao dao = new detailInfRepairDao();
     infLKDao lkDao = new infLKDao();
     List<String> listLK = new ArrayList<>();
+
     Thread thread;
+    String idForSever, statusForServer, tinhtrangsua;
 
     String maNv = "";
     String name = "";
@@ -491,13 +492,22 @@ public class customerInfController implements Initializable {
                 status = "Hoàn thành";
             }
             txtTinhTrangSuaStatus.setText(status);
+            tinhtrangsua = status;
         }catch (Exception ex){
             ex.printStackTrace();
         }
     }
 
+    public void startTheardUpdateTinhTrang(){
+        thread = new Thread(this::updateTinhTrang);
+        thread.start();
+    }
+
     public void updateTinhTrang(){
         try{
+            btnXacNhanSuaStatus.setDisable(true);
+            btnHuySuaStatus.setDisable(true);
+            loading.setVisible(true);
             String idSplit2 = txtMaSuaChuaRepair.getText();
             String[] parts2 = idSplit2.split("RP");
             String status = "2";
@@ -518,13 +528,18 @@ public class customerInfController implements Initializable {
                             detailInfRepairEntity1.getRepairMoney(),infRepairDao.getDataById(txtMaSuaChuaRepair.getText()));
             if(detailInfRepairDao.updateData(detailInfRepairEntity2)){
                 if (txtTinhTrangSuaStatus.getText().equals("Hoàn thành")){
-                    updateInSever(txtMaSuaChuaRepair.getText(), "not");
+                    idForSever=txtMaSuaChuaRepair.getText();
+                    statusForServer="not";
+                    thread = new Thread(this::updateInSever);
+                    thread.start();
                 }
                 else {
-                    updateInSever(txtMaSuaChuaRepair.getText(), "Ok");
+                    idForSever=txtMaSuaChuaRepair.getText();
+                    statusForServer="Ok";
+                    thread = new Thread(this::updateInSever);
+                    thread.start();
                 }
                 refreshView();
-                openButton(true, "CapNhat");
                 txtMaSuaChuaRepair.setText("");
                 txtTinhTrangSuaStatus.setText("");
             }
@@ -533,17 +548,87 @@ public class customerInfController implements Initializable {
         }
     }
 
-    public void updateInSever(String Id, String status){
+    public void updateInSever(){
         try {
-        URL urlForGetRequest = new URL("https://apimywebsite.000webhostapp.com/APIDoAnJava/update.php?Id="+Id+"&Status="+status);
+        URL urlForGetRequest = new URL("https://apimywebsite.000webhostapp.com/APIDoAnJava/update.php?Id="+idForSever+"&Status="+statusForServer);
         String readLine = null;
         HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
         conection.setRequestMethod("GET");
 //        conection.setRequestProperty("Id", "Status"); // set userId its a sample here
         int responseCode = conection.getResponseCode();
             System.out.println(responseCode);
-    }catch (Exception ex){
+        if (tinhtrangsua.equals("Chưa hoàn thành")){
+            sendMail();
+        }
+        loading.setVisible(false);
+        btnXacNhanSuaStatus.setDisable(false);
+        btnHuySuaStatus.setDisable(false);
+        openButton(true, "CapNhat");
+        lbHoanThanh.setVisible(true);
+        Thread.sleep(3000);
+        lbHoanThanh.setVisible(false);
+        thread.interrupt();
+        }catch (Exception ex){
             ex.printStackTrace();
+        }
+    }
+
+    public boolean sendMail(){
+        try {
+            Properties props = new Properties();
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "587");
+            Session session = Session.getInstance(props,
+                    new javax.mail.Authenticator() {
+                        @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication("herroseven@gmail.com", "@#Taitutoi952*000@#");
+                        }
+                    });
+            try {
+                Message message = new MimeMessage(session);
+                message.setHeader("Content-Type", "text/plain; charset=UTF-8");
+                message.setFrom(new InternetAddress("UNIFY"));
+
+                String idSplit3 = idForSever;
+                String[] parts3 = idSplit3.split("RP");
+
+                detailInfRepairDao detailInfRepairDao = new detailInfRepairDao();
+                DetailInfRepairEntity de2 = detailInfRepairDao.getDataById("DT"+ parts3[1]);
+
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(de2.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerEmail()));
+
+                Locale usa = new Locale("en", "US");
+
+                Currency dollars = Currency.getInstance(usa);
+
+                NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(usa);
+
+                double money = Double.parseDouble(de2.getRepairMoney());
+
+                String fomat = dollarFormat.format(money);
+
+                message.setSubject("Công ty DHT - Thông báo về việc hoàn thành sữa chữa.");
+                String text ="<b>Xin chào khách hàng: </b>"+ de2.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId() + "<br>" + "<br>" +
+                        "<b>Họ và tên: </b>" + de2.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName() + "<br>" + "<br>" +
+                        "<b>Tên laptop: </b>" + de2.getInfRepairByRepairId().getLaptopName() + "<br>" + "<br>" +
+                        "<b>Cần sữa chữa: </b>" + de2.getRepairReason() + "<br>" + "<br>" +
+                        "<b>Số tiền: </b>" + fomat + " VNĐ" + "<br>" + "<br>" +
+                        "<b>Được gửi sữa vào ngày: </b>" + de2.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerTimeAdd() + "<br>" + "<br>" +
+                        "<b>Xin được thông báo với quý khách về việc đã hoàn thành sữa chữa laptop, xin quý khách vui lòng đến cửa hàng thanh toán và nhận lại laptop, chân thành cảm ơn!!!</b>" + "<br>" + "<br>" + "<br>" +
+                        "<b>-Công ty tư nhân hữu hạng ba thành viên DHT trân trọng thông báo!!!-</b>";
+                message.setContent(text, "text/html; charset=utf-8");
+                Transport.send(message);
+                return true;
+            }catch (Exception ex){
+                ex.printStackTrace();
+                return false;
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return false;
         }
     }
 
