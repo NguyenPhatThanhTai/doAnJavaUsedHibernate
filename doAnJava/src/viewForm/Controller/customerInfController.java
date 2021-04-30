@@ -5,10 +5,7 @@ import DAO.infCustomerDao;
 import DAO.infLKDao;
 import DAO.infRepairDao;
 import Model.*;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -19,7 +16,11 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.DataOutputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.Array;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -31,191 +32,173 @@ import java.util.ResourceBundle;
 
 public class customerInfController implements Initializable {
 
+    //Phần tab thông tin khách hàng
+
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colCustomerId;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colCustomerName;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colCustomerSex;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colCustomerBirth;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colCustomerEmail;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colCustomerPhone;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colCustomerTimeAdd;
-
     @FXML
     private JFXButton btnThemKhachHang;
-
     @FXML
     private TextField txtMaKhachHang;
-
-    @FXML
-    private JFXButton btnTest1;
-
-    @FXML
-    private JFXButton btnTest2;
-
-    @FXML
-    private JFXButton btnTest3;
-
     @FXML
     private TextField txtTenKhachHang;
-
     @FXML
     private JFXToggleButton txtGioiTinh;
-
     @FXML
     private TextField txtEmail;
-
     @FXML
     private TextField txtSoDienThoai;
-
     @FXML
     private TextField txtNgayThem;
-
     @FXML
     private DatePicker txtNgaySinh;
-
     @FXML
     private TableView<DetailInfRepairEntity> tableListCustomer;
-
     @FXML
     private TextField txtTenkhachHangSuaChua;
-
     @FXML
     private TextField txtMaSuaChua;
-
     @FXML
     private TextField txtNhanVienTiepNhan;
-
     @FXML
     private TextField txtTinhTrang;
-
     @FXML
     private TextField txtLaptopName;
-
     @FXML
     private JFXToggleButton txtSuaRepair;
-
     @FXML
     private DatePicker txtNgayHen;
-
     @FXML
     private TextField txtTien;
-
     @FXML
     private JFXComboBox cbLocLK;
-
     @FXML
     private JFXButton btnHuySua;
-
     @FXML
     private JFXButton btnHuySuaRepair;
-
     @FXML
     private JFXButton btnSuaRepair;
-
     @FXML
     private JFXButton btnXacNhanSua;
-
     @FXML
     private JFXButton btnXacNhanSuaRepair;
-
     @FXML
     private JFXButton btnHuyXoa;
-
     @FXML
     private JFXButton btnXacNhanXoa;
-
     @FXML
     private JFXButton btnHuyThem;
-
     @FXML
     private JFXButton btnXacNhanThem;
-
     @FXML
     private JFXButton btnThem;
-
     @FXML
     private JFXButton btnXoa;
-
     @FXML
     private JFXButton btnSua;
-
     @FXML
     private JFXButton btnllamMoi;
 
+    //Phần tab Tiếp nhận đơn
+
     @FXML
     private TableView<DetailInfRepairEntity> tableListRepair;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairId;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairCustomerName;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairNameOfLaptop;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairStatusLaptop;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairStaffId;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairNeedFix;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairNote;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairStatus;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairAppointment;
-
     @FXML
     private TableColumn<DetailInfRepairEntity, String> colRepairMoney;
 
+    //Phần chọn linh kiện trong tab Tiếp nhận đơn
+
     @FXML
     private TableView<InfLkEntity> tableListLinhKien;
-
     @FXML
     private TableColumn<InfLkEntity, String> colMLK;
-
     @FXML
     private TableColumn<InfLkEntity, String> colTLK;
-
     @FXML
     private TableColumn<InfLkEntity, String> colSL;
-
     @FXML
     private TableColumn<InfLkEntity, String> colNSX;
-
     @FXML
     private TableColumn<InfLkEntity, String> colGT;
-
     @FXML
     private JFXButton btnResetDanhSach;
-
     @FXML
     private JFXTextArea txtLkDaChon;
+
+    //Phần tab tình trạng sữa
+
+    @FXML
+    private TableView<DetailInfRepairEntity> tableListStatus;
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colRepairIdStatus;
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colCustomerIdStatus;
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colCustomerNameStatus;
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colLaptopNameStatus;
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colStatusStatus;
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colMoneyStatus;
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colStaffIdStatus;
+    @FXML
+    private TableColumn<DetailInfRepairEntity, String> colNgayThemStatus;
+    @FXML
+    private JFXButton btnSuaStatus;
+    @FXML
+    private JFXButton btnHuySuaStatus;
+    @FXML
+    private JFXButton btnXacNhanSuaStatus;
+    @FXML
+    private JFXButton btnHoanThanhDon;
+    @FXML
+    private JFXButton btnHuyHoanThanhDon;
+    @FXML
+    private JFXButton btnXacNhanHoanThanhDon;
+    @FXML
+    private JFXTextField txtMaSuaChuaRepair;
+    @FXML
+    private JFXTextField txtTinhTrangSuaStatus;
+
 
     ObservableList<DetailInfRepairEntity> rlist;
     ObservableList<InfLkEntity> lkList;
     detailInfRepairDao dao = new detailInfRepairDao();
     infLKDao lkDao = new infLKDao();
     List<String> listLK = new ArrayList<>();
+    Thread thread;
 
     String maNv = "";
     String name = "";
@@ -223,7 +206,7 @@ public class customerInfController implements Initializable {
 
     InfStaffEntity infStaffEntity;
 
-    //hello
+    //Phần tab Thông tin khách hàng
 
     public void showInfomation(InfStaffEntity infStaffEntity){
         this.infStaffEntity = infStaffEntity;
@@ -277,84 +260,6 @@ public class customerInfController implements Initializable {
         }catch (Exception ex){
             ex.printStackTrace();
         }
-    }
-
-    public void loadDataRepair(){
-        tableListRepair.setItems(rlist);
-        colRepairId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getRepairId()));
-        colRepairCustomerName.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()));
-        colRepairNameOfLaptop.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopName()));
-        colRepairStatusLaptop.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopStatus()));
-        colRepairStaffId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfStaffByStaffId().getStaffId()));
-        colRepairNeedFix.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairReason()));
-        colRepairNote.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairNote()));
-        colRepairStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairStatus()));
-        colRepairAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getRepairAppointment())));
-        colRepairMoney.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairMoney()));
-    }
-
-    public void getItemFromTableViewRepair(){
-        try {
-            btnSuaRepair.setDisable(false);
-
-            DetailInfRepairEntity de = (DetailInfRepairEntity) tableListRepair.getItems().get(tableListRepair.getSelectionModel().getSelectedIndex());
-            txtMaSuaChua.setText(de.getInfRepairByRepairId().getRepairId());
-            txtTenkhachHangSuaChua.setText(de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
-            if (de.getRepairNote().equals("Sửa lấy ngay")){
-                txtSuaRepair.setSelected(false);
-            }
-            else {
-                txtSuaRepair.setSelected(true);
-            }
-            txtNgayHen.setValue(LocalDate.parse(String.valueOf(de.getRepairAppointment())));
-            txtNhanVienTiepNhan.setText(de.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId());
-            txtTinhTrang.setText(de.getInfRepairByRepairId().getLaptopStatus());
-            txtLkDaChon.setText(de.getRepairReason());
-            txtLaptopName.setText(String.valueOf(de.getInfRepairByRepairId().getLaptopName()));
-            txtTien.setText(de.getRepairMoney());
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void loadInfLk(String lkName){
-        lkList = lkDao.getFilterNameLk(lkName);
-        tableListLinhKien.setItems(lkList);
-        colMLK.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkId()));
-        colTLK.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkName()));
-        colSL.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkNumber()));
-        colNSX.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkProducer()));
-        colGT.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkPrice()));
-    }
-
-    public void filterLK(){
-        lkList = lkDao.getFilterNameLk(cbLocLK.getValue().toString());
-        tableListLinhKien.setItems(lkList);
-        tableListLinhKien.refresh();
-    }
-
-    public void setItemSelected(){
-        String lkTien = txtTien.getText();
-        tableListLinhKien.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                InfLkEntity de = (InfLkEntity) tableListLinhKien.getItems().get(tableListLinhKien.getSelectionModel().getSelectedIndex());
-                listLK.add(de.getLkName());
-                txtLkDaChon.setText(listLK.toString());
-
-                long money1 = Long.parseLong(txtTien.getText());
-                long money2 = Long.parseLong(de.getLkPrice());
-                long tienLK = Long.parseLong(txtTien.getText() + de.getLkPrice());
-                long tien = money1+money2;
-                txtTien.setText(String.valueOf(tien));
-            }
-        });
-    }
-
-    public void resetDanhSach(){
-        listLK.clear();
-        txtLkDaChon.setText("");
-        txtTien.setText("0");
     }
 
     public void addNewCustomer(){
@@ -448,12 +353,94 @@ public class customerInfController implements Initializable {
         }
     }
 
+    //Phần tab Tiếp nhận đơn
+
+    public void loadDataRepair(){
+        tableListRepair.setItems(rlist);
+        colRepairId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getRepairId()));
+        colRepairCustomerName.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()));
+        colRepairNameOfLaptop.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopName()));
+        colRepairStatusLaptop.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopStatus()));
+        colRepairStaffId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfStaffByStaffId().getStaffId()));
+        colRepairNeedFix.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairReason()));
+        colRepairNote.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairNote()));
+        colRepairStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairStatus()));
+        colRepairAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getRepairAppointment())));
+        colRepairMoney.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairMoney()));
+    }
+
+    public void getItemFromTableViewRepair(){
+        try {
+            btnSuaRepair.setDisable(false);
+
+            DetailInfRepairEntity de = (DetailInfRepairEntity) tableListRepair.getItems().get(tableListRepair.getSelectionModel().getSelectedIndex());
+            txtMaSuaChua.setText(de.getInfRepairByRepairId().getRepairId());
+            txtTenkhachHangSuaChua.setText(de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
+            if (de.getRepairNote().equals("Sửa lấy ngay")){
+                txtSuaRepair.setSelected(false);
+            }
+            else {
+                txtSuaRepair.setSelected(true);
+            }
+            txtNgayHen.setValue(LocalDate.parse(String.valueOf(de.getRepairAppointment())));
+            txtNhanVienTiepNhan.setText(de.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId());
+            txtTinhTrang.setText(de.getInfRepairByRepairId().getLaptopStatus());
+            txtLkDaChon.setText(de.getRepairReason());
+            txtLaptopName.setText(String.valueOf(de.getInfRepairByRepairId().getLaptopName()));
+            txtTien.setText(de.getRepairMoney());
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void loadInfLk(String lkName){
+        lkList = lkDao.getFilterNameLk(lkName);
+        tableListLinhKien.setItems(lkList);
+        colMLK.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkId()));
+        colTLK.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkName()));
+        colSL.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkNumber()));
+        colNSX.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkProducer()));
+        colGT.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLkPrice()));
+    }
+
+    public void filterLK(){
+        lkList = lkDao.getFilterNameLk(cbLocLK.getValue().toString());
+        tableListLinhKien.setItems(lkList);
+        tableListLinhKien.refresh();
+    }
+
+    public void setItemSelected(){
+        String lkTien = txtTien.getText();
+        tableListLinhKien.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                InfLkEntity de = (InfLkEntity) tableListLinhKien.getItems().get(tableListLinhKien.getSelectionModel().getSelectedIndex());
+                listLK.add(de.getLkName());
+                txtLkDaChon.setText(listLK.toString());
+
+                long money1 = Long.parseLong(txtTien.getText());
+                long money2 = Long.parseLong(de.getLkPrice());
+                long tienLK = Long.parseLong(txtTien.getText() + de.getLkPrice());
+                long tien = money1+money2;
+                txtTien.setText(String.valueOf(tien));
+            }
+        });
+    }
+
+    public void resetDanhSach(){
+        listLK.clear();
+        txtLkDaChon.setText("");
+        txtTien.setText("0");
+    }
+
     public void refreshView(){
         detailInfRepairDao dao = new detailInfRepairDao();
         rlist = dao.getALl();
         tableListCustomer.setItems(rlist);
         tableListRepair.setItems(rlist);
+        tableListStatus.setItems(rlist);
 
+        tableListStatus.refresh();
         tableListCustomer.refresh();
         tableListRepair.refresh();
     }
@@ -477,6 +464,90 @@ public class customerInfController implements Initializable {
             clearAllSuaChua();
         }
     }
+
+    //Phần tab Tình trạng sữa
+
+    public void loadStatus(){
+        tableListStatus.setItems(rlist);
+        colRepairIdStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getRepairId()));
+        colCustomerIdStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerId()));
+        colCustomerNameStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()));
+        colLaptopNameStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopName()));
+        colStatusStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairStatus()));
+        colMoneyStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairMoney()));
+        colStaffIdStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfStaffByStaffId().getStaffId()));
+        colNgayThemStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerTimeAdd())));
+    }
+
+    public void getItemFormTableListStatus(){
+        try{
+            btnHoanThanhDon.setDisable(false);
+            btnSuaStatus.setDisable(false);
+            String status = "Chưa hoàn thành";
+
+            DetailInfRepairEntity de = (DetailInfRepairEntity) tableListStatus.getItems().get(tableListStatus.getSelectionModel().getSelectedIndex());
+            txtMaSuaChuaRepair.setText(de.getInfRepairByRepairId().getRepairId());
+            if (de.getRepairStatus().equals("1")){
+                status = "Hoàn thành";
+            }
+            txtTinhTrangSuaStatus.setText(status);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void updateTinhTrang(){
+        try{
+            String idSplit2 = txtMaSuaChuaRepair.getText();
+            String[] parts2 = idSplit2.split("RP");
+            String status = "2";
+            infRepairDao infRepairDao = new infRepairDao();
+            if (txtTinhTrangSuaStatus.getText().equals("Chưa hoàn thành")){
+                status = "1";
+            }
+
+            detailInfRepairDao detailInfRepairDao = new detailInfRepairDao();
+            DetailInfRepairEntity detailInfRepairEntity1 = detailInfRepairDao.getDataById("DT"+parts2[1]);
+            DetailInfRepairEntity detailInfRepairEntity2 =
+                    new DetailInfRepairEntity(
+                            detailInfRepairEntity1.getDetailId(),
+                            detailInfRepairEntity1.getRepairReason(),
+                            detailInfRepairEntity1.getRepairNote(),
+                            status,
+                            detailInfRepairEntity1.getRepairAppointment(),
+                            detailInfRepairEntity1.getRepairMoney(),infRepairDao.getDataById(txtMaSuaChuaRepair.getText()));
+            if(detailInfRepairDao.updateData(detailInfRepairEntity2)){
+                if (txtTinhTrangSuaStatus.getText().equals("Hoàn thành")){
+                    updateInSever(txtMaSuaChuaRepair.getText(), "not");
+                }
+                else {
+                    updateInSever(txtMaSuaChuaRepair.getText(), "Ok");
+                }
+                refreshView();
+                openButton(true, "CapNhat");
+                txtMaSuaChuaRepair.setText("");
+                txtTinhTrangSuaStatus.setText("");
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void updateInSever(String Id, String status){
+        try {
+        URL urlForGetRequest = new URL("https://apimywebsite.000webhostapp.com/APIDoAnJava/update.php?Id="+Id+"&Status="+status);
+        String readLine = null;
+        HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
+        conection.setRequestMethod("GET");
+//        conection.setRequestProperty("Id", "Status"); // set userId its a sample here
+        int responseCode = conection.getResponseCode();
+            System.out.println(responseCode);
+    }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    //Phần hiệu ứng
 
     public void ThemKhachHangButton(){
         txtMaKhachHang.setText("Hệ thống định sẵn"); openButton(false, "Add");
@@ -516,6 +587,22 @@ public class customerInfController implements Initializable {
     public void HuySuaRepairButton(){
         openButton(true, "SuaRepair");
         clearAllSuaChua();
+    }
+
+    public void CapNhatTinhTrangButton(){
+        openButton(false, "CapNhat");
+    }
+
+    public void HuyCapNhatTinhTrang(){
+        openButton(true, "CapNhat");
+    }
+
+    public void HoanThanhDonButtom(){
+        openButton(false, "HoanThanh");
+    }
+
+    public void HuyHoanThanhDonButton(){
+        openButton(true, "HoanThanh");
     }
 
     public void openButton(boolean flag, String nut){
@@ -595,6 +682,20 @@ public class customerInfController implements Initializable {
 
                 openTextFieldRepair(flag);
                 break;
+            case "CapNhat":
+                btnSuaStatus.setVisible(flag); // false
+                btnXacNhanSuaStatus.setVisible(!flag);
+                btnHuySuaStatus.setVisible(!flag);
+                btnHoanThanhDon.setDisable(!flag);
+                tableListStatus.setDisable(!flag);
+                break;
+            case "HoanThanh":
+                btnHoanThanhDon.setVisible(flag); // false
+                btnXacNhanHoanThanhDon.setVisible(!flag);
+                btnHuyHoanThanhDon.setVisible(!flag);
+                btnSuaStatus.setDisable(!flag);
+                tableListStatus.setDisable(!flag);
+                break;
         }
     }
 
@@ -645,6 +746,7 @@ public class customerInfController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         loadData();
         loadDataRepair();
+        loadStatus();
         loadInfLk("Acer");
         cbLocLK.getItems().add("Acer");
         cbLocLK.getItems().add("Msi");

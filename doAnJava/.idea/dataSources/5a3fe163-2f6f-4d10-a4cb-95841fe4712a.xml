@@ -27,7 +27,7 @@
       <ObjectId>12</ObjectId>
       <Current>1</Current>
       <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
-      <Fingerprint>12.44291/2995F4D4-1B05-41FB-B57F-5D5036527719@DESKTOP-G2HJKI8\SQLEXPRESS</Fingerprint>
+      <Fingerprint>12.44312/2995F4D4-1B05-41FB-B57F-5D5036527719@DESKTOP-G2HJKI8\SQLEXPRESS</Fingerprint>
     </database>
     <database id="7" parent="1" name="QuanLySuaChuaLaptop">
       <ObjectId>11</ObjectId>
@@ -110,7 +110,7 @@ varchar</ExtendedProperties>
     </schema>
     <schema id="27" parent="6" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2021-04-26.03:28:22.880</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-04-30.16:14:26.860</IntrospectionTimestamp>
       <Current>1</Current>
       <DescriptionsCheckSum>6328208632</DescriptionsCheckSum>
     </schema>

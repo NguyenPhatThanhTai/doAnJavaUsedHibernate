@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.DetailInfRepairEntity;
+import Model.InfRepairEntity;
 import Model.InfStaffEntity;
 import Until.hibernateUntil;
 import javafx.collections.FXCollections;
@@ -74,7 +75,24 @@ public class detailInfRepairDao implements daoInterface<DetailInfRepairEntity> {
 
     @Override
     public DetailInfRepairEntity getDataById(String Id) {
-        return null;
+        Session session = null;
+        DetailInfRepairEntity detailInfRepairEntity = null;
+        try {
+            session = hibernateUntil.getSession();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery query = builder.createQuery(DetailInfRepairEntity.class);
+            Root<DetailInfRepairEntity> root = query.from(DetailInfRepairEntity.class);
+            Predicate p = builder.equal(root.get("detailId"),Id);
+            detailInfRepairEntity= (DetailInfRepairEntity) session.createQuery(query.where(p)).getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return detailInfRepairEntity;
     }
 
     @Override
