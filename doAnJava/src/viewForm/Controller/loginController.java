@@ -39,10 +39,8 @@ public class loginController implements Initializable {
             lbSaiMatKhau.setStyle("-fx-background-color: #D6D263; -fx-background-radius: 20");
             lbSaiMatKhau.setText("Không được để trống");
             lbSaiMatKhau.setVisible(true);
-            loadProcess(false);
             new animatefx.animation.BounceIn(lbSaiMatKhau).play();
         }else {
-            loadProcess(true);
             serviceImplement serviceImplement = new serviceImplement();
             AccountStaffEntity accountStaffEntity = new AccountStaffEntity();
             accountStaffEntity.setStaffAccount(txtTaiKhoan.getText());
@@ -68,19 +66,9 @@ public class loginController implements Initializable {
                 lbSaiMatKhau.setStyle("-fx-background-color: #E16363; -fx-background-radius: 20");
                 lbSaiMatKhau.setText("Sai mật khẩu hoặc tài khoản!");
                 lbSaiMatKhau.setVisible(true);
-                loadProcess(false);
                 new animatefx.animation.BounceIn(lbSaiMatKhau).play();
             }
         }
-    }
-
-    public void loadProcess(boolean flag){
-        Thread t = new Thread(new Runnable() {
-            public void run() {
-                psLogin.setVisible(flag);
-            }
-        });
-        t.start();
     }
 
     public void closeAlert(){

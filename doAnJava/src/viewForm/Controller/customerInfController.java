@@ -192,6 +192,8 @@ public class customerInfController implements Initializable {
     private ImageView loading;
     @FXML
     private Label lbHoanThanh;
+    @FXML
+    private Label txtCapNhatDuLieu;
     ObservableList<DetailInfRepairEntity> rlist;
     ObservableList<InfLkEntity> lkList;
     detailInfRepairDao dao = new detailInfRepairDao();
@@ -412,20 +414,16 @@ public class customerInfController implements Initializable {
 
     public void setItemSelected(){
         String lkTien = txtTien.getText();
-        tableListLinhKien.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
                 InfLkEntity de = (InfLkEntity) tableListLinhKien.getItems().get(tableListLinhKien.getSelectionModel().getSelectedIndex());
                 listLK.add(de.getLkName());
-                txtLkDaChon.setText(listLK.toString());
 
-                long money1 = Long.parseLong(txtTien.getText());
-                long money2 = Long.parseLong(de.getLkPrice());
-                long tienLK = Long.parseLong(txtTien.getText() + de.getLkPrice());
-                long tien = money1+money2;
-                txtTien.setText(String.valueOf(tien));
-            }
-        });
+        txtLkDaChon.setText(listLK.toString());
+
+        long money1 = Long.parseLong(txtTien.getText());
+        long money2 = Long.parseLong(de.getLkPrice());
+        long tienLK = Long.parseLong(txtTien.getText() + de.getLkPrice());
+        long tien = money1+money2;
+        txtTien.setText(String.valueOf(tien));
     }
 
     public void resetDanhSach(){
@@ -505,6 +503,8 @@ public class customerInfController implements Initializable {
 
     public void updateTinhTrang(){
         try{
+            txtCapNhatDuLieu.setVisible(true);
+            txtCapNhatDuLieu.setText("-Đang cập nhật dữ liệu-");
             btnXacNhanSuaStatus.setDisable(true);
             btnHuySuaStatus.setDisable(true);
             loading.setVisible(true);
@@ -567,6 +567,7 @@ public class customerInfController implements Initializable {
         lbHoanThanh.setVisible(true);
         Thread.sleep(3000);
         lbHoanThanh.setVisible(false);
+        txtCapNhatDuLieu.setVisible(false);
         thread.interrupt();
         }catch (Exception ex){
             ex.printStackTrace();
@@ -611,7 +612,8 @@ public class customerInfController implements Initializable {
                 String fomat = dollarFormat.format(money);
 
                 message.setSubject("Công ty DHT - Thông báo về việc hoàn thành sữa chữa.");
-                String text ="<b>Xin chào khách hàng: </b>"+ de2.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId() + "<br>" + "<br>" +
+                String text ="<img src="+"/viewForm/Picture/Pic/anhsendmail.png"+">" + "<br>" +
+                        "<b>Xin chào khách hàng: </b>"+ de2.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId() + "<br>" + "<br>" +
                         "<b>Họ và tên: </b>" + de2.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName() + "<br>" + "<br>" +
                         "<b>Tên laptop: </b>" + de2.getInfRepairByRepairId().getLaptopName() + "<br>" + "<br>" +
                         "<b>Cần sữa chữa: </b>" + de2.getRepairReason() + "<br>" + "<br>" +
@@ -621,6 +623,7 @@ public class customerInfController implements Initializable {
                         "<b>-Công ty tư nhân hữu hạng ba thành viên DHT trân trọng thông báo!!!-</b>";
                 message.setContent(text, "text/html; charset=utf-8");
                 Transport.send(message);
+                txtCapNhatDuLieu.setVisible(false);
                 return true;
             }catch (Exception ex){
                 ex.printStackTrace();

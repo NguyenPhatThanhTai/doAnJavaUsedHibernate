@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -31,6 +33,8 @@ public class welcomeController implements Initializable {
 
     @FXML
     private Label labelThongBao;
+
+    Thread thread;
 
 
     @Override

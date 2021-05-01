@@ -13,7 +13,7 @@
             <Image url="@../Picture/Pic/source.gif" />
          </image>
       </ImageView>
-      <Label fx:id="lbTime" layoutX="580.0" layoutY="45.0" prefHeight="176.0" prefWidth="301.0" text="21:15">
+      <Label fx:id="lbTime" layoutX="580.0" layoutY="45.0" prefHeight="176.0" prefWidth="594.0" text="21:15">
          <font>
             <Font size="120.0" />
          </font>
