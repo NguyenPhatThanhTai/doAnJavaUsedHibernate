@@ -61,9 +61,13 @@ public class mainController implements Initializable {
     private JFXButton btnLK;
 
     InfStaffEntity infStaffEntity;
+    String token, key, typ;
 
-    public void showInfomation(InfStaffEntity infStaffEntity){
+    public void showInfomation(InfStaffEntity infStaffEntity, String token, String key, String typ){
         this.infStaffEntity = infStaffEntity;
+        this.token = token;
+        this.key = key;
+        this.typ = typ;
         String name = "";
         String chucVu = "";
         if ( infStaffEntity != null){
@@ -89,7 +93,7 @@ public class mainController implements Initializable {
         Parent root = loader.load();
 
         customerInfController mainController = loader.getController();
-        mainController.showInfomation(infStaffEntity);
+        mainController.showInfomation(infStaffEntity, token, key, typ);
 
         Pane p = (Pane) root;
         paneLoad.getChildren().clear();

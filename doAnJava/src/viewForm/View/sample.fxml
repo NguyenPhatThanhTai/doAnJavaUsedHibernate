@@ -11,12 +11,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="loginForm" prefHeight="685.0" prefWidth="1210.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.loginController">
    <children>
       <ImageView fitHeight="708.0" fitWidth="1209.0" layoutX="1.0" layoutY="2.0" opacity="0.51" pickOnBounds="true" preserveRatio="true" style="-fx-background-opacity: 0.6;">
          <image>
             <Image url="@../Picture/Pic/template_products_hero_sample.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgLoading" fitHeight="224.0" fitWidth="200.0" layoutX="512.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Picture/Pic/180174952_457694161991248_369462195251319764_n.png" />
          </image>
       </ImageView>
       <JFXTextField fx:id="txtTaiKhoan" focusColor="#3375c6" layoutX="397.0" layoutY="246.0" prefHeight="32.0" prefWidth="421.0" promptText="Tài khoản" style="-fx-prompt-text-fill: white; -fx-text-fill: white;" unFocusColor="WHITE">
@@ -29,13 +35,13 @@
             <Font size="20.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton fx:id="btnDangNhap" buttonType="RAISED" defaultButton="true" layoutX="623.0" layoutY="392.0" onAction="#DangNhap" prefHeight="32.0" prefWidth="196.0" ripplerFill="#3375c6" style="-fx-background-color: #0f6ba4; -fx-background-radius: 100;" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE" />
+      <JFXButton fx:id="btnDangNhap" buttonType="RAISED" defaultButton="true" layoutX="623.0" layoutY="392.0" onAction="#StartThreadDangNhap" prefHeight="32.0" prefWidth="196.0" ripplerFill="#3375c6" style="-fx-background-color: #0f6ba4; -fx-background-radius: 100;" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE" />
       <JFXCheckBox checkedColor="#3375c6" layoutX="405.0" layoutY="399.0" prefHeight="18.0" prefWidth="123.0" text="Giữ đăng nhập" textFill="WHITE" unCheckedColor="WHITE" />
       <Hyperlink layoutX="671.0" layoutY="435.0" text="Quên mật khẩu" textFill="WHITE" />
       <JFXButton fx:id="btnThoat" buttonType="RAISED" cancelButton="true" layoutX="1124.0" layoutY="16.0" minWidth="44.0" onAction="#Quit" prefHeight="32.0" prefWidth="64.0" style="-fx-background-color: transparent;" text="X" textFill="WHITE" />
-      <JFXButton fx:id="btnMinimized" buttonType="RAISED" layoutX="1087.0" layoutY="16.0" minHeight="18.0" minWidth="37.0" onAction="#Minimized" prefHeight="32.0" prefWidth="37.0" style="-fx-background-color: transparent;" text="_" textFill="WHITE">
+      <JFXButton fx:id="btnMinimized" buttonType="RAISED" layoutX="1098.0" layoutY="14.0" minHeight="18.0" minWidth="37.0" onAction="#Minimized" prefHeight="32.0" prefWidth="38.0" style="-fx-background-color: transparent;" text="_" textFill="WHITE">
          <font>
-            <Font size="26.0" />
+            <Font size="15.0" />
          </font></JFXButton>
       <JFXProgressBar fx:id="psLogin" layoutX="628.0" layoutY="435.0" prefHeight="3.0" prefWidth="186.0" visible="false" />
       <Label fx:id="lbSaiMatKhau" layoutX="887.0" layoutY="587.0" onMouseClicked="#closeAlert" prefHeight="91.0" prefWidth="313.0" style="-fx-background-color: #E16363; -fx-background-radius: 20; -fx-alignment: center;" text="Sai mật khẩu hoặc tài khoản" textAlignment="CENTER" textFill="WHITE" visible="false">
@@ -50,5 +56,7 @@
             </ImageView>
          </graphic>
       </Label>
+      <JFXProgressBar fx:id="processbar" layoutX="509.0" layoutY="214.0" prefHeight="3.0" visible="false" />
+      <Text fx:id="lbStatus" fill="WHITE" layoutX="507.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="196.0" />
    </children>
 </AnchorPane>

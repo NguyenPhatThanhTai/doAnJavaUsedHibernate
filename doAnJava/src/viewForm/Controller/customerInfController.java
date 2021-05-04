@@ -14,10 +14,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import org.json.JSONObject;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Date;
@@ -193,7 +196,7 @@ public class customerInfController implements Initializable {
     @FXML
     private Label lbHoanThanh;
     @FXML
-    private Label txtCapNhatDuLieu;
+    private Text txtCapNhatDuLieu;
     ObservableList<DetailInfRepairEntity> rlist;
     ObservableList<InfLkEntity> lkList;
     detailInfRepairDao dao = new detailInfRepairDao();
@@ -208,11 +211,15 @@ public class customerInfController implements Initializable {
     String chucVu = "";
 
     InfStaffEntity infStaffEntity;
+    String token, key, typ;
 
     //Phần tab Thông tin khách hàng
 
-    public void showInfomation(InfStaffEntity infStaffEntity){
+    public void showInfomation(InfStaffEntity infStaffEntity, String token, String key, String typ){
         this.infStaffEntity = infStaffEntity;
+        this.token = token;
+        this.key = key;
+        this.typ = typ;
         if ( infStaffEntity != null){
             name = infStaffEntity.getStaffName();
             maNv = infStaffEntity.getStaffId();
@@ -549,14 +556,37 @@ public class customerInfController implements Initializable {
     }
 
     public void updateInSever(){
+        txtCapNhatDuLieu.setText("-Đang cập nhật dữ liệu lên server-");
         try {
-        URL urlForGetRequest = new URL("https://apimywebsite.000webhostapp.com/APIDoAnJava/update.php?Id="+idForSever+"&Status="+statusForServer);
-        String readLine = null;
-        HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
-        conection.setRequestMethod("GET");
-//        conection.setRequestProperty("Id", "Status"); // set userId its a sample here
-        int responseCode = conection.getResponseCode();
-            System.out.println(responseCode);
+            String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/update.php";
+                String json = "{ \"name\" : \""+idForSever+"\", " +
+                        "       \"name1\" : \""+statusForServer+"\", " +
+                        "       \"name2\" : \""+token+"\", " +
+                        "       \"name3\" : \""+key+"\", " +
+                        "       \"name4\" : \""+typ+"\" }";
+                try {
+                    URL url = new URL(query_url);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setConnectTimeout(5000);
+                    conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+                    conn.setRequestMethod("POST");
+                    OutputStream os = conn.getOutputStream();
+                    os.write(json.getBytes("UTF-8"));
+                    os.close();
+                    // read the response
+                    BufferedReader br = null;
+                    if (100 <= conn.getResponseCode() && conn.getResponseCode() <= 399) {
+                        br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    } else {
+                        br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+                    }
+                    System.out.println(br.readLine());
+                    conn.disconnect();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
         if (tinhtrangsua.equals("Chưa hoàn thành")){
             sendMail();
         }
@@ -575,6 +605,7 @@ public class customerInfController implements Initializable {
     }
 
     public boolean sendMail(){
+        txtCapNhatDuLieu.setText("-Đang gửi Mail thông báo-");
         try {
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
@@ -613,7 +644,7 @@ public class customerInfController implements Initializable {
 
                 message.setSubject("Công ty DHT - Thông báo về việc hoàn thành sữa chữa.");
                 String text ="<img src="+"/viewForm/Picture/Pic/anhsendmail.png"+">" + "<br>" +
-                        "<b>Xin chào khách hàng: </b>"+ de2.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId() + "<br>" + "<br>" +
+                        "<b>Xin chào khách hàng: </b>"+ de2.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerId() + "<br>" + "<br>" +
                         "<b>Họ và tên: </b>" + de2.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName() + "<br>" + "<br>" +
                         "<b>Tên laptop: </b>" + de2.getInfRepairByRepairId().getLaptopName() + "<br>" + "<br>" +
                         "<b>Cần sữa chữa: </b>" + de2.getRepairReason() + "<br>" + "<br>" +
