@@ -1,6 +1,7 @@
 package viewForm.Controller;
 
 import Model.AccountStaffEntity;
+import Model.DetailInfRepairEntity;
 import Service.serviceImplement;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
@@ -15,9 +16,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.json.JSONObject;
 
 import javax.swing.text.html.ImageView;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
