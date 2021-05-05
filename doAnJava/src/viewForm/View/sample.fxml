@@ -22,7 +22,7 @@
       </ImageView>
       <ImageView fx:id="imgLoading" fitHeight="224.0" fitWidth="200.0" layoutX="512.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Picture/Pic/180174952_457694161991248_369462195251319764_n.png" />
+            <Image url="@../Picture/Pic/Vanilla-1s-280px%20(2).gif" />
          </image>
       </ImageView>
       <JFXTextField fx:id="txtTaiKhoan" focusColor="#3375c6" layoutX="397.0" layoutY="246.0" prefHeight="32.0" prefWidth="421.0" promptText="Tài khoản" style="-fx-prompt-text-fill: white; -fx-text-fill: white;" unFocusColor="WHITE">

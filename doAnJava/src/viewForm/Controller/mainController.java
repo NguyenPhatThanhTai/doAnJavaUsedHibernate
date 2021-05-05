@@ -4,6 +4,7 @@ package viewForm.Controller;
 import Model.InfStaffEntity;
 import Service.serviceImplement;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -63,6 +64,8 @@ public class mainController implements Initializable {
     InfStaffEntity infStaffEntity;
     String token, key, typ;
 
+    Thread thread;
+
     public void showInfomation(InfStaffEntity infStaffEntity, String token, String key, String typ){
         this.infStaffEntity = infStaffEntity;
         this.token = token;
@@ -85,19 +88,42 @@ public class mainController implements Initializable {
         lbName.setText("Họ và tên: " + name + " - Chức vụ: " + chucVu);
     }
 
-    public void showCustomerPage() throws IOException {
+    public void startTheardshowCustomerPage(){
+        setPage("Loading.fxml");
+        thread = new Thread(this::showCustomerPage);
+        thread.start();
+        thread.interrupt();
+    }
+
+    public void showCustomerPage() {
+        try {
         setEffectClick("#4777A7", "ThongTinKhachHang");
 //        setPage("customerInf.fxml");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/customerInf.fxml"));
-        Parent root = loader.load();
+        Parent root = null;
+        root = loader.load();
 
         customerInfController mainController = loader.getController();
         mainController.showInfomation(infStaffEntity, token, key, typ);
-
         Pane p = (Pane) root;
-        paneLoad.getChildren().clear();
-        paneLoad.getChildren().add(p);
+            Platform.runLater(new Runnable(){
+                @Override
+                public void run() {
+                    paneLoad.getChildren().clear();
+                    paneLoad.getChildren().add(p);
+                }
+            });
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void startThreadshowLkPage(){
+        setPage("Loading.fxml");
+        thread = new Thread(this::showLkPage);
+        thread.start();
+        thread.interrupt();
     }
 
     public void showLkPage(){
@@ -105,10 +131,25 @@ public class mainController implements Initializable {
         setPage("linhKienInf.fxml");
     }
 
+    public void startThreadshowWelcomePage(){
+        setPage("Loading.fxml");
+        thread = new Thread(this::showWelcomePage);
+        thread.start();
+        thread.interrupt();
+    }
+
     public void showWelcomePage(){
         setEffectClick("#4777A7", "Home");
         setPage("welcome.fxml");
     }
+
+    public void startThreadshowSystemManager(){
+        setPage("Loading.fxml");
+        thread = new Thread(this::showSystemManager);
+        thread.start();
+        thread.interrupt();
+    }
+
     public void showSystemManager(){
         setEffectClick("#4777A7", "QuanTriHeThong");
         setPage("managerSystem.fxml");
@@ -122,6 +163,7 @@ public class mainController implements Initializable {
 
                 paneLoad.getChildren().clear();
                 paneLoad.getChildren().add(view);
+
             });
             try {
                 Thread.sleep(60);

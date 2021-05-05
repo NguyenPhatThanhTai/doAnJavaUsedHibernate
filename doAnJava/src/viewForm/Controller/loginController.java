@@ -46,7 +46,10 @@ public class loginController implements Initializable {
     Thread thread;
     String token, key, typ;
 
-    public void StartThreadDangNhap(){
+    ActionEvent e;
+
+    public void StartThreadDangNhap(ActionEvent e){
+        this.e = e;
         thread = new Thread(this::DangNhap);
         thread.start();
     }
@@ -54,7 +57,6 @@ public class loginController implements Initializable {
     public void DangNhap(){
         processbar.setVisible(true);
         try {
-            ActionEvent e = null;
             if (txtTaiKhoan.getText().equals("") || txtMatKhau.getText().equals("")){
                 lbSaiMatKhau.setStyle("-fx-background-color: #D6D263; -fx-background-radius: 20");
                 lbSaiMatKhau.setText("Không được để trống");
@@ -77,7 +79,7 @@ public class loginController implements Initializable {
                     getToken();
                     mainController.showInfomation(serviceImplement.getStaffData(txtTaiKhoan.getText()), token, key, typ);
 
-                    Platform.runLater(new Runnable() {
+                    Platform.runLater(new Runnable(){
                         @Override
                         public void run() {
                             Stage stage = new Stage();
@@ -85,13 +87,10 @@ public class loginController implements Initializable {
                             stage.setScene(new Scene(root));
                             stage.setTitle("Trang chính");
                             stage.show();
+
+                            ((Node)(e.getSource())).getScene().getWindow().hide();
                         }
                     });
-                    try {
-                        ((Node)(e.getSource())).getScene().getWindow().hide();
-                    }catch (Exception ex){
-
-                    }
                     //
                 }
                 else {

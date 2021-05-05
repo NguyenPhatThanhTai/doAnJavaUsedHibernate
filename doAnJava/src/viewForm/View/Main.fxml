@@ -19,7 +19,7 @@
       <VBox alignment="CENTER" layoutX="14.0" layoutY="13.0" prefHeight="832.0" prefWidth="54.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="btnHome" contentDisplay="TOP" onAction="#showWelcomePage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
+            <JFXButton fx:id="btnHome" contentDisplay="TOP" onAction="#startThreadshowWelcomePage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -32,7 +32,7 @@
                </font>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="btnThongTinKhachHang" contentDisplay="TOP" onAction="#showCustomerPage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
+            <JFXButton fx:id="btnThongTinKhachHang" contentDisplay="TOP" onAction="#startTheardshowCustomerPage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fx:id="imgCustomer" fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -42,7 +42,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="btnLK" contentDisplay="TOP" onAction="#showLkPage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
+            <JFXButton fx:id="btnLK" contentDisplay="TOP" onAction="#startThreadshowLkPage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -62,7 +62,7 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="btnQuanTriSever" contentDisplay="TOP" onAction="#showSystemManager" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
+            <JFXButton fx:id="btnQuanTriSever" contentDisplay="TOP" onAction="#startThreadshowSystemManager" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>

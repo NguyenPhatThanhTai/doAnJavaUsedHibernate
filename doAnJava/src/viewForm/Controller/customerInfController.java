@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.mail.*;
@@ -197,6 +198,10 @@ public class customerInfController implements Initializable {
     private Label lbHoanThanh;
     @FXML
     private Text txtCapNhatDuLieu;
+    @FXML
+    private Text txtTinhTrangSever1;
+    @FXML
+    private Text txtTinhTrangSever2;
     ObservableList<DetailInfRepairEntity> rlist;
     ObservableList<InfLkEntity> lkList;
     detailInfRepairDao dao = new detailInfRepairDao();
@@ -209,6 +214,9 @@ public class customerInfController implements Initializable {
     String maNv = "";
     String name = "";
     String chucVu = "";
+
+    String SeverRPId = "";
+    String SeverDTId = "";
 
     InfStaffEntity infStaffEntity;
     String token, key, typ;
@@ -281,7 +289,9 @@ public class customerInfController implements Initializable {
         String customerId = "KH" + day.format(now) + min.format(now) + sec.format(now);
         txtMaKhachHang.setText(customerId);
         String repairId = "RP" + day.format(now) + min.format(now) + sec.format(now);
+        this.SeverRPId = repairId;
         String detailId = "DT" + day.format(now) + min.format(now) + sec.format(now);
+        this.SeverDTId = detailId;
 
         String sex = "2";
 
@@ -300,6 +310,8 @@ public class customerInfController implements Initializable {
 
         if (addCustomer.addData(infCustomersEntity) && addRepair.addData(infRepairEntity) && addDetail.addData(detailInfRepairEntity)){
             refreshView();
+            thread = new Thread(this::addIntoSever);
+            thread.start();
             openTextField(false);
             btnXacNhanThem.setVisible(false);
             btnHuyThem.setVisible(false);
@@ -308,10 +320,64 @@ public class customerInfController implements Initializable {
             btnThem.setVisible(true);
             tableListCustomer.setDisable(false);
             clearAllKhachHang();
+            thread.interrupt();
+        }
+    }
+
+    public void addIntoSever(){
+        detailInfRepairDao deDao = new detailInfRepairDao();
+        DetailInfRepairEntity de = deDao.getDataById(SeverDTId);
+
+        String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/upload.php";
+        String json = "{ \"name\" : \""+SeverRPId+"\", " +
+                "       \"name1\" : \""+de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()+"\", " +
+                "       \"name2\" : \""+de.getInfRepairByRepairId().getLaptopName()+"\", " +
+                "       \"name3\" : \""+de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerEmail()+"\", " +
+                "       \"name4\" : \""+"Chưa hoàn thành"+"\", " +
+                "       \"name5\" : \""+token+"\", " +
+                "       \"name6\" : \""+key+"\", " +
+                "       \"name7\" : \""+typ+"\" }";
+        try {
+            URL url = new URL(query_url);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestMethod("POST");
+            OutputStream os = conn.getOutputStream();
+            os.write(json.getBytes("UTF-8"));
+            os.close();
+            // read the response
+            BufferedReader br = null;
+            if (100 <= conn.getResponseCode() && conn.getResponseCode() <= 399) {
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            } else {
+                br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+            }
+
+            String array1 = br.readLine();
+
+            JSONObject json2 = new JSONObject(array1);
+
+            Object Status = json2.get("Status");
+            Object Check = json2.get("Check");
+
+            txtTinhTrangSever1.setText("Status: " + Status + " || Check: " + Check);
+
+            br.close();
+            conn.disconnect();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
     public void updateCustomer(){
+        String idSplit = txtMaKhachHang.getText();
+        String[] parts = idSplit.split("KH");
+        this.SeverRPId = "RP" + parts[1];
+        this.SeverDTId = "DT" + parts[1];
+
         String sex = "2";
 
         if (txtGioiTinh.isSelected()){
@@ -321,6 +387,8 @@ public class customerInfController implements Initializable {
         infCustomerDao updateCustomer = new infCustomerDao();
         if(updateCustomer.updateData(infCustomersEntity)){
             refreshView();
+            thread = new Thread(this::updateCustomerSever);
+            thread.start();
             openTextField(false);
             btnXacNhanSua.setVisible(false);
             btnHuySua.setVisible(false);
@@ -329,6 +397,54 @@ public class customerInfController implements Initializable {
             btnSua.setVisible(true);
             tableListCustomer.setDisable(false);
             clearAllKhachHang();
+            thread.interrupt();
+        }
+    }
+
+    public void updateCustomerSever(){
+        detailInfRepairDao deDao = new detailInfRepairDao();
+        DetailInfRepairEntity de = deDao.getDataById(SeverDTId);
+
+        String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/updateCustomer.php";
+        String json = "{ \"name\" : \""+SeverRPId+"\", " +
+                "       \"name1\" : \""+de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()+"\", " +
+                "       \"name2\" : \""+de.getInfRepairByRepairId().getLaptopName()+"\", " +
+                "       \"name3\" : \""+de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerEmail()+"\", " +
+                "       \"name4\" : \""+token+"\", " +
+                "       \"name5\" : \""+key+"\", " +
+                "       \"name6\" : \""+typ+"\" }";
+        try {
+            URL url = new URL(query_url);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestMethod("POST");
+            OutputStream os = conn.getOutputStream();
+            os.write(json.getBytes("UTF-8"));
+            os.close();
+            // read the response
+            BufferedReader br = null;
+            if (100 <= conn.getResponseCode() && conn.getResponseCode() <= 399) {
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            } else {
+                br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+            }
+
+            String array1 = br.readLine();
+
+            JSONObject json2 = new JSONObject(array1);
+
+            Object Status = json2.get("Status");
+            Object Check = json2.get("Check");
+
+            txtTinhTrangSever1.setText("Status: " + Status + " || Check: " + Check);
+
+            br.close();
+            conn.disconnect();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -336,6 +452,8 @@ public class customerInfController implements Initializable {
         String idSplit = txtMaKhachHang.getText();
 
         String[] parts = idSplit.split("KH");
+
+        this.SeverRPId = "RP" + parts[1];
 
         detailInfRepairDao delDetail = new detailInfRepairDao();
         DetailInfRepairEntity detail = new DetailInfRepairEntity();
@@ -351,6 +469,8 @@ public class customerInfController implements Initializable {
 
         if(delDetail.dellData(detail) && delRepair.dellData(repair) && delCustomer.dellData(customer)){
             refreshView();
+            thread = new Thread(this::deleteInSever);
+            thread.start();
             openTextField(true);
             btnXacNhanXoa.setVisible(false);
             btnHuyXoa.setVisible(false);
@@ -360,6 +480,48 @@ public class customerInfController implements Initializable {
             tableListCustomer.setDisable(false);
             clearAllKhachHang();
             clearAllSuaChua();
+            thread.interrupt();
+        }
+    }
+
+    public void deleteInSever(){
+        String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/delete.php";
+        String json = "{ \"name\" : \""+SeverRPId+"\", " +
+                "       \"name1\" : \""+token+"\", " +
+                "       \"name2\" : \""+key+"\", " +
+                "       \"name3\" : \""+typ+"\" }";
+        try {
+            URL url = new URL(query_url);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestMethod("POST");
+            OutputStream os = conn.getOutputStream();
+            os.write(json.getBytes("UTF-8"));
+            os.close();
+            // read the response
+            BufferedReader br = null;
+            if (100 <= conn.getResponseCode() && conn.getResponseCode() <= 399) {
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            } else {
+                br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+            }
+
+            String array1 = br.readLine();
+
+            JSONObject json2 = new JSONObject(array1);
+
+            Object Status = json2.get("Status");
+            Object Check = json2.get("Check");
+
+            txtTinhTrangSever1.setText("Status: " + Status + " || Check: " + Check);
+
+            br.close();
+            conn.disconnect();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -454,6 +616,10 @@ public class customerInfController implements Initializable {
     public void updateRepair(){
         String idSplit = txtMaSuaChua.getText();
         String[] parts = idSplit.split("RP");
+
+        this.SeverDTId = "DT" + parts[1];
+        this.SeverRPId = txtMaSuaChua.getText();
+
         String suaRepair = "Sủa lấy ngay";
         infCustomerDao infCustomerDao = new infCustomerDao();
         InfRepairEntity infRepairEntity = new InfRepairEntity(txtMaSuaChua.getText(), txtLaptopName.getText(), txtTinhTrang.getText(),infCustomerDao.getDataById("KH"+parts[1]), infStaffEntity);
@@ -465,9 +631,59 @@ public class customerInfController implements Initializable {
         detailInfRepairDao detailInfRepairDao = new detailInfRepairDao();
         if(infRepairDao.updateData(infRepairEntity) && detailInfRepairDao.updateData(detailInfRepairEntity)){
             refreshView();
+            thread = new Thread(this::updateRepairInSever);
+            thread.start();
             openTextFieldRepair(false);
             openButton(true, "SuaRepair");
             clearAllSuaChua();
+            thread.interrupt();
+        }
+    }
+
+    public void updateRepairInSever(){
+        detailInfRepairDao deDao = new detailInfRepairDao();
+        DetailInfRepairEntity de = deDao.getDataById(SeverDTId);
+
+        String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/updateCustomer.php";
+        String json = "{ \"name\" : \""+SeverRPId+"\", " +
+                "       \"name1\" : \""+de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()+"\", " +
+                "       \"name2\" : \""+de.getInfRepairByRepairId().getLaptopName()+"\", " +
+                "       \"name3\" : \""+de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerEmail()+"\", " +
+                "       \"name4\" : \""+token+"\", " +
+                "       \"name5\" : \""+key+"\", " +
+                "       \"name6\" : \""+typ+"\" }";
+        try {
+            URL url = new URL(query_url);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestMethod("POST");
+            OutputStream os = conn.getOutputStream();
+            os.write(json.getBytes("UTF-8"));
+            os.close();
+            // read the response
+            BufferedReader br = null;
+            if (100 <= conn.getResponseCode() && conn.getResponseCode() <= 399) {
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            } else {
+                br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+            }
+
+            String array1 = br.readLine();
+
+            JSONObject json2 = new JSONObject(array1);
+
+            Object Status = json2.get("Status");
+            Object Check = json2.get("Check");
+
+            txtTinhTrangSever2.setText("Status: " + Status + " || Check: " + Check);
+
+            br.close();
+            conn.disconnect();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -773,7 +989,7 @@ public class customerInfController implements Initializable {
             case "Xoa":
                 btnXoa.setVisible(flag);
                 btnThem.setDisable(true);
-                btnThem.setDisable(true);
+                btnSua.setDisable(true);
                 btnXacNhanXoa.setVisible(true);
                 btnHuyXoa.setVisible(true);
 
