@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,6 +31,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class customerInfController implements Initializable {
 
@@ -202,6 +205,11 @@ public class customerInfController implements Initializable {
     private Text txtTinhTrangSever1;
     @FXML
     private Text txtTinhTrangSever2;
+    @FXML
+    private Text checkPhoneNum;
+    @FXML
+    private Text checkGmail;
+
     ObservableList<DetailInfRepairEntity> rlist;
     ObservableList<InfLkEntity> lkList;
     detailInfRepairDao dao = new detailInfRepairDao();
@@ -522,6 +530,38 @@ public class customerInfController implements Initializable {
             conn.disconnect();
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    public void checkPhoneNumber(){
+        checkPhoneNum.setVisible(true);
+        Pattern pattern = Pattern.compile("\\d{10}$");
+        Matcher matcher = pattern.matcher(txtSoDienThoai.getText());
+        if (!matcher.matches()){
+            btnXacNhanThem.setDisable(true);
+            checkPhoneNum.setFill(Color.RED);
+            checkPhoneNum.setText("!");
+        }
+        else {
+            btnXacNhanThem.setDisable(false);
+            checkPhoneNum.setFill(Color.GREEN);
+            checkPhoneNum.setText("✓");
+        }
+    }
+
+    public void checkGmail(){
+        checkGmail.setVisible(true);
+        Pattern pattern = Pattern.compile("^(.+)@(\\S+)$");
+        Matcher matcher = pattern.matcher(txtEmail.getText());
+        if (!matcher.matches()){
+            btnXacNhanThem.setDisable(true);
+            checkGmail.setFill(Color.RED);
+            checkGmail.setText("!");
+        }
+        else {
+            btnXacNhanThem.setDisable(false);
+            checkGmail.setFill(Color.GREEN);
+            checkGmail.setText("✓");
         }
     }
 
