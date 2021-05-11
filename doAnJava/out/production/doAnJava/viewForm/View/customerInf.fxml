@@ -85,7 +85,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <JFXButton fx:id="btnXacNhanThem" layoutX="44.0" layoutY="448.0" onMouseClicked="#addNewCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanThem" disable="true" layoutX="44.0" layoutY="448.0" onMouseClicked="#addNewCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -132,8 +132,8 @@
                         </JFXButton>
                         <TextField fx:id="txtMaKhachHang" disable="true" layoutX="70.0" layoutY="31.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã khách hàng" />
                         <TextField fx:id="txtTenKhachHang" disable="true" layoutX="70.0" layoutY="166.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên khách hàng" />
-                        <TextField fx:id="txtEmail" disable="true" layoutX="70.0" layoutY="250.0" prefHeight="26.0" prefWidth="298.0" promptText="Email" />
-                        <TextField fx:id="txtSoDienThoai" disable="true" layoutX="70.0" layoutY="208.0" prefHeight="26.0" prefWidth="298.0" promptText="Số điện thoại" />
+                        <TextField fx:id="txtEmail" disable="true" layoutX="70.0" layoutY="250.0" onKeyReleased="#checkGmail" prefHeight="26.0" prefWidth="298.0" promptText="Email" />
+                        <TextField fx:id="txtSoDienThoai" disable="true" layoutX="70.0" layoutY="208.0" onKeyReleased="#checkPhoneNumber" prefHeight="26.0" prefWidth="298.0" promptText="Số điện thoại" />
                         <TextField fx:id="txtNgayThem" disable="true" layoutX="70.0" layoutY="79.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày thêm" />
                         <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="37.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -174,8 +174,18 @@
                         <Label layoutX="137.0" layoutY="308.0" text="Nữ" />
                         <Label layoutX="267.0" layoutY="308.0" text="Nam" />
                         <DatePicker fx:id="txtNgaySinh" disable="true" layoutX="70.0" layoutY="348.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày sinh" />
-                        <Label layoutX="162.0" layoutY="135.0" prefHeight="18.0" prefWidth="98.0" text="--------------------" />
+                        <Label layoutX="162.0" layoutY="135.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
                         <Text fx:id="txtTinhTrangSever1" layoutX="45.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="308.5366973876953" />
+                        <Text fx:id="checkPhoneNum" fill="#14af5a" layoutX="380.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="✓" visible="false" wrappingWidth="17.01019287109375">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="checkGmail" fill="#14af5a" layoutX="380.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="✓" visible="false" wrappingWidth="17.01019287109375">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
               </content>
