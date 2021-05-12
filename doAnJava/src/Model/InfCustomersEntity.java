@@ -18,10 +18,6 @@ public class InfCustomersEntity {
     public InfCustomersEntity() {
     }
 
-    public InfCustomersEntity(String customerId) {
-        this.customerId = customerId;
-    }
-
     public InfCustomersEntity(String customerId, String customerName, String customerSex, Date customerBirth, String customerEmail, String customerPhone, Date customerTimeAdd) {
         this.customerId = customerId;
         this.customerName = customerName;
@@ -30,16 +26,6 @@ public class InfCustomersEntity {
         this.customerEmail = customerEmail;
         this.customerPhone = customerPhone;
         this.customerTimeAdd = customerTimeAdd;
-    }
-
-    @Override
-    public String toString() {
-        if (customerSex.equals("1")){
-            return "Nam";
-        }
-        else {
-            return "Nữ";
-        }
     }
 
     @Id

@@ -23,6 +23,17 @@ public class InfStaffEntity {
         this.staffId = staffId;
     }
 
+    public InfStaffEntity(String staffId, String staffName, String staffSex, Date staffBirth, String staffAddress, String staffPhone, String staffDeparment, Date staffTimeAdd) {
+        this.staffId = staffId;
+        this.staffName = staffName;
+        this.staffSex = staffSex;
+        this.staffBirth = staffBirth;
+        this.staffAddress = staffAddress;
+        this.staffPhone = staffPhone;
+        this.staffDeparment = staffDeparment;
+        this.staffTimeAdd = staffTimeAdd;
+    }
+
     @Id
     @Column(name = "Staff_Id")
     public String getStaffId() {

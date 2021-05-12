@@ -1,10 +1,12 @@
 package DAO;
 
 import Model.AccountStaffEntity;
+import Model.DetailInfRepairEntity;
 import Model.InfStaffEntity;
 import Until.hibernateUntil;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,17 +17,58 @@ import java.util.List;
 public class infStaffDao implements daoInterface<InfStaffEntity>{
     @Override
     public boolean addData(InfStaffEntity data) {
-        return true;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.save(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở Account");
+            return false;
+        }
     }
 
     @Override
     public boolean dellData(InfStaffEntity data) {
-        return true;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            InfStaffEntity detailInfRepairEntity = s.load(InfStaffEntity.class, data.getStaffId());
+
+            s.delete(detailInfRepairEntity);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở Detail");
+            return false;
+        }
     }
 
     @Override
     public boolean updateData(InfStaffEntity data) {
-        return true;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.update(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở detail");
+            return false;
+        }
     }
 
     @Override

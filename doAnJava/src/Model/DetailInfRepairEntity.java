@@ -18,15 +18,6 @@ public class DetailInfRepairEntity {
     public DetailInfRepairEntity() {
     }
 
-    public DetailInfRepairEntity(String detailId, String repairReason, String repairNote, String repairStatus, Date repairAppointment, String repairMoney) {
-        this.detailId = detailId;
-        this.repairReason = repairReason;
-        this.repairNote = repairNote;
-        this.repairStatus = repairStatus;
-        this.repairAppointment = repairAppointment;
-        this.repairMoney = repairMoney;
-    }
-
     public DetailInfRepairEntity(String detailId, String repairReason, String repairNote, String repairStatus, Date repairAppointment, String repairMoney, InfRepairEntity infRepairByRepairId) {
         this.detailId = detailId;
         this.repairReason = repairReason;
@@ -116,7 +107,6 @@ public class DetailInfRepairEntity {
     }
 
     @ManyToOne
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @JoinColumn(name = "Repair_Id", referencedColumnName = "Repair_Id", nullable = false)
     public InfRepairEntity getInfRepairByRepairId() {
         return infRepairByRepairId;
