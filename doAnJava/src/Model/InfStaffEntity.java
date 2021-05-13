@@ -34,6 +34,27 @@ public class InfStaffEntity {
         this.staffTimeAdd = staffTimeAdd;
     }
 
+    public String staffSex(){
+        if (staffSex.equals("1")){
+            return "Nữ";
+        }
+        else {
+            return "Nam";
+        }
+    }
+
+    public String staffDepartment(){
+        if (staffDeparment.equals("1")){
+            return "Quản lý";
+        }
+        else if (staffDeparment.equals("2")){
+            return "Nhân viên";
+        }
+        else {
+            return "Kế toán";
+        }
+    }
+
     @Id
     @Column(name = "Staff_Id")
     public String getStaffId() {

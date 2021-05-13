@@ -61,6 +61,9 @@ public class mainController implements Initializable {
     @FXML
     private JFXButton btnLK;
 
+    @FXML
+    private JFXButton btnStaff;
+
     InfStaffEntity infStaffEntity;
     String token, key, typ;
 
@@ -155,6 +158,18 @@ public class mainController implements Initializable {
         setPage("managerSystem.fxml");
     }
 
+    public void startThreadshowStaffPage(){
+        setPage("Loading.fxml");
+        thread = new Thread(this::showStaffPage);
+        thread.start();
+        thread.interrupt();
+    }
+
+    public void showStaffPage(){
+        setEffectClick("#4777A7", "Staff");
+        setPage("staffInf.fxml");
+    }
+
     public void setPage(String page){
         new Thread(()->{
             Platform.runLater(()->{
@@ -180,24 +195,35 @@ public class mainController implements Initializable {
                 btnHome.setStyle("-fx-background-color: transparent");
                 btnQuanTriSever.setStyle("-fx-background-color: transparent");
                 btnLK.setStyle("-fx-background-color: transparent");
+                btnStaff.setStyle("-fx-background-color: transparent");
                 break;
             case "Home":
                 btnHome.setStyle("-fx-background-color: "+color);
                 btnQuanTriSever.setStyle("-fx-background-color: transparent");
                 btnLK.setStyle("-fx-background-color: transparent");
                 btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
+                btnStaff.setStyle("-fx-background-color: transparent");
                 break;
             case "QuanTriHeThong":
                 btnQuanTriSever.setStyle("-fx-background-color: "+color);
                 btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
                 btnHome.setStyle("-fx-background-color: transparent");
                 btnLK.setStyle("-fx-background-color: transparent");
+                btnStaff.setStyle("-fx-background-color: transparent");
                 break;
             case "LK":
                 btnLK.setStyle("-fx-background-color: "+color);
                 btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
                 btnQuanTriSever.setStyle("-fx-background-color: transparent");
                 btnHome.setStyle("-fx-background-color: transparent");
+                btnStaff.setStyle("-fx-background-color: transparent");
+                break;
+            case "Staff":
+                btnStaff.setStyle("-fx-background-color: "+color);
+                btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
+                btnQuanTriSever.setStyle("-fx-background-color: transparent");
+                btnHome.setStyle("-fx-background-color: transparent");
+                btnLK.setStyle("-fx-background-color: transparent");
                 break;
         }
     }

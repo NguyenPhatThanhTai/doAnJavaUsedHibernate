@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -43,6 +44,8 @@ public class loginController implements Initializable {
     private JFXProgressBar processbar;
     @FXML
     private Text lbStatus;
+    @FXML
+    private JFXButton btnDangNhap;
     Thread thread;
     String token, key, typ;
 
@@ -55,11 +58,21 @@ public class loginController implements Initializable {
     }
 
     public void DangNhap(){
+        btnDangNhap.setDisable(true);
+        txtTaiKhoan.setDisable(true);
+        txtMatKhau.setDisable(true);
+
         processbar.setVisible(true);
         try {
             if (txtTaiKhoan.getText().equals("") || txtMatKhau.getText().equals("")){
                 lbSaiMatKhau.setStyle("-fx-background-color: #D6D263; -fx-background-radius: 20");
-                lbSaiMatKhau.setText("Không được để trống");
+                btnDangNhap.setDisable(false);
+                txtTaiKhoan.setDisable(false);
+                txtMatKhau.setDisable(false);
+                processbar.setVisible(false);
+                Platform.runLater(()->{
+                    lbSaiMatKhau.setText("Không được để trống");
+                });
                 lbSaiMatKhau.setVisible(true);
                 new animatefx.animation.BounceIn(lbSaiMatKhau).play();
             }else {
@@ -94,8 +107,14 @@ public class loginController implements Initializable {
                     //
                 }
                 else {
+                    btnDangNhap.setDisable(false);
+                    txtTaiKhoan.setDisable(false);
+                    txtMatKhau.setDisable(false);
+                    processbar.setVisible(false);
                     lbSaiMatKhau.setStyle("-fx-background-color: #E16363; -fx-background-radius: 20");
-                    lbSaiMatKhau.setText("Sai mật khẩu hoặc tài khoản!");
+                    Platform.runLater(()->{
+                        lbSaiMatKhau.setText("Sai mật khẩu hoặc tài khoản!");
+                    });
                     lbSaiMatKhau.setVisible(true);
                     new animatefx.animation.BounceIn(lbSaiMatKhau).play();
                 }

@@ -112,11 +112,11 @@ public class staffInfController implements Initializable {
         tableViewNhanVien.setItems(nvList);
         clMaNhanVien.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffId()));
         clTenNhanVien.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffName()));
-        clGioiTinh.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffSex()));
+        clGioiTinh.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().staffSex()));
         clNgaySinh.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getInfStaffByStaffId().getStaffBirth())));
         clDiaChi.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffAddress()));
         clSoDienThoai.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffPhone()));
-        clChucVu.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffDeparment()));
+        clChucVu.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().staffDepartment()));
         clNgayThem.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getInfStaffByStaffId().getStaffTimeAdd())));
     }
 

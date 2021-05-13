@@ -28,6 +28,16 @@ public class InfCustomersEntity {
         this.customerTimeAdd = customerTimeAdd;
     }
 
+    @Override
+    public String toString() {
+        if (customerSex.equals("1")){
+            return "Nam";
+        }
+        else {
+            return "Nữ";
+        }
+    }
+
     @Id
     @Column(name = "Customer_Id")
     public String getCustomerId() {
