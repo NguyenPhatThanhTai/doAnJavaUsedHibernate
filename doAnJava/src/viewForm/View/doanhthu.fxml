@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="751.0" prefWidth="1577.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.doanhThuController">
+   <children>
+      <Text fx:id="txtMoneyToday" fill="#a46e6e" layoutX="424.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" wrappingWidth="536.13671875">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng tiền hôm nay:" wrappingWidth="245.47265625">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng đơn đã hoàn thành hôm nay:" wrappingWidth="410.14215087890625">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtTotalToday" fill="#3f6b4b" layoutX="424.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 đơn" wrappingWidth="305.60009765625">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="721.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng tiền tháng này:" wrappingWidth="410.14215087890625">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="721.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng đơn đã hoàn thành tháng này:" wrappingWidth="410.14215087890625">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="721.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Lợi nhuận tháng này:" wrappingWidth="410.14215087890625">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtProfit" fill="#a46e6e" layoutX="1131.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" wrappingWidth="356.9366455078125">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtMoneyMonth" fill="#a46e6e" layoutX="1131.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" wrappingWidth="388.1368408203125">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtTotalMonth" fill="#3f6b4b" layoutX="1131.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 đơn" wrappingWidth="281.60009765625">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Label fx:id="lbNgayThu1" layoutX="54.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu2" layoutX="93.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu3" layoutX="136.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu4" layoutX="177.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu5" layoutX="218.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu6" layoutX="258.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu7" layoutX="301.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu8" layoutX="344.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu9" layoutX="387.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu10" layoutX="431.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu11" layoutX="477.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu12" layoutX="525.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu13" layoutX="569.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu14" layoutX="614.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu15" layoutX="661.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu16" layoutX="707.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu17" layoutX="751.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu18" layoutX="796.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu19" layoutX="845.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu20" layoutX="887.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu21" layoutX="932.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu22" layoutX="980.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu23" layoutX="1024.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu24" layoutX="1069.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu25" layoutX="1116.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu26" layoutX="1162.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu27" layoutX="1206.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu28" layoutX="1251.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu29" layoutX="1300.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+      <Label fx:id="lbNgayThu30" layoutX="1348.0" layoutY="171.0" prefHeight="500.0" prefWidth="30.0" style="-fx-background-color: red;" text="Label" textFill="WHITE" />
+   </children>
+</AnchorPane>

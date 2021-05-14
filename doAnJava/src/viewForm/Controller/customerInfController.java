@@ -1,22 +1,16 @@
 package viewForm.Controller;
 
-import DAO.detailInfRepairDao;
-import DAO.infCustomerDao;
-import DAO.infLKDao;
-import DAO.infRepairDao;
+import DAO.*;
 import Model.*;
 import com.jfoenix.controls.*;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.mail.*;
@@ -987,6 +981,60 @@ public class customerInfController implements Initializable {
             else {
                 break;
             }
+        }
+
+        //Dua tien vao doanh thu
+        DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+
+        doanhthuDao doanhthuDao = new doanhthuDao();
+        InfDoanhThuSuaEntity infDoanhThuSuaEntity = doanhthuDao.getByDate(Date.valueOf(dayAdd.format(now)));
+
+        if (infDoanhThuSuaEntity == null){
+            DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+            DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+            String DTN = "DTN" + day.format(now) + month.format(now);
+            System.out.println(DTN);
+            InfDoanhThuSuaEntity infDoanhThuSuaEntity1 = new InfDoanhThuSuaEntity(DTN, "0", String.valueOf(detailInfRepairEntity.getRepairMoney()), Date.valueOf(dayAdd.format(now)));
+            doanhthuDao.addNewDoanhThu(infDoanhThuSuaEntity1);
+        }
+        else {
+            int entity = Integer.parseInt(infDoanhThuSuaEntity.getEntity()) + 1;
+            Long money = Long.parseLong(infDoanhThuSuaEntity.getMoney()) + Long.parseLong(detailInfRepairEntity.getRepairMoney());
+
+            InfDoanhThuSuaEntity infDoanhThuSuaEntity2 = new InfDoanhThuSuaEntity(infDoanhThuSuaEntity.getMdt(), String.valueOf(entity), String.valueOf(money), infDoanhThuSuaEntity.getDay());
+            doanhthuDao.updateDoanhThu(infDoanhThuSuaEntity2);
+        }
+
+        //Cap nhat doanh thu thang
+        DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy");
+        DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+        String DTT = year.format(now) + "-" + month.format(now) + "-01";
+        System.out.println(DTT);
+        InfDoanhThuThangEntity infDoanhThuThangEntity = doanhthuDao.getByDateDoanhThuThang(Date.valueOf(DTT));
+
+        infLKDao infLKDao = new infLKDao();
+        List<InfLkEntity> infLkEntity = infLKDao.getALl();
+        long totalMonelLK = 0;
+
+        for (InfLkEntity money:infLkEntity){
+            totalMonelLK += Long.parseLong(money.getLkPrice()) * 10;
+        }
+
+
+        if (infDoanhThuThangEntity == null){
+            //String dtt, String inputMoney, String outputMoney, String entity, String staffSalary, String profitMoney, Date month
+            System.out.println(DTT);
+            InfDoanhThuThangEntity infDoanhThuThangEntity1f = new InfDoanhThuThangEntity("DTT"+year.format(now) + month.format(now), String.valueOf(detailInfRepairEntity.getRepairMoney()), String.valueOf(totalMonelLK), "1", "0", String.valueOf(Integer.valueOf(detailInfRepairEntity.getRepairMoney()) - totalMonelLK),Date.valueOf(year.format(now) + "-" + month.format(now) + "-01"));
+            doanhthuDao.addNewDoanhThuThang(infDoanhThuThangEntity1f);
+        }
+        else {
+            long inputMoney = Long.parseLong(detailInfRepairEntity.getRepairMoney()) + Long.parseLong(infDoanhThuThangEntity.getInputMoney());
+            int entity = Integer.parseInt(infDoanhThuThangEntity.getEntity()) + 1;
+            long profit = Long.parseLong(infDoanhThuThangEntity.getInputMoney()) - Long.parseLong(infDoanhThuThangEntity.getOutputMoney());
+
+            InfDoanhThuThangEntity infDoanhThuThangEntity2 = new InfDoanhThuThangEntity(infDoanhThuThangEntity.getDtt(), String.valueOf(inputMoney), infDoanhThuThangEntity.getOutputMoney(),String.valueOf(entity), infDoanhThuThangEntity.getStaffSalary(), String.valueOf(profit), infDoanhThuThangEntity.getMonth());
+            doanhthuDao.updateDoanhThuThang(infDoanhThuThangEntity2);
         }
     }
 

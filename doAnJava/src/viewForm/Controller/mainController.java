@@ -64,6 +64,9 @@ public class mainController implements Initializable {
     @FXML
     private JFXButton btnStaff;
 
+    @FXML
+    private JFXButton btnDoanhThu;
+
     InfStaffEntity infStaffEntity;
     String token, key, typ;
 
@@ -170,6 +173,17 @@ public class mainController implements Initializable {
         setPage("staffInf.fxml");
     }
 
+    public void startThreadshowProfitPage(){
+        thread = new Thread(this::showProfitPage);
+        thread.start();
+        thread.interrupt();
+    }
+
+    public void showProfitPage(){
+        setEffectClick("#4777A7", "Profit");
+        setPage("doanhthu.fxml");
+    }
+
     public void setPage(String page){
         new Thread(()->{
             Platform.runLater(()->{
@@ -196,6 +210,7 @@ public class mainController implements Initializable {
                 btnQuanTriSever.setStyle("-fx-background-color: transparent");
                 btnLK.setStyle("-fx-background-color: transparent");
                 btnStaff.setStyle("-fx-background-color: transparent");
+                btnDoanhThu.setStyle("-fx-background-color: transparent");
                 break;
             case "Home":
                 btnHome.setStyle("-fx-background-color: "+color);
@@ -203,6 +218,7 @@ public class mainController implements Initializable {
                 btnLK.setStyle("-fx-background-color: transparent");
                 btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
                 btnStaff.setStyle("-fx-background-color: transparent");
+                btnDoanhThu.setStyle("-fx-background-color: transparent");
                 break;
             case "QuanTriHeThong":
                 btnQuanTriSever.setStyle("-fx-background-color: "+color);
@@ -210,6 +226,7 @@ public class mainController implements Initializable {
                 btnHome.setStyle("-fx-background-color: transparent");
                 btnLK.setStyle("-fx-background-color: transparent");
                 btnStaff.setStyle("-fx-background-color: transparent");
+                btnDoanhThu.setStyle("-fx-background-color: transparent");
                 break;
             case "LK":
                 btnLK.setStyle("-fx-background-color: "+color);
@@ -217,6 +234,7 @@ public class mainController implements Initializable {
                 btnQuanTriSever.setStyle("-fx-background-color: transparent");
                 btnHome.setStyle("-fx-background-color: transparent");
                 btnStaff.setStyle("-fx-background-color: transparent");
+                btnDoanhThu.setStyle("-fx-background-color: transparent");
                 break;
             case "Staff":
                 btnStaff.setStyle("-fx-background-color: "+color);
@@ -224,6 +242,15 @@ public class mainController implements Initializable {
                 btnQuanTriSever.setStyle("-fx-background-color: transparent");
                 btnHome.setStyle("-fx-background-color: transparent");
                 btnLK.setStyle("-fx-background-color: transparent");
+                btnDoanhThu.setStyle("-fx-background-color: transparent");
+                break;
+            case "Profit":
+                btnDoanhThu.setStyle("-fx-background-color: "+color);
+                btnThongTinKhachHang.setStyle("-fx-background-color: transparent");
+                btnQuanTriSever.setStyle("-fx-background-color: transparent");
+                btnHome.setStyle("-fx-background-color: transparent");
+                btnLK.setStyle("-fx-background-color: transparent");
+                btnStaff.setStyle("-fx-background-color: transparent");
                 break;
         }
     }

@@ -12,6 +12,16 @@ public class InfDoanhThuSuaEntity {
     private String money;
     private Date day;
 
+    public InfDoanhThuSuaEntity() {
+    }
+
+    public InfDoanhThuSuaEntity(String mdt, String entity, String money, Date day) {
+        this.mdt = mdt;
+        this.entity = entity;
+        this.money = money;
+        this.day = day;
+    }
+
     @Id
     @Column(name = "MDT")
     public String getMdt() {

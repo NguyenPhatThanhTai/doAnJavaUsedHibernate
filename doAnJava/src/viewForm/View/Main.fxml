@@ -72,11 +72,11 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
+            <JFXButton fx:id="btnDoanhThu" contentDisplay="TOP" onAction="#startThreadshowProfitPage" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Picture/Pic/warehouse_40px.png" />
+                        <Image url="@../Picture/Pic/general_ledger_40px.png" />
                      </image>
                   </ImageView>
                </graphic>
