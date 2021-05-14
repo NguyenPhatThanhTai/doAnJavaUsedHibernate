@@ -74,13 +74,13 @@ public class infLKDao implements daoInterface<InfLkEntity> {
     @Override
     public InfLkEntity getDataById(String lkName) {
         Session session = null;
-        InfLkEntity infLkEntity = null;
+        InfLkEntity infLkEntity;
         try {
             session = hibernateUntil.getSession();
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery query = builder.createQuery(InfLkEntity.class);
             Root<InfLkEntity> root = query.from(InfLkEntity.class);
-            Predicate p = builder.equal(root.get("lkName"),lkName);
+            Predicate p = builder.equal(root.get("lkName"), lkName);
             infLkEntity= (InfLkEntity) session.createQuery(query.where(p)).getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();

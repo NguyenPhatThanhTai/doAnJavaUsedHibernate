@@ -15,9 +15,12 @@
     <mapping class="Model.InfLichSuEntity"/>
     <mapping class="Model.InfRepairEntity"/>
     <mapping class="Model.InfStaffEntity"/>
+
+      <mapping class="Model.InfDoanhThuSuaEntity"/>
+      <mapping class="Model.InfDoanhThuThangEntity"/>
     <mapping class="Model.SalaryStaffEntity"/>
 
-      <!-- DB schema will be updated if needed -->
+    <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

@@ -179,14 +179,14 @@ public class staffInfController implements Initializable {
         }
 
         accountStaffDao accountStaffDao = new accountStaffDao();
+        salaryStaffDao salaryStaffDao = new salaryStaffDao();
         infStaffDao infStaffDao = new infStaffDao();
-
-        //String staffId, String staffName, String staffSex, Date staffBirth, String staffAddress, String staffPhone, String staffDeparment, Date staffTimeAdd
 
         InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVien.getText(), txtTenNhanVien.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtDiaChi.getText(), txtSoDienThoai.getText(), quyen, Date.valueOf(txtNgayThem.getText()));
         AccountStaffEntity accountStaffEntity = new AccountStaffEntity(txtMaNhanVien.getText(), "123456", quyen, infStaffEntity);
+        SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity(txtMaNhanVien.getText(), "3000000", "0", "0", "3000000", infStaffEntity);
 
-        if (infStaffDao.addData(infStaffEntity) && accountStaffDao.addData(accountStaffEntity)){
+        if (infStaffDao.addData(infStaffEntity) && accountStaffDao.addData(accountStaffEntity) && salaryStaffDao.addData(salaryStaffEntity)){
             refreshView();
             openTextField(false);
             btnXacNhanThem.setVisible(false);
@@ -238,11 +238,15 @@ public class staffInfController implements Initializable {
         AccountStaffEntity accountStaffEntity = new AccountStaffEntity();
         accountStaffEntity.setStaffAccount(txtMaNhanVien.getText());
 
+        salaryStaffDao salaryStaffDao = new salaryStaffDao();
+        SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity();
+        salaryStaffEntity.setSalaStaffId(txtMaNhanVien.getText());
+
         infStaffDao infStaffDao = new infStaffDao();
         InfStaffEntity infStaffEntity = new InfStaffEntity();
         infStaffEntity.setStaffId(txtMaNhanVien.getText());
 
-        if(accountStaffDao.dellData(accountStaffEntity) && infStaffDao.dellData(infStaffEntity)){
+        if(salaryStaffDao.dellData(salaryStaffEntity) && accountStaffDao.dellData(accountStaffEntity) && infStaffDao.dellData(infStaffEntity)){
             refreshView();
             openTextField(false);
             btnXacNhanXoa.setVisible(false);

@@ -6,21 +6,33 @@ import java.util.Objects;
 @Entity
 @Table(name = "Salary_Staff", schema = "dbo", catalog = "ProjectOne")
 public class SalaryStaffEntity {
-    private String staffId;
+    private String salaStaffId;
     private String staffDefaultSalary;
-    private String staffSalaryPerHour;
-    private String staffOt;
     private String staffReward;
-    private String id;
+    private String numberRepair;
+    private String currentMoney;
+    private InfStaffEntity infStaffByStaffId;
 
-    @Basic
-    @Column(name = "Staff_Id")
-    public String getStaffId() {
-        return staffId;
+    public SalaryStaffEntity() {
     }
 
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
+    public SalaryStaffEntity(String salaStaffId, String staffDefaultSalary, String staffReward, String numberRepair, String currentMoney, InfStaffEntity infStaffByStaffId) {
+        this.salaStaffId = salaStaffId;
+        this.staffDefaultSalary = staffDefaultSalary;
+        this.staffReward = staffReward;
+        this.numberRepair = numberRepair;
+        this.currentMoney = currentMoney;
+        this.infStaffByStaffId = infStaffByStaffId;
+    }
+
+    @Id
+    @Column(name = "Sala_Staff_Id")
+    public String getSalaStaffId() {
+        return salaStaffId;
+    }
+
+    public void setSalaStaffId(String salaStaffId) {
+        this.salaStaffId = salaStaffId;
     }
 
     @Basic
@@ -34,26 +46,6 @@ public class SalaryStaffEntity {
     }
 
     @Basic
-    @Column(name = "Staff_Salary_Per_Hour")
-    public String getStaffSalaryPerHour() {
-        return staffSalaryPerHour;
-    }
-
-    public void setStaffSalaryPerHour(String staffSalaryPerHour) {
-        this.staffSalaryPerHour = staffSalaryPerHour;
-    }
-
-    @Basic
-    @Column(name = "Staff_OT")
-    public String getStaffOt() {
-        return staffOt;
-    }
-
-    public void setStaffOt(String staffOt) {
-        this.staffOt = staffOt;
-    }
-
-    @Basic
     @Column(name = "Staff_Reward")
     public String getStaffReward() {
         return staffReward;
@@ -63,29 +55,50 @@ public class SalaryStaffEntity {
         this.staffReward = staffReward;
     }
 
+    @Basic
+    @Column(name = "Number_Repair")
+    public String getNumberRepair() {
+        return numberRepair;
+    }
+
+    public void setNumberRepair(String numberRepair) {
+        this.numberRepair = numberRepair;
+    }
+
+    @Basic
+    @Column(name = "Current_Money")
+    public String getCurrentMoney() {
+        return currentMoney;
+    }
+
+    public void setCurrentMoney(String currentMoney) {
+        this.currentMoney = currentMoney;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SalaryStaffEntity that = (SalaryStaffEntity) o;
-        return Objects.equals(staffId, that.staffId) &&
+        return Objects.equals(salaStaffId, that.salaStaffId) &&
                 Objects.equals(staffDefaultSalary, that.staffDefaultSalary) &&
-                Objects.equals(staffSalaryPerHour, that.staffSalaryPerHour) &&
-                Objects.equals(staffOt, that.staffOt) &&
-                Objects.equals(staffReward, that.staffReward);
+                Objects.equals(staffReward, that.staffReward) &&
+                Objects.equals(numberRepair, that.numberRepair) &&
+                Objects.equals(currentMoney, that.currentMoney);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(staffId, staffDefaultSalary, staffSalaryPerHour, staffOt, staffReward);
+        return Objects.hash(salaStaffId, staffDefaultSalary, staffReward, numberRepair, currentMoney);
     }
 
-    public void setId(String id) {
-        this.id = id;
+    @ManyToOne
+    @JoinColumn(name = "Staff_Id", referencedColumnName = "Staff_Id", nullable = false)
+    public InfStaffEntity getInfStaffByStaffId() {
+        return infStaffByStaffId;
     }
 
-    @Id
-    public String getId() {
-        return id;
+    public void setInfStaffByStaffId(InfStaffEntity infStaffByStaffId) {
+        this.infStaffByStaffId = infStaffByStaffId;
     }
 }

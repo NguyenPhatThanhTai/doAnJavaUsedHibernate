@@ -209,9 +209,46 @@ public class customerInfController implements Initializable {
     private Text checkPhoneNum;
     @FXML
     private Text checkGmail;
+    @FXML
+    private TableView<InfLichSuEntity> tableviewLichSu;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsCustomerId;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsCustomerName;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsSexCustomer;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsBirthCustomer;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsEmailCustomer;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsSDT;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsTimeAdd;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsRepairId;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsLaptopName;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsLaptopStatus;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsStaffHanding;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsNeedFix;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsRepairAppointment;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsDateAppointment;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsMoney;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsRepairStatus;
+    @FXML
+    private TableColumn<InfLichSuEntity, String> lsTimeEnd;
 
     ObservableList<DetailInfRepairEntity> rlist;
     ObservableList<InfLkEntity> lkList;
+    ObservableList<InfLichSuEntity> lsList;
     detailInfRepairDao dao = new detailInfRepairDao();
     infLKDao lkDao = new infLKDao();
     List<String> listLK = new ArrayList<>();
@@ -922,6 +959,60 @@ public class customerInfController implements Initializable {
         }
     }
 
+    public void hoanthanhDon(){
+        detailInfRepairDao deDao = new detailInfRepairDao();
+        String idSplit = txtMaSuaChuaRepair.getText();
+        String[] parts = idSplit.split("RP");
+        DetailInfRepairEntity detailInfRepairEntity = deDao.getDataById("DT"+parts[1]);
+
+        //lay danh sach linh kien da chon
+        String lk = detailInfRepairEntity.getRepairReason();
+        String str = lk.substring(1, lk.length() - 1);
+        String[] ary = str.split(", ");
+        for (int i = 0; i < ary.length; i ++){
+            System.out.println(ary[i]);
+            infLKDao infLKDao = new infLKDao();
+            InfLkEntity infLkEntity = infLKDao.getDataById(ary[i]);
+
+            System.out.println(infLkEntity.getLkName());
+
+            int entity = Integer.parseInt(infLkEntity.getLkNumber()) - 1;
+
+            InfLkEntity infLkEntity1 = new InfLkEntity(infLkEntity.getLkId(), infLkEntity.getLkName(), String.valueOf(entity),
+                    infLkEntity.getLkProducer(), infLkEntity.getLkPrice(), infLkEntity.getLkTimeAdd());
+
+            if (infLKDao.updateData(infLkEntity1)){
+                continue;
+            }
+            else {
+                break;
+            }
+        }
+    }
+
+    //Load lich su
+    public void loadLichSu(){
+        lsList = dao.getAllLichSu();
+        tableviewLichSu.setItems(lsList);
+        lsCustomerId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getCustomerId()));
+        lsCustomerName.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getCustomerName()));
+        lsBirthCustomer.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getCustomerBirth())));
+        lsEmailCustomer.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getCustomerEmail()));
+        lsSexCustomer.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().customerSex()));
+        lsSDT.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getCustomerPhone()));
+        lsTimeAdd.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getCustomerTimeAdd())));
+        lsRepairId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairId()));
+        lsLaptopName.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLaptopName()));
+        lsLaptopStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLaptopStatus()));
+        lsStaffHanding.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getStaffId()));
+        lsNeedFix.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairReason()));
+        lsRepairAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairNote()));
+        lsDateAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getRepairAppointment())));
+        lsMoney.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairMoney()));
+        lsRepairStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairStatus()));
+        lsTimeEnd.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getRepairTimeEnd())));
+    }
+
     //Phần hiệu ứng
 
     public void ThemKhachHangButton(){
@@ -1122,6 +1213,7 @@ public class customerInfController implements Initializable {
         loadData();
         loadDataRepair();
         loadStatus();
+        loadLichSu();
         loadInfLk("Acer");
         cbLocLK.getItems().add("Acer");
         cbLocLK.getItems().add("Msi");

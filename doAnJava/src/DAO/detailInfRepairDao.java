@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.DetailInfRepairEntity;
+import Model.InfLichSuEntity;
 import Model.InfRepairEntity;
 import Model.InfStaffEntity;
 import Until.hibernateUntil;
@@ -103,6 +104,18 @@ public class detailInfRepairDao implements daoInterface<DetailInfRepairEntity> {
         query.from(DetailInfRepairEntity.class);
 
         List<DetailInfRepairEntity> clist = s.createQuery(query).getResultList();
+        s.close();
+
+        return FXCollections.observableArrayList(clist);
+    }
+
+    public ObservableList<InfLichSuEntity> getAllLichSu(){
+        Session s = hibernateUntil.getSession();
+        CriteriaBuilder builder = s.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(InfLichSuEntity.class);
+        query.from(InfLichSuEntity.class);
+
+        List<InfLichSuEntity> clist = s.createQuery(query).getResultList();
         s.close();
 
         return FXCollections.observableArrayList(clist);

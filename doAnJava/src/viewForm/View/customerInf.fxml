@@ -367,7 +367,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnHoanThanhDon" disable="true" layoutX="394.0" layoutY="66.0" onAction="#HoanThanhDonButtom" onMouseClicked="#SuaRepairButton" prefHeight="54.0" prefWidth="322.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Hoàn thành đơn">
+                        <JFXButton fx:id="btnHoanThanhDon" disable="true" layoutX="394.0" layoutY="66.0" onAction="#HoanThanhDonButtom" prefHeight="54.0" prefWidth="322.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Hoàn thành đơn">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -376,7 +376,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnHuyHoanThanhDon" layoutX="563.0" layoutY="66.0" onAction="#HuyHoanThanhDonButton" onMouseClicked="#HuySuaRepairButton" prefHeight="53.0" prefWidth="159.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuyHoanThanhDon" layoutX="563.0" layoutY="66.0" onAction="#HuyHoanThanhDonButton" prefHeight="53.0" prefWidth="159.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -385,7 +385,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanHoanThanhDon" layoutX="394.0" layoutY="68.0" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanHoanThanhDon" layoutX="394.0" layoutY="68.0" onAction="#hoanthanhDon" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -419,7 +419,33 @@
             </Tab>
             <Tab text="Lịch sử sữa chữa">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableviewLichSu" layoutX="19.0" layoutY="19.0" prefHeight="655.0" prefWidth="1490.0">
+                          <columns>
+                            <TableColumn fx:id="lsCustomerId" prefWidth="75.0" text="Mã khách hàng" />
+                            <TableColumn fx:id="lsCustomerName" prefWidth="75.0" text="Tên khách hàng" />
+                              <TableColumn fx:id="lsSexCustomer" prefWidth="75.0" text="Giới tính" />
+                              <TableColumn fx:id="lsBirthCustomer" prefWidth="75.0" text="Ngày sinh" />
+                              <TableColumn fx:id="lsEmailCustomer" prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="lsSDT" prefWidth="75.0" text="Số điện thoại" />
+                              <TableColumn fx:id="lsTimeAdd" prefWidth="75.0" text="Ngày thêm" />
+                              <TableColumn fx:id="lsRepairId" prefWidth="75.0" text="Mã sữa chữa" />
+                              <TableColumn fx:id="lsLaptopName" prefWidth="75.0" text="Tên Laptop" />
+                              <TableColumn fx:id="lsLaptopStatus" prefWidth="75.0" text="Tình trạng Laptop" />
+                              <TableColumn fx:id="lsStaffHanding" prefWidth="75.0" text="Nhân viên tiếp nhận" />
+                              <TableColumn fx:id="lsNeedFix" prefWidth="75.0" text="Cần sửa" />
+                              <TableColumn fx:id="lsRepairAppointment" prefWidth="75.0" text="Hẹn/Lấy ngay" />
+                              <TableColumn fx:id="lsDateAppointment" prefWidth="75.0" text="Ngày hẹn" />
+                              <TableColumn fx:id="lsMoney" prefWidth="75.0" text="Số tiền sửa" />
+                              <TableColumn fx:id="lsRepairStatus" prefWidth="75.0" text="Tình trạng sửa" />
+                              <TableColumn fx:id="lsTimeEnd" prefWidth="75.0" text="Thời gian kết thúc" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children></AnchorPane>
               </content>
             </Tab>
          </tabs>

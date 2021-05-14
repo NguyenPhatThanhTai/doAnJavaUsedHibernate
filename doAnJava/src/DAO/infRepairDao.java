@@ -2,8 +2,11 @@ package DAO;
 
 import Model.DetailInfRepairEntity;
 import Model.InfCustomersEntity;
+import Model.InfLichSuEntity;
 import Model.InfRepairEntity;
 import Until.hibernateUntil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
