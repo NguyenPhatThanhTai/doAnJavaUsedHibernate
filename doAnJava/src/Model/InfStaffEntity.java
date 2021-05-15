@@ -36,10 +36,10 @@ public class InfStaffEntity {
 
     public String staffSex(){
         if (staffSex.equals("1")){
-            return "Nữ";
+            return "Nam";
         }
         else {
-            return "Nam";
+            return "Nữ";
         }
     }
 

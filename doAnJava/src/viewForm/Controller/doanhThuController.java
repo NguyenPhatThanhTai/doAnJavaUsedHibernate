@@ -3,8 +3,11 @@ package viewForm.Controller;
 import DAO.doanhthuDao;
 import Model.InfDoanhThuSuaEntity;
 import Model.InfDoanhThuThangEntity;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
@@ -36,94 +39,7 @@ public class doanhThuController implements Initializable {
     private Text txtTotalMonth;
 
     @FXML
-    private Label lbNgayThu1;
-
-    @FXML
-    private Label lbNgayThu2;
-
-    @FXML
-    private Label lbNgayThu3;
-
-    @FXML
-    private Label lbNgayThu4;
-
-    @FXML
-    private Label lbNgayThu5;
-
-    @FXML
-    private Label lbNgayThu6;
-
-    @FXML
-    private Label lbNgayThu7;
-
-    @FXML
-    private Label lbNgayThu8;
-
-    @FXML
-    private Label lbNgayThu9;
-
-    @FXML
-    private Label lbNgayThu10;
-
-    @FXML
-    private Label lbNgayThu11;
-
-    @FXML
-    private Label lbNgayThu12;
-
-    @FXML
-    private Label lbNgayThu13;
-
-    @FXML
-    private Label lbNgayThu14;
-
-    @FXML
-    private Label lbNgayThu15;
-
-    @FXML
-    private Label lbNgayThu16;
-
-    @FXML
-    private Label lbNgayThu17;
-
-    @FXML
-    private Label lbNgayThu18;
-
-    @FXML
-    private Label lbNgayThu19;
-
-    @FXML
-    private Label lbNgayThu20;
-
-    @FXML
-    private Label lbNgayThu21;
-
-    @FXML
-    private Label lbNgayThu22;
-
-    @FXML
-    private Label lbNgayThu23;
-
-    @FXML
-    private Label lbNgayThu24;
-
-    @FXML
-    private Label lbNgayThu25;
-
-    @FXML
-    private Label lbNgayThu26;
-
-    @FXML
-    private Label lbNgayThu27;
-
-    @FXML
-    private Label lbNgayThu28;
-
-    @FXML
-    private Label lbNgayThu29;
-
-    @FXML
-    private Label lbNgayThu30;
+    private BarChart<String, Number> charts;
 
     Thread thread;
 
@@ -134,7 +50,6 @@ public class doanhThuController implements Initializable {
     }
 
     public void loadData(){
-
         DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy");
@@ -166,9 +81,30 @@ public class doanhThuController implements Initializable {
         txtProfit.setText(fomat3 + " VNĐ");
     }
 
+    public void loadChar(){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+        DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy");
+        DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+
+        doanhthuDao dao = new doanhthuDao();
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Doanh thu theo ngày");
+        for (int i = 1; i <= Integer.parseInt(day.format(now)); i ++){
+            InfDoanhThuSuaEntity infDoanhThuSuaEntity1 =
+                    dao.getByDate(Date.valueOf(year.format(now) + "-" + month.format(now) + "-" + i));
+            series.getData().add(new XYChart.Data<>("Ngày " + i, Integer.parseInt(infDoanhThuSuaEntity1.getEntity())));
+//        series.getData().add(new XYChart.Data<>("Ngày 1", 63));
+//        series.getData().add(new XYChart.Data<>("Ngày 2", 102));
+//        series.getData().add(new XYChart.Data<>("Ngày 3", 45));
+    }
+        charts.getData().add(series);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         startThreadLoadData();
+        loadChar();
     }
 }

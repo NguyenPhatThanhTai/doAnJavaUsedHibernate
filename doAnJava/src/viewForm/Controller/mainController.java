@@ -1,6 +1,8 @@
 package viewForm.Controller;
 
 
+import DAO.doanhthuDao;
+import Model.InfDoanhThuSuaEntity;
 import Model.InfStaffEntity;
 import Service.serviceImplement;
 import com.jfoenix.controls.JFXButton;
@@ -29,10 +31,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -92,6 +96,23 @@ public class mainController implements Initializable {
             name = "Không định dạng được";
         }
         lbName.setText("Họ và tên: " + name + " - Chức vụ: " + chucVu);
+    }
+
+    public void checkDoanhThu(){
+        DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+
+        doanhthuDao doanhthuDao = new doanhthuDao();
+        InfDoanhThuSuaEntity infDoanhThuSuaEntity = doanhthuDao.getByDate(java.sql.Date.valueOf(dayAdd.format(now)));
+
+        if (infDoanhThuSuaEntity == null){
+            DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+            DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+            String DTN = "DTN" + day.format(now) + month.format(now);
+            System.out.println(DTN);
+            InfDoanhThuSuaEntity infDoanhThuSuaEntity1 = new InfDoanhThuSuaEntity(DTN, "0", "0", Date.valueOf(dayAdd.format(now)));
+            doanhthuDao.addNewDoanhThu(infDoanhThuSuaEntity1);
+        }
     }
 
     public void startTheardshowCustomerPage(){
@@ -174,6 +195,7 @@ public class mainController implements Initializable {
     }
 
     public void startThreadshowProfitPage(){
+        setPage("Loading.fxml");
         thread = new Thread(this::showProfitPage);
         thread.start();
         thread.interrupt();
@@ -279,5 +301,6 @@ public class mainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         showWelcomePage();
+        checkDoanhThu();
     }
 }

@@ -58,7 +58,7 @@
                         </ImageView>
                         <DatePicker fx:id="txtNgaySinh" disable="true" layoutX="52.0" layoutY="233.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày sinh" />
                         <JFXComboBox fx:id="cbChucVu" disable="true" layoutX="53.0" layoutY="365.0" prefHeight="30.0" prefWidth="298.0" promptText="Chọn chức vụ" />
-                        <JFXButton fx:id="btnThem" alignment="BASELINE_CENTER" layoutX="45.0" layoutY="431.0" onAction="#ThemNhanVienButton" prefHeight="47.0" prefWidth="318.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Thêm khách hàng">
+                        <JFXButton fx:id="btnThem" alignment="BASELINE_CENTER" layoutX="45.0" layoutY="431.0" onAction="#ThemNhanVienButton" prefHeight="47.0" prefWidth="318.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Thêm nhân viên">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -130,7 +130,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXoa" disable="true" layoutX="40.0" layoutY="555.0" onAction="#XoaNhanVienButton" prefHeight="45.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa khách hàng">
+                        <JFXButton fx:id="btnXoa" disable="true" layoutX="40.0" layoutY="555.0" onAction="#XoaNhanVienButton" prefHeight="45.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa nhân viên">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

@@ -215,9 +215,7 @@ public class staffInfController implements Initializable {
             quyen = "3";
         }
 
-        if (txtGioiTinh.isSelected()){
-            sex = "1";
-        }
+
         InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVien.getText(), txtTenNhanVien.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtDiaChi.getText(), txtSoDienThoai.getText(), quyen, Date.valueOf(txtNgayThem.getText()));
         infStaffDao infStaffDao = new infStaffDao();
         if(infStaffDao.updateData(infStaffEntity)){
