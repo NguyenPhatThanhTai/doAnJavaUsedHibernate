@@ -4,7 +4,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="729.0" prefWidth="1513.0" style="-fx-background-color: white; -fx-background-radius: 100;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.welcomeController">
    <children>
@@ -13,40 +15,40 @@
             <Image url="@../Picture/Pic/source.gif" />
          </image>
       </ImageView>
-      <Label fx:id="lbTime" layoutX="580.0" layoutY="45.0" prefHeight="176.0" prefWidth="594.0" text="21:15">
+      <Pane layoutX="115.0" layoutY="248.0" prefHeight="438.0" prefWidth="862.0" style="-fx-background-color: #BFF3F7; -fx-background-radius: 30;">
+         <children>
+            <Label fx:id="lbTb1" layoutX="36.0" layoutY="120.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbTb2" layoutX="36.0" layoutY="155.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbTb3" layoutX="36.0" layoutY="189.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbTb4" layoutX="36.0" layoutY="223.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Text fx:id="labelThongBao" fill="#c25d5d" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thông báo hàng ngày" wrappingWidth="834.0004119873047">
+               <font>
+                  <Font name="Berlin Sans FB" size="31.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text fx:id="lbTime" fill="#436c45" layoutX="566.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10:52:32" textAlignment="CENTER">
          <font>
-            <Font size="120.0" />
+            <Font size="96.0" />
          </font>
-      </Label>
-      <Label fx:id="lbDate" layoutX="642.0" layoutY="194.0" prefHeight="27.0" prefWidth="158.0" text="Ngày 29 - 3 - 2021" textAlignment="CENTER">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="labelThongBao" layoutX="301.0" layoutY="251.0" prefHeight="61.0" prefWidth="325.0" text="Thông báo" textFill="#da7676">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </Label>
-      <Label fx:id="lbTb1" layoutX="290.0" layoutY="336.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 1">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="lbTb2" layoutX="290.0" layoutY="371.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 2">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="lbTb3" layoutX="290.0" layoutY="405.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 3">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="lbTb4" layoutX="290.0" layoutY="439.0" prefHeight="18.0" prefWidth="560.0" text="- Đây là thông báo mẫu 4">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      </Text>
+      <Text fx:id="lbDate" layoutX="726.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="18/05/2021" />
    </children>
 </AnchorPane>

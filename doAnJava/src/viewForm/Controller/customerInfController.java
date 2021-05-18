@@ -511,9 +511,10 @@ public class customerInfController implements Initializable {
 
         infCustomerDao delCustomer = new infCustomerDao();
         InfCustomersEntity customer = new InfCustomersEntity();
+        infLKDao infLKDao = new infLKDao();
         customer.setCustomerId(txtMaKhachHang.getText());
 
-        if(delDetail.dellData(detail) && delRepair.dellData(repair) && delCustomer.dellData(customer)){
+        if(infLKDao.dellOldData("DT" + parts[1]) && delDetail.dellData(detail) && delRepair.dellData(repair) && delCustomer.dellData(customer)){
             refreshView();
             thread = new Thread(this::deleteInSever);
             thread.start();
@@ -705,6 +706,43 @@ public class customerInfController implements Initializable {
             suaRepair = "Hẹn ngày lấy";
         }
         DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity("DT"+parts[1], txtLkDaChon.getText(), suaRepair, "2", Date.valueOf(txtNgayHen.getValue()), txtTien.getText(), infRepairEntity);
+
+        //
+    try{
+        //Xoá hết tất cả của thằng đó trước khi thêm
+        infLKDao infLKDao = new infLKDao();
+        infLKDao.dellOldData(SeverDTId);
+
+        //Thêm vào lại
+        String lk = txtLkDaChon.getText();
+        String str = lk.substring(1, lk.length() - 1);
+        String[] ary = str.split(", ");
+        for (int i = 0; i < ary.length; i ++) {
+            int entity = 0;
+            InfLkEntity infLkEntity = infLKDao.getDataById(ary[i]);
+
+            //kiểm tra số lượng
+            for (int j = 0; j < ary.length; j ++) {
+                if (infLkEntity.getLkName().equals(ary[j])){
+                    entity+= 1;
+                }
+            }
+
+            DetailLkEntity detailLkEntity = new DetailLkEntity(SeverDTId, infLkEntity.getLkId(), String.valueOf(entity));
+
+            //add vào
+            infLKDao.addDetailLK(detailLkEntity);
+
+            ObservableList<DetailLkEntity> all = infLKDao.getAllByDetailId(SeverDTId);
+            for (DetailLkEntity en:all){
+                System.out.println(en.getLkId() + "-" + en.getEntity());
+            }
+        }
+    }catch (Exception ex){
+        ex.printStackTrace();
+    }
+        //
+
         infRepairDao infRepairDao = new infRepairDao();
         detailInfRepairDao detailInfRepairDao = new detailInfRepairDao();
         if(infRepairDao.updateData(infRepairEntity) && detailInfRepairDao.updateData(detailInfRepairEntity)){
@@ -970,24 +1008,23 @@ public class customerInfController implements Initializable {
         String lk = detailInfRepairEntity.getRepairReason();
         String str = lk.substring(1, lk.length() - 1);
         String[] ary = str.split(", ");
-        for (int i = 0; i < ary.length; i ++){
-            System.out.println(ary[i]);
-            infLKDao infLKDao = new infLKDao();
-            InfLkEntity infLkEntity = infLKDao.getDataById(ary[i]);
+        infLKDao lkDao = new infLKDao();
+        ObservableList<DetailLkEntity> all = lkDao.getAllByDetailId(SeverDTId);
+        for (DetailLkEntity en:all){
+            System.out.println(en.getLkId() + "-" + en.getEntity());
+
+            InfLkEntity infLkEntity = lkDao.getDataByName(en.getLkId());
 
             System.out.println(infLkEntity.getLkName());
 
-            int entity = Integer.parseInt(infLkEntity.getLkNumber()) - 1;
+            int entity = Integer.parseInt(infLkEntity.getLkNumber()) - Integer.parseInt(en.getEntity());
+
+            System.out.println(entity);
 
             InfLkEntity infLkEntity1 = new InfLkEntity(infLkEntity.getLkId(), infLkEntity.getLkName(), String.valueOf(entity),
                     infLkEntity.getLkProducer(), infLkEntity.getLkPrice(), infLkEntity.getLkTimeAdd());
 
-            if (infLKDao.updateData(infLkEntity1)){
-                continue;
-            }
-            else {
-                break;
-            }
+            lkDao.updateData(infLkEntity1);
         }
 
         //Dua tien vao doanh thu

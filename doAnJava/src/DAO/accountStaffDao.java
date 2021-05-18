@@ -72,6 +72,7 @@ public class accountStaffDao implements daoInterface<AccountStaffEntity> {
             accountStaffEntity = (AccountStaffEntity)session.load(AccountStaffEntity.class, Id);
             Hibernate.initialize(accountStaffEntity);
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
         return accountStaffEntity;

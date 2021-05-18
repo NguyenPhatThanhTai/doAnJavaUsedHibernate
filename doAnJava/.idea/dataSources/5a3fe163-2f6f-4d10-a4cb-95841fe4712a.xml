@@ -27,7 +27,7 @@
       <ObjectId>12</ObjectId>
       <Current>1</Current>
       <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
-      <Fingerprint>12.44312/2995F4D4-1B05-41FB-B57F-5D5036527719@DESKTOP-G2HJKI8\SQLEXPRESS</Fingerprint>
+      <Fingerprint>12.44330/2995F4D4-1B05-41FB-B57F-5D5036527719@DESKTOP-G2HJKI8\SQLEXPRESS</Fingerprint>
     </database>
     <database id="7" parent="1" name="QuanLySuaChuaLaptop">
       <ObjectId>11</ObjectId>
@@ -110,7 +110,7 @@ varchar</ExtendedProperties>
     </schema>
     <schema id="27" parent="6" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2021-05-15.17:30:48.027</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-05-18.21:26:18.490</IntrospectionTimestamp>
       <Current>1</Current>
       <DescriptionsCheckSum>6328208632</DescriptionsCheckSum>
     </schema>
@@ -128,49 +128,54 @@ varchar</ExtendedProperties>
     <table id="31" parent="27" name="Detail_Inf_Repair">
       <ObjectId>1417772108</ObjectId>
       <CreatedTimestamp>2021-03-27.20:06:51.193</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-23.16:21:01.403</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-05-18.21:18:16.293</ModifiedTimestamp>
     </table>
-    <table id="32" parent="27" name="Inf_Customers">
+    <table id="32" parent="27" name="Detail_Lk">
+      <ObjectId>1810821513</ObjectId>
+      <CreatedTimestamp>2021-05-18.21:18:16.223</CreatedTimestamp>
+      <ModifiedTimestamp>2021-05-18.21:21:54.097</ModifiedTimestamp>
+    </table>
+    <table id="33" parent="27" name="Inf_Customers">
       <ObjectId>1440724185</ObjectId>
       <CreatedTimestamp>2020-11-16.20:33:10.137</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-23.16:21:01.197</ModifiedTimestamp>
     </table>
-    <table id="33" parent="27" name="Inf_DoanhThuSua">
+    <table id="34" parent="27" name="Inf_DoanhThuSua">
       <ObjectId>2038298321</ObjectId>
       <CreatedTimestamp>2021-05-14.16:46:56.807</CreatedTimestamp>
       <ModifiedTimestamp>2021-05-14.17:15:27.323</ModifiedTimestamp>
     </table>
-    <table id="34" parent="27" name="Inf_DoanhThuThang">
+    <table id="35" parent="27" name="Inf_DoanhThuThang">
       <ObjectId>850818093</ObjectId>
       <CreatedTimestamp>2021-05-15.02:34:37.693</CreatedTimestamp>
       <ModifiedTimestamp>2021-05-15.02:34:37.780</ModifiedTimestamp>
     </table>
-    <table id="35" parent="27" name="Inf_LK">
+    <table id="36" parent="27" name="Inf_LK">
       <ObjectId>2080726465</ObjectId>
       <CreatedTimestamp>2020-11-16.20:35:56.830</CreatedTimestamp>
-      <ModifiedTimestamp>2021-04-23.00:37:54.793</ModifiedTimestamp>
+      <ModifiedTimestamp>2021-05-18.21:18:16.293</ModifiedTimestamp>
     </table>
-    <table id="36" parent="27" name="Inf_LichSu">
+    <table id="37" parent="27" name="Inf_LichSu">
       <ObjectId>1245247491</ObjectId>
       <CreatedTimestamp>2020-11-16.21:01:13.250</CreatedTimestamp>
       <ModifiedTimestamp>2020-11-16.21:01:13.267</ModifiedTimestamp>
     </table>
-    <table id="37" parent="27" name="Inf_Repair">
+    <table id="38" parent="27" name="Inf_Repair">
       <ObjectId>438292621</ObjectId>
       <CreatedTimestamp>2021-04-23.16:21:01.080</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-23.16:23:25.910</ModifiedTimestamp>
     </table>
-    <table id="38" parent="27" name="Inf_Staff">
+    <table id="39" parent="27" name="Inf_Staff">
       <ObjectId>605245211</ObjectId>
       <CreatedTimestamp>2020-11-16.20:37:50.487</CreatedTimestamp>
       <ModifiedTimestamp>2021-05-14.17:12:10.587</ModifiedTimestamp>
     </table>
-    <table id="39" parent="27" name="Salary_Staff">
+    <table id="40" parent="27" name="Salary_Staff">
       <ObjectId>530816953</ObjectId>
       <CreatedTimestamp>2021-05-14.17:12:10.517</CreatedTimestamp>
       <ModifiedTimestamp>2021-05-14.17:12:10.597</ModifiedTimestamp>
     </table>
-    <table id="40" parent="27" name="sysdiagrams">
+    <table id="41" parent="27" name="sysdiagrams">
       <ObjectId>341576255</ObjectId>
       <ExtendedProperties>microsoft_database_tools_support
 1
@@ -178,7 +183,7 @@ int</ExtendedProperties>
       <CreatedTimestamp>2020-10-07.19:48:29.410</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.410</ModifiedTimestamp>
     </table>
-    <routine id="41" parent="27" name="fn_diagramobjects">
+    <routine id="42" parent="27" name="fn_diagramobjects">
       <ObjectId>485576768</ObjectId>
       <SourceTextLength>1647</SourceTextLength>
       <ExtendedProperties>microsoft_database_tools_support
@@ -188,7 +193,7 @@ int</ExtendedProperties>
       <ModifiedTimestamp>2020-10-07.19:48:29.430</ModifiedTimestamp>
       <RoutineType>scalar-fun</RoutineType>
     </routine>
-    <routine id="42" parent="27" name="sp_alterdiagram">
+    <routine id="43" parent="27" name="sp_alterdiagram">
       <ObjectId>453576654</ObjectId>
       <SourceTextLength>1501</SourceTextLength>
       <ExtendedProperties>microsoft_database_tools_support
@@ -198,7 +203,7 @@ int</ExtendedProperties>
       <ModifiedTimestamp>2020-10-07.19:48:29.430</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
     </routine>
-    <routine id="43" parent="27" name="sp_creatediagram">
+    <routine id="44" parent="27" name="sp_creatediagram">
       <ObjectId>421576540</ObjectId>
       <SourceTextLength>1223</SourceTextLength>
       <ExtendedProperties>microsoft_database_tools_support
@@ -208,7 +213,7 @@ int</ExtendedProperties>
       <ModifiedTimestamp>2020-10-07.19:48:29.423</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
     </routine>
-    <routine id="44" parent="27" name="sp_dropdiagram">
+    <routine id="45" parent="27" name="sp_dropdiagram">
       <ObjectId>469576711</ObjectId>
       <SourceTextLength>896</SourceTextLength>
       <ExtendedProperties>microsoft_database_tools_support
@@ -218,7 +223,7 @@ int</ExtendedProperties>
       <ModifiedTimestamp>2020-10-07.19:48:29.430</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
     </routine>
-    <routine id="45" parent="27" name="sp_helpdiagramdefinition">
+    <routine id="46" parent="27" name="sp_helpdiagramdefinition">
       <ObjectId>405576483</ObjectId>
       <SourceTextLength>921</SourceTextLength>
       <ExtendedProperties>microsoft_database_tools_support
@@ -228,7 +233,7 @@ int</ExtendedProperties>
       <ModifiedTimestamp>2020-10-07.19:48:29.420</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
     </routine>
-    <routine id="46" parent="27" name="sp_helpdiagrams">
+    <routine id="47" parent="27" name="sp_helpdiagrams">
       <ObjectId>389576426</ObjectId>
       <SourceTextLength>658</SourceTextLength>
       <ExtendedProperties>microsoft_database_tools_support
@@ -238,7 +243,7 @@ int</ExtendedProperties>
       <ModifiedTimestamp>2020-10-07.19:48:29.417</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
     </routine>
-    <routine id="47" parent="27" name="sp_renamediagram">
+    <routine id="48" parent="27" name="sp_renamediagram">
       <ObjectId>437576597</ObjectId>
       <SourceTextLength>1721</SourceTextLength>
       <ExtendedProperties>microsoft_database_tools_support
@@ -248,7 +253,7 @@ int</ExtendedProperties>
       <ModifiedTimestamp>2020-10-07.19:48:29.427</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
     </routine>
-    <routine id="48" parent="27" name="sp_upgraddiagrams">
+    <routine id="49" parent="27" name="sp_upgraddiagrams">
       <ObjectId>325576198</ObjectId>
       <SourceTextLength>1463</SourceTextLength>
       <ExtendedProperties>microsoft_database_tools_support
@@ -258,31 +263,31 @@ int</ExtendedProperties>
       <ModifiedTimestamp>2020-10-07.19:48:29.410</ModifiedTimestamp>
       <RoutineType>proc</RoutineType>
     </routine>
-    <column id="49" parent="30" name="Staff_Id">
+    <column id="50" parent="30" name="Staff_Id">
       <Position>1</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="50" parent="30" name="Staff_Account">
+    <column id="51" parent="30" name="Staff_Account">
       <Position>2</Position>
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="51" parent="30" name="Staff_Password">
+    <column id="52" parent="30" name="Staff_Password">
       <Position>3</Position>
       <DataType>nvarchar(max)|0s</DataType>
     </column>
-    <column id="52" parent="30" name="Staff_Role">
+    <column id="53" parent="30" name="Staff_Role">
       <Position>4</Position>
       <DataType>varchar(1 char)|0s</DataType>
     </column>
-    <index id="53" parent="30" name="PK_Account_Staff">
+    <index id="54" parent="30" name="PK_Account_Staff">
       <Position>1</Position>
       <ColNames>Staff_Account</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="54" parent="30" name="PK_Account_Staff">
+    <key id="55" parent="30" name="PK_Account_Staff">
       <ObjectId>1961774046</ObjectId>
       <CreatedTimestamp>2021-03-27.22:05:32.937</CreatedTimestamp>
       <ModifiedTimestamp>2021-03-27.22:05:32.937</ModifiedTimestamp>
@@ -290,7 +295,7 @@ int</ExtendedProperties>
       <UnderlyingIndexName>PK_Account_Staff</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="55" parent="30" name="FK_Account_Staff_Inf_Staff">
+    <foreign-key id="56" parent="30" name="FK_Account_Staff_Inf_Staff">
       <ObjectId>1977774103</ObjectId>
       <CreatedTimestamp>2021-03-27.22:05:32.937</CreatedTimestamp>
       <ModifiedTimestamp>2021-03-27.22:05:32.937</ModifiedTimestamp>
@@ -300,43 +305,43 @@ int</ExtendedProperties>
       <RefKeyName>PK_Inf_Staff</RefKeyName>
       <RefColNames>Staff_Id</RefColNames>
     </foreign-key>
-    <column id="56" parent="31" name="Detail_Id">
+    <column id="57" parent="31" name="Detail_Id">
       <Position>1</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="57" parent="31" name="Repair_Id">
+    <column id="58" parent="31" name="Repair_Id">
       <Position>2</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="31" name="Repair_Reason">
+    <column id="59" parent="31" name="Repair_Reason">
       <Position>3</Position>
       <DataType>nvarchar(max)|0s</DataType>
     </column>
-    <column id="59" parent="31" name="Repair_Note">
+    <column id="60" parent="31" name="Repair_Note">
       <Position>4</Position>
       <DataType>nvarchar(max)|0s</DataType>
     </column>
-    <column id="60" parent="31" name="Repair_Status">
+    <column id="61" parent="31" name="Repair_Status">
       <Position>5</Position>
       <DataType>varchar(1 char)|0s</DataType>
     </column>
-    <column id="61" parent="31" name="Repair_Appointment">
+    <column id="62" parent="31" name="Repair_Appointment">
       <Position>6</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="62" parent="31" name="Repair_Money">
+    <column id="63" parent="31" name="Repair_Money">
       <Position>7</Position>
       <DataType>varchar(12 char)|0s</DataType>
     </column>
-    <index id="63" parent="31" name="PK_Detail_Inf_Repair">
+    <index id="64" parent="31" name="PK_Detail_Inf_Repair">
       <Position>1</Position>
       <ColNames>Detail_Id</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="64" parent="31" name="PK_Detail_Inf_Repair">
+    <key id="65" parent="31" name="PK_Detail_Inf_Repair">
       <ObjectId>1433772165</ObjectId>
       <CreatedTimestamp>2021-03-27.20:06:51.260</CreatedTimestamp>
       <ModifiedTimestamp>2021-03-27.20:06:51.260</ModifiedTimestamp>
@@ -344,7 +349,7 @@ int</ExtendedProperties>
       <UnderlyingIndexName>PK_Detail_Inf_Repair</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="65" parent="31" name="FK_Detail_Inf_Repair_Inf_Repair">
+    <foreign-key id="66" parent="31" name="FK_Detail_Inf_Repair_Inf_Repair">
       <ObjectId>486292792</ObjectId>
       <CreatedTimestamp>2021-04-23.16:21:01.400</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-23.16:21:01.400</ModifiedTimestamp>
@@ -354,42 +359,92 @@ int</ExtendedProperties>
       <RefKeyName>PK_Inf_Repair</RefKeyName>
       <RefColNames>Repair_Id</RefColNames>
     </foreign-key>
-    <column id="66" parent="32" name="Customer_Id">
+    <column id="67" parent="32" name="Detail_Id">
       <Position>1</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="67" parent="32" name="Customer_Name">
+    <column id="68" parent="32" name="Lk_Id">
+      <Position>2</Position>
+      <DataType>varchar(10 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="32" name="Entity">
+      <Position>3</Position>
+      <DataType>varchar(10 char)|0s</DataType>
+    </column>
+    <index id="70" parent="32" name="PK_Detail_Lk_1">
+      <Position>1</Position>
+      <ColNames>Detail_Id
+Lk_Id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="71" parent="32" name="PK_Detail_Lk_1">
+      <ObjectId>2130822653</ObjectId>
+      <CreatedTimestamp>2021-05-18.21:21:54.083</CreatedTimestamp>
+      <ModifiedTimestamp>2021-05-18.21:21:54.083</ModifiedTimestamp>
+      <ColNames>Detail_Id
+Lk_Id</ColNames>
+      <UnderlyingIndexName>PK_Detail_Lk_1</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="72" parent="32" name="FK_Detail_Lk_Detail_Inf_Repair">
+      <ObjectId>1858821684</ObjectId>
+      <CreatedTimestamp>2021-05-18.21:18:16.293</CreatedTimestamp>
+      <ModifiedTimestamp>2021-05-18.21:18:16.293</ModifiedTimestamp>
+      <ColNames>Detail_Id</ColNames>
+      <RefTableId>1417772108</RefTableId>
+      <RefTableName>Detail_Inf_Repair</RefTableName>
+      <RefKeyName>PK_Detail_Inf_Repair</RefKeyName>
+      <RefColNames>Detail_Id</RefColNames>
+    </foreign-key>
+    <foreign-key id="73" parent="32" name="FK_Detail_Lk_Inf_LK">
+      <ObjectId>1842821627</ObjectId>
+      <CreatedTimestamp>2021-05-18.21:18:16.290</CreatedTimestamp>
+      <ModifiedTimestamp>2021-05-18.21:18:16.290</ModifiedTimestamp>
+      <ColNames>Lk_Id</ColNames>
+      <RefTableId>2080726465</RefTableId>
+      <RefTableName>Inf_LK</RefTableName>
+      <RefKeyName>PK_Inf_LK_1</RefKeyName>
+      <RefColNames>LK_Id</RefColNames>
+    </foreign-key>
+    <column id="74" parent="33" name="Customer_Id">
+      <Position>1</Position>
+      <DataType>varchar(10 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="75" parent="33" name="Customer_Name">
       <Position>2</Position>
       <DataType>nvarchar(60 char)|0s</DataType>
     </column>
-    <column id="68" parent="32" name="Customer_Sex">
+    <column id="76" parent="33" name="Customer_Sex">
       <Position>3</Position>
       <DataType>varchar(1 char)|0s</DataType>
     </column>
-    <column id="69" parent="32" name="Customer_Birth">
+    <column id="77" parent="33" name="Customer_Birth">
       <Position>4</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="70" parent="32" name="Customer_Email">
+    <column id="78" parent="33" name="Customer_Email">
       <Position>5</Position>
       <DataType>nvarchar(135 char)|0s</DataType>
     </column>
-    <column id="71" parent="32" name="Customer_Phone">
+    <column id="79" parent="33" name="Customer_Phone">
       <Position>6</Position>
       <DataType>varchar(15 char)|0s</DataType>
     </column>
-    <column id="72" parent="32" name="Customer_TimeAdd">
+    <column id="80" parent="33" name="Customer_TimeAdd">
       <Position>7</Position>
       <DataType>date|0s</DataType>
     </column>
-    <index id="73" parent="32" name="PK_Inf_Customers">
+    <index id="81" parent="33" name="PK_Inf_Customers">
       <Position>1</Position>
       <ColNames>Customer_Id</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="74" parent="32" name="PK_Inf_Customers">
+    <key id="82" parent="33" name="PK_Inf_Customers">
       <ObjectId>1456724242</ObjectId>
       <CreatedTimestamp>2020-11-16.20:33:10.213</CreatedTimestamp>
       <ModifiedTimestamp>2020-11-16.20:33:10.213</ModifiedTimestamp>
@@ -397,30 +452,30 @@ int</ExtendedProperties>
       <UnderlyingIndexName>PK_Inf_Customers</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="75" parent="33" name="MDT">
+    <column id="83" parent="34" name="MDT">
       <Position>1</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="76" parent="33" name="Entity">
+    <column id="84" parent="34" name="Entity">
       <Position>2</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="77" parent="33" name="Money">
+    <column id="85" parent="34" name="Money">
       <Position>3</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="78" parent="33" name="Day">
+    <column id="86" parent="34" name="Day">
       <Position>4</Position>
       <DataType>date|0s</DataType>
     </column>
-    <index id="79" parent="33" name="PK_Inf_DoanhThuSua">
+    <index id="87" parent="34" name="PK_Inf_DoanhThuSua">
       <Position>1</Position>
       <ColNames>MDT</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="80" parent="33" name="PK_Inf_DoanhThuSua">
+    <key id="88" parent="34" name="PK_Inf_DoanhThuSua">
       <ObjectId>2054298378</ObjectId>
       <CreatedTimestamp>2021-05-14.16:46:56.813</CreatedTimestamp>
       <ModifiedTimestamp>2021-05-14.16:46:56.813</ModifiedTimestamp>
@@ -428,42 +483,42 @@ int</ExtendedProperties>
       <UnderlyingIndexName>PK_Inf_DoanhThuSua</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="81" parent="34" name="DTT">
+    <column id="89" parent="35" name="DTT">
       <Position>1</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="82" parent="34" name="Input_Money">
+    <column id="90" parent="35" name="Input_Money">
       <Position>2</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="83" parent="34" name="Output_Money">
+    <column id="91" parent="35" name="Output_Money">
       <Position>3</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="84" parent="34" name="Entity">
+    <column id="92" parent="35" name="Entity">
       <Position>4</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="85" parent="34" name="Staff_Salary">
+    <column id="93" parent="35" name="Staff_Salary">
       <Position>5</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="86" parent="34" name="Profit_Money">
+    <column id="94" parent="35" name="Profit_Money">
       <Position>6</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="87" parent="34" name="Month">
+    <column id="95" parent="35" name="Month">
       <Position>7</Position>
       <DataType>date|0s</DataType>
     </column>
-    <index id="88" parent="34" name="PK_Inf_DoanhThuThang">
+    <index id="96" parent="35" name="PK_Inf_DoanhThuThang">
       <Position>1</Position>
       <ColNames>DTT</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="89" parent="34" name="PK_Inf_DoanhThuThang">
+    <key id="97" parent="35" name="PK_Inf_DoanhThuThang">
       <ObjectId>866818150</ObjectId>
       <CreatedTimestamp>2021-05-15.02:34:37.773</CreatedTimestamp>
       <ModifiedTimestamp>2021-05-15.02:34:37.773</ModifiedTimestamp>
@@ -471,38 +526,38 @@ int</ExtendedProperties>
       <UnderlyingIndexName>PK_Inf_DoanhThuThang</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="90" parent="35" name="LK_Id">
+    <column id="98" parent="36" name="LK_Id">
       <Position>1</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="91" parent="35" name="LK_Name">
+    <column id="99" parent="36" name="LK_Name">
       <Position>3</Position>
       <DataType>nvarchar(60 char)|0s</DataType>
     </column>
-    <column id="92" parent="35" name="LK_Number">
+    <column id="100" parent="36" name="LK_Number">
       <Position>4</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="93" parent="35" name="LK_Producer">
+    <column id="101" parent="36" name="LK_Producer">
       <Position>5</Position>
       <DataType>nvarchar(100 char)|0s</DataType>
     </column>
-    <column id="94" parent="35" name="LK_Price">
+    <column id="102" parent="36" name="LK_Price">
       <Position>6</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="95" parent="35" name="LK_Time_Add">
+    <column id="103" parent="36" name="LK_Time_Add">
       <Position>7</Position>
       <DataType>date|0s</DataType>
     </column>
-    <index id="96" parent="35" name="PK_Inf_LK_1">
+    <index id="104" parent="36" name="PK_Inf_LK_1">
       <Position>1</Position>
       <ColNames>LK_Id</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="97" parent="35" name="PK_Inf_LK_1">
+    <key id="105" parent="36" name="PK_Inf_LK_1">
       <ObjectId>2096726522</ObjectId>
       <CreatedTimestamp>2020-11-16.20:35:56.900</CreatedTimestamp>
       <ModifiedTimestamp>2020-11-16.20:35:56.900</ModifiedTimestamp>
@@ -510,82 +565,82 @@ int</ExtendedProperties>
       <UnderlyingIndexName>PK_Inf_LK_1</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="98" parent="36" name="Customer_Id">
+    <column id="106" parent="37" name="Customer_Id">
       <Position>1</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="99" parent="36" name="Customer_Name">
+    <column id="107" parent="37" name="Customer_Name">
       <Position>2</Position>
       <DataType>nvarchar(60 char)|0s</DataType>
     </column>
-    <column id="100" parent="36" name="Customer_Sex">
+    <column id="108" parent="37" name="Customer_Sex">
       <Position>3</Position>
       <DataType>varchar(1 char)|0s</DataType>
     </column>
-    <column id="101" parent="36" name="Customer_Birth">
+    <column id="109" parent="37" name="Customer_Birth">
       <Position>4</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="102" parent="36" name="Customer_Email">
+    <column id="110" parent="37" name="Customer_Email">
       <Position>5</Position>
       <DataType>nvarchar(135 char)|0s</DataType>
     </column>
-    <column id="103" parent="36" name="Customer_Phone">
+    <column id="111" parent="37" name="Customer_Phone">
       <Position>6</Position>
       <DataType>varchar(15 char)|0s</DataType>
     </column>
-    <column id="104" parent="36" name="Customer_TimeAdd">
+    <column id="112" parent="37" name="Customer_TimeAdd">
       <Position>7</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="105" parent="36" name="Repair_Id">
+    <column id="113" parent="37" name="Repair_Id">
       <Position>8</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="106" parent="36" name="Laptop_Name">
+    <column id="114" parent="37" name="Laptop_Name">
       <Position>9</Position>
       <DataType>nvarchar(60 char)|0s</DataType>
     </column>
-    <column id="107" parent="36" name="Laptop_Status">
+    <column id="115" parent="37" name="Laptop_Status">
       <Position>10</Position>
       <DataType>nvarchar(max)|0s</DataType>
     </column>
-    <column id="108" parent="36" name="Staff_Id">
+    <column id="116" parent="37" name="Staff_Id">
       <Position>11</Position>
       <DataType>nvarchar(60 char)|0s</DataType>
     </column>
-    <column id="109" parent="36" name="Repair_Reason">
+    <column id="117" parent="37" name="Repair_Reason">
       <Position>12</Position>
       <DataType>nvarchar(max)|0s</DataType>
     </column>
-    <column id="110" parent="36" name="Repair_Note">
+    <column id="118" parent="37" name="Repair_Note">
       <Position>13</Position>
       <DataType>nvarchar(max)|0s</DataType>
     </column>
-    <column id="111" parent="36" name="Repair_Appointment">
+    <column id="119" parent="37" name="Repair_Appointment">
       <Position>14</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="112" parent="36" name="Repair_Money">
+    <column id="120" parent="37" name="Repair_Money">
       <Position>15</Position>
       <DataType>varchar(12 char)|0s</DataType>
     </column>
-    <column id="113" parent="36" name="Repair_Status">
+    <column id="121" parent="37" name="Repair_Status">
       <Position>16</Position>
       <DataType>varchar(1 char)|0s</DataType>
     </column>
-    <column id="114" parent="36" name="Repair_Time_End">
+    <column id="122" parent="37" name="Repair_Time_End">
       <Position>17</Position>
       <DataType>date|0s</DataType>
     </column>
-    <index id="115" parent="36" name="PK_Inf_LichSu">
+    <index id="123" parent="37" name="PK_Inf_LichSu">
       <Position>1</Position>
       <ColNames>Customer_Id</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="116" parent="36" name="PK_Inf_LichSu">
+    <key id="124" parent="37" name="PK_Inf_LichSu">
       <ObjectId>1261247548</ObjectId>
       <CreatedTimestamp>2020-11-16.21:01:13.260</CreatedTimestamp>
       <ModifiedTimestamp>2020-11-16.21:01:13.260</ModifiedTimestamp>
@@ -593,35 +648,35 @@ int</ExtendedProperties>
       <UnderlyingIndexName>PK_Inf_LichSu</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="117" parent="37" name="Repair_Id">
+    <column id="125" parent="38" name="Repair_Id">
       <Position>1</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="118" parent="37" name="Customer_Id">
+    <column id="126" parent="38" name="Customer_Id">
       <Position>2</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="119" parent="37" name="Laptop_Name">
+    <column id="127" parent="38" name="Laptop_Name">
       <Position>3</Position>
       <DataType>nvarchar(60 char)|0s</DataType>
     </column>
-    <column id="120" parent="37" name="Laptop_Status">
+    <column id="128" parent="38" name="Laptop_Status">
       <Position>4</Position>
       <DataType>nvarchar(max)|0s</DataType>
     </column>
-    <column id="121" parent="37" name="Staff_Id">
+    <column id="129" parent="38" name="Staff_Id">
       <Position>5</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <index id="122" parent="37" name="PK_Inf_Repair">
+    <index id="130" parent="38" name="PK_Inf_Repair">
       <Position>1</Position>
       <ColNames>Repair_Id</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="123" parent="37" name="PK_Inf_Repair">
+    <key id="131" parent="38" name="PK_Inf_Repair">
       <ObjectId>454292678</ObjectId>
       <CreatedTimestamp>2021-04-23.16:21:01.193</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-23.16:21:01.193</ModifiedTimestamp>
@@ -629,7 +684,7 @@ int</ExtendedProperties>
       <UnderlyingIndexName>PK_Inf_Repair</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="124" parent="37" name="FK_Inf_Repair_Inf_Customers1">
+    <foreign-key id="132" parent="38" name="FK_Inf_Repair_Inf_Customers1">
       <ObjectId>470292735</ObjectId>
       <CreatedTimestamp>2021-04-23.16:21:01.197</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-23.16:21:01.197</ModifiedTimestamp>
@@ -639,7 +694,7 @@ int</ExtendedProperties>
       <RefKeyName>PK_Inf_Customers</RefKeyName>
       <RefColNames>Customer_Id</RefColNames>
     </foreign-key>
-    <foreign-key id="125" parent="37" name="FK_Inf_Repair_Inf_Staff">
+    <foreign-key id="133" parent="38" name="FK_Inf_Repair_Inf_Staff">
       <ObjectId>758293761</ObjectId>
       <CreatedTimestamp>2021-04-23.16:23:25.907</CreatedTimestamp>
       <ModifiedTimestamp>2021-04-23.16:23:25.907</ModifiedTimestamp>
@@ -649,46 +704,46 @@ int</ExtendedProperties>
       <RefKeyName>PK_Inf_Staff</RefKeyName>
       <RefColNames>Staff_Id</RefColNames>
     </foreign-key>
-    <column id="126" parent="38" name="Staff_Id">
+    <column id="134" parent="39" name="Staff_Id">
       <Position>1</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="127" parent="38" name="Staff_Name">
+    <column id="135" parent="39" name="Staff_Name">
       <Position>2</Position>
       <DataType>nvarchar(60 char)|0s</DataType>
     </column>
-    <column id="128" parent="38" name="Staff_Sex">
+    <column id="136" parent="39" name="Staff_Sex">
       <Position>3</Position>
       <DataType>varchar(1 char)|0s</DataType>
     </column>
-    <column id="129" parent="38" name="Staff_Birth">
+    <column id="137" parent="39" name="Staff_Birth">
       <Position>4</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="130" parent="38" name="Staff_Address">
+    <column id="138" parent="39" name="Staff_Address">
       <Position>5</Position>
       <DataType>nvarchar(200 char)|0s</DataType>
     </column>
-    <column id="131" parent="38" name="Staff_Phone">
+    <column id="139" parent="39" name="Staff_Phone">
       <Position>6</Position>
       <DataType>varchar(15 char)|0s</DataType>
     </column>
-    <column id="132" parent="38" name="Staff_Deparment">
+    <column id="140" parent="39" name="Staff_Deparment">
       <Position>7</Position>
       <DataType>varchar(1 char)|0s</DataType>
     </column>
-    <column id="133" parent="38" name="Staff_TimeAdd">
+    <column id="141" parent="39" name="Staff_TimeAdd">
       <Position>8</Position>
       <DataType>date|0s</DataType>
     </column>
-    <index id="134" parent="38" name="PK_Inf_Staff">
+    <index id="142" parent="39" name="PK_Inf_Staff">
       <Position>1</Position>
       <ColNames>Staff_Id</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="135" parent="38" name="PK_Inf_Staff">
+    <key id="143" parent="39" name="PK_Inf_Staff">
       <ObjectId>621245268</ObjectId>
       <CreatedTimestamp>2020-11-16.20:37:50.570</CreatedTimestamp>
       <ModifiedTimestamp>2020-11-16.20:37:50.570</ModifiedTimestamp>
@@ -696,40 +751,40 @@ int</ExtendedProperties>
       <UnderlyingIndexName>PK_Inf_Staff</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="136" parent="39" name="Sala_Staff_Id">
+    <column id="144" parent="40" name="Sala_Staff_Id">
       <Position>1</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="137" parent="39" name="Staff_Id">
+    <column id="145" parent="40" name="Staff_Id">
       <Position>2</Position>
       <DataType>varchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="138" parent="39" name="Staff_Default_Salary">
+    <column id="146" parent="40" name="Staff_Default_Salary">
       <Position>3</Position>
       <DataType>varchar(12 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="139" parent="39" name="Staff_Reward">
+    <column id="147" parent="40" name="Staff_Reward">
       <Position>4</Position>
       <DataType>varchar(12 char)|0s</DataType>
     </column>
-    <column id="140" parent="39" name="Number_Repair">
+    <column id="148" parent="40" name="Number_Repair">
       <Position>5</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <column id="141" parent="39" name="Current_Money">
+    <column id="149" parent="40" name="Current_Money">
       <Position>6</Position>
       <DataType>varchar(10 char)|0s</DataType>
     </column>
-    <index id="142" parent="39" name="PK_Salary_Staff">
+    <index id="150" parent="40" name="PK_Salary_Staff">
       <Position>1</Position>
       <ColNames>Sala_Staff_Id</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="143" parent="39" name="PK_Salary_Staff">
+    <key id="151" parent="40" name="PK_Salary_Staff">
       <ObjectId>546817010</ObjectId>
       <CreatedTimestamp>2021-05-14.17:12:10.587</CreatedTimestamp>
       <ModifiedTimestamp>2021-05-14.17:12:10.587</ModifiedTimestamp>
@@ -737,7 +792,7 @@ int</ExtendedProperties>
       <UnderlyingIndexName>PK_Salary_Staff</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="144" parent="39" name="FK_Salary_Staff_Inf_Staff">
+    <foreign-key id="152" parent="40" name="FK_Salary_Staff_Inf_Staff">
       <ObjectId>562817067</ObjectId>
       <CreatedTimestamp>2021-05-14.17:12:10.587</CreatedTimestamp>
       <ModifiedTimestamp>2021-05-14.17:12:10.587</ModifiedTimestamp>
@@ -747,44 +802,44 @@ int</ExtendedProperties>
       <RefKeyName>PK_Inf_Staff</RefKeyName>
       <RefColNames>Staff_Id</RefColNames>
     </foreign-key>
-    <column id="145" parent="40" name="name">
+    <column id="153" parent="41" name="name">
       <Position>1</Position>
       <DataType>sysname|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="146" parent="40" name="principal_id">
+    <column id="154" parent="41" name="principal_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="147" parent="40" name="diagram_id">
+    <column id="155" parent="41" name="diagram_id">
       <Position>3</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="148" parent="40" name="version">
+    <column id="156" parent="41" name="version">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="149" parent="40" name="definition">
+    <column id="157" parent="41" name="definition">
       <Position>5</Position>
       <DataType>varbinary(max)|0s</DataType>
     </column>
-    <index id="150" parent="40" name="PK__sysdiagr__C2B05B6189B23685">
+    <index id="158" parent="41" name="PK__sysdiagr__C2B05B6189B23685">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>diagram_id</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <index id="151" parent="40" name="UK_principal_name">
+    <index id="159" parent="41" name="UK_principal_name">
       <Position>2</Position>
       <ColNames>principal_id
 name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="152" parent="40" name="PK__sysdiagr__C2B05B6189B23685">
+    <key id="160" parent="41" name="PK__sysdiagr__C2B05B6189B23685">
       <ObjectId>357576312</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2020-10-07.19:48:29.413</CreatedTimestamp>
@@ -793,7 +848,7 @@ name</ColNames>
       <UnderlyingIndexName>PK__sysdiagr__C2B05B6189B23685</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="153" parent="40" name="UK_principal_name">
+    <key id="161" parent="41" name="UK_principal_name">
       <ObjectId>373576369</ObjectId>
       <CreatedTimestamp>2020-10-07.19:48:29.413</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-07.19:48:29.413</ModifiedTimestamp>
@@ -801,75 +856,75 @@ name</ColNames>
 name</ColNames>
       <UnderlyingIndexName>UK_principal_name</UnderlyingIndexName>
     </key>
-    <argument id="154" parent="41">
+    <argument id="162" parent="42">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>int|0s</DataType>
     </argument>
-    <argument id="155" parent="42" name="@diagramname">
+    <argument id="163" parent="43" name="@diagramname">
       <Position>1</Position>
       <DataType>sysname|0s</DataType>
     </argument>
-    <argument id="156" parent="42" name="@owner_id">
+    <argument id="164" parent="43" name="@owner_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </argument>
-    <argument id="157" parent="42" name="@version">
+    <argument id="165" parent="43" name="@version">
       <Position>3</Position>
       <DataType>int|0s</DataType>
     </argument>
-    <argument id="158" parent="42" name="@definition">
+    <argument id="166" parent="43" name="@definition">
       <Position>4</Position>
       <DataType>varbinary(max)|0s</DataType>
     </argument>
-    <argument id="159" parent="43" name="@diagramname">
+    <argument id="167" parent="44" name="@diagramname">
       <Position>1</Position>
       <DataType>sysname|0s</DataType>
     </argument>
-    <argument id="160" parent="43" name="@owner_id">
+    <argument id="168" parent="44" name="@owner_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </argument>
-    <argument id="161" parent="43" name="@version">
+    <argument id="169" parent="44" name="@version">
       <Position>3</Position>
       <DataType>int|0s</DataType>
     </argument>
-    <argument id="162" parent="43" name="@definition">
+    <argument id="170" parent="44" name="@definition">
       <Position>4</Position>
       <DataType>varbinary(max)|0s</DataType>
     </argument>
-    <argument id="163" parent="44" name="@diagramname">
+    <argument id="171" parent="45" name="@diagramname">
       <Position>1</Position>
       <DataType>sysname|0s</DataType>
     </argument>
-    <argument id="164" parent="44" name="@owner_id">
+    <argument id="172" parent="45" name="@owner_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </argument>
-    <argument id="165" parent="45" name="@diagramname">
+    <argument id="173" parent="46" name="@diagramname">
       <Position>1</Position>
       <DataType>sysname|0s</DataType>
     </argument>
-    <argument id="166" parent="45" name="@owner_id">
+    <argument id="174" parent="46" name="@owner_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </argument>
-    <argument id="167" parent="46" name="@diagramname">
+    <argument id="175" parent="47" name="@diagramname">
       <Position>1</Position>
       <DataType>sysname|0s</DataType>
     </argument>
-    <argument id="168" parent="46" name="@owner_id">
+    <argument id="176" parent="47" name="@owner_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </argument>
-    <argument id="169" parent="47" name="@diagramname">
+    <argument id="177" parent="48" name="@diagramname">
       <Position>1</Position>
       <DataType>sysname|0s</DataType>
     </argument>
-    <argument id="170" parent="47" name="@owner_id">
+    <argument id="178" parent="48" name="@owner_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </argument>
-    <argument id="171" parent="47" name="@new_diagramname">
+    <argument id="179" parent="48" name="@new_diagramname">
       <Position>3</Position>
       <DataType>sysname|0s</DataType>
     </argument>

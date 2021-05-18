@@ -18,6 +18,10 @@ public class DetailInfRepairEntity {
     public DetailInfRepairEntity() {
     }
 
+    public DetailInfRepairEntity(String detailId) {
+        this.detailId = detailId;
+    }
+
     public DetailInfRepairEntity(String detailId, String repairReason, String repairNote, String repairStatus, Date repairAppointment, String repairMoney, InfRepairEntity infRepairByRepairId) {
         this.detailId = detailId;
         this.repairReason = repairReason;

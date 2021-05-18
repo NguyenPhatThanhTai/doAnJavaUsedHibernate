@@ -1,5 +1,6 @@
 package viewForm.Controller;
 
+import DAO.accountStaffDao;
 import Model.AccountStaffEntity;
 import Model.DetailInfRepairEntity;
 import Service.serviceImplement;
@@ -81,6 +82,7 @@ public class loginController implements Initializable {
                 AccountStaffEntity accountStaffEntity = new AccountStaffEntity();
                 accountStaffEntity.setStaffAccount(txtTaiKhoan.getText());
                 accountStaffEntity.setStaffPassword(txtMatKhau.getText());
+
                 if(serviceImplement.checkLogin(txtTaiKhoan.getText(), txtMatKhau.getText())){
                     //Chuyển form
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/Main.fxml"));

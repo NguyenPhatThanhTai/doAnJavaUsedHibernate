@@ -17,6 +17,10 @@ public class InfLkEntity {
     public InfLkEntity() {
     }
 
+    public InfLkEntity(String lkId) {
+        this.lkId = lkId;
+    }
+
     public InfLkEntity(String lkId, String lkName, String lkNumber, String lkProducer, String lkPrice, Date lkTimeAdd) {
         this.lkId = lkId;
         this.lkName = lkName;
