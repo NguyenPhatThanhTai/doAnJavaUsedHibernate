@@ -90,7 +90,7 @@ public class doanhThuController implements Initializable {
         doanhthuDao dao = new doanhthuDao();
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Doanh thu theo ngày");
+        series.setName("Số lượng đơn sửa theo ngày");
         for (int i = 1; i <= Integer.parseInt(day.format(now)); i ++){
             InfDoanhThuSuaEntity infDoanhThuSuaEntity1 =
                     dao.getByDate(Date.valueOf(year.format(now) + "-" + month.format(now) + "-" + i));

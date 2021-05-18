@@ -9,10 +9,7 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.sql.Date;
@@ -154,47 +151,54 @@ public class staffInfController implements Initializable {
     }
 
     public void addNV(){
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
-        DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
-        DateTimeFormatter sec = DateTimeFormatter.ofPattern("ss");
-
-        String staffId = "NV" + day.format(now) + min.format(now) + sec.format(now);
-        txtMaNhanVien.setText(staffId);
-
-        String sex = "2";
-        String quyen = "1";
-
-
-        if (txtGioiTinh.isSelected()){
-            sex = "1";
+        if (txtTenNhanVien.getText().equals("") || txtSoDienThoai.getText().equals("") || txtDiaChi.getText().equals("") || txtNgaySinh.getValue().equals("") || cbChucVu.getValue().equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Không được để trống");
+            alert.showAndWait();
         }
+        else {
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+            DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
+            DateTimeFormatter sec = DateTimeFormatter.ofPattern("ss");
 
-        if (cbChucVu.getValue().toString().equals("Nhân viên")){
-            quyen = "2";
-        }
+            String staffId = "NV" + day.format(now) + min.format(now) + sec.format(now);
+            txtMaNhanVien.setText(staffId);
 
-        if (cbChucVu.getValue().toString().equals("Kế toán")){
-            quyen = "3";
-        }
+            String sex = "2";
+            String quyen = "1";
 
-        accountStaffDao accountStaffDao = new accountStaffDao();
-        salaryStaffDao salaryStaffDao = new salaryStaffDao();
-        infStaffDao infStaffDao = new infStaffDao();
 
-        InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVien.getText(), txtTenNhanVien.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtDiaChi.getText(), txtSoDienThoai.getText(), quyen, Date.valueOf(txtNgayThem.getText()));
-        AccountStaffEntity accountStaffEntity = new AccountStaffEntity(txtMaNhanVien.getText(), "123456", quyen, infStaffEntity);
-        SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity(txtMaNhanVien.getText(), "3000000", "0", "0", "3000000", infStaffEntity);
+            if (txtGioiTinh.isSelected()) {
+                sex = "1";
+            }
 
-        if (infStaffDao.addData(infStaffEntity) && accountStaffDao.addData(accountStaffEntity) && salaryStaffDao.addData(salaryStaffEntity)){
-            refreshView();
-            openTextField(false);
-            btnXacNhanThem.setVisible(false);
-            btnHuyThem.setVisible(false);
-            btnSua.setDisable(false);
-            btnXoa.setDisable(false);
-            btnThem.setVisible(true);
-            tableViewNhanVien.setDisable(false);
+            if (cbChucVu.getValue().toString().equals("Nhân viên")) {
+                quyen = "2";
+            }
+
+            if (cbChucVu.getValue().toString().equals("Kế toán")) {
+                quyen = "3";
+            }
+
+            accountStaffDao accountStaffDao = new accountStaffDao();
+            salaryStaffDao salaryStaffDao = new salaryStaffDao();
+            infStaffDao infStaffDao = new infStaffDao();
+
+            InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVien.getText(), txtTenNhanVien.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtDiaChi.getText(), txtSoDienThoai.getText(), quyen, Date.valueOf(txtNgayThem.getText()));
+            AccountStaffEntity accountStaffEntity = new AccountStaffEntity(txtMaNhanVien.getText(), "123456", quyen, infStaffEntity);
+            SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity(txtMaNhanVien.getText(), "3000000", "0", "0", "3000000", infStaffEntity);
+
+            if (infStaffDao.addData(infStaffEntity) && accountStaffDao.addData(accountStaffEntity) && salaryStaffDao.addData(salaryStaffEntity)) {
+                refreshView();
+                openTextField(false);
+                btnXacNhanThem.setVisible(false);
+                btnHuyThem.setVisible(false);
+                btnSua.setDisable(false);
+                btnXoa.setDisable(false);
+                btnThem.setVisible(true);
+                tableViewNhanVien.setDisable(false);
+            }
         }
     }
 

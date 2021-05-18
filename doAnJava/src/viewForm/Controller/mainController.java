@@ -2,7 +2,10 @@ package viewForm.Controller;
 
 
 import DAO.doanhthuDao;
+import DAO.infLKDao;
 import Model.InfDoanhThuSuaEntity;
+import Model.InfDoanhThuThangEntity;
+import Model.InfLkEntity;
 import Model.InfStaffEntity;
 import Service.serviceImplement;
 import com.jfoenix.controls.JFXButton;
@@ -37,6 +40,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -112,6 +116,27 @@ public class mainController implements Initializable {
             System.out.println(DTN);
             InfDoanhThuSuaEntity infDoanhThuSuaEntity1 = new InfDoanhThuSuaEntity(DTN, "0", "0", Date.valueOf(dayAdd.format(now)));
             doanhthuDao.addNewDoanhThu(infDoanhThuSuaEntity1);
+        }
+
+        DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy");
+        DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+        String DTT = year.format(now) + "-" + month.format(now) + "-01";
+        System.out.println(DTT);
+        InfDoanhThuThangEntity infDoanhThuThangEntity = doanhthuDao.getByDateDoanhThuThang(Date.valueOf(DTT));
+
+        infLKDao infLKDao = new infLKDao();
+        List<InfLkEntity> infLkEntity = infLKDao.getALl();
+        long totalMonelLK = 0;
+
+        for (InfLkEntity money:infLkEntity){
+            totalMonelLK += Long.parseLong(money.getLkPrice()) * 10;
+        }
+
+        if (infDoanhThuThangEntity == null){
+            //String dtt, String inputMoney, String outputMoney, String entity, String staffSalary, String profitMoney, Date month
+            System.out.println(DTT);
+            InfDoanhThuThangEntity infDoanhThuThangEntity1f = new InfDoanhThuThangEntity("DTT"+year.format(now) + month.format(now), "0", String.valueOf(totalMonelLK), "1", "0", String.valueOf(0 - totalMonelLK),Date.valueOf(year.format(now) + "-" + month.format(now) + "-01"));
+            doanhthuDao.addNewDoanhThuThang(infDoanhThuThangEntity1f);
         }
     }
 

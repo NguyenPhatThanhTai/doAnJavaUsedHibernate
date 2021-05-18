@@ -320,46 +320,53 @@ public class customerInfController implements Initializable {
     }
 
     public void addNewCustomer(){
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
-        DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
-        DateTimeFormatter sec = DateTimeFormatter.ofPattern("ss");
-
-        String customerId = "KH" + day.format(now) + min.format(now) + sec.format(now);
-        txtMaKhachHang.setText(customerId);
-        String repairId = "RP" + day.format(now) + min.format(now) + sec.format(now);
-        this.SeverRPId = repairId;
-        String detailId = "DT" + day.format(now) + min.format(now) + sec.format(now);
-        this.SeverDTId = detailId;
-
-        String sex = "2";
-
-        if (txtGioiTinh.isSelected()){
-            sex = "1";
+        if (txtTenKhachHang.getText().equals("") || txtSoDienThoai.getText().equals("") || txtEmail.getText().equals("") || txtNgaySinh.getValue().equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Không được để trống");
+            alert.showAndWait();
         }
+        else {
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+            DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
+            DateTimeFormatter sec = DateTimeFormatter.ofPattern("ss");
 
-        infCustomerDao addCustomer = new infCustomerDao();
-        infRepairDao addRepair = new infRepairDao();
-        detailInfRepairDao addDetail = new detailInfRepairDao();
+            String customerId = "KH" + day.format(now) + min.format(now) + sec.format(now);
+            txtMaKhachHang.setText(customerId);
+            String repairId = "RP" + day.format(now) + min.format(now) + sec.format(now);
+            this.SeverRPId = repairId;
+            String detailId = "DT" + day.format(now) + min.format(now) + sec.format(now);
+            this.SeverDTId = detailId;
 
-        InfCustomersEntity infCustomersEntity = new InfCustomersEntity(customerId, txtTenKhachHang.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtEmail.getText(), txtSoDienThoai.getText(), Date.valueOf(txtNgayThem.getText()));
-        InfStaffEntity infStaffEntity = new InfStaffEntity(maNv);
-        InfRepairEntity infRepairEntity = new InfRepairEntity(repairId, "Chưa biết", "Chưa biết", infCustomersEntity, infStaffEntity);
-        DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity(detailId, "Chưa biết", "Sửa lấy ngay", "2", Date.valueOf(txtNgayThem.getText()), "0", infRepairEntity);
+            String sex = "2";
 
-        if (addCustomer.addData(infCustomersEntity) && addRepair.addData(infRepairEntity) && addDetail.addData(detailInfRepairEntity)){
-            refreshView();
-            thread = new Thread(this::addIntoSever);
-            thread.start();
-            openTextField(false);
-            btnXacNhanThem.setVisible(false);
-            btnHuyThem.setVisible(false);
-            btnSua.setDisable(false);
-            btnXoa.setDisable(false);
-            btnThem.setVisible(true);
-            tableListCustomer.setDisable(false);
-            clearAllKhachHang();
-            thread.interrupt();
+            if (txtGioiTinh.isSelected()){
+                sex = "1";
+            }
+
+            infCustomerDao addCustomer = new infCustomerDao();
+            infRepairDao addRepair = new infRepairDao();
+            detailInfRepairDao addDetail = new detailInfRepairDao();
+
+            InfCustomersEntity infCustomersEntity = new InfCustomersEntity(customerId, txtTenKhachHang.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtEmail.getText(), txtSoDienThoai.getText(), Date.valueOf(txtNgayThem.getText()));
+            InfStaffEntity infStaffEntity = new InfStaffEntity(maNv);
+            InfRepairEntity infRepairEntity = new InfRepairEntity(repairId, "Chưa biết", "Chưa biết", infCustomersEntity, infStaffEntity);
+            DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity(detailId, "Chưa biết", "Sửa lấy ngay", "2", Date.valueOf(txtNgayThem.getText()), "0", infRepairEntity);
+
+            if (addCustomer.addData(infCustomersEntity) && addRepair.addData(infRepairEntity) && addDetail.addData(detailInfRepairEntity)){
+                refreshView();
+                thread = new Thread(this::addIntoSever);
+                thread.start();
+                openTextField(false);
+                btnXacNhanThem.setVisible(false);
+                btnHuyThem.setVisible(false);
+                btnSua.setDisable(false);
+                btnXoa.setDisable(false);
+                btnThem.setVisible(true);
+                tableListCustomer.setDisable(false);
+                clearAllKhachHang();
+                thread.interrupt();
+            }
         }
     }
 

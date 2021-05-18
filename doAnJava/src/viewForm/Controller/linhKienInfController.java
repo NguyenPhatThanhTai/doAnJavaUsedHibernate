@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -110,27 +111,34 @@ public class linhKienInfController implements Initializable {
     }
 
     public void addnewLk(){
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
-        DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
-        DateTimeFormatter sec = DateTimeFormatter.ofPattern("ss");
+        if (txtTenLinhKien.getText().equals("") || txtNhaSanXuat.getText().equals("") || txtSoLuong.getText().equals("") || txtDonGia.getText().equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Không được để trống");
+            alert.showAndWait();
+        }
+        else {
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+            DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
+            DateTimeFormatter sec = DateTimeFormatter.ofPattern("ss");
 
-        String lkId = "LK" + day.format(now) + min.format(now) + sec.format(now);
-        txtMaLinhKien.setText(lkId);
+            String lkId = "LK" + day.format(now) + min.format(now) + sec.format(now);
+            txtMaLinhKien.setText(lkId);
 
-        infLKDao infLKDao = new infLKDao();
+            infLKDao infLKDao = new infLKDao();
 
-        InfLkEntity infLkEntity = new InfLkEntity(lkId, txtTenLinhKien.getText(), txtSoLuong.getText(), txtNhaSanXuat.getText(), txtDonGia.getText(), Date.valueOf(txtNgayThem.getText()));
+            InfLkEntity infLkEntity = new InfLkEntity(lkId, txtTenLinhKien.getText(), txtSoLuong.getText(), txtNhaSanXuat.getText(), txtDonGia.getText(), Date.valueOf(txtNgayThem.getText()));
 
-        if (infLKDao.addData(infLkEntity)){
-            refreshView();
-            openTextField(false);
-            btnXacNhanThem.setVisible(false);
-            btnHuyThem.setVisible(false);
-            btnSua.setDisable(false);
-            btnXoa.setDisable(false);
-            btnThem.setVisible(true);
-            tableListLk.setDisable(false);
+            if (infLKDao.addData(infLkEntity)) {
+                refreshView();
+                openTextField(false);
+                btnXacNhanThem.setVisible(false);
+                btnHuyThem.setVisible(false);
+                btnSua.setDisable(false);
+                btnXoa.setDisable(false);
+                btnThem.setVisible(true);
+                tableListLk.setDisable(false);
+            }
         }
     }
 
