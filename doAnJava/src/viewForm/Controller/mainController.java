@@ -105,18 +105,7 @@ public class mainController implements Initializable {
     public void checkDoanhThu(){
         DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
-
         doanhthuDao doanhthuDao = new doanhthuDao();
-        InfDoanhThuSuaEntity infDoanhThuSuaEntity = doanhthuDao.getByDate(java.sql.Date.valueOf(dayAdd.format(now)));
-
-        if (infDoanhThuSuaEntity == null){
-            DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
-            DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
-            String DTN = "DTN" + day.format(now) + month.format(now);
-            System.out.println(DTN);
-            InfDoanhThuSuaEntity infDoanhThuSuaEntity1 = new InfDoanhThuSuaEntity(DTN, "0", "0", Date.valueOf(dayAdd.format(now)));
-            doanhthuDao.addNewDoanhThu(infDoanhThuSuaEntity1);
-        }
 
         DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy");
         DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
@@ -137,6 +126,19 @@ public class mainController implements Initializable {
             System.out.println(DTT);
             InfDoanhThuThangEntity infDoanhThuThangEntity1f = new InfDoanhThuThangEntity("DTT"+year.format(now) + month.format(now), "0", String.valueOf(totalMonelLK), "0", "0", String.valueOf(0 - totalMonelLK),Date.valueOf(year.format(now) + "-" + month.format(now) + "-01"));
             doanhthuDao.addNewDoanhThuThang(infDoanhThuThangEntity1f);
+        }
+
+        InfDoanhThuSuaEntity infDoanhThuSuaEntity = doanhthuDao.getByDate(java.sql.Date.valueOf(dayAdd.format(now)));
+
+        if (infDoanhThuSuaEntity == null){
+            DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+            DateTimeFormatter month1 = DateTimeFormatter.ofPattern("MM");
+            DateTimeFormatter year1 = DateTimeFormatter.ofPattern("yy");
+            String DTN = "DTN" + day.format(now) + month1.format(now) + year1.format(now);
+            System.out.println(DTN);
+            InfDoanhThuThangEntity infDoanhThuThangEntity1 = new InfDoanhThuThangEntity("DTT"+year.format(now)+month.format(now));
+            InfDoanhThuSuaEntity infDoanhThuSuaEntity1 = new InfDoanhThuSuaEntity(DTN, "0", "0", Date.valueOf(dayAdd.format(now)), infDoanhThuThangEntity1);
+            doanhthuDao.addNewDoanhThu(infDoanhThuSuaEntity1);
         }
     }
 

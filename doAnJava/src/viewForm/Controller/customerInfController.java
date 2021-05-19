@@ -328,6 +328,8 @@ public class customerInfController implements Initializable {
         else {
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+            DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+            DateTimeFormatter year = DateTimeFormatter.ofPattern("yy");
             DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
             DateTimeFormatter sec = DateTimeFormatter.ofPattern("ss");
 
@@ -347,13 +349,17 @@ public class customerInfController implements Initializable {
             infCustomerDao addCustomer = new infCustomerDao();
             infRepairDao addRepair = new infRepairDao();
             detailInfRepairDao addDetail = new detailInfRepairDao();
+            infHoaDonDao addHoaDon = new infHoaDonDao();
 
             InfCustomersEntity infCustomersEntity = new InfCustomersEntity(customerId, txtTenKhachHang.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtEmail.getText(), txtSoDienThoai.getText(), Date.valueOf(txtNgayThem.getText()));
             InfStaffEntity infStaffEntity = new InfStaffEntity(maNv);
             InfRepairEntity infRepairEntity = new InfRepairEntity(repairId, "Chưa biết", "Chưa biết", infCustomersEntity, infStaffEntity);
             DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity(detailId, "Chưa biết", "Sửa lấy ngay", "2", Date.valueOf(txtNgayThem.getText()), "0", infRepairEntity);
 
-            if (addCustomer.addData(infCustomersEntity) && addRepair.addData(infRepairEntity) && addDetail.addData(detailInfRepairEntity)){
+            InfDoanhThuSuaEntity infDoanhThuSuaEntity = new InfDoanhThuSuaEntity("DTN" + day.format(now) + month.format(now) + year.format(now));
+            InfHoaDonEntity infHoaDonEntity = new InfHoaDonEntity("HD"+ day.format(now) + min.format(now) + sec.format(now), "0", detailInfRepairEntity, infDoanhThuSuaEntity);
+
+            if (addCustomer.addData(infCustomersEntity) && addRepair.addData(infRepairEntity) && addDetail.addData(detailInfRepairEntity) && addHoaDon.addData(infHoaDonEntity)){
                 refreshView();
                 thread = new Thread(this::addIntoSever);
                 thread.start();
@@ -514,7 +520,9 @@ public class customerInfController implements Initializable {
         infLKDao infLKDao = new infLKDao();
         customer.setCustomerId(txtMaKhachHang.getText());
 
-        if(infLKDao.dellOldData("DT" + parts[1]) && delDetail.dellData(detail) && delRepair.dellData(repair) && delCustomer.dellData(customer)){
+        infHoaDonDao infHoaDonDao = new infHoaDonDao();
+
+        if(infHoaDonDao.dellData("HD" + parts[1]) && infLKDao.dellOldData("DT" + parts[1]) && delDetail.dellData(detail) && delRepair.dellData(repair) && delCustomer.dellData(customer)){
             refreshView();
             thread = new Thread(this::deleteInSever);
             thread.start();
@@ -693,6 +701,11 @@ public class customerInfController implements Initializable {
     }
 
     public void updateRepair(){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+        DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+        DateTimeFormatter year = DateTimeFormatter.ofPattern("yy");
+
         String idSplit = txtMaSuaChua.getText();
         String[] parts = idSplit.split("RP");
 
@@ -706,6 +719,9 @@ public class customerInfController implements Initializable {
             suaRepair = "Hẹn ngày lấy";
         }
         DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity("DT"+parts[1], txtLkDaChon.getText(), suaRepair, "2", Date.valueOf(txtNgayHen.getValue()), txtTien.getText(), infRepairEntity);
+
+        InfDoanhThuSuaEntity infDoanhThuSuaEntity = new InfDoanhThuSuaEntity("DTN"+day.format(now)+month.format(now)+year.format(now));
+        InfHoaDonEntity infHoaDonEntity = new InfHoaDonEntity("HD"+parts[1], txtTien.getText(), detailInfRepairEntity, infDoanhThuSuaEntity);
 
         //
     try{
@@ -732,11 +748,6 @@ public class customerInfController implements Initializable {
 
             //add vào
             infLKDao.addDetailLK(detailLkEntity);
-
-            ObservableList<DetailLkEntity> all = infLKDao.getAllByDetailId(SeverDTId);
-            for (DetailLkEntity en:all){
-                System.out.println(en.getLkId() + "-" + en.getEntity());
-            }
         }
     }catch (Exception ex){
         ex.printStackTrace();
@@ -745,7 +756,8 @@ public class customerInfController implements Initializable {
 
         infRepairDao infRepairDao = new infRepairDao();
         detailInfRepairDao detailInfRepairDao = new detailInfRepairDao();
-        if(infRepairDao.updateData(infRepairEntity) && detailInfRepairDao.updateData(detailInfRepairEntity)){
+        infHoaDonDao infHoaDonDao = new infHoaDonDao();
+        if(infRepairDao.updateData(infRepairEntity) && detailInfRepairDao.updateData(detailInfRepairEntity) && infHoaDonDao.updateData(infHoaDonEntity)){
             refreshView();
             thread = new Thread(this::updateRepairInSever);
             thread.start();
@@ -1009,7 +1021,7 @@ public class customerInfController implements Initializable {
         String str = lk.substring(1, lk.length() - 1);
         String[] ary = str.split(", ");
         infLKDao lkDao = new infLKDao();
-        ObservableList<DetailLkEntity> all = lkDao.getAllByDetailId(SeverDTId);
+        ObservableList<DetailLkEntity> all = lkDao.getAllByDetailId("DT"+parts[1]);
         for (DetailLkEntity en:all){
             System.out.println(en.getLkId() + "-" + en.getEntity());
 
@@ -1019,12 +1031,19 @@ public class customerInfController implements Initializable {
 
             int entity = Integer.parseInt(infLkEntity.getLkNumber()) - Integer.parseInt(en.getEntity());
 
-            System.out.println(entity);
+//            System.out.println(entity);
 
             InfLkEntity infLkEntity1 = new InfLkEntity(infLkEntity.getLkId(), infLkEntity.getLkName(), String.valueOf(entity),
                     infLkEntity.getLkProducer(), infLkEntity.getLkPrice(), infLkEntity.getLkTimeAdd());
 
-            lkDao.updateData(infLkEntity1);
+            if (lkDao.updateData(infLkEntity1)){
+                System.out.println("Ok");
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Lỗi");
+                alert.show();
+            }
         }
 
         //Cập nhật số lượng đơn đã làm và số lương nhân viên
@@ -1052,16 +1071,25 @@ public class customerInfController implements Initializable {
         if (infDoanhThuSuaEntity == null){
             DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
             DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+            DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy");
+
             String DTN = "DTN" + day.format(now) + month.format(now);
             System.out.println(DTN);
-            InfDoanhThuSuaEntity infDoanhThuSuaEntity1 = new InfDoanhThuSuaEntity(DTN, "0", String.valueOf(detailInfRepairEntity.getRepairMoney()), Date.valueOf(dayAdd.format(now)));
+
+            InfDoanhThuThangEntity infDoanhThuThangEntity = new InfDoanhThuThangEntity("DTT"+year.format(now)+month.format(now));
+            InfDoanhThuSuaEntity infDoanhThuSuaEntity1 = new InfDoanhThuSuaEntity(DTN, "0", String.valueOf(detailInfRepairEntity.getRepairMoney()), Date.valueOf(dayAdd.format(now)), infDoanhThuThangEntity);
             doanhthuDao.addNewDoanhThu(infDoanhThuSuaEntity1);
         }
         else {
             int entity = Integer.parseInt(infDoanhThuSuaEntity.getEntity()) + 1;
             Long money = Long.parseLong(infDoanhThuSuaEntity.getMoney()) + Long.parseLong(detailInfRepairEntity.getRepairMoney());
 
-            InfDoanhThuSuaEntity infDoanhThuSuaEntity2 = new InfDoanhThuSuaEntity(infDoanhThuSuaEntity.getMdt(), String.valueOf(entity), String.valueOf(money), infDoanhThuSuaEntity.getDay());
+            DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+            DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+            DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy");
+            InfDoanhThuThangEntity infDoanhThuThangEntity = new InfDoanhThuThangEntity("DTT"+year.format(now)+month.format(now));
+
+            InfDoanhThuSuaEntity infDoanhThuSuaEntity2 = new InfDoanhThuSuaEntity(infDoanhThuSuaEntity.getMdt(), String.valueOf(entity), String.valueOf(money), infDoanhThuSuaEntity.getDay(), infDoanhThuThangEntity);
             doanhthuDao.updateDoanhThu(infDoanhThuSuaEntity2);
         }
 

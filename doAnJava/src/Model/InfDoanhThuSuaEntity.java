@@ -11,15 +11,21 @@ public class InfDoanhThuSuaEntity {
     private String entity;
     private String money;
     private Date day;
+    private InfDoanhThuThangEntity infDoanhThuThangByDtt;
 
     public InfDoanhThuSuaEntity() {
     }
 
-    public InfDoanhThuSuaEntity(String mdt, String entity, String money, Date day) {
+    public InfDoanhThuSuaEntity(String mdt) {
+        this.mdt = mdt;
+    }
+
+    public InfDoanhThuSuaEntity(String mdt, String entity, String money, Date day, InfDoanhThuThangEntity infDoanhThuThangByDtt) {
         this.mdt = mdt;
         this.entity = entity;
         this.money = money;
         this.day = day;
+        this.infDoanhThuThangByDtt = infDoanhThuThangByDtt;
     }
 
     @Id
@@ -76,5 +82,15 @@ public class InfDoanhThuSuaEntity {
     @Override
     public int hashCode() {
         return Objects.hash(mdt, entity, money, day);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "DTT", referencedColumnName = "DTT")
+    public InfDoanhThuThangEntity getInfDoanhThuThangByDtt() {
+        return infDoanhThuThangByDtt;
+    }
+
+    public void setInfDoanhThuThangByDtt(InfDoanhThuThangEntity infDoanhThuThangByDtt) {
+        this.infDoanhThuThangByDtt = infDoanhThuThangByDtt;
     }
 }

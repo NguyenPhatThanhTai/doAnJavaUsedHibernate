@@ -18,6 +18,10 @@ public class InfDoanhThuThangEntity {
     public InfDoanhThuThangEntity() {
     }
 
+    public InfDoanhThuThangEntity(String dtt) {
+        this.dtt = dtt;
+    }
+
     public InfDoanhThuThangEntity(String dtt, String inputMoney, String outputMoney, String entity, String staffSalary, String profitMoney, Date month) {
         this.dtt = dtt;
         this.inputMoney = inputMoney;

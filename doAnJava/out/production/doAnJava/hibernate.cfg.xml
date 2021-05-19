@@ -8,7 +8,7 @@
     <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
     <property name="connection.username">sa</property>
     <property name="connection.password"> </property>
-    <mapping class="Model.AccountStaffEntity"/>
+      <mapping class="Model.AccountStaffEntity"/>
     <mapping class="Model.DetailInfRepairEntity"/>
     <mapping class="Model.InfCustomersEntity"/>
     <mapping class="Model.InfLkEntity"/>
@@ -20,6 +20,7 @@
       <mapping class="Model.InfDoanhThuThangEntity"/>
     <mapping class="Model.SalaryStaffEntity"/>
       <mapping class="Model.DetailLkEntity"/>
+      <mapping class="Model.InfHoaDonEntity"/>
 
       <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->

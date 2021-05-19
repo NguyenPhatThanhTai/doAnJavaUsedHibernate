@@ -34,6 +34,29 @@ public class InfLichSuEntity {
         }
     }
 
+    public InfLichSuEntity() {
+    }
+
+    public InfLichSuEntity(String customerId, String customerName, String customerSex, Date customerBirth, String customerEmail, String customerPhone, Date customerTimeAdd, String repairId, String laptopName, String laptopStatus, String staffId, String repairReason, String repairNote, Date repairAppointment, String repairMoney, String repairStatus, Date repairTimeEnd) {
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.customerSex = customerSex;
+        this.customerBirth = customerBirth;
+        this.customerEmail = customerEmail;
+        this.customerPhone = customerPhone;
+        this.customerTimeAdd = customerTimeAdd;
+        this.repairId = repairId;
+        this.laptopName = laptopName;
+        this.laptopStatus = laptopStatus;
+        this.staffId = staffId;
+        this.repairReason = repairReason;
+        this.repairNote = repairNote;
+        this.repairAppointment = repairAppointment;
+        this.repairMoney = repairMoney;
+        this.repairStatus = repairStatus;
+        this.repairTimeEnd = repairTimeEnd;
+    }
+
     @Id
     @Column(name = "Customer_Id")
     public String getCustomerId() {
