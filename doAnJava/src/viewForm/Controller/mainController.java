@@ -129,13 +129,13 @@ public class mainController implements Initializable {
         long totalMonelLK = 0;
 
         for (InfLkEntity money:infLkEntity){
-            totalMonelLK += Long.parseLong(money.getLkPrice()) * 10;
+            totalMonelLK += Long.parseLong(money.getLkPrice()) * Long.parseLong(money.getLkNumber());
         }
 
         if (infDoanhThuThangEntity == null){
             //String dtt, String inputMoney, String outputMoney, String entity, String staffSalary, String profitMoney, Date month
             System.out.println(DTT);
-            InfDoanhThuThangEntity infDoanhThuThangEntity1f = new InfDoanhThuThangEntity("DTT"+year.format(now) + month.format(now), "0", String.valueOf(totalMonelLK), "1", "0", String.valueOf(0 - totalMonelLK),Date.valueOf(year.format(now) + "-" + month.format(now) + "-01"));
+            InfDoanhThuThangEntity infDoanhThuThangEntity1f = new InfDoanhThuThangEntity("DTT"+year.format(now) + month.format(now), "0", String.valueOf(totalMonelLK), "0", "0", String.valueOf(0 - totalMonelLK),Date.valueOf(year.format(now) + "-" + month.format(now) + "-01"));
             doanhthuDao.addNewDoanhThuThang(infDoanhThuThangEntity1f);
         }
     }

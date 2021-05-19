@@ -1027,6 +1027,21 @@ public class customerInfController implements Initializable {
             lkDao.updateData(infLkEntity1);
         }
 
+        //Cập nhật số lượng đơn đã làm và số lương nhân viên
+        salaryStaffDao salaryStaffDao = new salaryStaffDao();
+        InfStaffEntity infStaffEntity = new InfStaffEntity(detailInfRepairEntity.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId());
+        SalaryStaffEntity sa1 = salaryStaffDao.getDataById(detailInfRepairEntity.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId());
+
+        int soluongdondahoanthanh = Integer.parseInt(sa1.getNumberRepair()) + 1;
+        long luongHienTai = Long.parseLong(sa1.getCurrentMoney()) + 50000;
+
+        //String salaStaffId, String staffDefaultSalary, String staffReward, String numberRepair,
+        // String currentMoney, InfStaffEntity infStaffByStaffId
+        SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity(sa1.getSalaStaffId(), sa1.getStaffDefaultSalary(), sa1.getStaffReward(), String.valueOf(soluongdondahoanthanh)
+        , String.valueOf(luongHienTai), infStaffEntity);
+
+        salaryStaffDao.updateData(salaryStaffEntity);
+
         //Dua tien vao doanh thu
         DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();

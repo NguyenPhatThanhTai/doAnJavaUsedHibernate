@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.AccountStaffEntity;
+import Model.InfCustomersEntity;
 import Model.SalaryStaffEntity;
 import Until.hibernateUntil;
 import javafx.collections.ObservableList;
@@ -58,12 +59,42 @@ public class salaryStaffDao implements daoInterface<SalaryStaffEntity> {
 
     @Override
     public boolean updateData(SalaryStaffEntity data) {
-        return false;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.update(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở salary");
+            return false;
+        }
     }
 
     @Override
     public SalaryStaffEntity getDataById(String Id) {
-        return null;
+        Session session = null;
+        SalaryStaffEntity salaryStaffEntity = null;
+        try {
+            session = hibernateUntil.getSession();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery query = builder.createQuery(SalaryStaffEntity.class);
+            Root<SalaryStaffEntity> root = query.from(SalaryStaffEntity.class);
+            Predicate p = builder.equal(root.get("salaStaffId"),Id);
+            salaryStaffEntity= (SalaryStaffEntity) session.createQuery(query.where(p)).getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return salaryStaffEntity;
     }
 
     @Override
