@@ -371,7 +371,7 @@
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Picture/Pic/ok_48px.png" />
+                                    <Image url="@../Picture/Pic/checkmark_48px.png" />
                                  </image>
                               </ImageView>
                            </graphic>
