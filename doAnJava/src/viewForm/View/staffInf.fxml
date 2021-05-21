@@ -173,9 +173,9 @@
                               <Image url="@../Picture/Pic/address_50px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="8.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="11.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Picture/Pic/administrator_male_100px.png" />
+                              <Image url="@../Picture/Pic/administrator_male_80px.png" />
                            </image>
                         </ImageView>
                      </children>

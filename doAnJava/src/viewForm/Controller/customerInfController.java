@@ -3,6 +3,7 @@ package viewForm.Controller;
 import DAO.*;
 import Model.*;
 import com.jfoenix.controls.*;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -240,6 +241,9 @@ public class customerInfController implements Initializable {
     @FXML
     private TableColumn<InfLichSuEntity, String> lsTimeEnd;
 
+    @FXML
+    private JFXProgressBar TopLoading;
+
     ObservableList<DetailInfRepairEntity> rlist;
     ObservableList<InfLkEntity> lkList;
     ObservableList<InfLichSuEntity> lsList;
@@ -319,7 +323,16 @@ public class customerInfController implements Initializable {
         }
     }
 
+    public void startThreadaddNewCustomer(){
+        thread = new Thread(this::addNewCustomer);
+        thread.start();
+        thread.interrupt();
+    }
+
     public void addNewCustomer(){
+        TopLoading.setVisible(true);
+        btnXacNhanThem.setDisable(true);
+        btnHuyThem.setDisable(true);
         if (txtTenKhachHang.getText().equals("") || txtSoDienThoai.getText().equals("") || txtEmail.getText().equals("") || txtNgaySinh.getValue().equals("")){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Không được để trống");
@@ -371,6 +384,9 @@ public class customerInfController implements Initializable {
                 btnThem.setVisible(true);
                 tableListCustomer.setDisable(false);
                 clearAllKhachHang();
+                TopLoading.setVisible(false);
+                btnXacNhanThem.setDisable(false);
+                btnHuyThem.setDisable(false);
                 thread.interrupt();
             }
         }
@@ -424,32 +440,52 @@ public class customerInfController implements Initializable {
         }
     }
 
+    public void startThreadupdateCustomer(){
+        thread = new Thread(this::updateCustomer);
+        thread.start();
+        thread.interrupt();
+    }
+
     public void updateCustomer(){
-        String idSplit = txtMaKhachHang.getText();
-        String[] parts = idSplit.split("KH");
-        this.SeverRPId = "RP" + parts[1];
-        this.SeverDTId = "DT" + parts[1];
+        TopLoading.setVisible(true);
+        btnXacNhanSua.setDisable(true);
+        btnHuySua.setDisable(true);
 
-        String sex = "2";
-
-        if (txtGioiTinh.isSelected()){
-            sex = "1";
+        if (txtTenKhachHang.getText().equals("") || txtSoDienThoai.getText().equals("") || txtEmail.getText().equals("") || txtNgaySinh.getValue().equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Không được để trống");
+            alert.showAndWait();
         }
-        InfCustomersEntity infCustomersEntity = new InfCustomersEntity(txtMaKhachHang.getText(), txtTenKhachHang.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtEmail.getText(), txtSoDienThoai.getText(), Date.valueOf(txtNgayThem.getText()));
-        infCustomerDao updateCustomer = new infCustomerDao();
-        if(updateCustomer.updateData(infCustomersEntity)){
-            refreshView();
-            thread = new Thread(this::updateCustomerSever);
-            thread.start();
-            openTextField(false);
-            btnXacNhanSua.setVisible(false);
-            btnHuySua.setVisible(false);
-            btnThem.setDisable(false);
-            btnXoa.setDisable(false);
-            btnSua.setVisible(true);
-            tableListCustomer.setDisable(false);
-            clearAllKhachHang();
-            thread.interrupt();
+        else {
+            String idSplit = txtMaKhachHang.getText();
+            String[] parts = idSplit.split("KH");
+            this.SeverRPId = "RP" + parts[1];
+            this.SeverDTId = "DT" + parts[1];
+
+            String sex = "2";
+
+            if (txtGioiTinh.isSelected()){
+                sex = "1";
+            }
+            InfCustomersEntity infCustomersEntity = new InfCustomersEntity(txtMaKhachHang.getText(), txtTenKhachHang.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtEmail.getText(), txtSoDienThoai.getText(), Date.valueOf(txtNgayThem.getText()));
+            infCustomerDao updateCustomer = new infCustomerDao();
+            if(updateCustomer.updateData(infCustomersEntity)){
+                refreshView();
+                thread = new Thread(this::updateCustomerSever);
+                thread.start();
+                openTextField(false);
+                btnXacNhanSua.setVisible(false);
+                btnHuySua.setVisible(false);
+                btnThem.setDisable(false);
+                btnXoa.setDisable(false);
+                btnSua.setVisible(true);
+                tableListCustomer.setDisable(false);
+                clearAllKhachHang();
+                TopLoading.setVisible(false);
+                btnXacNhanSua.setDisable(false);
+                btnHuySua.setDisable(false);
+                thread.interrupt();
+            }
         }
     }
 
@@ -500,7 +536,17 @@ public class customerInfController implements Initializable {
         }
     }
 
+    public void startThreaddeleteCustomer(){
+        thread = new Thread(this::deleteCustomer);
+        thread.start();
+        thread.interrupt();
+    }
+
     public void deleteCustomer(){
+        TopLoading.setVisible(true);
+        btnXacNhanXoa.setDisable(true);
+        btnHuyXoa.setDisable(true);
+
         String idSplit = txtMaKhachHang.getText();
 
         String[] parts = idSplit.split("KH");
@@ -533,8 +579,16 @@ public class customerInfController implements Initializable {
             btnThem.setDisable(false);
             btnXoa.setVisible(true);
             tableListCustomer.setDisable(false);
-            clearAllKhachHang();
-            clearAllSuaChua();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    clearAllKhachHang();
+                    clearAllSuaChua();
+                }
+            });
+            TopLoading.setVisible(false);
+            btnXacNhanXoa.setDisable(false);
+            btnHuyXoa.setDisable(false);
             thread.interrupt();
         }
     }
@@ -700,7 +754,17 @@ public class customerInfController implements Initializable {
         tableListRepair.refresh();
     }
 
+    public void startThreadupdateRepair(){
+        thread = new Thread(this::updateRepair);
+        thread.start();
+        thread.interrupt();
+    }
+
     public void updateRepair(){
+        TopLoading.setVisible(true);
+        btnXacNhanSuaRepair.setDisable(true);
+        btnHuySuaRepair.setDisable(true);
+
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
         DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
@@ -764,6 +828,9 @@ public class customerInfController implements Initializable {
             openTextFieldRepair(false);
             openButton(true, "SuaRepair");
             clearAllSuaChua();
+            TopLoading.setVisible(false);
+            btnXacNhanSuaRepair.setDisable(false);
+            btnHuySuaRepair.setDisable(false);
             thread.interrupt();
         }
     }
@@ -1010,7 +1077,17 @@ public class customerInfController implements Initializable {
         }
     }
 
+    public void startThreadhoanthanhDon(){
+        thread = new Thread(this::hoanthanhDon);
+        thread.start();
+        thread.interrupt();
+    }
+
     public void hoanthanhDon(){
+        TopLoading.setVisible(true);
+        btnXacNhanHoanThanhDon.setDisable(true);
+        btnHuyHoanThanhDon.setDisable(true);
+
         detailInfRepairDao deDao = new detailInfRepairDao();
         String idSplit = txtMaSuaChuaRepair.getText();
         String[] parts = idSplit.split("RP");
@@ -1123,6 +1200,10 @@ public class customerInfController implements Initializable {
             InfDoanhThuThangEntity infDoanhThuThangEntity2 = new InfDoanhThuThangEntity(infDoanhThuThangEntity.getDtt(), String.valueOf(inputMoney), infDoanhThuThangEntity.getOutputMoney(),String.valueOf(entity), infDoanhThuThangEntity.getStaffSalary(), String.valueOf(profit), infDoanhThuThangEntity.getMonth());
             doanhthuDao.updateDoanhThuThang(infDoanhThuThangEntity2);
         }
+
+        TopLoading.setVisible(false);
+        btnXacNhanHoanThanhDon.setDisable(false);
+        btnHuyHoanThanhDon.setDisable(false);
     }
 
     //Load lich su

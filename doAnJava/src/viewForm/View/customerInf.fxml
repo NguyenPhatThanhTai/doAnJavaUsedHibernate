@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -35,7 +36,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanSua" layoutX="44.0" layoutY="508.0" onMouseClicked="#updateCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanSua" layoutX="44.0" layoutY="508.0" onMouseClicked="#startThreadupdateCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -53,7 +54,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanXoa" layoutX="44.0" layoutY="568.0" onMouseClicked="#deleteCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanXoa" layoutX="44.0" layoutY="568.0" onMouseClicked="#startThreaddeleteCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -85,7 +86,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <JFXButton fx:id="btnXacNhanThem" disable="true" layoutX="44.0" layoutY="448.0" onMouseClicked="#addNewCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanThem" disable="true" layoutX="44.0" layoutY="448.0" onMouseClicked="#startThreadaddNewCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -306,7 +307,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanSuaRepair" layoutX="44.0" layoutY="554.0" onMouseClicked="#updateRepair" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanSuaRepair" layoutX="44.0" layoutY="554.0" onMouseClicked="#startThreadupdateRepair" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -385,7 +386,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanHoanThanhDon" layoutX="394.0" layoutY="68.0" onAction="#hoanthanhDon" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanHoanThanhDon" layoutX="394.0" layoutY="68.0" onAction="#startThreadhoanthanhDon" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -450,5 +451,6 @@
             </Tab>
          </tabs>
       </JFXTabPane>
+      <JFXProgressBar fx:id="TopLoading" layoutX="22.0" layoutY="11.0" prefHeight="6.0" prefWidth="1527.0" visible="false" />
    </children>
 </AnchorPane>
