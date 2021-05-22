@@ -1410,9 +1410,14 @@ public class customerInfController implements Initializable {
         txtLaptopName.setText("");
         txtTinhTrang.setText("");
         txtSuaRepair.setSelected(false);
-        txtTien.setText("");
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                txtTien.setText("");
+                txtNhanVienTiepNhan.setText("");
+            }
+        });
         txtTenkhachHangSuaChua.setText("");
-        txtNhanVienTiepNhan.setText("");
 
         btnSuaRepair.setDisable(true);
         tableListLinhKien.setDisable(true);
