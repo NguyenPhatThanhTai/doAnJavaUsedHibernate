@@ -396,7 +396,7 @@ public class customerInfController implements Initializable {
         detailInfRepairDao deDao = new detailInfRepairDao();
         DetailInfRepairEntity de = deDao.getDataById(SeverDTId);
 
-        String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/upload.php";
+        String query_url = "https://dht-api.000webhostapp.com/APIDoAnJava/upload.php";
         String json = "{ \"name\" : \""+SeverRPId+"\", " +
                 "       \"name1\" : \""+de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()+"\", " +
                 "       \"name2\" : \""+de.getInfRepairByRepairId().getLaptopName()+"\", " +
@@ -493,7 +493,7 @@ public class customerInfController implements Initializable {
         detailInfRepairDao deDao = new detailInfRepairDao();
         DetailInfRepairEntity de = deDao.getDataById(SeverDTId);
 
-        String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/updateCustomer.php";
+        String query_url = "https://dht-api.000webhostapp.com/APIDoAnJava/updateCustomer.php";
         String json = "{ \"name\" : \""+SeverRPId+"\", " +
                 "       \"name1\" : \""+de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()+"\", " +
                 "       \"name2\" : \""+de.getInfRepairByRepairId().getLaptopName()+"\", " +
@@ -579,13 +579,8 @@ public class customerInfController implements Initializable {
             btnThem.setDisable(false);
             btnXoa.setVisible(true);
             tableListCustomer.setDisable(false);
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    clearAllKhachHang();
-                    clearAllSuaChua();
-                }
-            });
+            clearAllKhachHang();
+            clearAllSuaChua();
             TopLoading.setVisible(false);
             btnXacNhanXoa.setDisable(false);
             btnHuyXoa.setDisable(false);
@@ -594,7 +589,7 @@ public class customerInfController implements Initializable {
     }
 
     public void deleteInSever(){
-        String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/delete.php";
+        String query_url = "https://dht-api.000webhostapp.com/APIDoAnJava/delete.php";
         String json = "{ \"name\" : \""+SeverRPId+"\", " +
                 "       \"name1\" : \""+token+"\", " +
                 "       \"name2\" : \""+key+"\", " +
@@ -839,7 +834,7 @@ public class customerInfController implements Initializable {
         detailInfRepairDao deDao = new detailInfRepairDao();
         DetailInfRepairEntity de = deDao.getDataById(SeverDTId);
 
-        String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/updateCustomer.php";
+        String query_url = "https://dht-api.000webhostapp.com/APIDoAnJava/updateCustomer.php";
         String json = "{ \"name\" : \""+SeverRPId+"\", " +
                 "       \"name1\" : \""+de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()+"\", " +
                 "       \"name2\" : \""+de.getInfRepairByRepairId().getLaptopName()+"\", " +
@@ -920,6 +915,7 @@ public class customerInfController implements Initializable {
     }
 
     public void updateTinhTrang(){
+        TopLoading.setVisible(true);
         try{
             txtCapNhatDuLieu.setVisible(true);
             txtCapNhatDuLieu.setText("-Đang cập nhật dữ liệu-");
@@ -961,6 +957,7 @@ public class customerInfController implements Initializable {
                 txtMaSuaChuaRepair.setText("");
                 txtTinhTrangSuaStatus.setText("");
             }
+            TopLoading.setVisible(false);
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -969,7 +966,7 @@ public class customerInfController implements Initializable {
     public void updateInSever(){
         txtCapNhatDuLieu.setText("-Đang cập nhật dữ liệu lên server-");
         try {
-            String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/update.php";
+            String query_url = "https://dht-api.000webhostapp.com/APIDoAnJava/update.php";
                 String json = "{ \"name\" : \""+idForSever+"\", " +
                         "       \"name1\" : \""+statusForServer+"\", " +
                         "       \"name2\" : \""+token+"\", " +
@@ -1054,7 +1051,7 @@ public class customerInfController implements Initializable {
                 String fomat = dollarFormat.format(money);
 
                 message.setSubject("Công ty DHT - Thông báo về việc hoàn thành sữa chữa.");
-                String text ="<img src="+"/viewForm/Picture/Pic/anhsendmail.png"+">" + "<br>" +
+                String text ="<img src="+"../src/viewForm/Picture/Pic/anhsendmail.png"+">" + "<br>" +
                         "<b>Xin chào khách hàng: </b>"+ de2.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerId() + "<br>" + "<br>" +
                         "<b>Họ và tên: </b>" + de2.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName() + "<br>" + "<br>" +
                         "<b>Tên laptop: </b>" + de2.getInfRepairByRepairId().getLaptopName() + "<br>" + "<br>" +
@@ -1440,5 +1437,6 @@ public class customerInfController implements Initializable {
         DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
         txtNgayThem.setText(dayAdd.format(now));
+        txtNgaySinh.setValue(LocalDate.parse(dayAdd.format(now)));
     }
 }

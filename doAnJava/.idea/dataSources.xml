@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ProjectOne@localhost" uuid="5a3fe163-2f6f-4d10-a4cb-95841fe4712a">
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="081bac43-ff16-416d-a6b5-b44026227682">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/THANH TAI/Documents/GitHub/doAnJavaUsedHibernate/doAnJava/src/hibernate.cfg.xml</remarks>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://localhost:1433;database=ProjectOne</jdbc-url>
     </data-source>

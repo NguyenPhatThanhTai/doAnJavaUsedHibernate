@@ -1,9 +1,6 @@
 package viewForm.Controller;
 
-import DAO.detailInfRepairDao;
-import DAO.infCustomerDao;
-import DAO.infLKDao;
-import DAO.infRepairDao;
+import DAO.*;
 import Model.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -99,6 +96,8 @@ public class linhKienInfController implements Initializable {
     ObservableList<InfLkEntity> rlist;
     infLKDao daoLk = new infLKDao();
 
+    String oldEntity;
+
     public void loadData(){
         rlist = daoLk.getALl();
         tableListLk.setItems(rlist);
@@ -119,6 +118,8 @@ public class linhKienInfController implements Initializable {
         else {
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+            DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+            DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy");
             DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
             DateTimeFormatter sec = DateTimeFormatter.ofPattern("ss");
 
@@ -127,11 +128,25 @@ public class linhKienInfController implements Initializable {
 
             infLKDao infLKDao = new infLKDao();
 
-            InfLkEntity infLkEntity = new InfLkEntity(lkId, txtTenLinhKien.getText(), txtSoLuong.getText(), txtNhaSanXuat.getText(), txtDonGia.getText(), Date.valueOf(txtNgayThem.getText()));
+            InfLkEntity infLkEntity = new InfLkEntity(lkId, txtTenLinhKien.getText() +" "+ txtNhaSanXuat.getText(), txtSoLuong.getText(), txtNhaSanXuat.getText(), txtDonGia.getText(), Date.valueOf(txtNgayThem.getText()));
 
             if (infLKDao.addData(infLkEntity)) {
+
+                doanhthuDao doanhthuDao = new doanhthuDao();
+                InfDoanhThuThangEntity infDoanhThuThangEntity1 =
+                        doanhthuDao.getByDateDoanhThuThang(Date.valueOf(year.format(now) +"-"+ month.format(now)+"-1"));
+                if (infDoanhThuThangEntity1 != null){
+                    Long money = Long.valueOf(infDoanhThuThangEntity1.getOutputMoney()) + (Long.valueOf(txtDonGia.getText()) * Long.valueOf(txtSoLuong.getText()));
+                    Long profit = Long.valueOf(infDoanhThuThangEntity1.getInputMoney()) - money;
+                    InfDoanhThuThangEntity infDoanhThuThangEntity2 =
+                            new InfDoanhThuThangEntity("DTT"+year.format(now)+month.format(now), infDoanhThuThangEntity1.getInputMoney(), String.valueOf(money),
+                                    infDoanhThuThangEntity1.getEntity(), infDoanhThuThangEntity1.getStaffSalary(), String.valueOf(profit), Date.valueOf(year.format(now) +"-"+ month.format(now)+"-1"));
+                    doanhthuDao.updateDoanhThuThang(infDoanhThuThangEntity2);
+                }
+
                 refreshView();
-                openTextField(false);
+                openTextField(true);
+                clearItem();
                 btnXacNhanThem.setVisible(false);
                 btnHuyThem.setVisible(false);
                 btnSua.setDisable(false);
@@ -143,49 +158,84 @@ public class linhKienInfController implements Initializable {
     }
 
     public void updateLK(){
-        InfLkEntity infLkEntity = new InfLkEntity(txtMaLinhKien.getText(), txtTenLinhKien.getText(), txtSoLuong.getText(), txtNhaSanXuat.getText(), txtDonGia.getText(), Date.valueOf(txtNgayThem.getText()));
-        infLKDao infLKDao = new infLKDao();
-        if(infLKDao.updateData(infLkEntity)){
-            refreshView();
-            openTextField(false);
-            btnXacNhanSua.setVisible(false);
-            btnHuySua.setVisible(false);
-            btnThem.setDisable(false);
-            btnXoa.setDisable(false);
-            btnSua.setVisible(true);
-            tableListLk.setDisable(false);
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+        DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+        DateTimeFormatter year = DateTimeFormatter.ofPattern("yyyy");
+        if (txtTenLinhKien.getText().equals("") || txtNhaSanXuat.getText().equals("") || txtSoLuong.getText().equals("") || txtDonGia.getText().equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Không được để trống");
+            alert.showAndWait();
+        }
+        else {
+            InfLkEntity infLkEntity = new InfLkEntity(txtMaLinhKien.getText(), txtTenLinhKien.getText() + " " + txtNhaSanXuat.getText(), txtSoLuong.getText(), txtNhaSanXuat.getText(), txtDonGia.getText(), Date.valueOf(txtNgayThem.getText()));
+            infLKDao infLKDao = new infLKDao();
+            if(infLKDao.updateData(infLkEntity)){
+                doanhthuDao doanhthuDao = new doanhthuDao();
+                InfDoanhThuThangEntity infDoanhThuThangEntity1 =
+                        doanhthuDao.getByDateDoanhThuThang(Date.valueOf(year.format(now) +"-"+ month.format(now)+"-1"));
+                if (infDoanhThuThangEntity1 != null){
+                    int newEntity = 0;
+                    if (Integer.parseInt(txtSoLuong.getText()) > Integer.parseInt(oldEntity)){
+                        newEntity = Integer.parseInt(txtSoLuong.getText()) - Integer.parseInt(oldEntity);
+                    }
+                    Long money = Long.valueOf(infDoanhThuThangEntity1.getOutputMoney()) + (Long.valueOf(txtDonGia.getText()) * newEntity);
+                    Long profit = Long.valueOf(infDoanhThuThangEntity1.getInputMoney()) - money;
+                    InfDoanhThuThangEntity infDoanhThuThangEntity2 =
+                            new InfDoanhThuThangEntity("DTT"+year.format(now)+month.format(now), infDoanhThuThangEntity1.getInputMoney(), String.valueOf(money),
+                                    infDoanhThuThangEntity1.getEntity(), infDoanhThuThangEntity1.getStaffSalary(), String.valueOf(profit), Date.valueOf(year.format(now) +"-"+ month.format(now)+"-1"));
+                    doanhthuDao.updateDoanhThuThang(infDoanhThuThangEntity2);
+                }
+                refreshView();
+                openTextField(true);
+                clearItem();
+                btnXacNhanSua.setVisible(false);
+                btnHuySua.setVisible(false);
+                btnThem.setDisable(false);
+                btnXoa.setDisable(true);
+                btnSua.setDisable(true);
+                btnSua.setVisible(true);
+                tableListLk.setDisable(false);
+            }
         }
     }
 
     public void getItemFromTableViewLK(){
-        tableListLk.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                InfLkEntity de = (InfLkEntity) tableListLk.getItems().get(tableListLk.getSelectionModel().getSelectedIndex());
-                txtMaLinhKien.setText(de.getLkId());
-                txtTenLinhKien.setText(de.getLkName());
-                txtNhaSanXuat.setText(de.getLkProducer());
-                txtDonGia.setText(de.getLkPrice());
-                txtSoLuong.setText(de.getLkNumber());
-                txtNgayThem.setText(String.valueOf(de.getLkTimeAdd()));
-            }
-        });
+        btnThem.setDisable(true);
+        btnSua.setDisable(false);
+        btnXoa.setDisable(false);
+        InfLkEntity de = (InfLkEntity) tableListLk.getItems().get(tableListLk.getSelectionModel().getSelectedIndex());
+            txtMaLinhKien.setText(de.getLkId());
+            txtTenLinhKien.setText(de.getLkName());
+            txtNhaSanXuat.setText(de.getLkProducer());
+            txtDonGia.setText(de.getLkPrice());
+            txtSoLuong.setText(de.getLkNumber());
+            txtNgayThem.setText(String.valueOf(de.getLkTimeAdd()));
+            oldEntity = txtSoLuong.getText();
     }
 
     public void deleteLK(){
-        infLKDao infLKDao = new infLKDao();
-        InfLkEntity infLkEntity = new InfLkEntity();
-        infLkEntity.setLkId(txtMaLinhKien.getText());
+        if (txtTenLinhKien.getText().equals("") || txtNhaSanXuat.getText().equals("") || txtSoLuong.getText().equals("") || txtDonGia.getText().equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Không được để trống");
+            alert.showAndWait();
+        }
+        else {
+            infLKDao infLKDao = new infLKDao();
+            InfLkEntity infLkEntity = new InfLkEntity();
+            infLkEntity.setLkId(txtMaLinhKien.getText());
 
-        if(infLKDao.dellData(infLkEntity)){
-            refreshView();
-            openTextField(false);
-            btnXacNhanXoa.setVisible(false);
-            btnHuyXoa.setVisible(false);
-            btnSua.setDisable(false);
-            btnThem.setDisable(false);
-            btnXoa.setVisible(true);
-            tableListLk.setDisable(false);
+            if(infLKDao.dellData(infLkEntity)){
+                refreshView();
+                openTextField(true);
+                clearItem();
+                btnXacNhanXoa.setVisible(false);
+                btnHuyXoa.setVisible(false);
+                btnSua.setDisable(false);
+                btnThem.setDisable(false);
+                btnXoa.setVisible(true);
+                tableListLk.setDisable(false);
+            }
         }
     }
 
@@ -215,70 +265,64 @@ public class linhKienInfController implements Initializable {
     public void openButton(boolean flag, String nut){
         switch (nut){
             case "Add":
+                openTextField(false);
                 btnThem.setVisible(flag);
-                btnSua.setDisable(true);
-                btnXoa.setDisable(true);
                 btnXacNhanThem.setVisible(true);
                 btnHuyThem.setVisible(true);
 
                 tableListLk.setDisable(!flag);
 
-                openTextField(flag);
+
                 break;
             case "HuyAdd":
+                openTextField(true);
+                clearItem();
                 btnThem.setVisible(flag);
-                btnSua.setDisable(!flag);
-                btnXoa.setDisable(!flag);
                 btnXacNhanThem.setVisible(!flag);
                 btnHuyThem.setVisible(!flag);
 
                 tableListLk.setDisable(!flag);
 
-                openTextField(flag);
                 break;
             case "Sua":
+                openTextField(false);
                 btnSua.setVisible(flag);
-                btnThem.setDisable(true);
-                btnXoa.setDisable(true);
                 btnXacNhanSua.setVisible(true);
                 btnHuySua.setVisible(true);
 
                 tableListLk.setDisable(!flag);
 
-                openTextField(flag);
                 break;
             case "HuySua":
+                openTextField(true);
+                clearItem();
                 btnSua.setVisible(flag);
+                btnSua.setDisable(flag);
                 btnThem.setDisable(!flag);
-                btnXoa.setDisable(!flag);
+                btnXoa.setDisable(flag);
                 btnXacNhanSua.setVisible(!flag);
                 btnHuySua.setVisible(!flag);
 
                 tableListLk.setDisable(!flag);
 
-                openTextField(flag);
                 break;
             case "Xoa":
                 btnXoa.setVisible(flag);
-                btnThem.setDisable(true);
-                btnThem.setDisable(true);
                 btnXacNhanXoa.setVisible(true);
                 btnHuyXoa.setVisible(true);
 
                 tableListLk.setDisable(!flag);
 
-                openTextField(flag);
                 break;
             case "HuyXoa":
                 btnXoa.setVisible(flag);
-                btnThem.setDisable(!flag);
-                btnThem.setDisable(!flag);
+                btnSua.setDisable(flag);
+                btnXoa.setDisable(flag);
                 btnXacNhanXoa.setVisible(!flag);
                 btnHuyXoa.setVisible(!flag);
 
                 tableListLk.setDisable(!flag);
 
-                openTextField(flag);
                 break;
         }
     }
@@ -288,6 +332,14 @@ public class linhKienInfController implements Initializable {
         txtDonGia.setDisable(flag);
         txtNhaSanXuat.setDisable(flag);
         txtSoLuong.setDisable(flag);
+    }
+
+    public void clearItem(){
+        txtTenLinhKien.setText("");
+        txtNhaSanXuat.setText("");
+        txtSoLuong.setText("");
+        txtDonGia.setText("");
+        txtMaLinhKien.setText("");
     }
 
     @Override

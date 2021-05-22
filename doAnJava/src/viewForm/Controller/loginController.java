@@ -129,7 +129,7 @@ public class loginController implements Initializable {
 
     public void getToken(){
         String keyWorld = "Logined";
-        String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/sendToken.php";
+        String query_url = "https://dht-api.000webhostapp.com/APIDoAnJava/sendToken.php";
         String json = "{ \"name\" : \""+keyWorld+"\", " +
                 "       \"name1\" : \""+keyWorld+"\"}";
         try {

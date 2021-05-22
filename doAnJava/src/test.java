@@ -10,7 +10,7 @@ import java.util.Base64;
 public class test {
     public static void main(String[] args) {
         String keyWorld = "Logined";
-        String query_url = "https://apimywebsite.000webhostapp.com/APIDoAnJava/sendToken.php";
+        String query_url = "https://dht-api.000webhostapp.com/APIDoAnJava/sendToken.php";
         String json = "{ \"name\" : \""+keyWorld+"\", " +
                 "       \"name1\" : \""+keyWorld+"\"}";
         try {
@@ -33,6 +33,8 @@ public class test {
             }
 
             String array1 = br.readLine();
+
+            System.out.println(br.readLine());
 
             JSONObject json2 = new JSONObject(array1);
 
