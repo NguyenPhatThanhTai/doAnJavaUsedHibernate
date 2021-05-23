@@ -32,6 +32,15 @@ public class DetailInfRepairEntity {
         this.infRepairByRepairId = infRepairByRepairId;
     }
 
+    public String Status(){
+        if (repairStatus.equals("1")){
+            return "Đã hoàn thành";
+        }
+        else {
+            return "Chưa hoàn thành";
+        }
+    }
+
     @Id
     @Column(name = "Detail_Id")
     public String getDetailId() {

@@ -672,7 +672,7 @@ public class customerInfController implements Initializable {
         colRepairStaffId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfStaffByStaffId().getStaffId()));
         colRepairNeedFix.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairReason()));
         colRepairNote.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairNote()));
-        colRepairStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairStatus()));
+        colRepairStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().Status()));
         colRepairAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getRepairAppointment())));
         colRepairMoney.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairMoney()));
     }
@@ -682,20 +682,23 @@ public class customerInfController implements Initializable {
             btnSuaRepair.setDisable(false);
 
             DetailInfRepairEntity de = (DetailInfRepairEntity) tableListRepair.getItems().get(tableListRepair.getSelectionModel().getSelectedIndex());
-            txtMaSuaChua.setText(de.getInfRepairByRepairId().getRepairId());
-            txtTenkhachHangSuaChua.setText(de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
-            if (de.getRepairNote().equals("Sửa lấy ngay")){
-                txtSuaRepair.setSelected(false);
+                txtMaSuaChua.setText(de.getInfRepairByRepairId().getRepairId());
+                txtTenkhachHangSuaChua.setText(de.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName());
+                if (de.getRepairNote().equals("Sửa lấy ngay")){
+                    txtSuaRepair.setSelected(false);
+                }
+                else {
+                    txtSuaRepair.setSelected(true);
+                }
+                txtNgayHen.setValue(LocalDate.parse(String.valueOf(de.getRepairAppointment())));
+                txtNhanVienTiepNhan.setText(de.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId());
+                txtTinhTrang.setText(de.getInfRepairByRepairId().getLaptopStatus());
+                txtLkDaChon.setText(de.getRepairReason());
+                txtLaptopName.setText(String.valueOf(de.getInfRepairByRepairId().getLaptopName()));
+                txtTien.setText(de.getRepairMoney());
+            if (de.getRepairStatus().equals("1")){
+                btnSuaRepair.setDisable(true);
             }
-            else {
-                txtSuaRepair.setSelected(true);
-            }
-            txtNgayHen.setValue(LocalDate.parse(String.valueOf(de.getRepairAppointment())));
-            txtNhanVienTiepNhan.setText(de.getInfRepairByRepairId().getInfStaffByStaffId().getStaffId());
-            txtTinhTrang.setText(de.getInfRepairByRepairId().getLaptopStatus());
-            txtLkDaChon.setText(de.getRepairReason());
-            txtLaptopName.setText(String.valueOf(de.getInfRepairByRepairId().getLaptopName()));
-            txtTien.setText(de.getRepairMoney());
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -719,16 +722,23 @@ public class customerInfController implements Initializable {
 
     public void setItemSelected(){
         String lkTien = txtTien.getText();
-                InfLkEntity de = (InfLkEntity) tableListLinhKien.getItems().get(tableListLinhKien.getSelectionModel().getSelectedIndex());
+            InfLkEntity de = (InfLkEntity) tableListLinhKien.getItems().get(tableListLinhKien.getSelectionModel().getSelectedIndex());
+            if (de.getLkNumber().equals("0")){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Linh kiện này hiện tại đã hết, vui lòng kiểm tra lại");
+                alert.showAndWait();
+            }
+            else {
                 listLK.add(de.getLkName());
 
-        txtLkDaChon.setText(listLK.toString());
+                txtLkDaChon.setText(listLK.toString());
 
-        long money1 = Long.parseLong(txtTien.getText());
-        long money2 = Long.parseLong(de.getLkPrice());
-        long tienLK = Long.parseLong(txtTien.getText() + de.getLkPrice());
-        long tien = money1+money2;
-        txtTien.setText(String.valueOf(tien));
+                long money1 = Long.parseLong(txtTien.getText());
+                long money2 = Long.parseLong(de.getLkPrice());
+                long tienLK = Long.parseLong(txtTien.getText() + de.getLkPrice());
+                long tien = money1+money2;
+                txtTien.setText(String.valueOf(tien));
+            }
     }
 
     public void resetDanhSach(){
@@ -885,7 +895,7 @@ public class customerInfController implements Initializable {
         colCustomerIdStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerId()));
         colCustomerNameStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()));
         colLaptopNameStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopName()));
-        colStatusStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairStatus()));
+        colStatusStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().Status()));
         colMoneyStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairMoney()));
         colStaffIdStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfStaffByStaffId().getStaffId()));
         colNgayThemStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerTimeAdd())));
@@ -1192,7 +1202,7 @@ public class customerInfController implements Initializable {
         else {
             long inputMoney = Long.parseLong(detailInfRepairEntity.getRepairMoney()) + Long.parseLong(infDoanhThuThangEntity.getInputMoney());
             int entity = Integer.parseInt(infDoanhThuThangEntity.getEntity()) + 1;
-            long profit = Long.parseLong(infDoanhThuThangEntity.getInputMoney()) - Long.parseLong(infDoanhThuThangEntity.getOutputMoney());
+            long profit = inputMoney - Long.parseLong(infDoanhThuThangEntity.getOutputMoney());
 
             InfDoanhThuThangEntity infDoanhThuThangEntity2 = new InfDoanhThuThangEntity(infDoanhThuThangEntity.getDtt(), String.valueOf(inputMoney), infDoanhThuThangEntity.getOutputMoney(),String.valueOf(entity), infDoanhThuThangEntity.getStaffSalary(), String.valueOf(profit), infDoanhThuThangEntity.getMonth());
             doanhthuDao.updateDoanhThuThang(infDoanhThuThangEntity2);
