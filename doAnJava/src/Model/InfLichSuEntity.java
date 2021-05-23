@@ -17,13 +17,13 @@ public class InfLichSuEntity {
     private String repairId;
     private String laptopName;
     private String laptopStatus;
-    private String staffId;
     private String repairReason;
     private String repairNote;
     private Date repairAppointment;
     private String repairMoney;
     private String repairStatus;
     private Date repairTimeEnd;
+    private InfStaffEntity infStaffByStaffId;
 
     public String customerSex(){
         if (customerSex.equals("q")){
@@ -37,7 +37,7 @@ public class InfLichSuEntity {
     public InfLichSuEntity() {
     }
 
-    public InfLichSuEntity(String customerId, String customerName, String customerSex, Date customerBirth, String customerEmail, String customerPhone, Date customerTimeAdd, String repairId, String laptopName, String laptopStatus, String staffId, String repairReason, String repairNote, Date repairAppointment, String repairMoney, String repairStatus, Date repairTimeEnd) {
+    public InfLichSuEntity(String customerId, String customerName, String customerSex, Date customerBirth, String customerEmail, String customerPhone, Date customerTimeAdd, String repairId, String laptopName, String laptopStatus, String repairReason, String repairNote, Date repairAppointment, String repairMoney, String repairStatus, Date repairTimeEnd) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerSex = customerSex;
@@ -48,7 +48,6 @@ public class InfLichSuEntity {
         this.repairId = repairId;
         this.laptopName = laptopName;
         this.laptopStatus = laptopStatus;
-        this.staffId = staffId;
         this.repairReason = repairReason;
         this.repairNote = repairNote;
         this.repairAppointment = repairAppointment;
@@ -56,6 +55,7 @@ public class InfLichSuEntity {
         this.repairStatus = repairStatus;
         this.repairTimeEnd = repairTimeEnd;
     }
+
 
     @Id
     @Column(name = "Customer_Id")
@@ -158,16 +158,6 @@ public class InfLichSuEntity {
     }
 
     @Basic
-    @Column(name = "Staff_Id")
-    public String getStaffId() {
-        return staffId;
-    }
-
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
-    }
-
-    @Basic
     @Column(name = "Repair_Reason")
     public String getRepairReason() {
         return repairReason;
@@ -242,7 +232,6 @@ public class InfLichSuEntity {
                 Objects.equals(repairId, that.repairId) &&
                 Objects.equals(laptopName, that.laptopName) &&
                 Objects.equals(laptopStatus, that.laptopStatus) &&
-                Objects.equals(staffId, that.staffId) &&
                 Objects.equals(repairReason, that.repairReason) &&
                 Objects.equals(repairNote, that.repairNote) &&
                 Objects.equals(repairAppointment, that.repairAppointment) &&
@@ -253,6 +242,16 @@ public class InfLichSuEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerId, customerName, customerSex, customerBirth, customerEmail, customerPhone, customerTimeAdd, repairId, laptopName, laptopStatus, staffId, repairReason, repairNote, repairAppointment, repairMoney, repairStatus, repairTimeEnd);
+        return Objects.hash(customerId, customerName, customerSex, customerBirth, customerEmail, customerPhone, customerTimeAdd, repairId, laptopName, laptopStatus, repairReason, repairNote, repairAppointment, repairMoney, repairStatus, repairTimeEnd);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Staff_Id", referencedColumnName = "Staff_Id")
+    public InfStaffEntity getInfStaffByStaffId() {
+        return infStaffByStaffId;
+    }
+
+    public void setInfStaffByStaffId(InfStaffEntity infStaffByStaffId) {
+        this.infStaffByStaffId = infStaffByStaffId;
     }
 }

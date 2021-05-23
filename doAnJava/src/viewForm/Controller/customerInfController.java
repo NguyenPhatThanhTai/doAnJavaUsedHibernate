@@ -1227,7 +1227,7 @@ public class customerInfController implements Initializable {
         lsRepairId.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairId()));
         lsLaptopName.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLaptopName()));
         lsLaptopStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getLaptopStatus()));
-        lsStaffHanding.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getStaffId()));
+        lsStaffHanding.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffId()));
         lsNeedFix.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairReason()));
         lsRepairAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairNote()));
         lsDateAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getRepairAppointment())));
