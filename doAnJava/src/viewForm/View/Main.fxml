@@ -82,11 +82,11 @@
                </graphic>
             </JFXButton>
             <ImageView fitHeight="16.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton contentDisplay="TOP" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
+            <JFXButton contentDisplay="TOP" onAction="#Logouṭ" prefHeight="74.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="---">
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="34.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Picture/Pic/settings_50px.png" />
+                        <Image url="@../Picture/Pic/close_window.png" />
                      </image>
                   </ImageView>
                </graphic>

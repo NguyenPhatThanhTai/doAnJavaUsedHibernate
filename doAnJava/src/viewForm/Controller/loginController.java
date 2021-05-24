@@ -185,7 +185,7 @@ public class loginController implements Initializable {
             br.close();
             conn.disconnect();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 

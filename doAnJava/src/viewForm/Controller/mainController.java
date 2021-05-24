@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -324,6 +325,35 @@ public class mainController implements Initializable {
             Stage obj = (Stage) btnMinimized.getScene().getWindow();
             obj.setIconified(true);
         });
+    }
+
+    public void Logouṭ(ActionEvent e){
+        ButtonType foo = new ButtonType("Đăng xuất", ButtonBar.ButtonData.OK_DONE);
+        ButtonType bar = new ButtonType("Thoát", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+                "Bạn có chắc chắn muốn đăng xuất",
+                foo, bar);
+
+        alert.setTitle("Xác nhận đăng xuất chương trình");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.orElse(bar) == foo) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/sample.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED); // tắt thanh top bar
+                stage.setScene(new Scene(root));
+                stage.setTitle("Đăng nhập");
+                stage.show();
+
+                ((Node)(e.getSource())).getScene().getWindow().hide();
+
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
