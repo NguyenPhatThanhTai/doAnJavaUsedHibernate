@@ -334,9 +334,15 @@ public class customerInfController implements Initializable {
         btnXacNhanThem.setDisable(true);
         btnHuyThem.setDisable(true);
         if (txtTenKhachHang.getText().equals("") || txtSoDienThoai.getText().equals("") || txtEmail.getText().equals("") || txtNgaySinh.getValue().equals("")){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Không được để trống");
-            alert.showAndWait();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    TopLoading.setVisible(false);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setContentText("Không được để trống");
+                    alert.showAndWait();
+                }
+            });
         }
         else {
             LocalDateTime now = LocalDateTime.now();
@@ -388,6 +394,17 @@ public class customerInfController implements Initializable {
                 btnXacNhanThem.setDisable(false);
                 btnHuyThem.setDisable(false);
                 thread.interrupt();
+            }
+            else {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        TopLoading.setVisible(false);
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("Thêm không thành công");
+                        alert.showAndWait();
+                    }
+                });
             }
         }
     }
