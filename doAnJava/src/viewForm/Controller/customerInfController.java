@@ -469,9 +469,15 @@ public class customerInfController implements Initializable {
         btnHuySua.setDisable(true);
 
         if (txtTenKhachHang.getText().equals("") || txtSoDienThoai.getText().equals("") || txtEmail.getText().equals("") || txtNgaySinh.getValue().equals("")){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Không được để trống");
-            alert.showAndWait();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    TopLoading.setVisible(false);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setContentText("Không được để trống");
+                    alert.showAndWait();
+                }
+            });
         }
         else {
             String idSplit = txtMaKhachHang.getText();
@@ -502,6 +508,17 @@ public class customerInfController implements Initializable {
                 btnXacNhanSua.setDisable(false);
                 btnHuySua.setDisable(false);
                 thread.interrupt();
+            }
+            else {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        TopLoading.setVisible(false);
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("Sửa không thành công");
+                        alert.showAndWait();
+                    }
+                });
             }
         }
     }
@@ -602,6 +619,17 @@ public class customerInfController implements Initializable {
             btnXacNhanXoa.setDisable(false);
             btnHuyXoa.setDisable(false);
             thread.interrupt();
+        }
+        else {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    TopLoading.setVisible(false);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Xoá không thành công");
+                    alert.showAndWait();
+                }
+            });
         }
     }
 
@@ -783,77 +811,89 @@ public class customerInfController implements Initializable {
     }
 
     public void updateRepair(){
-        TopLoading.setVisible(true);
-        btnXacNhanSuaRepair.setDisable(true);
-        btnHuySuaRepair.setDisable(true);
-
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
-        DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
-        DateTimeFormatter year = DateTimeFormatter.ofPattern("yy");
-
-        String idSplit = txtMaSuaChua.getText();
-        String[] parts = idSplit.split("RP");
-
-        this.SeverDTId = "DT" + parts[1];
-        this.SeverRPId = txtMaSuaChua.getText();
-
-        String suaRepair = "Sủa lấy ngay";
-        infCustomerDao infCustomerDao = new infCustomerDao();
-        InfRepairEntity infRepairEntity = new InfRepairEntity(txtMaSuaChua.getText(), txtLaptopName.getText(), txtTinhTrang.getText(),infCustomerDao.getDataById("KH"+parts[1]), infStaffEntity);
-        if (txtSuaRepair.isSelected()){
-            suaRepair = "Hẹn ngày lấy";
-        }
-        DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity("DT"+parts[1], txtLkDaChon.getText(), suaRepair, "2", Date.valueOf(txtNgayHen.getValue()), txtTien.getText(), infRepairEntity);
-
-        InfDoanhThuSuaEntity infDoanhThuSuaEntity = new InfDoanhThuSuaEntity("DTN"+day.format(now)+month.format(now)+year.format(now));
-        InfHoaDonEntity infHoaDonEntity = new InfHoaDonEntity("HD"+parts[1], txtTien.getText(), detailInfRepairEntity, infDoanhThuSuaEntity);
-
-        //
-    try{
-        //Xoá hết tất cả của thằng đó trước khi thêm
-        infLKDao infLKDao = new infLKDao();
-        infLKDao.dellOldData(SeverDTId);
-
-        //Thêm vào lại
-        String lk = txtLkDaChon.getText();
-        String str = lk.substring(1, lk.length() - 1);
-        String[] ary = str.split(", ");
-        for (int i = 0; i < ary.length; i ++) {
-            int entity = 0;
-            InfLkEntity infLkEntity = infLKDao.getDataById(ary[i]);
-
-            //kiểm tra số lượng
-            for (int j = 0; j < ary.length; j ++) {
-                if (infLkEntity.getLkName().equals(ary[j])){
-                    entity+= 1;
+        if (txtLaptopName.getText().equals("") || txtTinhTrang.getText().equals("") || txtLkDaChon.getText().equals("") || txtTien.getText().equals("")){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    TopLoading.setVisible(false);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setContentText("Không được để trống");
+                    alert.showAndWait();
                 }
-            }
-
-            DetailLkEntity detailLkEntity = new DetailLkEntity(SeverDTId, infLkEntity.getLkId(), String.valueOf(entity));
-
-            //add vào
-            infLKDao.addDetailLK(detailLkEntity);
+            });
         }
-    }catch (Exception ex){
-        ex.printStackTrace();
-    }
-        //
+        else {
+            TopLoading.setVisible(true);
+            btnXacNhanSuaRepair.setDisable(true);
+            btnHuySuaRepair.setDisable(true);
 
-        infRepairDao infRepairDao = new infRepairDao();
-        detailInfRepairDao detailInfRepairDao = new detailInfRepairDao();
-        infHoaDonDao infHoaDonDao = new infHoaDonDao();
-        if(infRepairDao.updateData(infRepairEntity) && detailInfRepairDao.updateData(detailInfRepairEntity) && infHoaDonDao.updateData(infHoaDonEntity)){
-            refreshView();
-            thread = new Thread(this::updateRepairInSever);
-            thread.start();
-            openTextFieldRepair(false);
-            openButton(true, "SuaRepair");
-            clearAllSuaChua();
-            TopLoading.setVisible(false);
-            btnXacNhanSuaRepair.setDisable(false);
-            btnHuySuaRepair.setDisable(false);
-            thread.interrupt();
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
+            DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
+            DateTimeFormatter year = DateTimeFormatter.ofPattern("yy");
+
+            String idSplit = txtMaSuaChua.getText();
+            String[] parts = idSplit.split("RP");
+
+            this.SeverDTId = "DT" + parts[1];
+            this.SeverRPId = txtMaSuaChua.getText();
+
+            String suaRepair = "Sủa lấy ngay";
+            infCustomerDao infCustomerDao = new infCustomerDao();
+            InfRepairEntity infRepairEntity = new InfRepairEntity(txtMaSuaChua.getText(), txtLaptopName.getText(), txtTinhTrang.getText(), infCustomerDao.getDataById("KH" + parts[1]), infStaffEntity);
+            if (txtSuaRepair.isSelected()) {
+                suaRepair = "Hẹn ngày lấy";
+            }
+            DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity("DT" + parts[1], txtLkDaChon.getText(), suaRepair, "2", Date.valueOf(txtNgayHen.getValue()), txtTien.getText(), infRepairEntity);
+
+            InfDoanhThuSuaEntity infDoanhThuSuaEntity = new InfDoanhThuSuaEntity("DTN" + day.format(now) + month.format(now) + year.format(now));
+            InfHoaDonEntity infHoaDonEntity = new InfHoaDonEntity("HD" + parts[1], txtTien.getText(), detailInfRepairEntity, infDoanhThuSuaEntity);
+            //
+            try {
+                //Xoá hết tất cả của thằng đó trước khi thêm
+                infLKDao infLKDao = new infLKDao();
+                infLKDao.dellOldData(SeverDTId);
+
+                //Thêm vào lại
+                String lk = txtLkDaChon.getText();
+                String str = lk.substring(1, lk.length() - 1);
+                String[] ary = str.split(", ");
+                for (int i = 0; i < ary.length; i++) {
+                    int entity = 0;
+                    InfLkEntity infLkEntity = infLKDao.getDataById(ary[i]);
+
+                    //kiểm tra số lượng
+                    for (int j = 0; j < ary.length; j++) {
+                        if (infLkEntity.getLkName().equals(ary[j])) {
+                            entity += 1;
+                        }
+                    }
+
+                    DetailLkEntity detailLkEntity = new DetailLkEntity(SeverDTId, infLkEntity.getLkId(), String.valueOf(entity));
+
+                    //add vào
+                    infLKDao.addDetailLK(detailLkEntity);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            //
+
+            infRepairDao infRepairDao = new infRepairDao();
+            detailInfRepairDao detailInfRepairDao = new detailInfRepairDao();
+            infHoaDonDao infHoaDonDao = new infHoaDonDao();
+            if (infRepairDao.updateData(infRepairEntity) && detailInfRepairDao.updateData(detailInfRepairEntity) && infHoaDonDao.updateData(infHoaDonEntity)) {
+                refreshView();
+                thread = new Thread(this::updateRepairInSever);
+                thread.start();
+                openTextFieldRepair(false);
+                openButton(true, "SuaRepair");
+                clearAllSuaChua();
+                TopLoading.setVisible(false);
+                btnXacNhanSuaRepair.setDisable(false);
+                btnHuySuaRepair.setDisable(false);
+                thread.interrupt();
+            }
         }
     }
 
