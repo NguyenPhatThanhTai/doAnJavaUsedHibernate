@@ -23,28 +23,28 @@ public class staffInfController implements Initializable {
     private TableView<AccountStaffEntity> tableViewNhanVien;
 
     @FXML
-    private TableColumn<AccountStaffEntity, String> clMaNhanVien;
+    private TableColumn<AccountStaffEntity, String> clMaNhanVien;//TableColumn<AccountStaffEntity, String> là dữ liệu thuộc bảng nhân viên kiểu dữ liệu là String
 
     @FXML
-    private TableColumn<AccountStaffEntity, String> clTenNhanVien;
+    private TableColumn<AccountStaffEntity, String> clTenNhanVien;//tương tự như trên
 
     @FXML
-    private TableColumn<AccountStaffEntity, String> clGioiTinh;
+    private TableColumn<AccountStaffEntity, String> clGioiTinh;//tương tự như trên
 
     @FXML
-    private TableColumn<AccountStaffEntity, String> clNgaySinh;
+    private TableColumn<AccountStaffEntity, String> clNgaySinh;//tương tự như trên
 
     @FXML
-    private TableColumn<AccountStaffEntity, String> clDiaChi;
+    private TableColumn<AccountStaffEntity, String> clDiaChi;//tương tự như trên
 
     @FXML
-    private TableColumn<AccountStaffEntity, String> clSoDienThoai;
+    private TableColumn<AccountStaffEntity, String> clSoDienThoai;//tương tự như trên
 
     @FXML
-    private TableColumn<AccountStaffEntity, String> clChucVu;
+    private TableColumn<AccountStaffEntity, String> clChucVu;//tương tự như trên
 
     @FXML
-    private TableColumn<AccountStaffEntity, String> clNgayThem;
+    private TableColumn<AccountStaffEntity, String> clNgayThem;//tương tự như trên
 
     @FXML
     private TextField txtMaNhanVien;
@@ -100,13 +100,13 @@ public class staffInfController implements Initializable {
     @FXML
     private JFXButton btnllamMoi;
 
-    accountStaffDao dao = new accountStaffDao();
+    accountStaffDao dao = new accountStaffDao();//gọi tới DAO (dùng để trả dữ liệu về bên đây)
 
-    ObservableList<AccountStaffEntity> nvList;
+    ObservableList<AccountStaffEntity> nvList;//Muốn đưa dữ liệu vào tableView thì cần phải xài cái ObservableList
 
     public void loadNV(){
-        nvList = dao.getALl();
-        tableViewNhanVien.setItems(nvList);
+        nvList = dao.getALl();//Nhét hết đống dữ liêu về nhân viên mà thằng DAO lấy được vào ObservableList
+        tableViewNhanVien.setItems(nvList);//set cái đống dữ liêu đó vào bảng nhân viên
         clMaNhanVien.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffId()));
         clTenNhanVien.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffName()));
         clGioiTinh.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().staffSex()));
@@ -117,16 +117,17 @@ public class staffInfController implements Initializable {
         clNgayThem.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getInfStaffByStaffId().getStaffTimeAdd())));
     }
 
-    public void getItemsFromTableViewNV(){
+    public void getItemsFromTableViewNV(){ // cái này thì khi nhấn dữ liệu trên bảng nó hiện vô mấy khung nhập
         try {
             btnThem.setDisable(true);
             btnSua.setDisable(false);
             btnXoa.setDisable(false);
 
-            AccountStaffEntity cus = (AccountStaffEntity) tableViewNhanVien.getItems().get(tableViewNhanVien.getSelectionModel().getSelectedIndex());
-            txtMaNhanVien.setText(cus.getInfStaffByStaffId().getStaffId());
+            AccountStaffEntity cus = (AccountStaffEntity) tableViewNhanVien.getItems().get(tableViewNhanVien.getSelectionModel().getSelectedIndex());//.getSelectionModel().getSelectedIndex() lấy dữ liệu đang dc chọn cho vào model
+            //gọi bảng accountStaff vì nó là bảng con, bảng con có thể gọi lên bảng cha thông qua khoá phụ ( private InfStaffEntity infStaffByStaffId ) bên model
+            txtMaNhanVien.setText(cus.getInfStaffByStaffId().getStaffId());//setText cho từng ô nhập bằng model ở trên
             txtTenNhanVien.setText(cus.getInfStaffByStaffId().getStaffName());
-            if (cus.getInfStaffByStaffId().getStaffDeparment().equals("1")){
+            if (cus.getInfStaffByStaffId().getStaffDeparment().equals("1")){ // nếu chức vụ bằng 1 thì cái chỗ chọn chức vụ sẽ hiện quản lý
                 cbChucVu.getSelectionModel().select(0);
             }
             if (cus.getInfStaffByStaffId().getStaffDeparment().equals("2")){
@@ -141,7 +142,7 @@ public class staffInfController implements Initializable {
             else {
                 txtGioiTinh.setSelected(false);
             }
-            txtNgaySinh.setValue(LocalDate.parse(String.valueOf(cus.getInfStaffByStaffId().getStaffBirth())));
+            txtNgaySinh.setValue(LocalDate.parse(String.valueOf(cus.getInfStaffByStaffId().getStaffBirth())));// set value vì cái chỗ nhập là datetimepicker
             txtDiaChi.setText(cus.getInfStaffByStaffId().getStaffAddress());
             txtSoDienThoai.setText(cus.getInfStaffByStaffId().getStaffPhone());
             txtNgayThem.setText(String.valueOf(cus.getInfStaffByStaffId().getStaffTimeAdd()));
@@ -151,6 +152,7 @@ public class staffInfController implements Initializable {
     }
 
     public void addNV(){
+        //kiểm tra nếu bị bỏ trốn thì thông báo
         if (txtTenNhanVien.getText().equals("") || txtSoDienThoai.getText().equals("") || txtDiaChi.getText().equals("") || txtNgaySinh.getValue().equals("") || cbChucVu.getValue().equals("")){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Không được để trống");
@@ -162,7 +164,7 @@ public class staffInfController implements Initializable {
             DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
             DateTimeFormatter sec = DateTimeFormatter.ofPattern("ss");
 
-            String staffId = "NV" + day.format(now) + min.format(now) + sec.format(now);
+            String staffId = "NV" + day.format(now) + min.format(now) + sec.format(now); // sinh mã nhân viên ngẫu nhiên theo ngày phút giây
             txtMaNhanVien.setText(staffId);
 
             String sex = "2";
@@ -185,11 +187,17 @@ public class staffInfController implements Initializable {
             salaryStaffDao salaryStaffDao = new salaryStaffDao();
             infStaffDao infStaffDao = new infStaffDao();
 
+            //tất cả đều chơi với model nên khi muốn thêm 1 đối tượng mới ta sẽ gọi mới 1 model và truyền qua bên Dao xử lý
+            //tạo mới model thông tin nhân viên
             InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVien.getText(), txtTenNhanVien.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtDiaChi.getText(), txtSoDienThoai.getText(), quyen, Date.valueOf(txtNgayThem.getText()));
+            //tạo mới model tài khoản
             AccountStaffEntity accountStaffEntity = new AccountStaffEntity(txtMaNhanVien.getText(), "123456", quyen, infStaffEntity);
+            //tạo mới model lương
             SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity(txtMaNhanVien.getText(), "3000000", "0", "0", "3000000", infStaffEntity);
 
+            //Truyền qua bên DAO xử lý, bên DAO sẽ lấy những Model đó thêm vào sql
             if (infStaffDao.addData(infStaffEntity) && accountStaffDao.addData(accountStaffEntity) && salaryStaffDao.addData(salaryStaffEntity)) {
+                //nếu thêm thành công sẽ làm mới lại bảng dữ liệu
                 refreshView();
                 openTextField(false);
                 btnXacNhanThem.setVisible(false);
@@ -219,7 +227,7 @@ public class staffInfController implements Initializable {
             quyen = "3";
         }
 
-
+        //update cũng tương tự, truyền qua bên DAO nó sẽ cập nhật theo mã nhân viên
         InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVien.getText(), txtTenNhanVien.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtDiaChi.getText(), txtSoDienThoai.getText(), quyen, Date.valueOf(txtNgayThem.getText()));
         infStaffDao infStaffDao = new infStaffDao();
         if(infStaffDao.updateData(infStaffEntity)){
@@ -248,6 +256,7 @@ public class staffInfController implements Initializable {
         InfStaffEntity infStaffEntity = new InfStaffEntity();
         infStaffEntity.setStaffId(txtMaNhanVien.getText());
 
+        // Xoá cũng y như trên, truyền Model vào nó sẽ xoá theo mã
         if(salaryStaffDao.dellData(salaryStaffEntity) && accountStaffDao.dellData(accountStaffEntity) && infStaffDao.dellData(infStaffEntity)){
             refreshView();
             openTextField(false);
@@ -262,6 +271,7 @@ public class staffInfController implements Initializable {
     }
 
     public void refreshView(){
+        //Làm mới lại dữ liệu các bảng
         accountStaffDao dao = new accountStaffDao();
         nvList = dao.getALl();
         tableViewNhanVien.setItems(nvList);

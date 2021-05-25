@@ -17,6 +17,7 @@ import java.util.List;
 public class infStaffDao implements daoInterface<InfStaffEntity>{
     @Override
     public boolean addData(InfStaffEntity data) {
+        //Lấy Model từ bên kia để add vào
         try {
             Session s = hibernateUntil.getSession();
             Transaction t = s.beginTransaction();
@@ -35,6 +36,7 @@ public class infStaffDao implements daoInterface<InfStaffEntity>{
 
     @Override
     public boolean dellData(InfStaffEntity data) {
+        //Lấy Model từ bên kia để xoá
         try {
             Session s = hibernateUntil.getSession();
             Transaction t = s.beginTransaction();
@@ -55,6 +57,7 @@ public class infStaffDao implements daoInterface<InfStaffEntity>{
 
     @Override
     public boolean updateData(InfStaffEntity data) {
+        //Lấy Model từ bên kia để update
         try {
             Session s = hibernateUntil.getSession();
             Transaction t = s.beginTransaction();
