@@ -26,7 +26,7 @@ public class InfLichSuEntity {
     private InfStaffEntity infStaffByStaffId;
 
     public String customerSex(){
-        if (customerSex.equals("q")){
+        if (customerSex.equals("1")){
             return "Nam";
         }
         else {

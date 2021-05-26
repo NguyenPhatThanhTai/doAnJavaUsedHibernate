@@ -34,8 +34,6 @@ public class test {
 
             String array1 = br.readLine();
 
-            System.out.println(br.readLine());
-
             JSONObject json2 = new JSONObject(array1);
 
             JSONArray jsonArray2 = json2.getJSONArray("token");

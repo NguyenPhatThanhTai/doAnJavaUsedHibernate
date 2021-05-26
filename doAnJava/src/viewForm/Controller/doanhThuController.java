@@ -94,11 +94,16 @@ public class doanhThuController implements Initializable {
         for (int i = 1; i <= Integer.parseInt(day.format(now)); i ++){
             InfDoanhThuSuaEntity infDoanhThuSuaEntity1 =
                     dao.getByDate(Date.valueOf(year.format(now) + "-" + month.format(now) + "-" + i));
-            series.getData().add(new XYChart.Data<>("Ngày " + i, Integer.parseInt(infDoanhThuSuaEntity1.getEntity())));
+            if (infDoanhThuSuaEntity1 != null){
+                series.getData().add(new XYChart.Data<>("Ngày " + i, Integer.parseInt(infDoanhThuSuaEntity1.getEntity()), Integer.parseInt(infDoanhThuSuaEntity1.getEntity())));
+            }
+            else {
+                series.getData().add(new XYChart.Data<>("Ngày " + i, 0, 0));
+            }
 //        series.getData().add(new XYChart.Data<>("Ngày 1", 63));
 //        series.getData().add(new XYChart.Data<>("Ngày 2", 102));
 //        series.getData().add(new XYChart.Data<>("Ngày 3", 45));
-    }
+        }
         charts.getData().add(series);
     }
 
