@@ -21,6 +21,15 @@ public class AccountStaffEntity {
         this.infStaffByStaffId = infStaffByStaffId;
     }
 
+    public String quyen(){
+        if (staffRole.equals("1")){
+            return "Admin";
+        }
+        else {
+            return "Nhân viên";
+        }
+    }
+
     @Id
     @Column(name = "Staff_Account")
     public String getStaffAccount() {

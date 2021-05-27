@@ -10,12 +10,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.Date;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Currency;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class staffInfController implements Initializable {
@@ -100,9 +104,103 @@ public class staffInfController implements Initializable {
     @FXML
     private JFXButton btnllamMoi;
 
+    @FXML
+    private TableView<AccountStaffEntity> tableviewTK;
+
+    @FXML
+    private TableColumn<AccountStaffEntity, String> colStaffID;
+
+    @FXML
+    private TableColumn<AccountStaffEntity, String> colAccount;
+
+    @FXML
+    private TableColumn<AccountStaffEntity, String> colPassword;
+
+    @FXML
+    private TableColumn<AccountStaffEntity, String> colRole;
+
+    @FXML
+    private TableColumn<AccountStaffEntity, String> colTenNhanVienTK;
+
+    @FXML
+    private TextField txtMaNhanVienTK;
+
+    @FXML
+    private TextField txtTaiKhoanNhanVien;
+
+    @FXML
+    private TextField txtMatKhauNhanVien;
+
+    @FXML
+    private TextField txtSoDonDaSua;
+
+    @FXML
+    private TextField txtSoTienHienTai;
+
+    @FXML
+    private JFXComboBox<String> cbChucVuTK;
+
+    @FXML
+    private JFXButton btnHuySuaTK;
+
+    @FXML
+    private JFXButton btnXacNhanSuaTK;
+
+    @FXML
+    private JFXButton btnSuaLuong;
+
+    @FXML
+    private JFXButton btnllamMoiTK;
+
+    @FXML
+    private TextField txtLuongCoBan;
+
+    @FXML
+    private TextField txtTienThuong;
+
+    @FXML
+    private Text lbTienHienTai;
+
+    @FXML
+    private JFXButton btnHuySuaLuong;
+
+    @FXML
+    private JFXButton btnXacNhanSuaLuong;
+
+    @FXML
+    private JFXButton btnSuaTK;
+
+    @FXML
+    private JFXButton btnllamMoiLuong;
+
+    @FXML
+    private TextField txtMaNhanVienLuong;
+
+    @FXML
+    private TableView<SalaryStaffEntity> tableviewLuong;
+
+    @FXML
+    private TableColumn<SalaryStaffEntity, String> colStaffIDLuong;
+
+    @FXML
+    private TableColumn<SalaryStaffEntity, String> colDefaultSalary;
+
+    @FXML
+    private TableColumn<SalaryStaffEntity, String> colReward;
+
+    @FXML
+    private TableColumn<SalaryStaffEntity, String> colEntity;
+
+    @FXML
+    private TableColumn<SalaryStaffEntity, String> colCurentMoney;
+
+    @FXML
+    private TableColumn<SalaryStaffEntity, String> colTenNhanVienLuong;
+
     accountStaffDao dao = new accountStaffDao();//gọi tới DAO (dùng để trả dữ liệu về bên đây)
 
     ObservableList<AccountStaffEntity> nvList;//Muốn đưa dữ liệu vào tableView thì cần phải xài cái ObservableList
+    ObservableList<SalaryStaffEntity> luongList;
 
     public void loadNV(){
         nvList = dao.getALl();//Nhét hết đống dữ liêu về nhân viên mà thằng DAO lấy được vào ObservableList
@@ -223,10 +321,6 @@ public class staffInfController implements Initializable {
             quyen = "2";
         }
 
-        if (cbChucVu.getValue().toString().equals("Kế toán")){
-            quyen = "3";
-        }
-
         //update cũng tương tự, truyền qua bên DAO nó sẽ cập nhật theo mã nhân viên
         InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVien.getText(), txtTenNhanVien.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtDiaChi.getText(), txtSoDienThoai.getText(), quyen, Date.valueOf(txtNgayThem.getText()));
         infStaffDao infStaffDao = new infStaffDao();
@@ -315,6 +409,180 @@ public class staffInfController implements Initializable {
         clearAllKhachHang();
     }
 
+    //Tab tài khoản
+    public void loadTaiKhoan(){
+        nvList=dao.getALl();
+        tableviewTK.setItems(nvList);
+        colStaffID.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffId()));
+        colAccount.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getStaffAccount()));
+        colPassword.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getStaffPassword()));
+        colRole.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().quyen()));
+        colTenNhanVienTK.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffName()));
+    }
+
+    public void getItemsFromTableViewTaiKhoan(){
+        btnSuaTK.setDisable(false);
+        AccountStaffEntity cus = (AccountStaffEntity) tableviewTK.getItems().get(tableviewTK.getSelectionModel().getSelectedIndex());
+        txtMaNhanVienTK.setText(cus.getInfStaffByStaffId().getStaffId());
+        txtTaiKhoanNhanVien.setText(cus.getStaffAccount());
+        txtMatKhauNhanVien.setText(cus.getStaffPassword());
+        if (cus.getStaffRole().equals("1")){
+            cbChucVuTK.getSelectionModel().select(0);
+        }
+        if (cus.getStaffRole().equals("2")){
+            cbChucVuTK.getSelectionModel().select(1);
+        }
+    }
+
+    public void updateTaiKhoanNhanVien(){
+        infStaffDao infStaffDao = new infStaffDao();
+        InfStaffEntity staff = infStaffDao.getDataById(txtMaNhanVienTK.getText());
+        String sex = "1";
+        if (staff.getStaffSex().equals("Nữ")){
+            sex = "2";
+        }
+        String chucvu = "1";
+        if (cbChucVuTK.getValue().equals("Nhân viên")){
+            chucvu = "2";
+        }
+        InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVienTK.getText(), staff.getStaffName(), sex,
+                staff.getStaffBirth(), staff.getStaffAddress(),
+                staff.getStaffPhone(), chucvu, staff.getStaffTimeAdd());
+        AccountStaffEntity accountStaffEntity = new AccountStaffEntity(txtTaiKhoanNhanVien.getText(),
+                txtMatKhauNhanVien.getText(), chucvu, infStaffEntity);
+        if (dao.updateData(accountStaffEntity) && infStaffDao.updateData(infStaffEntity)){
+            openButton(true, "SuaTK");
+            btnSuaTK.setDisable(true);
+            clearAllTK();
+            openTextFieldTK(true);
+            refreshTableViewTK();
+            refreshView();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Xảy ra lỗi");
+            alert.setContentText("Không thêm được");
+            alert.showAndWait();
+        }
+    }
+
+    public void SuaTaiKhoanButton(){
+        openButton(false, "SuaTK");
+        openTextFieldTK(false);
+    }
+
+    public void HuySuaTaiKhoanButton(){
+        openButton(true, "SuaTK");
+        btnSuaTK.setDisable(true);
+        clearAllTK();
+        openTextFieldTK(true);
+    }
+
+    public void SuaLuongButton(){
+        openButton(false, "SuaLuong");
+        openTextFieldLuong(false);
+    }
+
+    public void HuySuaLuongButton(){
+        openButton(true, "SuaLuong");
+        btnSuaLuong.setDisable(true);
+        clearAllLuong();
+        openTextFieldLuong(true);
+        lbTienHienTai.setText("0 VNĐ");
+    }
+
+    public void clearAllTK(){
+        txtMaNhanVienTK.setText("");
+        txtTaiKhoanNhanVien.setText("");
+        txtMatKhauNhanVien.setText("");
+    }
+
+    public void clearAllLuong(){
+        txtMaNhanVienLuong.setText("");
+        txtLuongCoBan.setText("");
+        txtTienThuong.setText("");
+    }
+
+    public void openTextFieldTK(boolean flag){
+        txtTaiKhoanNhanVien.setDisable(flag);
+        txtMatKhauNhanVien.setDisable(flag);
+        cbChucVuTK.setDisable(flag);
+    }
+
+    public void openTextFieldLuong(boolean flag){
+        txtLuongCoBan.setDisable(flag);
+        txtTienThuong.setDisable(flag);
+    }
+
+    public void refreshTableViewTK(){
+        accountStaffDao dao = new accountStaffDao();
+        nvList=dao.getALl();
+        tableviewTK.setItems(nvList);
+        tableviewTK.refresh();
+    }
+
+    public void refreshTableViewLuong(){
+        luongList=dao.getAllSalary();
+        tableviewLuong.setItems(luongList);
+        tableviewLuong.refresh();
+    }
+
+    //tab Lương
+
+    public void loadLuong(){
+        luongList=dao.getAllSalary();
+        tableviewLuong.setItems(luongList);
+        colStaffIDLuong.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffId()));
+        colDefaultSalary.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getStaffDefaultSalary()));
+        colReward.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getStaffReward()));
+        colEntity.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getNumberRepair()));
+        colCurentMoney.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getCurrentMoney()));
+        colTenNhanVienLuong.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffName()));
+    }
+
+    public void getItemsFromTableViewLuong(){
+        btnSuaLuong.setDisable(false);
+        SalaryStaffEntity cus = (SalaryStaffEntity) tableviewLuong.getItems().get(tableviewLuong.getSelectionModel().getSelectedIndex());
+        txtMaNhanVienLuong.setText(cus.getInfStaffByStaffId().getStaffId());
+        txtLuongCoBan.setText(cus.getStaffDefaultSalary());
+        txtTienThuong.setText(cus.getStaffReward());
+        txtSoDonDaSua.setText(cus.getNumberRepair());
+        txtSoTienHienTai.setText(cus.getCurrentMoney());
+
+        Locale usa = new Locale("vn", "VN");
+
+        Currency dollars = Currency.getInstance(usa);
+
+        NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(usa);
+
+        double money = Double.parseDouble(cus.getCurrentMoney());
+
+        String fomat = dollarFormat.format(money);
+
+        lbTienHienTai.setText(fomat);
+    }
+
+    public void updateLuongNhanVien(){
+        InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVienLuong.getText());
+        SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity(txtMaNhanVienLuong.getText(),
+                txtLuongCoBan.getText(), txtTienThuong.getText(), txtSoDonDaSua.getText(), txtSoTienHienTai.getText(), infStaffEntity);
+        if (dao.updateDataSalary(salaryStaffEntity)){
+            openButton(true, "SuaLuong");
+            btnSuaLuong.setDisable(true);
+            clearAllLuong();
+            openTextFieldLuong(true);
+            refreshTableViewLuong();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Xảy ra lỗi");
+            alert.setContentText("Không sửa được");
+            alert.showAndWait();
+        }
+    }
+
+    //Phần hiệu ứng
+
     public void openButton(boolean flag, String nut){
         switch (nut){
             case "Add":
@@ -383,6 +651,22 @@ public class staffInfController implements Initializable {
 
                 openTextField(flag);
                 break;
+            case "SuaTK":
+                btnSuaTK.setVisible(flag);
+                btnHuySuaTK.setVisible(!flag);
+                btnXacNhanSuaTK.setVisible(!flag);
+
+                tableviewTK.setDisable(!flag);
+
+                break;
+            case "SuaLuong":
+                btnSuaLuong.setVisible(flag);
+                btnXacNhanSuaLuong.setVisible(!flag);
+                btnHuySuaLuong.setVisible(!flag);
+
+                tableviewLuong.setDisable(!flag);
+
+                break;
         }
     }
 
@@ -398,9 +682,13 @@ public class staffInfController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadNV();
+        loadTaiKhoan();
+        loadLuong();
         cbChucVu.getItems().add("Admin");
         cbChucVu.getItems().add("Nhân viên");
-        cbChucVu.getItems().add("Kế toán");
+
+        cbChucVuTK.getItems().add("Admin");
+        cbChucVuTK.getItems().add("Nhân viên");
 
         DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();

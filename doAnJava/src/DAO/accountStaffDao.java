@@ -3,6 +3,7 @@ package DAO;
 import Model.AccountStaffEntity;
 import Model.DetailInfRepairEntity;
 import Model.InfStaffEntity;
+import Model.SalaryStaffEntity;
 import Until.hibernateUntil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,7 +61,20 @@ public class accountStaffDao implements daoInterface<AccountStaffEntity> {
 
     @Override
     public boolean updateData(AccountStaffEntity data) {
-        return true;
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.update(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở account");
+            return false;
+        }
     }
 
     @Override
@@ -89,5 +103,34 @@ public class accountStaffDao implements daoInterface<AccountStaffEntity> {
         s.close();
 
         return FXCollections.observableArrayList(clist);
+    }
+
+    public ObservableList<SalaryStaffEntity> getAllSalary(){
+        Session s = hibernateUntil.getSession();
+        CriteriaBuilder builder = s.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(SalaryStaffEntity.class);
+        query.from(SalaryStaffEntity.class);
+
+        List<SalaryStaffEntity> clist = s.createQuery(query).getResultList();
+        s.close();
+
+        return FXCollections.observableArrayList(clist);
+    }
+
+    public boolean updateDataSalary(SalaryStaffEntity data) {
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.update(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở account");
+            return false;
+        }
     }
 }
