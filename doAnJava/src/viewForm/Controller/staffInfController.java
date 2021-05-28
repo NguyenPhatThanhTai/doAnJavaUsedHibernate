@@ -7,12 +7,25 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.text.NumberFormat;
 import java.time.LocalDate;
@@ -20,6 +33,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Currency;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class staffInfController implements Initializable {
@@ -197,6 +211,12 @@ public class staffInfController implements Initializable {
     @FXML
     private TableColumn<SalaryStaffEntity, String> colTenNhanVienLuong;
 
+    @FXML
+    private ImageView imgStaff;
+
+    @FXML
+    private JFXButton btnPicStaff;
+
     accountStaffDao dao = new accountStaffDao();//gọi tới DAO (dùng để trả dữ liệu về bên đây)
 
     ObservableList<AccountStaffEntity> nvList;//Muốn đưa dữ liệu vào tableView thì cần phải xài cái ObservableList
@@ -249,14 +269,14 @@ public class staffInfController implements Initializable {
         }
     }
 
-    public void addNV(){
-        //kiểm tra nếu bị bỏ trốn thì thông báo
-        if (txtTenNhanVien.getText().equals("") || txtSoDienThoai.getText().equals("") || txtDiaChi.getText().equals("") || txtNgaySinh.getValue().equals("") || cbChucVu.getValue().equals("")){
+    public void addNV() {
+        //kiểm tra nếu bị bỏ trống thì thông báo
+
+        if (txtTenNhanVien.getText().equals("") || txtSoDienThoai.getText().equals("") || txtDiaChi.getText().equals("") || txtNgaySinh.getValue().equals("") || cbChucVu.getValue().equals("")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Không được để trống");
             alert.showAndWait();
-        }
-        else {
+        } else {
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
             DateTimeFormatter min = DateTimeFormatter.ofPattern("mm");
@@ -432,6 +452,14 @@ public class staffInfController implements Initializable {
         if (cus.getStaffRole().equals("2")){
             cbChucVuTK.getSelectionModel().select(1);
         }
+        File file = new File(System.getProperty("user.dir")+"\\src\\viewForm\\Picture\\StaffPic\\"+txtMaNhanVienTK.getText()+".jpg");
+        if (file.exists()){
+            Image image = new Image(file.toURI().toString());
+            imgStaff.setImage(image);
+        }
+        else {
+            imgStaff.setImage(new Image("viewForm/Picture/StaffPic/default.jpg"));
+        }
     }
 
     public void updateTaiKhoanNhanVien(){
@@ -457,6 +485,7 @@ public class staffInfController implements Initializable {
             openTextFieldTK(true);
             refreshTableViewTK();
             refreshView();
+            btnPicStaff.setDisable(true);
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -466,7 +495,42 @@ public class staffInfController implements Initializable {
         }
     }
 
+    public void updatePicture(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Chọn ảnh của nhân viên");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile == null){
+            selectedFile = new File(System.getProperty("user.dir")+"\\src\\viewForm\\Picture\\StaffPic\\default.jpg");
+        }
+
+        File file = new File(String.valueOf(selectedFile));
+        Image image = new Image(file.toURI().toString());
+        imgStaff.setImage(image);
+        File f = new File(System.getProperty("user.dir")+"\\src\\viewForm\\Picture\\StaffPic\\"+txtMaNhanVienTK.getText()+".jpg");
+        if (f.exists()){
+            try {
+                BufferedImage img = ImageIO.read(selectedFile);
+                ImageIO.write(img, "jpg", f);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            f.getParentFile().mkdirs();
+            try {
+                f.createNewFile();
+                BufferedImage img = ImageIO.read(selectedFile);
+                ImageIO.write(img, "jpg", f);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void SuaTaiKhoanButton(){
+        btnPicStaff.setDisable(false);
         openButton(false, "SuaTK");
         openTextFieldTK(false);
     }
@@ -474,6 +538,7 @@ public class staffInfController implements Initializable {
     public void HuySuaTaiKhoanButton(){
         openButton(true, "SuaTK");
         btnSuaTK.setDisable(true);
+        btnPicStaff.setDisable(true);
         clearAllTK();
         openTextFieldTK(true);
     }
@@ -504,7 +569,6 @@ public class staffInfController implements Initializable {
     }
 
     public void openTextFieldTK(boolean flag){
-        txtTaiKhoanNhanVien.setDisable(flag);
         txtMatKhauNhanVien.setDisable(flag);
         cbChucVuTK.setDisable(flag);
     }
@@ -699,5 +763,7 @@ public class staffInfController implements Initializable {
         DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
         txtNgayThem.setText(dayAdd.format(now));
+
+        imgStaff.setImage(new Image("viewForm/Picture/StaffPic/default.jpg"));
     }
 }
