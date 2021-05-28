@@ -297,10 +297,6 @@ public class staffInfController implements Initializable {
                 quyen = "2";
             }
 
-            if (cbChucVu.getValue().toString().equals("Kế toán")) {
-                quyen = "3";
-            }
-
             accountStaffDao accountStaffDao = new accountStaffDao();
             salaryStaffDao salaryStaffDao = new salaryStaffDao();
             infStaffDao infStaffDao = new infStaffDao();
@@ -317,13 +313,20 @@ public class staffInfController implements Initializable {
             if (infStaffDao.addData(infStaffEntity) && accountStaffDao.addData(accountStaffEntity) && salaryStaffDao.addData(salaryStaffEntity)) {
                 //nếu thêm thành công sẽ làm mới lại bảng dữ liệu
                 refreshView();
-                openTextField(false);
+                refreshTableViewTK();
+                refreshTableViewLuong();
+                openTextField(true);
                 btnXacNhanThem.setVisible(false);
                 btnHuyThem.setVisible(false);
                 btnSua.setDisable(false);
                 btnXoa.setDisable(false);
                 btnThem.setVisible(true);
                 tableViewNhanVien.setDisable(false);
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Lỗi, không thêm được");
+                alert.showAndWait();
             }
         }
     }
@@ -343,10 +346,14 @@ public class staffInfController implements Initializable {
 
         //update cũng tương tự, truyền qua bên DAO nó sẽ cập nhật theo mã nhân viên
         InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVien.getText(), txtTenNhanVien.getText(), sex, Date.valueOf(txtNgaySinh.getValue()), txtDiaChi.getText(), txtSoDienThoai.getText(), quyen, Date.valueOf(txtNgayThem.getText()));
+        AccountStaffEntity accountDao = dao.getDataById(txtMaNhanVien.getText());
+        AccountStaffEntity accountStaffEntity = new AccountStaffEntity(accountDao.getStaffAccount(), accountDao.getStaffPassword(), quyen, infStaffEntity);
         infStaffDao infStaffDao = new infStaffDao();
-        if(infStaffDao.updateData(infStaffEntity)){
+        if(infStaffDao.updateData(infStaffEntity) && dao.updateData(accountStaffEntity)){
             refreshView();
-            openTextField(false);
+            refreshTableViewTK();
+            refreshTableViewLuong();
+            openTextField(true);
             btnXacNhanSua.setVisible(false);
             btnHuySua.setVisible(false);
             btnThem.setDisable(false);
@@ -354,6 +361,11 @@ public class staffInfController implements Initializable {
             btnSua.setVisible(true);
             tableViewNhanVien.setDisable(false);
             clearAllKhachHang();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Lỗi, không sửa được");
+            alert.showAndWait();
         }
     }
 
@@ -373,7 +385,9 @@ public class staffInfController implements Initializable {
         // Xoá cũng y như trên, truyền Model vào nó sẽ xoá theo mã
         if(salaryStaffDao.dellData(salaryStaffEntity) && accountStaffDao.dellData(accountStaffEntity) && infStaffDao.dellData(infStaffEntity)){
             refreshView();
-            openTextField(false);
+            refreshTableViewTK();
+            refreshTableViewLuong();
+            openTextField(true);
             btnXacNhanXoa.setVisible(false);
             btnHuyXoa.setVisible(false);
             btnSua.setDisable(false);
@@ -381,6 +395,11 @@ public class staffInfController implements Initializable {
             btnXoa.setVisible(true);
             tableViewNhanVien.setDisable(false);
             clearAllKhachHang();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Lỗi, không xoá được");
+            alert.showAndWait();
         }
     }
 
