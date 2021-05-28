@@ -117,6 +117,20 @@ public class accountStaffDao implements daoInterface<AccountStaffEntity> {
         return FXCollections.observableArrayList(clist);
     }
 
+    public SalaryStaffEntity getSalaryById(String Id) {
+        Session session = null;
+        SalaryStaffEntity salaryStaffEntity = null;
+        try {
+            session = hibernateUntil.getSession();
+            salaryStaffEntity = (SalaryStaffEntity)session.load(SalaryStaffEntity.class, Id);
+            Hibernate.initialize(salaryStaffEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return salaryStaffEntity;
+    }
+
     public boolean updateDataSalary(SalaryStaffEntity data) {
         try {
             Session s = hibernateUntil.getSession();

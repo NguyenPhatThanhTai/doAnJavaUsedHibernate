@@ -563,9 +563,15 @@ public class staffInfController implements Initializable {
     }
 
     public void updateLuongNhanVien(){
+        SalaryStaffEntity sa = dao.getSalaryById(txtMaNhanVienLuong.getText());
+        long oldMoney = Long.valueOf(sa.getCurrentMoney()) - (Long.valueOf(sa.getStaffDefaultSalary()) + Long.valueOf(sa.getStaffReward()));
+        System.out.println(oldMoney);
+        long newMoney = oldMoney + (Long.valueOf(txtLuongCoBan.getText()) + Long.valueOf(txtTienThuong.getText()));
+        System.out.println(newMoney);
+
         InfStaffEntity infStaffEntity = new InfStaffEntity(txtMaNhanVienLuong.getText());
         SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity(txtMaNhanVienLuong.getText(),
-                txtLuongCoBan.getText(), txtTienThuong.getText(), txtSoDonDaSua.getText(), txtSoTienHienTai.getText(), infStaffEntity);
+                txtLuongCoBan.getText(), txtTienThuong.getText(), txtSoDonDaSua.getText(), String.valueOf(newMoney), infStaffEntity);
         if (dao.updateDataSalary(salaryStaffEntity)){
             openButton(true, "SuaLuong");
             btnSuaLuong.setDisable(true);
