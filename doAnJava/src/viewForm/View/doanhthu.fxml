@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="751.0" prefWidth="1577.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.doanhThuController">
+<AnchorPane prefHeight="891.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.doanhThuController">
    <children>
       <Text fx:id="txtMoneyToday" fill="#a46e6e" layoutX="424.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" wrappingWidth="536.13671875">
          <font>
@@ -60,7 +60,7 @@
          </font>
       </Text>
       <Text fx:id="lbNgayThu" layoutX="70.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <BarChart fx:id="charts" layoutX="26.0" layoutY="163.0" prefHeight="570.0" prefWidth="1527.0">
+      <BarChart fx:id="charts" layoutX="26.0" layoutY="163.0" prefHeight="704.0" prefWidth="1714.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

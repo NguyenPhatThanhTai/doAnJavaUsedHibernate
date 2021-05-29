@@ -17,15 +17,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="751.0" prefWidth="1577.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.staffInfController">
+<AnchorPane prefHeight="891.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.staffInfController">
    <children>
-      <JFXTabPane layoutX="14.0" layoutY="16.0" prefHeight="718.0" prefWidth="1546.0">
+      <JFXTabPane layoutX="16.0" layoutY="14.0" prefHeight="864.0" prefWidth="1741.0">
          <tabs>
             <Tab text="Thông tin nhân viên">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="275.0" prefWidth="522.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="823.0" prefWidth="1546.0">
                      <children>
-                        <TableView fx:id="tableViewNhanVien" layoutX="402.0" layoutY="26.0" onMouseClicked="#getItemsFromTableViewNV" prefHeight="654.0" prefWidth="1116.0">
+                        <TableView fx:id="tableViewNhanVien" layoutX="402.0" layoutY="16.0" onMouseClicked="#getItemsFromTableViewNV" prefHeight="799.0" prefWidth="1326.0">
                           <columns>
                             <TableColumn fx:id="clMaNhanVien" prefWidth="75.0" text="Mã nhân viên" />
                             <TableColumn fx:id="clTenNhanVien" prefWidth="75.0" text="Tên nhân viên" />
@@ -40,28 +40,28 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TextField fx:id="txtMaNhanVien" disable="true" layoutX="53.0" layoutY="18.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã nhân viên" />
-                        <TextField fx:id="txtNgayThem" disable="true" layoutX="53.0" layoutY="64.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày thêm" />
-                        <Label layoutX="153.0" layoutY="114.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
-                        <TextField fx:id="txtTenNhanVien" disable="true" layoutX="53.0" layoutY="143.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên nhân viên" />
-                        <TextField fx:id="txtDiaChi" disable="true" layoutX="52.0" layoutY="288.0" prefHeight="26.0" prefWidth="298.0" promptText="Địa chỉ" />
-                        <TextField fx:id="txtSoDienThoai" disable="true" layoutX="52.0" layoutY="327.0" prefHeight="26.0" prefWidth="299.0" promptText="Số điện thoại" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="14.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="txtMaNhanVien" disable="true" layoutX="64.0" layoutY="174.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã nhân viên" />
+                        <TextField fx:id="txtNgayThem" disable="true" layoutX="64.0" layoutY="220.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày thêm" />
+                        <Label layoutX="164.0" layoutY="270.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
+                        <TextField fx:id="txtTenNhanVien" disable="true" layoutX="64.0" layoutY="299.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên nhân viên" />
+                        <TextField fx:id="txtDiaChi" disable="true" layoutX="63.0" layoutY="444.0" prefHeight="26.0" prefWidth="298.0" promptText="Địa chỉ" />
+                        <TextField fx:id="txtSoDienThoai" disable="true" layoutX="63.0" layoutY="483.0" prefHeight="26.0" prefWidth="299.0" promptText="Số điện thoại" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="25.0" layoutY="338.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/gender_32px.png" />
                            </image>
                         </ImageView>
-                        <JFXToggleButton fx:id="txtGioiTinh" disable="true" layoutX="143.0" layoutY="176.0" prefHeight="32.0" prefWidth="77.0" />
-                        <Label layoutX="103.0" layoutY="196.0" text="Nữ" />
-                        <Label layoutX="240.0" layoutY="196.0" text="Nam" />
-                        <ImageView fitHeight="37.0" fitWidth="42.0" layoutX="8.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+                        <JFXToggleButton fx:id="txtGioiTinh" disable="true" layoutX="154.0" layoutY="332.0" prefHeight="32.0" prefWidth="77.0" />
+                        <Label layoutX="114.0" layoutY="352.0" text="Nữ" />
+                        <Label layoutX="251.0" layoutY="352.0" text="Nam" />
+                        <ImageView fitHeight="37.0" fitWidth="42.0" layoutX="19.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/flying_stork_with_bundle_26px.png" />
                            </image>
                         </ImageView>
-                        <DatePicker fx:id="txtNgaySinh" disable="true" layoutX="52.0" layoutY="233.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày sinh" />
-                        <JFXComboBox fx:id="cbChucVu" disable="true" layoutX="53.0" layoutY="365.0" prefHeight="30.0" prefWidth="298.0" promptText="Chọn chức vụ" />
-                        <JFXButton fx:id="btnThem" alignment="BASELINE_CENTER" layoutX="45.0" layoutY="431.0" onAction="#ThemNhanVienButton" prefHeight="47.0" prefWidth="318.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Thêm nhân viên">
+                        <DatePicker fx:id="txtNgaySinh" disable="true" layoutX="63.0" layoutY="389.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày sinh" />
+                        <JFXComboBox fx:id="cbChucVu" disable="true" layoutX="64.0" layoutY="521.0" prefHeight="30.0" prefWidth="298.0" promptText="Chọn chức vụ" />
+                        <JFXButton fx:id="btnThem" alignment="BASELINE_CENTER" layoutX="45.0" layoutY="577.0" onAction="#ThemNhanVienButton" prefHeight="47.0" prefWidth="318.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Thêm nhân viên">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -70,7 +70,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnHuyThem" layoutX="203.0" layoutY="434.0" onAction="#HuyThemNhanVienButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuyThem" layoutX="203.0" layoutY="580.0" onAction="#HuyThemNhanVienButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -79,7 +79,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanThem" layoutX="39.0" layoutY="435.0" onAction="#addNV" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanThem" layoutX="39.0" layoutY="581.0" onAction="#addNV" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -88,7 +88,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnHuySua" layoutX="203.0" layoutY="494.0" onAction="#HuySuaNhanVienButton" prefHeight="54.0" prefWidth="157.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuySua" layoutX="203.0" layoutY="640.0" onAction="#HuySuaNhanVienButton" prefHeight="54.0" prefWidth="157.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -97,7 +97,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanSua" layoutX="43.0" layoutY="495.0" onAction="#updateNV" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanSua" layoutX="43.0" layoutY="641.0" onAction="#updateNV" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -106,7 +106,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnSua" disable="true" layoutX="40.0" layoutY="495.0" onAction="#SuaNhanVienButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
+                        <JFXButton fx:id="btnSua" disable="true" layoutX="40.0" layoutY="641.0" onAction="#SuaNhanVienButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -115,7 +115,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnHuyXoa" layoutX="202.0" layoutY="555.0" onAction="#HuyXoaNhanVienButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuyXoa" layoutX="202.0" layoutY="701.0" onAction="#HuyXoaNhanVienButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -124,7 +124,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanXoa" layoutX="42.0" layoutY="557.0" onAction="#xoaNV" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanXoa" layoutX="42.0" layoutY="703.0" onAction="#xoaNV" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -133,7 +133,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXoa" disable="true" layoutX="40.0" layoutY="555.0" onAction="#XoaNhanVienButton" prefHeight="45.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa nhân viên">
+                        <JFXButton fx:id="btnXoa" disable="true" layoutX="40.0" layoutY="701.0" onAction="#XoaNhanVienButton" prefHeight="45.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa nhân viên">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -142,7 +142,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnllamMoi" layoutX="41.0" layoutY="617.0" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
+                        <JFXButton fx:id="btnllamMoi" layoutX="41.0" layoutY="763.0" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -151,32 +151,32 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="25.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/pin_code_30px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="14.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="25.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/calendar_26px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="14.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="25.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/name_50px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="14.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="25.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/phone_30px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="8.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="19.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/address_50px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="11.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="22.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/administrator_male_80px.png" />
                            </image>
@@ -189,7 +189,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableviewTK" layoutX="377.0" layoutY="20.0" onMouseClicked="#getItemsFromTableViewTaiKhoan" prefHeight="647.0" prefWidth="1154.0">
+                        <TableView fx:id="tableviewTK" layoutX="377.0" layoutY="20.0" onMouseClicked="#getItemsFromTableViewTaiKhoan" prefHeight="785.0" prefWidth="1344.0">
                           <columns>
                             <TableColumn fx:id="colStaffID" prefWidth="75.0" text="Mã nhân viên" />
                             <TableColumn fx:id="colAccount" prefWidth="75.0" text="Tài khoản nhân viên" />
@@ -201,32 +201,32 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TextField fx:id="txtMaNhanVienTK" disable="true" layoutX="60.0" layoutY="336.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã nhân viên" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="txtMaNhanVienTK" disable="true" layoutX="63.0" layoutY="502.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã nhân viên" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="25.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/pin_code_30px.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="txtTaiKhoanNhanVien" disable="true" layoutX="60.0" layoutY="377.0" prefHeight="26.0" prefWidth="298.0" promptText="Tài khoản nhân viên" />
-                        <Label layoutX="158.0" layoutY="417.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
-                        <TextField fx:id="txtMatKhauNhanVien" disable="true" layoutX="60.0" layoutY="437.0" prefHeight="26.0" prefWidth="298.0" promptText="Mật khẩu nhân viên" />
-                        <JFXComboBox fx:id="cbChucVuTK" disable="true" layoutX="60.0" layoutY="473.0" prefHeight="30.0" prefWidth="298.0" promptText="Chọn chức vụ" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="txtTaiKhoanNhanVien" disable="true" layoutX="63.0" layoutY="543.0" prefHeight="26.0" prefWidth="298.0" promptText="Tài khoản nhân viên" />
+                        <Label layoutX="161.0" layoutY="583.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
+                        <TextField fx:id="txtMatKhauNhanVien" disable="true" layoutX="63.0" layoutY="603.0" prefHeight="26.0" prefWidth="298.0" promptText="Mật khẩu nhân viên" />
+                        <JFXComboBox fx:id="cbChucVuTK" disable="true" layoutX="63.0" layoutY="639.0" prefHeight="30.0" prefWidth="298.0" promptText="Chọn chức vụ" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="25.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/account_40px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="25.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/password_64px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="25.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/checked_user_male_64px.png" />
                            </image>
                         </ImageView>
-                        <JFXButton fx:id="btnHuySuaTK" layoutX="203.0" layoutY="532.0" onAction="#HuySuaNhanVienButton" onMouseClicked="#HuySuaTaiKhoanButton" prefHeight="54.0" prefWidth="157.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuySuaTK" layoutX="197.0" layoutY="684.0" onAction="#HuySuaNhanVienButton" onMouseClicked="#HuySuaTaiKhoanButton" prefHeight="54.0" prefWidth="157.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -235,7 +235,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanSuaTK" layoutX="39.0" layoutY="534.0" onAction="#updateTaiKhoanNhanVien" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanSuaTK" layoutX="33.0" layoutY="686.0" onAction="#updateTaiKhoanNhanVien" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -244,7 +244,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnSuaTK" disable="true" layoutX="43.0" layoutY="535.0" onMouseClicked="#SuaTaiKhoanButton" prefHeight="48.0" prefWidth="316.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
+                        <JFXButton fx:id="btnSuaTK" disable="true" layoutX="37.0" layoutY="687.0" onMouseClicked="#SuaTaiKhoanButton" prefHeight="48.0" prefWidth="316.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -253,7 +253,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnllamMoiTK" layoutX="41.0" layoutY="603.0" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
+                        <JFXButton fx:id="btnllamMoiTK" layoutX="35.0" layoutY="755.0" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -262,8 +262,8 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnPicStaff" disable="true" layoutX="80.0" layoutY="294.0" onAction="#updatePicture" prefHeight="26.0" prefWidth="245.0" style="-fx-background-radius: 30; -fx-background-color: #75BBCD;" text="Chọn hình ảnh nhân viên" />
-                        <BorderPane layoutX="21.0" layoutY="21.0" prefHeight="262.0" prefWidth="346.0">
+                        <JFXButton fx:id="btnPicStaff" disable="true" layoutX="69.0" layoutY="460.0" onAction="#updatePicture" prefHeight="26.0" prefWidth="259.0" style="-fx-background-radius: 30; -fx-background-color: #75BBCD;" text="Chọn hình ảnh nhân viên" />
+                        <BorderPane layoutX="24.0" layoutY="187.0" prefHeight="262.0" prefWidth="346.0">
                            <center>
                               <ImageView fx:id="imgStaff" fitHeight="262.0" fitWidth="331.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                  <image>
@@ -279,29 +279,29 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtLuongCoBan" disable="true" layoutX="56.0" layoutY="366.0" prefHeight="26.0" prefWidth="298.0" promptText="Lương cơ bản" />
-                        <TextField fx:id="txtTienThuong" disable="true" layoutX="56.0" layoutY="405.0" prefHeight="26.0" prefWidth="298.0" promptText="Tiền thưởng" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="19.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="txtLuongCoBan" disable="true" layoutX="58.0" layoutY="523.0" prefHeight="26.0" prefWidth="298.0" promptText="Lương cơ bản" />
+                        <TextField fx:id="txtTienThuong" disable="true" layoutX="58.0" layoutY="562.0" prefHeight="26.0" prefWidth="298.0" promptText="Tiền thưởng" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="21.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/cash_in_hand_40px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="19.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="21.0" layoutY="522.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/finance_document_100px.png" />
                            </image>
                         </ImageView>
-                        <Text fx:id="lbTienHienTai" fill="#bc6868" layoutX="12.0" layoutY="531.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 VNĐ" textAlignment="CENTER" wrappingWidth="350.074951171875">
+                        <Text fx:id="lbTienHienTai" fill="#bc6868" layoutX="14.0" layoutY="688.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 VNĐ" textAlignment="CENTER" wrappingWidth="350.074951171875">
                            <font>
                               <Font size="38.0" />
                            </font>
                         </Text>
-                        <Text layoutX="134.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền hiên tại">
+                        <Text layoutX="136.0" layoutY="629.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số tiền hiên tại">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Text>
-                        <JFXButton fx:id="btnHuySuaLuong" layoutX="196.0" layoutY="542.0" onAction="#HuySuaLuongButton" prefHeight="54.0" prefWidth="157.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuySuaLuong" layoutX="198.0" layoutY="699.0" onAction="#HuySuaLuongButton" prefHeight="54.0" prefWidth="157.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -310,7 +310,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanSuaLuong" layoutX="36.0" layoutY="544.0" onAction="#updateLuongNhanVien" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanSuaLuong" layoutX="38.0" layoutY="701.0" onAction="#updateLuongNhanVien" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -319,7 +319,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnSuaLuong" disable="true" layoutX="37.0" layoutY="545.0" onAction="#SuaLuongButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
+                        <JFXButton fx:id="btnSuaLuong" disable="true" layoutX="39.0" layoutY="702.0" onAction="#SuaLuongButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -328,7 +328,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnllamMoiLuong" layoutX="35.0" layoutY="606.0" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
+                        <JFXButton fx:id="btnllamMoiLuong" layoutX="37.0" layoutY="763.0" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -337,14 +337,14 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <TextField fx:id="txtMaNhanVienLuong" disable="true" layoutX="56.0" layoutY="219.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã nhân viên" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="19.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="txtMaNhanVienLuong" disable="true" layoutX="58.0" layoutY="376.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã nhân viên" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="21.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/pin_code_30px.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="158.0" layoutY="333.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
-                        <TableView fx:id="tableviewLuong" layoutX="371.0" layoutY="16.0" onMouseClicked="#getItemsFromTableViewLuong" prefHeight="653.0" prefWidth="1154.0">
+                        <Label layoutX="160.0" layoutY="490.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
+                        <TableView fx:id="tableviewLuong" layoutX="371.0" layoutY="16.0" onMouseClicked="#getItemsFromTableViewLuong" prefHeight="796.0" prefWidth="1356.0">
                            <columns>
                               <TableColumn fx:id="colStaffIDLuong" prefWidth="75.0" text="Mã nhân viên" />
                               <TableColumn fx:id="colDefaultSalary" prefWidth="75.0" text="Lương cơ bản" />
@@ -357,19 +357,19 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TextField fx:id="txtSoDonDaSua" disable="true" layoutX="56.0" layoutY="263.0" prefHeight="26.0" prefWidth="298.0" promptText="Số đơn đã sửa" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="19.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="txtSoDonDaSua" disable="true" layoutX="58.0" layoutY="420.0" prefHeight="26.0" prefWidth="298.0" promptText="Số đơn đã sửa" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="21.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/tick_box_64px.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="txtSoTienHienTai" disable="true" layoutX="56.0" layoutY="305.0" prefHeight="26.0" prefWidth="298.0" promptText="Số tiền hiện tại" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="19.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="txtSoTienHienTai" disable="true" layoutX="58.0" layoutY="462.0" prefHeight="26.0" prefWidth="298.0" promptText="Số tiền hiện tại" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="21.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/initiate_money_transfer_40px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="196.0" fitWidth="246.0" layoutX="71.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="310.0" fitWidth="338.0" layoutX="20.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/money.gif" />
                            </image>

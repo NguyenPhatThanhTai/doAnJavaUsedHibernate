@@ -19,15 +19,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="751.0" prefWidth="1577.0" style="-fx-background-color: white; -fx-background-radius: 100;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.customerInfController">
+<AnchorPane prefHeight="891.0" prefWidth="1770.0" style="-fx-background-color: white; -fx-background-radius: 100;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.customerInfController">
    <children>
-      <JFXTabPane layoutX="22.0" layoutY="17.0" prefHeight="725.0" prefWidth="1527.0" style="-fx-background-radius: 30;">
+      <JFXTabPane layoutX="22.0" layoutY="17.0" prefHeight="858.0" prefWidth="1728.0" style="-fx-background-radius: 30;">
          <tabs>
             <Tab text="Thông tin khách hàng">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="693.0" prefWidth="1518.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="688.0" prefWidth="1686.0">
                      <children>
-                        <JFXButton fx:id="btnHuySua" layoutX="206.0" layoutY="509.0" onMouseClicked="#HuySuaKhachHangButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuySua" layoutX="213.0" layoutY="628.0" onMouseClicked="#HuySuaKhachHangButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -36,7 +36,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanSua" layoutX="44.0" layoutY="508.0" onMouseClicked="#startThreadupdateCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanSua" layoutX="51.0" layoutY="627.0" onMouseClicked="#startThreadupdateCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -45,7 +45,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnHuyXoa" layoutX="206.0" layoutY="569.0" onMouseClicked="#HuyXoaKhachHangButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuyXoa" layoutX="213.0" layoutY="688.0" onMouseClicked="#HuyXoaKhachHangButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -54,7 +54,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanXoa" layoutX="44.0" layoutY="568.0" onMouseClicked="#startThreaddeleteCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanXoa" layoutX="51.0" layoutY="687.0" onMouseClicked="#startThreaddeleteCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -63,7 +63,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnHuyThem" layoutX="206.0" layoutY="449.0" onMouseClicked="#HuyThemKhachHangButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuyThem" layoutX="213.0" layoutY="568.0" onMouseClicked="#HuyThemKhachHangButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -72,7 +72,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <TableView fx:id="tableListCustomer" layoutX="409.0" layoutY="22.0" onMouseClicked="#getItemFromTableView" prefHeight="652.0" prefWidth="1094.0">
+                        <TableView fx:id="tableListCustomer" layoutX="409.0" layoutY="22.0" onMouseClicked="#getItemFromTableView" prefHeight="779.0" prefWidth="1300.0">
                            <columns>
                               <TableColumn fx:id="colCustomerId" prefWidth="96.0" text="Mã Khách Hàng" />
                               <TableColumn fx:id="colCustomerName" prefWidth="165.0" text="Tên khách hàng" />
@@ -86,7 +86,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <JFXButton fx:id="btnXacNhanThem" disable="true" layoutX="44.0" layoutY="448.0" onMouseClicked="#startThreadaddNewCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanThem" disable="true" layoutX="51.0" layoutY="567.0" onMouseClicked="#startThreadaddNewCustomer" prefHeight="49.0" prefWidth="151.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -95,7 +95,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnThem" alignment="BASELINE_CENTER" layoutX="38.0" layoutY="449.0" onMouseClicked="#ThemKhachHangButton" prefHeight="47.0" prefWidth="318.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Thêm khách hàng">
+                        <JFXButton fx:id="btnThem" alignment="BASELINE_CENTER" layoutX="45.0" layoutY="568.0" onMouseClicked="#ThemKhachHangButton" prefHeight="47.0" prefWidth="318.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Thêm khách hàng">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -104,7 +104,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXoa" disable="true" layoutX="39.0" layoutY="569.0" onMouseClicked="#XoaKhachHangButton" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa khách hàng">
+                        <JFXButton fx:id="btnXoa" disable="true" layoutX="46.0" layoutY="688.0" onMouseClicked="#XoaKhachHangButton" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Xóa khách hàng">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -113,7 +113,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnSua" disable="true" layoutX="39.0" layoutY="509.0" onMouseClicked="#SuaKhachHangButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
+                        <JFXButton fx:id="btnSua" disable="true" layoutX="46.0" layoutY="628.0" onMouseClicked="#SuaKhachHangButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -122,7 +122,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnllamMoi" layoutX="37.0" layoutY="632.0" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
+                        <JFXButton fx:id="btnllamMoi" layoutX="44.0" layoutY="751.0" prefHeight="47.0" prefWidth="320.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -131,58 +131,58 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <TextField fx:id="txtMaKhachHang" disable="true" layoutX="70.0" layoutY="31.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã khách hàng" />
-                        <TextField fx:id="txtTenKhachHang" disable="true" layoutX="70.0" layoutY="166.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên khách hàng" />
-                        <TextField fx:id="txtEmail" disable="true" layoutX="70.0" layoutY="250.0" onKeyReleased="#checkGmail" prefHeight="26.0" prefWidth="298.0" promptText="Email" />
-                        <TextField fx:id="txtSoDienThoai" disable="true" layoutX="70.0" layoutY="208.0" onKeyReleased="#checkPhoneNumber" prefHeight="26.0" prefWidth="298.0" promptText="Số điện thoại" />
-                        <TextField fx:id="txtNgayThem" disable="true" layoutX="70.0" layoutY="79.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày thêm" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="37.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="txtMaKhachHang" disable="true" layoutX="69.0" layoutY="140.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã khách hàng" />
+                        <TextField fx:id="txtTenKhachHang" disable="true" layoutX="69.0" layoutY="275.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên khách hàng" />
+                        <TextField fx:id="txtEmail" disable="true" layoutX="69.0" layoutY="359.0" onKeyReleased="#checkGmail" prefHeight="26.0" prefWidth="298.0" promptText="Email" />
+                        <TextField fx:id="txtSoDienThoai" disable="true" layoutX="69.0" layoutY="317.0" onKeyReleased="#checkPhoneNumber" prefHeight="26.0" prefWidth="298.0" promptText="Số điện thoại" />
+                        <TextField fx:id="txtNgayThem" disable="true" layoutX="69.0" layoutY="188.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày thêm" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/pin_code_30px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="37.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/name_50px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="37.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/gender_32px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="23.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="16.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/flying_stork_with_bundle_26px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="35.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/email_30px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="35.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/phone_30px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="37.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="22.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/calendar_26px.png" />
                            </image>
                         </ImageView>
-                        <JFXToggleButton fx:id="txtGioiTinh" disable="true" layoutX="172.0" layoutY="285.0" prefHeight="32.0" prefWidth="77.0" />
-                        <Label layoutX="137.0" layoutY="308.0" text="Nữ" />
-                        <Label layoutX="267.0" layoutY="308.0" text="Nam" />
-                        <DatePicker fx:id="txtNgaySinh" disable="true" layoutX="70.0" layoutY="348.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày sinh" />
-                        <Label layoutX="162.0" layoutY="135.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
-                        <Text fx:id="txtTinhTrangSever1" layoutX="45.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="308.5366973876953" />
-                        <Text fx:id="checkPhoneNum" fill="#14af5a" layoutX="380.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="✓" visible="false" wrappingWidth="17.01019287109375">
+                        <JFXToggleButton fx:id="txtGioiTinh" disable="true" layoutX="166.0" layoutY="393.0" prefHeight="32.0" prefWidth="77.0" />
+                        <Label layoutX="131.0" layoutY="416.0" text="Nữ" />
+                        <Label layoutX="261.0" layoutY="416.0" text="Nam" />
+                        <DatePicker fx:id="txtNgaySinh" disable="true" layoutX="64.0" layoutY="456.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày sinh" />
+                        <Label layoutX="161.0" layoutY="244.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
+                        <Text fx:id="txtTinhTrangSever1" layoutX="66.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="308.5366973876953" />
+                        <Text fx:id="checkPhoneNum" fill="#14af5a" layoutX="375.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="✓" visible="false" wrappingWidth="17.01019287109375">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <Text fx:id="checkGmail" fill="#14af5a" layoutX="380.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="✓" visible="false" wrappingWidth="17.01019287109375">
+                        <Text fx:id="checkGmail" fill="#14af5a" layoutX="375.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="✓" visible="false" wrappingWidth="17.01019287109375">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -195,58 +195,58 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="693.0" prefWidth="1513.0">
                      <children>
-                        <TextField fx:id="txtTenkhachHangSuaChua" disable="true" layoutX="67.0" layoutY="76.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên khách hàng" />
-                        <TextField fx:id="txtMaSuaChua" disable="true" layoutX="67.0" layoutY="25.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã sữa chữa" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="38.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="txtTenkhachHangSuaChua" disable="true" layoutX="62.0" layoutY="192.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên khách hàng" />
+                        <TextField fx:id="txtMaSuaChua" disable="true" layoutX="62.0" layoutY="141.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã sữa chữa" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="33.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/pin_code_30px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="38.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="33.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/computer_support_64px.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="txtNhanVienTiepNhan" disable="true" layoutX="67.0" layoutY="123.0" prefHeight="26.0" prefWidth="298.0" promptText="Nhân viên tiếp nhận" />
-                        <TextField fx:id="txtTinhTrang" disable="true" layoutX="67.0" layoutY="281.0" prefHeight="26.0" prefWidth="298.0" promptText="Tình trạng thiết bị" />
-                        <TextField fx:id="txtLaptopName" disable="true" layoutX="67.0" layoutY="227.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên thiết bị" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="38.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="txtNhanVienTiepNhan" disable="true" layoutX="62.0" layoutY="239.0" prefHeight="26.0" prefWidth="298.0" promptText="Nhân viên tiếp nhận" />
+                        <TextField fx:id="txtTinhTrang" disable="true" layoutX="62.0" layoutY="397.0" prefHeight="26.0" prefWidth="298.0" promptText="Tình trạng thiết bị" />
+                        <TextField fx:id="txtLaptopName" disable="true" layoutX="62.0" layoutY="343.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên thiết bị" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="33.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/name_50px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="38.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="33.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/gears_40px.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="38.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="33.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/laptop_40px.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="157.0" layoutY="187.0" prefHeight="18.0" prefWidth="106.0" text="--------------------" />
-                        <ImageView fitHeight="42.0" fitWidth="46.0" layoutX="33.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
+                        <Label layoutX="152.0" layoutY="303.0" prefHeight="18.0" prefWidth="106.0" text="--------------------" />
+                        <ImageView fitHeight="42.0" fitWidth="46.0" layoutX="28.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/opposite_opinion_48px.png" />
                            </image>
                         </ImageView>
-                        <JFXToggleButton fx:id="txtSuaRepair" disable="true" layoutX="190.0" layoutY="338.0" prefHeight="32.0" prefWidth="77.0" />
-                        <Label layoutX="86.0" layoutY="359.0" text="Sửa lấy ngay" />
-                        <Label layoutX="297.0" layoutY="359.0" text="Hẹn ngày lấy" />
-                        <ImageView fitHeight="34.0" fitWidth="33.0" layoutX="33.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
+                        <JFXToggleButton fx:id="txtSuaRepair" disable="true" layoutX="185.0" layoutY="454.0" prefHeight="32.0" prefWidth="77.0" />
+                        <Label layoutX="81.0" layoutY="475.0" text="Sửa lấy ngay" />
+                        <Label layoutX="292.0" layoutY="475.0" text="Hẹn ngày lấy" />
+                        <ImageView fitHeight="34.0" fitWidth="33.0" layoutX="28.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/timetable_64px.png" />
                            </image>
                         </ImageView>
-                        <DatePicker fx:id="txtNgayHen" disable="true" layoutX="75.0" layoutY="414.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày hẹn lấy" />
-                        <TextField fx:id="txtTien" disable="true" layoutX="74.0" layoutY="471.0" prefHeight="26.0" prefWidth="298.0" promptText="Số tiền dự tính" text="0" />
-                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="33.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true">
+                        <DatePicker fx:id="txtNgayHen" disable="true" layoutX="70.0" layoutY="530.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày hẹn lấy" />
+                        <TextField fx:id="txtTien" disable="true" layoutX="69.0" layoutY="587.0" prefHeight="26.0" prefWidth="298.0" promptText="Số tiền dự tính" text="0" />
+                        <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="28.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/money_64px.png" />
                            </image>
                         </ImageView>
-                        <JFXButton fx:id="btnSuaRepair" disable="true" layoutX="50.0" layoutY="554.0" onMouseClicked="#SuaRepairButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
+                        <JFXButton fx:id="btnSuaRepair" disable="true" layoutX="44.0" layoutY="674.0" onMouseClicked="#SuaRepairButton" prefHeight="47.0" prefWidth="321.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Sửa thông tin">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -255,7 +255,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnTest31" layoutX="45.0" layoutY="628.0" prefHeight="45.0" prefWidth="326.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
+                        <JFXButton fx:id="btnTest31" layoutX="39.0" layoutY="748.0" prefHeight="45.0" prefWidth="326.0" style="-fx-background-color: #6EC4D2; -fx-background-radius: 30;" text="Làm mới ô nhập">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -264,10 +264,10 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <TableView fx:id="tableListRepair" layoutX="824.0" layoutY="21.0" onMouseClicked="#getItemFromTableViewRepair" prefHeight="652.0" prefWidth="689.0">
+                        <TableView fx:id="tableListRepair" layoutX="824.0" layoutY="21.0" onMouseClicked="#getItemFromTableViewRepair" prefHeight="784.0" prefWidth="890.0">
                            <columns>
                               <TableColumn fx:id="colRepairId" prefWidth="96.0" text="Mã sữa chữa" />
-                              <TableColumn fx:id="colRepairCustomerName" prefWidth="165.0" text="Mã khách hàng" />
+                              <TableColumn fx:id="colRepairCustomerName" prefWidth="165.0" text="Tên khách hàng" />
                               <TableColumn fx:id="colRepairNameOfLaptop" prefWidth="115.0" text="Tên thiết bị" />
                               <TableColumn fx:id="colRepairStatusLaptop" prefWidth="165.0" text="Tình trạng thiết bị" />
                               <TableColumn fx:id="colRepairStaffId" prefWidth="165.0" text="Nhân viên tiếp nhận" />
@@ -281,7 +281,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <TableView fx:id="tableListLinhKien" disable="true" layoutX="423.0" layoutY="217.0" onMouseClicked="#setItemSelected" prefHeight="460.0" prefWidth="366.0">
+                        <TableView fx:id="tableListLinhKien" disable="true" layoutX="423.0" layoutY="217.0" onMouseClicked="#setItemSelected" prefHeight="589.0" prefWidth="366.0">
                            <columns>
                               <TableColumn fx:id="colMLK" prefWidth="75.0" text="Mã linh kiện" />
                               <TableColumn fx:id="colTLK" prefWidth="75.0" text="Tên linh kiện" />
@@ -298,7 +298,7 @@
                            </font>
                         </Label>
                         <JFXButton fx:id="btnResetDanhSach" disable="true" layoutX="619.0" layoutY="171.0" onAction="#resetDanhSach" prefHeight="32.0" prefWidth="172.0" style="-fx-background-color: #66A3E5;" text="Reset danh sách" />
-                        <JFXButton fx:id="btnHuySuaRepair" layoutX="209.0" layoutY="552.0" onMouseClicked="#HuySuaRepairButton" prefHeight="53.0" prefWidth="159.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
+                        <JFXButton fx:id="btnHuySuaRepair" layoutX="203.0" layoutY="672.0" onMouseClicked="#HuySuaRepairButton" prefHeight="53.0" prefWidth="159.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -307,7 +307,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnXacNhanSuaRepair" layoutX="44.0" layoutY="554.0" onMouseClicked="#startThreadupdateRepair" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
+                        <JFXButton fx:id="btnXacNhanSuaRepair" layoutX="38.0" layoutY="674.0" onMouseClicked="#startThreadupdateRepair" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Xác nhận" visible="false">
                            <graphic>
                               <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -316,7 +316,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <Text fx:id="txtTinhTrangSever2" layoutX="62.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="308.5366973876953" />
+                        <Text fx:id="txtTinhTrangSever2" layoutX="56.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="308.5366973876953" />
                            
                      </children>
                   </AnchorPane>
@@ -326,7 +326,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableListStatus" layoutX="22.0" layoutY="144.0" onMouseClicked="#getItemFormTableListStatus" prefHeight="524.0" prefWidth="1456.0">
+                        <TableView fx:id="tableListStatus" layoutX="22.0" layoutY="144.0" onMouseClicked="#getItemFormTableListStatus" prefHeight="658.0" prefWidth="1683.0">
                           <columns>
                             <TableColumn fx:id="colRepairIdStatus" prefWidth="102.39990043640137" text="Mã sữa chữa" />
                             <TableColumn fx:id="colCustomerIdStatus" prefWidth="48.00025177001953" text="Mã khách hàng" />
@@ -422,7 +422,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableviewLichSu" layoutX="19.0" layoutY="19.0" prefHeight="655.0" prefWidth="1490.0">
+                        <TableView fx:id="tableviewLichSu" layoutX="19.0" layoutY="19.0" prefHeight="782.0" prefWidth="1688.0">
                           <columns>
                             <TableColumn fx:id="lsCustomerId" prefWidth="75.0" text="Mã khách hàng" />
                             <TableColumn fx:id="lsCustomerName" prefWidth="75.0" text="Tên khách hàng" />
