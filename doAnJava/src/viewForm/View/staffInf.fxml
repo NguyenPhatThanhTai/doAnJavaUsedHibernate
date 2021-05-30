@@ -262,8 +262,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnPicStaff" disable="true" layoutX="69.0" layoutY="460.0" onAction="#updatePicture" prefHeight="26.0" prefWidth="259.0" style="-fx-background-radius: 30; -fx-background-color: #75BBCD;" text="Chọn hình ảnh nhân viên" />
-                        <BorderPane layoutX="24.0" layoutY="187.0" prefHeight="262.0" prefWidth="346.0">
+                        <BorderPane layoutX="11.0" layoutY="20.0" prefHeight="421.0" prefWidth="352.0">
                            <center>
                               <ImageView fx:id="imgStaff" fitHeight="262.0" fitWidth="331.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                  <image>
@@ -271,6 +270,9 @@
                                  </image>
                               </ImageView>
                            </center>
+                           <bottom>
+                              <JFXButton fx:id="btnPicStaff" disable="true" onAction="#updatePicture" prefHeight="26.0" prefWidth="259.0" style="-fx-background-radius: 30; -fx-background-color: #75BBCD;" text="Chọn hình ảnh nhân viên" BorderPane.alignment="CENTER" />
+                           </bottom>
                         </BorderPane>
                      </children></AnchorPane>
               </content>

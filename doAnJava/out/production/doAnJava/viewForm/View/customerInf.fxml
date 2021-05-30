@@ -341,7 +341,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <JFXButton fx:id="btnSuaStatus" disable="true" layoutX="22.0" layoutY="66.0" onAction="#CapNhatTinhTrangButton" onMouseClicked="#SuaRepairButton" prefHeight="54.0" prefWidth="322.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Cập nhật tình trạng">
+                        <JFXButton fx:id="btnSuaStatus" disable="true" layoutX="22.0" layoutY="66.0" onAction="#CapNhatTinhTrangButton" prefHeight="54.0" prefWidth="322.0" style="-fx-background-color: #B4BA58; -fx-background-radius: 30;" text="Cập nhật tình trạng">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -451,6 +451,6 @@
             </Tab>
          </tabs>
       </JFXTabPane>
-      <JFXProgressBar fx:id="TopLoading" layoutX="22.0" layoutY="11.0" prefHeight="6.0" prefWidth="1527.0" visible="false" />
+      <JFXProgressBar fx:id="TopLoading" layoutX="22.0" layoutY="11.0" prefHeight="6.0" prefWidth="1728.0" visible="false" />
    </children>
 </AnchorPane>

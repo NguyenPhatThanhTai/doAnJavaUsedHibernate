@@ -120,4 +120,21 @@ public class detailInfRepairDao implements daoInterface<DetailInfRepairEntity> {
 
         return FXCollections.observableArrayList(clist);
     }
+
+    public boolean addLichSu(InfLichSuEntity data){
+        try {
+            Session s = hibernateUntil.getSession();
+            Transaction t = s.beginTransaction();
+            s.save(data);
+
+            t.commit();
+            s.close();
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi ở LS");
+            return false;
+        }
+    }
 }

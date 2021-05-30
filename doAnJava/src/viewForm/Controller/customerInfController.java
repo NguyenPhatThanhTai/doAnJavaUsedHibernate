@@ -960,8 +960,6 @@ public class customerInfController implements Initializable {
 
     public void getItemFormTableListStatus(){
         try{
-            btnHoanThanhDon.setDisable(false);
-            btnSuaStatus.setDisable(false);
             String status = "Chưa hoàn thành";
 
             DetailInfRepairEntity de = (DetailInfRepairEntity) tableListStatus.getItems().get(tableListStatus.getSelectionModel().getSelectedIndex());
@@ -971,6 +969,14 @@ public class customerInfController implements Initializable {
             }
             txtTinhTrangSuaStatus.setText(status);
             tinhtrangsua = status;
+
+            if (txtTinhTrangSuaStatus.getText().equals("Chưa hoàn thành")){
+                btnSuaStatus.setDisable(false);
+                btnHoanThanhDon.setDisable(true);
+            }else {
+                btnHoanThanhDon.setDisable(false);
+                btnSuaStatus.setDisable(true);
+            }
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -1251,7 +1257,6 @@ public class customerInfController implements Initializable {
 
 
         if (infDoanhThuThangEntity == null){
-            //String dtt, String inputMoney, String outputMoney, String entity, String staffSalary, String profitMoney, Date month
             System.out.println(DTT);
             InfDoanhThuThangEntity infDoanhThuThangEntity1f = new InfDoanhThuThangEntity("DTT"+year.format(now) + month.format(now), String.valueOf(detailInfRepairEntity.getRepairMoney()), String.valueOf(totalMonelLK), "1", "0", String.valueOf(Integer.valueOf(detailInfRepairEntity.getRepairMoney()) - totalMonelLK),Date.valueOf(year.format(now) + "-" + month.format(now) + "-01"));
             doanhthuDao.addNewDoanhThuThang(infDoanhThuThangEntity1f);
@@ -1265,9 +1270,66 @@ public class customerInfController implements Initializable {
             doanhthuDao.updateDoanhThuThang(infDoanhThuThangEntity2);
         }
 
-        TopLoading.setVisible(false);
-        btnXacNhanHoanThanhDon.setDisable(false);
-        btnHuyHoanThanhDon.setDisable(false);
+        //Đưa đơn vào lịch sử
+        String sexLS = "1";
+        if (detailInfRepairEntity.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerSex().equals("Nữ")){
+            sexLS = "2";
+        }
+
+        InfLichSuEntity infLichSuEntity = new InfLichSuEntity(
+                detailInfRepairEntity.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerId(),
+                detailInfRepairEntity.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName(),
+                sexLS,
+                detailInfRepairEntity.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerBirth(),
+                detailInfRepairEntity.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerEmail(),
+                detailInfRepairEntity.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerPhone(),
+                detailInfRepairEntity.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerTimeAdd(),
+                detailInfRepairEntity.getInfRepairByRepairId().getRepairId(),
+                detailInfRepairEntity.getInfRepairByRepairId().getLaptopName(),
+                detailInfRepairEntity.getInfRepairByRepairId().getLaptopStatus(),
+                detailInfRepairEntity.getRepairReason(),
+                detailInfRepairEntity.getRepairNote(),
+                detailInfRepairEntity.getRepairAppointment(),
+                detailInfRepairEntity.getRepairMoney(),
+                "1",
+                Date.valueOf(dayAdd.format(now)),
+                infStaffEntity);
+
+        detailInfRepairDao rpDao = new detailInfRepairDao();
+
+        //Xoá khách hàng hiện tại
+        this.SeverRPId = "RP" + parts[1];
+
+        detailInfRepairDao delDetail = new detailInfRepairDao();
+        DetailInfRepairEntity detail = new DetailInfRepairEntity();
+        detail.setDetailId("DT" + parts[1]);
+
+        infRepairDao delRepair = new infRepairDao();
+        InfRepairEntity repair = new InfRepairEntity();
+        repair.setRepairId("RP" + parts[1]);
+
+        infCustomerDao delCustomer = new infCustomerDao();
+        InfCustomersEntity customer = new InfCustomersEntity();
+        customer.setCustomerId("KH" + parts[1]);
+
+        infHoaDonDao infHoaDonDao = new infHoaDonDao();
+
+        if (rpDao.addLichSu(infLichSuEntity) && infHoaDonDao.dellData("HD" + parts[1]) && infLKDao.dellOldData("DT" + parts[1]) && delDetail.dellData(detail) && delRepair.dellData(repair) && delCustomer.dellData(customer)){
+            refreshView();
+            rlist = dao.getALl();
+            tableListStatus.setItems(rlist);
+            tableListStatus.refresh();
+            lsList = dao.getAllLichSu();
+            tableviewLichSu.setItems(lsList);
+            tableviewLichSu.refresh();
+            TopLoading.setVisible(false);
+            btnXacNhanHoanThanhDon.setDisable(false);
+            btnHuyHoanThanhDon.setDisable(false);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Đã xảy ra lỗi");
+            alert.showAndWait();
+        }
     }
 
     //Load lich su

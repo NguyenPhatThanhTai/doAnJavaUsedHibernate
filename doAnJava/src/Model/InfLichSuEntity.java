@@ -37,7 +37,7 @@ public class InfLichSuEntity {
     public InfLichSuEntity() {
     }
 
-    public InfLichSuEntity(String customerId, String customerName, String customerSex, Date customerBirth, String customerEmail, String customerPhone, Date customerTimeAdd, String repairId, String laptopName, String laptopStatus, String repairReason, String repairNote, Date repairAppointment, String repairMoney, String repairStatus, Date repairTimeEnd) {
+    public InfLichSuEntity(String customerId, String customerName, String customerSex, Date customerBirth, String customerEmail, String customerPhone, Date customerTimeAdd, String repairId, String laptopName, String laptopStatus, String repairReason, String repairNote, Date repairAppointment, String repairMoney, String repairStatus, Date repairTimeEnd, InfStaffEntity infStaffByStaffId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerSex = customerSex;
@@ -54,8 +54,8 @@ public class InfLichSuEntity {
         this.repairMoney = repairMoney;
         this.repairStatus = repairStatus;
         this.repairTimeEnd = repairTimeEnd;
+        this.infStaffByStaffId = infStaffByStaffId;
     }
-
 
     @Id
     @Column(name = "Customer_Id")
