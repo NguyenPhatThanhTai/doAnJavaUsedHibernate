@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -135,6 +136,75 @@ public class detailInfRepairDao implements daoInterface<DetailInfRepairEntity> {
             e.printStackTrace();
             System.out.println("Lỗi ở LS");
             return false;
+        }
+    }
+
+    public int getAllRepairIdFromRP(String staffId){
+        Session session = null;
+        try {
+            session = hibernateUntil.getSession();
+
+            String stringQuery = "Select detailId FROM DetailInfRepairEntity where infRepairByRepairId.infStaffByStaffId.staffId = '" + staffId +"'";
+            Query query = session.createQuery(stringQuery);
+
+            Transaction t = session.beginTransaction();
+
+            int number = query.getResultList().size();
+            t.commit();
+            return number;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+    public int getAllRepairIdFromLS(String staffId){
+        Session session = null;
+        try {
+            session = hibernateUntil.getSession();
+
+            String stringQuery = "Select repairId FROM InfLichSuEntity where infStaffByStaffId.staffId = '" + staffId +"'";
+            Query query = session.createQuery(stringQuery);
+
+            Transaction t = session.beginTransaction();
+
+            int number = query.getResultList().size();
+            t.commit();
+            return number;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+    public boolean deleteAllByStaffId(String staffId){
+        Session session = null;
+        try {
+            session = hibernateUntil.getSession();
+
+            String stringQuery = "DELETE FROM InfLichSuEntity where infStaffByStaffId.staffId = '" + staffId +"'";
+            Query query = session.createQuery(stringQuery);
+
+            Transaction t = session.beginTransaction();
+            query.executeUpdate();
+
+            t.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
     }
 }

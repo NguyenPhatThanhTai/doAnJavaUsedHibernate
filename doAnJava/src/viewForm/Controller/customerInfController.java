@@ -1031,6 +1031,8 @@ public class customerInfController implements Initializable {
                 txtTinhTrangSuaStatus.setText("");
             }
             TopLoading.setVisible(false);
+            btnSuaStatus.setDisable(true);
+            btnHoanThanhDon.setDisable(true);
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -1315,7 +1317,12 @@ public class customerInfController implements Initializable {
         infHoaDonDao infHoaDonDao = new infHoaDonDao();
 
         if (rpDao.addLichSu(infLichSuEntity) && infHoaDonDao.dellData("HD" + parts[1]) && infLKDao.dellOldData("DT" + parts[1]) && delDetail.dellData(detail) && delRepair.dellData(repair) && delCustomer.dellData(customer)){
+            thread = new Thread(this::deleteInSever);
+            thread.start();
             refreshView();
+            lkList = lkDao.getFilterNameLk("Acer");
+            tableListLinhKien.setItems(lkList);
+            tableListLinhKien.refresh();
             rlist = dao.getALl();
             tableListStatus.setItems(rlist);
             tableListStatus.refresh();
@@ -1323,8 +1330,11 @@ public class customerInfController implements Initializable {
             tableviewLichSu.setItems(lsList);
             tableviewLichSu.refresh();
             TopLoading.setVisible(false);
-            btnXacNhanHoanThanhDon.setDisable(false);
-            btnHuyHoanThanhDon.setDisable(false);
+            btnXacNhanHoanThanhDon.setVisible(false);
+            btnHuyHoanThanhDon.setVisible(false);
+            btnHoanThanhDon.setVisible(true);
+            btnHoanThanhDon.setDisable(true);
+            tableListStatus.setDisable(false);
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Đã xảy ra lỗi");

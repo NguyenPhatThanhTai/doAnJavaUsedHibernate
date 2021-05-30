@@ -370,36 +370,58 @@ public class staffInfController implements Initializable {
     }
 
     public void xoaNV(){
-        accountStaffDao accountStaffDao = new accountStaffDao();
-        AccountStaffEntity accountStaffEntity = new AccountStaffEntity();
-        accountStaffEntity.setStaffAccount(txtMaNhanVien.getText());
+        detailInfRepairDao detailInfRepairDao = new detailInfRepairDao();
+        int numbLS = detailInfRepairDao.getAllRepairIdFromLS(txtMaNhanVien.getText());
 
-        salaryStaffDao salaryStaffDao = new salaryStaffDao();
-        SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity();
-        salaryStaffEntity.setSalaStaffId(txtMaNhanVien.getText());
+        ButtonType foo = new ButtonType("Đồng ý xoá", ButtonBar.ButtonData.OK_DONE);
+        ButtonType bar = new ButtonType("Không xoá", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+                "Nhân viên này đã hoàn thành "+numbLS+" đơn, bạn có chắc muốn xoá, điều này sẽ xoá toàn bộ lịch sử liên quan nhân viên này!",
+                foo, bar);
 
-        infStaffDao infStaffDao = new infStaffDao();
-        InfStaffEntity infStaffEntity = new InfStaffEntity();
-        infStaffEntity.setStaffId(txtMaNhanVien.getText());
+        alert.setTitle("Xác nhận xoá nhân viên");
+        Optional<ButtonType> result = alert.showAndWait();
 
-        // Xoá cũng y như trên, truyền Model vào nó sẽ xoá theo mã
-        if(salaryStaffDao.dellData(salaryStaffEntity) && accountStaffDao.dellData(accountStaffEntity) && infStaffDao.dellData(infStaffEntity)){
-            refreshView();
-            refreshTableViewTK();
-            refreshTableViewLuong();
-            openTextField(true);
-            btnXacNhanXoa.setVisible(false);
-            btnHuyXoa.setVisible(false);
-            btnSua.setDisable(false);
-            btnThem.setDisable(false);
-            btnXoa.setVisible(true);
-            tableViewNhanVien.setDisable(false);
-            clearAllKhachHang();
-        }
-        else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Lỗi, không xoá được");
-            alert.showAndWait();
+        if (result.orElse(bar) == foo){
+            accountStaffDao accountStaffDao = new accountStaffDao();
+            AccountStaffEntity accountStaffEntity = new AccountStaffEntity();
+            accountStaffEntity.setStaffAccount(txtMaNhanVien.getText());
+
+            salaryStaffDao salaryStaffDao = new salaryStaffDao();
+            SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity();
+            salaryStaffEntity.setSalaStaffId(txtMaNhanVien.getText());
+
+            infStaffDao infStaffDao = new infStaffDao();
+            InfStaffEntity infStaffEntity = new InfStaffEntity();
+            infStaffEntity.setStaffId(txtMaNhanVien.getText());
+
+            // Xoá cũng y như trên, truyền Model vào nó sẽ xoá theo mã
+            try {
+                int numRP = detailInfRepairDao.getAllRepairIdFromRP(txtMaNhanVien.getText());
+                if (numRP != 0){
+                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                    alert1.setContentText("Nhân viên này vẫn còn " +numRP+" đơn đang sửa, yêu cầu hoàn thành tất cả!");
+                    alert1.showAndWait();
+                    HuyXoaNhanVienButton();
+                }
+                else {
+                    if(detailInfRepairDao.deleteAllByStaffId(txtMaNhanVien.getText()) && salaryStaffDao.dellData(salaryStaffEntity) && accountStaffDao.dellData(accountStaffEntity) && infStaffDao.dellData(infStaffEntity)){
+                        refreshView();
+                        refreshTableViewTK();
+                        refreshTableViewLuong();
+                        openTextField(true);
+                        btnXacNhanXoa.setVisible(false);
+                        btnHuyXoa.setVisible(false);
+                        btnSua.setDisable(false);
+                        btnThem.setDisable(false);
+                        btnXoa.setVisible(true);
+                        tableViewNhanVien.setDisable(false);
+                        clearAllKhachHang();
+                    }
+                }
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -421,6 +443,9 @@ public class staffInfController implements Initializable {
     }
 
     public void ThemNhanVienButton(){
+        DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        txtNgayThem.setText(dayAdd.format(now));
         txtMaNhanVien.setText("Hệ thống định sẵn");
         openButton(false, "Add");
     }
