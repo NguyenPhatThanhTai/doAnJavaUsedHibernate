@@ -221,6 +221,11 @@ public class staffInfController implements Initializable {
 
     ObservableList<AccountStaffEntity> nvList;//Muốn đưa dữ liệu vào tableView thì cần phải xài cái ObservableList
     ObservableList<SalaryStaffEntity> luongList;
+    InfStaffEntity infStaffEntity;
+
+    public void showInfomation(InfStaffEntity infStaffEntity){
+        this.infStaffEntity = infStaffEntity;
+    }
 
     public void loadNV(){
         nvList = dao.getALl();//Nhét hết đống dữ liêu về nhân viên mà thằng DAO lấy được vào ObservableList
@@ -244,6 +249,14 @@ public class staffInfController implements Initializable {
             AccountStaffEntity cus = (AccountStaffEntity) tableViewNhanVien.getItems().get(tableViewNhanVien.getSelectionModel().getSelectedIndex());//.getSelectionModel().getSelectedIndex() lấy dữ liệu đang dc chọn cho vào model
             //gọi bảng accountStaff vì nó là bảng con, bảng con có thể gọi lên bảng cha thông qua khoá phụ ( private InfStaffEntity infStaffByStaffId ) bên model
             txtMaNhanVien.setText(cus.getInfStaffByStaffId().getStaffId());//setText cho từng ô nhập bằng model ở trên
+            if (infStaffEntity.getStaffId().equals(txtMaNhanVien.getText())){
+                btnSua.setDisable(true);
+                btnXoa.setDisable(true);
+            }
+            else {
+                btnSua.setDisable(false);
+                btnXoa.setDisable(false);
+            }
             txtTenNhanVien.setText(cus.getInfStaffByStaffId().getStaffName());
             if (cus.getInfStaffByStaffId().getStaffDeparment().equals("1")){ // nếu chức vụ bằng 1 thì cái chỗ chọn chức vụ sẽ hiện quản lý
                 cbChucVu.getSelectionModel().select(0);

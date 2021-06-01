@@ -157,7 +157,7 @@ public class doanhThuController implements Initializable {
             InfDoanhThuSuaEntity infDoanhThuSuaEntity1 =
                     dao.getByDate(Date.valueOf(year + "-" + month + "-" + i));
             if (infDoanhThuSuaEntity1 != null){
-                series.getData().add(new XYChart.Data<>("Ngày " + i, Integer.parseInt(infDoanhThuSuaEntity1.getEntity()), Integer.parseInt(infDoanhThuSuaEntity1.getMoney())));
+                series.getData().add(new XYChart.Data<>("Ngày " + i, Integer.parseInt(infDoanhThuSuaEntity1.getMoney()), Integer.parseInt(infDoanhThuSuaEntity1.getMoney())));
             }
             else {
                 series.getData().add(new XYChart.Data<>("Ngày " + i, 0, 0));

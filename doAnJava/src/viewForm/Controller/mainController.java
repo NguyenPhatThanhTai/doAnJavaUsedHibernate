@@ -101,6 +101,12 @@ public class mainController implements Initializable {
             name = "Không định dạng được";
         }
         lbName.setText("Họ và tên: " + name + " - Chức vụ: " + chucVu);
+        if (!infStaffEntity.getStaffDeparment().equals("1")){
+            btnLK.setDisable(true);
+            btnStaff.setDisable(true);
+            btnQuanTriSever.setDisable(true);
+            btnDoanhThu.setDisable(true);
+        }
     }
 
     public void checkDoanhThu(){
@@ -218,8 +224,26 @@ public class mainController implements Initializable {
     }
 
     public void showStaffPage(){
-        setEffectClick("#4777A7", "Staff");
-        setPage("staffInf.fxml");
+        try {
+            setEffectClick("#4777A7", "Staff");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/staffInf.fxml"));
+            Parent root = null;
+            root = loader.load();
+
+            staffInfController staffInfController = loader.getController();
+            staffInfController.showInfomation(infStaffEntity);
+            Pane p = (Pane) root;
+            Platform.runLater(new Runnable(){
+                @Override
+                public void run() {
+                    paneLoad.getChildren().clear();
+                    paneLoad.getChildren().add(p);
+                }
+            });
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void startThreadshowProfitPage(){
