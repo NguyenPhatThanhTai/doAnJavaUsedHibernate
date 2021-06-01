@@ -12,6 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.Date;
 import java.util.List;
 
 public class infLKDao implements daoInterface<InfLkEntity> {
@@ -212,5 +213,28 @@ public class infLKDao implements daoInterface<InfLkEntity> {
             }
         }
         return true;
+    }
+
+    public ObservableList<InfLkEntity> getLkByDate(String date){
+        Session session = null;
+        List<InfLkEntity> clist = null;
+        try {
+            session = hibernateUntil.getSession();
+
+            String stringQuery = "FROM InfLkEntity E where E.lkTimeAdd like '%"+date+"%'";
+            Query query = session.createQuery(stringQuery);
+
+            Transaction t = session.beginTransaction();
+            clist= query.getResultList();
+            t.commit();
+            return FXCollections.observableArrayList(clist);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
     }
 }

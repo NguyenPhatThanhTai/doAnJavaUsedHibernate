@@ -330,9 +330,6 @@ public class customerInfController implements Initializable {
     }
 
     public void addNewCustomer(){
-        TopLoading.setVisible(true);
-        btnXacNhanThem.setDisable(true);
-        btnHuyThem.setDisable(true);
         if (txtTenKhachHang.getText().equals("") || txtSoDienThoai.getText().equals("") || txtEmail.getText().equals("") || txtNgaySinh.getValue().equals("")){
             Platform.runLater(new Runnable() {
                 @Override
@@ -345,6 +342,9 @@ public class customerInfController implements Initializable {
             });
         }
         else {
+            TopLoading.setVisible(true);
+            btnXacNhanThem.setDisable(true);
+            btnHuyThem.setDisable(true);
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
             DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");

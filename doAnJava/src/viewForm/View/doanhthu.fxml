@@ -1,66 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="891.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.doanhThuController">
    <children>
-      <Text fx:id="txtMoneyToday" fill="#a46e6e" layoutX="424.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" wrappingWidth="536.13671875">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="14.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng tiền hôm nay:" wrappingWidth="245.47265625">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="14.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng đơn đã hoàn thành hôm nay:" wrappingWidth="410.14215087890625">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text fx:id="txtTotalToday" fill="#3f6b4b" layoutX="424.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 đơn" wrappingWidth="305.60009765625">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Text>
-      <Text layoutX="721.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng tiền tháng này:" wrappingWidth="410.14215087890625">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="721.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng đơn đã hoàn thành tháng này:" wrappingWidth="410.14215087890625">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="721.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Lợi nhuận tháng này:" wrappingWidth="410.14215087890625">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text fx:id="txtProfit" fill="#a46e6e" layoutX="1131.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" wrappingWidth="356.9366455078125">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text fx:id="txtMoneyMonth" fill="#a46e6e" layoutX="1131.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" wrappingWidth="388.1368408203125">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text fx:id="txtTotalMonth" fill="#3f6b4b" layoutX="1131.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 đơn" wrappingWidth="281.60009765625">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Text>
-      <Text fx:id="lbNgayThu" layoutX="70.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <BarChart fx:id="charts" layoutX="26.0" layoutY="163.0" prefHeight="704.0" prefWidth="1714.0">
+      <BarChart fx:id="charts" layoutX="28.0" layoutY="399.0" prefHeight="481.0" prefWidth="1714.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -68,5 +25,102 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
+      <SplitPane fx:id="splitDoanhThu" dividerPositions="0.31371280724450196" layoutX="37.0" layoutY="27.0" orientation="VERTICAL" prefHeight="304.0" prefWidth="1714.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="125.0" prefWidth="1713.0">
+               <children>
+                  <Text fx:id="txtMoneyToday" fill="#a46e6e" layoutX="481.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" textAlignment="CENTER" wrappingWidth="702.53662109375">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="21.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng tiền hôm nay:" wrappingWidth="245.47265625">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="21.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng đơn đã hoàn thành hôm nay:" wrappingWidth="410.14215087890625">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtTotalToday" fill="#3f6b4b" layoutX="481.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 đơn" textAlignment="CENTER" wrappingWidth="702.53662109375">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="98.0" prefWidth="1713.0">
+               <children>
+                  <Text layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng tiền tháng này:" wrappingWidth="410.14215087890625">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="14.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tổng đơn đã hoàn thành tháng này:" wrappingWidth="410.14215087890625">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="14.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Lợi nhuận tháng này:" wrappingWidth="410.14215087890625">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtProfit" fill="#a46e6e" layoutX="479.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" textAlignment="CENTER" wrappingWidth="702.53662109375">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtMoneyMonth" fill="#a46e6e" layoutX="479.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" textAlignment="CENTER" wrappingWidth="702.53662109375">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtTotalMonth" fill="#3f6b4b" layoutX="479.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 đơn" textAlignment="CENTER" wrappingWidth="702.53662109375">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtLkMoney" fill="#a46e6e" layoutX="479.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999,999,999,999 VNĐ" textAlignment="CENTER" wrappingWidth="702.53662109375">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="14.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Tiền nhập hàng tháng này:" wrappingWidth="342.942138671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <JFXButton fx:id="txtClickViewLK" disable="true" layoutX="59.0" layoutY="341.0" onAction="#clickLK" prefHeight="26.0" prefWidth="366.0" style="-fx-background-color: #61A7D2; -fx-background-radius: 20;" text="Nhấn xem các đơn hàng đã nhập trong tháng" textFill="WHITE">
+         <graphic>
+            <ImageView fx:id="gifLoading" fitHeight="28.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../Picture/Pic/1918692048single-gear-cog-animation-1-4.gif" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TableView fx:id="tableListLk" layoutX="59.0" layoutY="22.0" prefHeight="295.0" prefWidth="1674.0" visible="false">
+         <columns>
+            <TableColumn fx:id="colLK_Id" prefWidth="99.0" text="Mã linh kiện" />
+            <TableColumn fx:id="colLK_Name" prefWidth="90.0" text="Tên linh kiện" />
+            <TableColumn fx:id="colLK_Number" prefWidth="36.0" text="Số lượng" />
+            <TableColumn fx:id="colLK_Producer" prefWidth="75.0" text="Nhà sản xuất" />
+            <TableColumn fx:id="colLK_Price" prefWidth="75.0" text="Đơn giá" />
+            <TableColumn fx:id="colLK_Time_Add" prefWidth="173.0" text="Thời gian thêm" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <JFXComboBox fx:id="cbMonth" disable="true" layoutX="1477.0" layoutY="347.0" onAction="#setChart" prefHeight="26.0" prefWidth="129.0" promptText="Chọn tháng" />
+      <Text fx:id="lbYear" layoutX="1612.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Năm: 2021" wrappingWidth="129.5999999999999" />
+      <JFXProgressBar fx:id="loading" layoutX="37.0" layoutY="11.0" prefHeight="6.0" prefWidth="1714.0" visible="false" />
    </children>
 </AnchorPane>
