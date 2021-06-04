@@ -257,8 +257,14 @@ public class doanhThuController implements Initializable {
             cbMonth.getItems().add(String.valueOf(i));
         }
 
-        this.day = Integer.parseInt(day.format(now));
         this.month = Integer.parseInt(month.format(now));
+        if (month.equals("1") || month.equals("3") || month.equals("5") ||
+                month.equals("7") || month.equals("8") || month.equals("10") || month.equals("12")){
+            this.day = 31;
+        }
+        else {
+            this.day = 30;
+        }
         this.year = Integer.parseInt(year.format(now));
 
         startThreadLoadData();

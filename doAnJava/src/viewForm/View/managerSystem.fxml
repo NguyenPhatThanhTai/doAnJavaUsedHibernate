@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="520.0" prefWidth="1575.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewForm.Controller.ManagerSystem">
    <children>
-      <JFXButton layoutX="63.0" layoutY="46.0" onAction="#Nhan" prefHeight="46.0" prefWidth="296.0" style="-fx-background-color: #40A86D;" text="Upload dữ liêu lên server" />
+      <JFXButton layoutX="31.0" layoutY="24.0" onAction="#Nhan" prefHeight="46.0" prefWidth="179.0" style="-fx-background-color: #40A86D;" text="Upload dữ liêu lên server" />
       <Label fx:id="txtDone" layoutX="63.0" layoutY="107.0" prefHeight="18.0" prefWidth="296.0" text="Đã upload xong" visible="false" />
+      <ListView fx:id="viewMessage" layoutX="259.0" layoutY="25.0" prefHeight="389.0" prefWidth="512.0" />
+      <JFXTextField fx:id="txtMessage" layoutX="259.0" layoutY="429.0" prefHeight="26.0" prefWidth="418.0" promptText="Tin nhắn" />
+      <JFXButton layoutX="690.0" layoutY="430.0" onAction="#sendMessage" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: lightblue; -fx-background-radius: 30;" text="Gửi" />
    </children>
 </AnchorPane>
