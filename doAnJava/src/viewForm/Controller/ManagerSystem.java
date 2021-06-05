@@ -4,6 +4,7 @@ package viewForm.Controller;
 
 import DAO.detailInfRepairDao;
 import Model.DetailInfRepairEntity;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXScrollPane;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
@@ -30,9 +31,14 @@ public class ManagerSystem implements Initializable {
     @FXML
     private ListView viewMessage;
     @FXML
+    private ListView viewCustomer;
+    @FXML
     private JFXTextField txtMessage;
+    @FXML
+    private JFXButton btnDelete;
 
     Thread thread;
+    String Id;
 
     ObservableList<DetailInfRepairEntity> rlist;
     detailInfRepairDao dao = new detailInfRepairDao();
@@ -84,17 +90,16 @@ public class ManagerSystem implements Initializable {
 
     public void getmessage() {
         JSONObject json = null;
-        viewMessage.getItems().clear();
         while (true){
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             try {
                 getAPI getAPI = new getAPI();
 
-                json = getAPI.readJsonFromUrl("http://localhost:8080/APIDoAnJava/getMessage.php?Id=" + 1123213);
+                json = getAPI.readJsonFromUrl("https://dht-api.000webhostapp.com/APIDoAnJava/getMessage.php?Id=" + Id);
 
                 JSONArray jsonArray = json.getJSONArray("Check");
 
@@ -117,7 +122,7 @@ public class ManagerSystem implements Initializable {
                     }
                 });
             }catch (Exception ex){
-                ex.printStackTrace();
+//                ex.printStackTrace();
             }
         }
     }
@@ -125,10 +130,11 @@ public class ManagerSystem implements Initializable {
     public void sendMessage(){
         String User = "User";
         String Admin = "Admin";
-        String query_url = "http://localhost:8080/APIDoAnJava/createMessage.php";
-        String json = "{ \"name\" : \""+Admin+"\", " +
+        String query_url = "https://dht-api.000webhostapp.com/APIDoAnJava/createMessage.php";
+        String json = "{ \"name\" : \""+Id+"\", " +
                         "\"name1\" : \""+User+"\", " +
-                "       \"name2\" : \""+txtMessage.getText()+"\"}";
+                        "\"name2\" : \""+Admin+"\", " +
+                "       \"name3\" : \""+txtMessage.getText()+"\"}";
         try {
             URL url = new URL(query_url);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -156,15 +162,79 @@ public class ManagerSystem implements Initializable {
 //
 //            //get token
 //            String token = jsonArray2.get(0).toString();
+            txtMessage.setText("");
             conn.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public void getAllListMessage(){
+        JSONObject json = null;
+        viewMessage.getItems().clear();
+        while (true){
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
+                getAPI getAPI = new getAPI();
+
+                json = getAPI.readJsonFromUrl("https://dht-api.000webhostapp.com/APIDoAnJava/getAllList.php");
+
+                try{
+                    JSONArray jsonArray = json.getJSONArray("Check");
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        viewCustomer.getItems().clear();
+                        for (int i = 0; i < jsonArray.length(); i ++){
+                            try {
+                                viewCustomer.getItems().add(jsonArray.getJSONObject(i).getString("msg_Id"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+                }catch (Exception ex){
+                    System.out.println("Không có");
+                }
+            }catch (Exception ex){
+//                ex.printStackTrace();
+            }
+        }
+    }
+
+    public void loadMessage(){
+        btnDelete.setDisable(false);
+        Id = String.valueOf(viewCustomer.getSelectionModel().getSelectedItems());
+        Id = Id.substring(1, Id.length() - 1);
+        System.out.println(Id);
+        thread = new Thread(this::getmessage);
+        thread.start();
+        thread.interrupt();
+    }
+
+    public void deleteMessage(){
+        try {
+        JSONObject json = null;
+        getAPI getAPI = new getAPI();
+        json = getAPI.readJsonFromUrl("https://dht-api.000webhostapp.com/APIDoAnJava/deleteMessage.php?Id="+Id);
+            JSONArray jsonArray = json.getJSONArray("Check");
+        } catch (Exception e) {
+//            e.printStackTrace();
+        }
+        btnDelete.setDisable(true);
+        viewMessage.getItems().clear();
+        viewCustomer.getItems().clear();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        thread = new Thread(this::getmessage);
+        thread = new Thread(this::getAllListMessage);
         thread.start();
         thread.interrupt();
     }
