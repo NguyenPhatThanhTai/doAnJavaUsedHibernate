@@ -24,6 +24,7 @@ import java.sql.Date;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -706,6 +707,17 @@ public class customerInfController implements Initializable {
         }
     }
 
+    public void checkBirth(){
+        DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        if (txtNgaySinh.getValue().isAfter(ChronoLocalDate.from(now))){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ngày sinh không được vượt quá ngày hiện tại");
+            alert.showAndWait();
+            txtNgaySinh.setValue(LocalDate.parse(dayAdd.format(now)));
+        }
+    }
+
     //Phần tab Tiếp nhận đơn
 
     public void loadDataRepair(){
@@ -941,6 +953,17 @@ public class customerInfController implements Initializable {
             conn.disconnect();
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    public void checkAppoinment(){
+        DateTimeFormatter dayAdd = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        if (txtNgayHen.getValue().isBefore(ChronoLocalDate.from(now))){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ngày hẹn không được dưới ngày hiện tại");
+            alert.showAndWait();
+            txtNgayHen.setValue(LocalDate.parse(dayAdd.format(now)));
         }
     }
 

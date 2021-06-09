@@ -110,10 +110,10 @@ public class ManagerSystem implements Initializable {
                         for (int i = 0; i < jsonArray.length(); i ++){
                             try {
                                 if (jsonArray.getJSONObject(i).getString("msg_Staff").equals("User")){
-                                    viewMessage.getItems().add("Bạn: " + jsonArray.getJSONObject(i).getString("msg_Message"));
+                                    viewMessage.getItems().add("Khách hàng: " + jsonArray.getJSONObject(i).getString("msg_Message"));
                                 }
                                 else{
-                                    viewMessage.getItems().add("Khách hàng: " + jsonArray.getJSONObject(i).getString("msg_Message"));
+                                    viewMessage.getItems().add("Bạn: " + jsonArray.getJSONObject(i).getString("msg_Message"));
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

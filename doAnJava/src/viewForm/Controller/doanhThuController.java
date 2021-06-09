@@ -189,7 +189,7 @@ public class doanhThuController implements Initializable {
         String query = year+"-"+month;
 
         if (month < 11){
-            query = "0"+month;
+            query = year+"-0"+month;
         }
 
         infLKDao infLKDao = new infLKDao();

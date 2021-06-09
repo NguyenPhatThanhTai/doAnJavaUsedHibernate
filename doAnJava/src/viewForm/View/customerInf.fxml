@@ -174,7 +174,7 @@
                         <JFXToggleButton fx:id="txtGioiTinh" disable="true" layoutX="166.0" layoutY="393.0" prefHeight="32.0" prefWidth="77.0" />
                         <Label layoutX="131.0" layoutY="416.0" text="Nữ" />
                         <Label layoutX="261.0" layoutY="416.0" text="Nam" />
-                        <DatePicker fx:id="txtNgaySinh" disable="true" layoutX="64.0" layoutY="456.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày sinh" />
+                        <DatePicker fx:id="txtNgaySinh" disable="true" layoutX="64.0" layoutY="456.0" onAction="#checkBirth" prefHeight="26.0" prefWidth="298.0" promptText="Ngày sinh" />
                         <Label layoutX="161.0" layoutY="244.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
                         <Text fx:id="txtTinhTrangSever1" layoutX="66.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="308.5366973876953" />
                         <Text fx:id="checkPhoneNum" fill="#14af5a" layoutX="375.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="✓" visible="false" wrappingWidth="17.01019287109375">
@@ -239,7 +239,7 @@
                               <Image url="@../Picture/Pic/timetable_64px.png" />
                            </image>
                         </ImageView>
-                        <DatePicker fx:id="txtNgayHen" disable="true" layoutX="70.0" layoutY="530.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày hẹn lấy" />
+                        <DatePicker fx:id="txtNgayHen" disable="true" layoutX="70.0" layoutY="530.0" onAction="#checkAppoinment" prefHeight="26.0" prefWidth="298.0" promptText="Ngày hẹn lấy" />
                         <TextField fx:id="txtTien" disable="true" layoutX="69.0" layoutY="587.0" prefHeight="26.0" prefWidth="298.0" promptText="Số tiền dự tính" text="0" />
                         <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="28.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -221,7 +221,7 @@ public class infLKDao implements daoInterface<InfLkEntity> {
         try {
             session = hibernateUntil.getSession();
 
-            String stringQuery = "FROM InfLkEntity E where E.lkTimeAdd like '%"+date+"%'";
+            String stringQuery = "FROM InfLkEntity E where E.lkTimeAdd like '"+date+"%'";
             Query query = session.createQuery(stringQuery);
 
             Transaction t = session.beginTransaction();
