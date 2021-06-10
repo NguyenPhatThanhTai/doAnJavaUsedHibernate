@@ -731,7 +731,7 @@ public class customerInfController implements Initializable {
         colRepairNote.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairNote()));
         colRepairStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().Status()));
         colRepairAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getRepairAppointment())));
-        colRepairMoney.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairMoney()));
+        colRepairMoney.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().Money()));
     }
 
     public void getItemFromTableViewRepair(){
@@ -752,7 +752,7 @@ public class customerInfController implements Initializable {
                 txtTinhTrang.setText(de.getInfRepairByRepairId().getLaptopStatus());
                 txtLkDaChon.setText(de.getRepairReason());
                 txtLaptopName.setText(String.valueOf(de.getInfRepairByRepairId().getLaptopName()));
-                txtTien.setText(de.getRepairMoney());
+                txtTien.setText(de.Money());
             if (de.getRepairStatus().equals("1")){
                 btnSuaRepair.setDisable(true);
             }
@@ -790,11 +790,26 @@ public class customerInfController implements Initializable {
 
                 txtLkDaChon.setText(listLK.toString());
 
-                long money1 = Long.parseLong(txtTien.getText());
-                long money2 = Long.parseLong(de.getLkPrice());
-                long tienLK = Long.parseLong(txtTien.getText() + de.getLkPrice());
+
+                String money = txtTien.getText();
+                money = money.replace(",", "");
+                money = money.replace("VND ", "");
+
+                System.out.println(money);
+
+                long money1 = Long.parseLong(money);
+                long money2 = Long.parseLong(de.getLkPrice());;
                 long tien = money1+money2;
-                txtTien.setText(String.valueOf(tien));
+
+                System.out.println(tien);
+
+                Locale usa = new Locale("vn", "VN");
+
+                Currency dollars = Currency.getInstance(usa);
+
+                NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(usa);
+
+                txtTien.setText(String.valueOf(dollarFormat.format(tien)));
             }
     }
 
@@ -839,6 +854,10 @@ public class customerInfController implements Initializable {
             btnXacNhanSuaRepair.setDisable(true);
             btnHuySuaRepair.setDisable(true);
 
+            String money = txtTien.getText();
+            money = money.replace(",", "");
+            money = money.replace("VND ", "");
+
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter day = DateTimeFormatter.ofPattern("dd");
             DateTimeFormatter month = DateTimeFormatter.ofPattern("MM");
@@ -856,10 +875,10 @@ public class customerInfController implements Initializable {
             if (txtSuaRepair.isSelected()) {
                 suaRepair = "Hẹn ngày lấy";
             }
-            DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity("DT" + parts[1], txtLkDaChon.getText(), suaRepair, "2", Date.valueOf(txtNgayHen.getValue()), txtTien.getText(), infRepairEntity);
+            DetailInfRepairEntity detailInfRepairEntity = new DetailInfRepairEntity("DT" + parts[1], txtLkDaChon.getText(), suaRepair, "2", Date.valueOf(txtNgayHen.getValue()), money, infRepairEntity);
 
             InfDoanhThuSuaEntity infDoanhThuSuaEntity = new InfDoanhThuSuaEntity("DTN" + day.format(now) + month.format(now) + year.format(now));
-            InfHoaDonEntity infHoaDonEntity = new InfHoaDonEntity("HD" + parts[1], txtTien.getText(), detailInfRepairEntity, infDoanhThuSuaEntity);
+            InfHoaDonEntity infHoaDonEntity = new InfHoaDonEntity("HD" + parts[1], money, detailInfRepairEntity, infDoanhThuSuaEntity);
             //
             try {
                 //Xoá hết tất cả của thằng đó trước khi thêm
@@ -976,7 +995,7 @@ public class customerInfController implements Initializable {
         colCustomerNameStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerName()));
         colLaptopNameStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getLaptopName()));
         colStatusStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().Status()));
-        colMoneyStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairMoney()));
+        colMoneyStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().Money()));
         colStaffIdStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfRepairByRepairId().getInfStaffByStaffId().getStaffId()));
         colNgayThemStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerTimeAdd())));
     }
@@ -1138,7 +1157,7 @@ public class customerInfController implements Initializable {
 
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(de2.getInfRepairByRepairId().getInfCustomersByCustomerId().getCustomerEmail()));
 
-                Locale usa = new Locale("en", "US");
+                Locale usa = new Locale("vn", "VN");
 
                 Currency dollars = Currency.getInstance(usa);
 
@@ -1383,7 +1402,7 @@ public class customerInfController implements Initializable {
         lsNeedFix.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairReason()));
         lsRepairAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairNote()));
         lsDateAppointment.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getRepairAppointment())));
-        lsMoney.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairMoney()));
+        lsMoney.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().Money()));
         lsRepairStatus.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getRepairStatus()));
         lsTimeEnd.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getRepairTimeEnd())));
     }
@@ -1553,7 +1572,6 @@ public class customerInfController implements Initializable {
         txtTinhTrang.setDisable(flag);
         txtSuaRepair.setDisable(flag);
         txtNgayHen.setDisable(flag);
-        txtTien.setDisable(flag);
     }
 
     public void clearAllKhachHang(){

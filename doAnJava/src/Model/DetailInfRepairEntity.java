@@ -2,6 +2,9 @@ package Model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.text.NumberFormat;
+import java.util.Currency;
+import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -39,6 +42,16 @@ public class DetailInfRepairEntity {
         else {
             return "Chưa hoàn thành";
         }
+    }
+
+    public String Money(){
+        Locale usa = new Locale("vn", "VN");
+
+        Currency dollars = Currency.getInstance(usa);
+
+        NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(usa);
+
+        return dollarFormat.format(Long.parseLong(repairMoney));
     }
 
     @Id

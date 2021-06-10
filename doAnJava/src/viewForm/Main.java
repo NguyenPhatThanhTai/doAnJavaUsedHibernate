@@ -14,9 +14,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setResizable(false);
-        Parent root = FXMLLoader.load(getClass().getResource("View/doanhthu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View/sample.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setTitle("Đăng nhập");
+        primaryStage.setTitle("DHT");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
