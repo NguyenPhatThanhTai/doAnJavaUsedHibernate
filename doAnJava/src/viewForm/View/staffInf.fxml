@@ -59,7 +59,7 @@
                               <Image url="@../Picture/Pic/flying_stork_with_bundle_26px.png" />
                            </image>
                         </ImageView>
-                        <DatePicker fx:id="txtNgaySinh" disable="true" layoutX="63.0" layoutY="389.0" prefHeight="26.0" prefWidth="298.0" promptText="Ngày sinh" />
+                        <DatePicker fx:id="txtNgaySinh" disable="true" layoutX="63.0" layoutY="389.0" onAction="#checkBirth" prefHeight="26.0" prefWidth="298.0" promptText="Ngày sinh" />
                         <JFXComboBox fx:id="cbChucVu" disable="true" layoutX="64.0" layoutY="521.0" prefHeight="30.0" prefWidth="298.0" promptText="Chọn chức vụ" />
                         <JFXButton fx:id="btnThem" alignment="BASELINE_CENTER" layoutX="45.0" layoutY="577.0" onAction="#ThemNhanVienButton" prefHeight="47.0" prefWidth="318.0" style="-fx-background-color: #537FAB; -fx-background-radius: 30;" text="Thêm nhân viên">
                            <graphic>
