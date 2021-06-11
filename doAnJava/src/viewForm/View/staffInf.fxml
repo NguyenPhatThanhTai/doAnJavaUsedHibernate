@@ -45,7 +45,7 @@
                         <Label layoutX="164.0" layoutY="270.0" prefHeight="18.0" prefWidth="132.0" text="--------------------" />
                         <TextField fx:id="txtTenNhanVien" disable="true" layoutX="64.0" layoutY="299.0" prefHeight="26.0" prefWidth="298.0" promptText="Tên nhân viên" />
                         <TextField fx:id="txtDiaChi" disable="true" layoutX="63.0" layoutY="444.0" prefHeight="26.0" prefWidth="298.0" promptText="Địa chỉ" />
-                        <TextField fx:id="txtSoDienThoai" disable="true" layoutX="63.0" layoutY="483.0" prefHeight="26.0" prefWidth="299.0" promptText="Số điện thoại" />
+                        <TextField fx:id="txtSoDienThoai" disable="true" layoutX="63.0" layoutY="483.0" onKeyReleased="#checkPhoneNumber" prefHeight="26.0" prefWidth="299.0" promptText="Số điện thoại" />
                         <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="25.0" layoutY="338.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Picture/Pic/gender_32px.png" />
@@ -181,6 +181,11 @@
                               <Image url="@../Picture/Pic/administrator_male_80px.png" />
                            </image>
                         </ImageView>
+                        <Text fx:id="checkPhoneNum" fill="#14af5a" layoutX="371.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="✓" visible="false" wrappingWidth="22.6102294921875">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
               </content>

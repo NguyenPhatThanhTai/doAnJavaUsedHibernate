@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -36,6 +37,8 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class staffInfController implements Initializable {
     @FXML
@@ -218,6 +221,9 @@ public class staffInfController implements Initializable {
     @FXML
     private JFXButton btnPicStaff;
 
+    @FXML
+    private Text checkPhoneNum;
+
     accountStaffDao dao = new accountStaffDao();//gọi tới DAO (dùng để trả dữ liệu về bên đây)
 
     ObservableList<AccountStaffEntity> nvList;//Muốn đưa dữ liệu vào tableView thì cần phải xài cái ObservableList
@@ -353,6 +359,22 @@ public class staffInfController implements Initializable {
             alert.setContentText("Ngày sinh không được vượt quá ngày hiện tại");
             alert.showAndWait();
             txtNgaySinh.setValue(LocalDate.parse(dayAdd.format(now)));
+        }
+    }
+
+    public void checkPhoneNumber(){
+        checkPhoneNum.setVisible(true);
+        Pattern pattern = Pattern.compile("\\d{10}$");
+        Matcher matcher = pattern.matcher(txtSoDienThoai.getText());
+        if (!matcher.matches()){
+            btnXacNhanThem.setDisable(true);
+            checkPhoneNum.setFill(Color.RED);
+            checkPhoneNum.setText("!");
+        }
+        else {
+            btnXacNhanThem.setDisable(false);
+            checkPhoneNum.setFill(Color.GREEN);
+            checkPhoneNum.setText("✓");
         }
     }
 
