@@ -247,6 +247,18 @@ public class linhKienInfController implements Initializable {
         tableListLk.refresh();
     }
 
+    public void checkDonGia(){
+        if (!txtDonGia.getText().matches("\\d*")) {
+            txtDonGia.setText(txtDonGia.getText().replaceAll("[^\\d]", ""));
+        }
+    }
+
+    public void checkSoLuong(){
+        if (!txtSoLuong.getText().matches("\\d*")) {
+            txtSoLuong.setText(txtSoLuong.getText().replaceAll("[^\\d]", ""));
+        }
+    }
+
     public void ThemLinhKienButton(){
         txtMaLinhKien.setText("Hệ thống định sẵn");
         openButton(false, "Add");

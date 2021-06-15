@@ -34,9 +34,9 @@
                         </TableView>
                         <TextField fx:id="txtMaLinhKien" disable="true" layoutX="60.0" layoutY="186.0" prefHeight="26.0" prefWidth="298.0" promptText="Mã linh kiện" />
                         <TextField fx:id="txtTenLinhKien" disable="true" layoutX="61.0" layoutY="310.0" prefHeight="26.0" prefWidth="295.0" promptText="Tên linh kiện" />
-                        <TextField fx:id="txtSoLuong" disable="true" layoutX="59.0" layoutY="365.0" prefHeight="26.0" prefWidth="298.0" promptText="Số lượng" />
+                        <TextField fx:id="txtSoLuong" disable="true" layoutX="59.0" layoutY="365.0" onKeyReleased="#checkSoLuong" prefHeight="26.0" prefWidth="298.0" promptText="Số lượng" />
                         <TextField fx:id="txtNhaSanXuat" disable="true" layoutX="60.0" layoutY="418.0" prefHeight="26.0" prefWidth="298.0" promptText="Nhà sản xuất" />
-                        <TextField fx:id="txtDonGia" disable="true" layoutX="60.0" layoutY="474.0" prefHeight="26.0" prefWidth="298.0" promptText="Đơn giá" />
+                        <TextField fx:id="txtDonGia" disable="true" layoutX="60.0" layoutY="474.0" onKeyReleased="#checkDonGia" prefHeight="26.0" prefWidth="298.0" promptText="Đơn giá" />
                         <TextField fx:id="txtNgayThem" disable="true" layoutX="60.0" layoutY="236.0" prefHeight="26.0" prefWidth="298.0" promptText="Thời gian thêm" />
                         <JFXButton fx:id="btnHuySua" layoutX="189.0" layoutY="621.0" onMouseClicked="#HuySuaLKButton" prefHeight="47.0" prefWidth="152.0" style="-fx-background-color: #C16D6D; -fx-background-radius: 30;" text="Hủy bỏ" visible="false">
                            <graphic>
