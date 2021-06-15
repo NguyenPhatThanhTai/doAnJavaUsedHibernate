@@ -799,7 +799,7 @@ public class customerInfController implements Initializable {
 
                 long money1 = Long.parseLong(money);
                 long money2 = Long.parseLong(de.getLkPrice());;
-                long tien = money1+money2;
+                long tien = ((money1+money2 + 50000) + (money1+money2)*30/100);
 
                 System.out.println(tien);
 

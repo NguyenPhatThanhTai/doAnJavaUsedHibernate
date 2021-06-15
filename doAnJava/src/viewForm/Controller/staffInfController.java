@@ -237,7 +237,7 @@ public class staffInfController implements Initializable {
     public void loadNV(){
         nvList = dao.getALl();//Nhét hết đống dữ liêu về nhân viên mà thằng DAO lấy được vào ObservableList
         tableViewNhanVien.setItems(nvList);//set cái đống dữ liêu đó vào bảng nhân viên
-        clMaNhanVien.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffId()));
+        clMaNhanVien.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffId()));//getInfStaffByStaffId là lấy bảng Inf_Staff bởi khoá phụ Staff_Id
         clTenNhanVien.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().getStaffName()));
         clGioiTinh.setCellValueFactory(cell -> new ReadOnlyStringWrapper(cell.getValue().getInfStaffByStaffId().staffSex()));
         clNgaySinh.setCellValueFactory(cell -> new ReadOnlyStringWrapper(String.valueOf(cell.getValue().getInfStaffByStaffId().getStaffBirth())));
@@ -330,7 +330,9 @@ public class staffInfController implements Initializable {
             SalaryStaffEntity salaryStaffEntity = new SalaryStaffEntity(txtMaNhanVien.getText(), "3000000", "0", "0", "3000000", infStaffEntity);
 
             //Truyền qua bên DAO xử lý, bên DAO sẽ lấy những Model đó thêm vào sql
-            if (infStaffDao.addData(infStaffEntity) && accountStaffDao.addData(accountStaffEntity) && salaryStaffDao.addData(salaryStaffEntity)) {
+            if (infStaffDao.addData(infStaffEntity)
+                    && accountStaffDao.addData(accountStaffEntity)
+                        && salaryStaffDao.addData(salaryStaffEntity)) {
                 //nếu thêm thành công sẽ làm mới lại bảng dữ liệu
                 refreshView();
                 refreshTableViewTK();
@@ -477,7 +479,7 @@ public class staffInfController implements Initializable {
         accountStaffDao dao = new accountStaffDao();
         nvList = dao.getALl();
         tableViewNhanVien.setItems(nvList);
-        tableViewNhanVien.refresh();
+        tableViewNhanVien.refresh();//refresh bảng
     }
 
     public void openTextField(boolean flag){
@@ -839,6 +841,8 @@ public class staffInfController implements Initializable {
         btnSua.setDisable(true);
         btnXoa.setDisable(true);
     }
+
+    //khi bắt đầu chạy sẽ chạy hàm dưới đây đầu tiên
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -40,7 +40,7 @@ public class infStaffDao implements daoInterface<InfStaffEntity>{
         try {
             Session s = hibernateUntil.getSession();
             Transaction t = s.beginTransaction();
-            InfStaffEntity detailInfRepairEntity = s.load(InfStaffEntity.class, data.getStaffId());
+            InfStaffEntity detailInfRepairEntity = s.load(InfStaffEntity.class, data.getStaffId());//select * from Inf_Staff where staff_id= ?
 
             s.delete(detailInfRepairEntity);
 

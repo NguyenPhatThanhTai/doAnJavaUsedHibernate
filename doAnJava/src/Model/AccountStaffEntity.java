@@ -9,7 +9,7 @@ public class AccountStaffEntity {
     private String staffAccount;
     private String staffPassword;
     private String staffRole;
-    private InfStaffEntity infStaffByStaffId;
+    private InfStaffEntity infStaffByStaffId; // dùng để liên kết bảng cha
 
     public AccountStaffEntity() {
     }
